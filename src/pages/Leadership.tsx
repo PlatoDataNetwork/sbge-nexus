@@ -1,6 +1,6 @@
 import { Linkedin, Award, Building2, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 
 const Leadership = () => {
@@ -37,123 +37,125 @@ const Leadership = () => {
     },
   ];
 
-  const strategicAdvisors = [
+  const allAdvisors = [
     {
       name: 'John Calipari',
       title: 'Kentucky Men\'s Basketball Coach',
+      board: 'Strategic Advisors',
       description: 'Hall of Fame basketball coach bringing strategic leadership and winning mentality to the organization.',
-      image: null,
     },
     {
       name: 'Byron Scott',
       title: 'NBA Veteran & Hall of Famer',
+      board: 'Strategic Advisors',
       description: 'Three-time NBA champion with the Los Angeles Lakers during their Showtime era, bringing championship experience and leadership.',
-      image: null,
     },
     {
       name: 'Wladimir Klitschko',
       title: 'Boxing Legend & Hall of Famer',
+      board: 'Strategic Advisors',
       description: 'Former heavyweight world champion known for technical skill, intelligence, and athleticism in the ring and business.',
-      image: null,
     },
     {
       name: 'Roger Mason Jr.',
       title: 'NBA Executive & Former Player',
+      board: 'Strategic Advisors',
       description: 'Ten-season NBA veteran turned executive, bringing sports business acumen and strategic partnerships.',
-      image: null,
     },
-  ];
-
-  const governmentAdvisors = [
     {
       name: 'Donald DiFrancesco',
       title: 'Former New Jersey Governor',
+      board: 'Government Affairs',
       description: '51st Governor of New Jersey with over 25 years serving in the State Senate with distinction.',
-      image: null,
     },
     {
       name: 'Raymond Lesniak',
       title: 'Former NJ State Senator',
+      board: 'Government Affairs',
       description: 'Served in the New Jersey State Senate from 1983 to 2018, representing the 20th Legislative District.',
-      image: null,
     },
     {
       name: 'Gualberto Medina',
       title: 'Former Secretary of Commerce',
+      board: 'Government Affairs',
       description: 'Attorney and CPA with extensive expertise in management, sales, business development, and regulatory matters.',
-      image: null,
     },
     {
       name: 'Rinaldo D\'Argenio',
       title: 'Attorney',
+      board: 'Government Affairs',
       description: 'One of New Jersey\'s most influential attorneys specializing in complex regulatory matters including utilities and environmental issues.',
-      image: null,
     },
     {
       name: 'Paul Weiner',
       title: 'Attorney',
+      board: 'Government Affairs',
       description: 'Master strategist with diverse expertise in corporate law, real estate development, and municipal government law.',
-      image: null,
     },
-  ];
-
-  const businessAdvisors = [
     {
       name: 'Nawaf Althari',
       title: 'The Althari Group - Founding Partner',
+      board: 'Business Advisors',
       description: 'Founding Partner of The Althari Group, bringing strategic business development and investment expertise.',
-      image: null,
     },
     {
       name: 'Brian Cury',
       title: 'EarthCam - Founder & CEO',
+      board: 'Business Advisors',
       description: 'Founder and CEO of EarthCam, pioneer in construction monitoring and jobsite camera technology.',
-      image: null,
     },
     {
       name: 'Kery Davis',
       title: 'Howard University - Athletic Director',
+      board: 'Business Advisors',
       description: 'Athletic Director at Howard University with leadership experience in sports management and operations.',
-      image: null,
     },
     {
       name: 'David Feldman',
       title: 'BFBST LLP - Co-Founder',
+      board: 'Business Advisors',
       description: 'Co-Founder of BFBST LLP, providing strategic financial and business advisory services.',
-      image: null,
     },
     {
       name: 'Steven Greener',
       title: 'Primary Wave',
+      board: 'Business Advisors',
       description: 'Executive at Primary Wave bringing entertainment industry expertise and brand development experience.',
-      image: null,
     },
     {
       name: 'Ramses Ishak',
       title: 'United Talent Agency',
+      board: 'Business Advisors',
       description: 'Partner at United Talent Agency with expertise in talent management and strategic partnerships.',
-      image: null,
     },
     {
       name: 'Michael Sheresky',
       title: 'Partner',
+      board: 'Business Advisors',
       description: 'Strategic partner providing business advisory and operational expertise.',
-      image: null,
     },
   ];
 
-  const allAdvisors = [
-    { title: 'Strategic Advisors', members: strategicAdvisors },
-    { title: 'Government Affairs', members: governmentAdvisors },
-    { title: 'Business Advisors', members: businessAdvisors },
-  ];
+  const ADVISORS_PER_VIEW = 3;
+  const totalSlides = Math.ceil(allAdvisors.length / ADVISORS_PER_VIEW);
+  const [isPaused, setIsPaused] = useState(false);
+
+  useEffect(() => {
+    if (isPaused) return;
+    
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % totalSlides);
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, [isPaused, totalSlides]);
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % allAdvisors.length);
+    setCurrentSlide((prev) => (prev + 1) % totalSlides);
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + allAdvisors.length) % allAdvisors.length);
+    setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
   };
 
   return (
@@ -278,7 +280,7 @@ const Leadership = () => {
       {/* Advisory Boards Carousel */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
+          <div className="max-w-7xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-4xl md:text-5xl font-heading font-bold text-primary mb-6">
                 Advisory Boards
@@ -289,40 +291,46 @@ const Leadership = () => {
             </div>
 
             {/* Carousel */}
-            <div className="relative">
+            <div 
+              className="relative"
+              onMouseEnter={() => setIsPaused(true)}
+              onMouseLeave={() => setIsPaused(false)}
+            >
               <div className="overflow-hidden">
-                <div className="transition-transform duration-500 ease-out"
-                     style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
-                  <div className="flex">
-                    {allAdvisors.map((board, boardIndex) => (
-                      <div key={boardIndex} className="w-full flex-shrink-0">
-                        <div className="px-4">
-                          <h3 className="text-3xl font-heading font-bold text-center text-primary mb-8">
-                            Board of {board.title}
-                          </h3>
-                          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {board.members.map((advisor, index) => (
-                              <div
-                                key={index}
-                                className="bg-card border border-border rounded-lg p-6 hover-lift"
-                              >
-                                <div className="h-48 bg-gradient-primary rounded-lg mb-4 flex items-center justify-center">
-                                  <Linkedin className="h-12 w-12 text-primary-foreground/30" />
-                                </div>
-                                <h4 className="text-lg font-heading font-bold text-foreground mb-1">
-                                  {advisor.name}
-                                </h4>
-                                <p className="text-accent font-medium text-sm mb-3">{advisor.title}</p>
-                                <p className="text-sm text-muted-foreground leading-relaxed">
-                                  {advisor.description}
-                                </p>
+                <div 
+                  className="flex transition-transform duration-700 ease-in-out"
+                  style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+                >
+                  {Array.from({ length: totalSlides }).map((_, slideIndex) => (
+                    <div key={slideIndex} className="w-full flex-shrink-0">
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-4">
+                        {allAdvisors
+                          .slice(slideIndex * ADVISORS_PER_VIEW, (slideIndex + 1) * ADVISORS_PER_VIEW)
+                          .map((advisor, index) => (
+                            <div
+                              key={index}
+                              className="bg-card border border-border rounded-lg p-6 hover-lift"
+                            >
+                              <div className="h-48 bg-gradient-primary rounded-lg mb-4 flex items-center justify-center">
+                                <Linkedin className="h-12 w-12 text-primary-foreground/30" />
                               </div>
-                            ))}
-                          </div>
-                        </div>
+                              <div className="mb-2">
+                                <span className="text-xs font-semibold text-accent uppercase tracking-wide">
+                                  {advisor.board}
+                                </span>
+                              </div>
+                              <h4 className="text-lg font-heading font-bold text-foreground mb-1">
+                                {advisor.name}
+                              </h4>
+                              <p className="text-accent font-medium text-sm mb-3">{advisor.title}</p>
+                              <p className="text-sm text-muted-foreground leading-relaxed">
+                                {advisor.description}
+                              </p>
+                            </div>
+                          ))}
                       </div>
-                    ))}
-                  </div>
+                    </div>
+                  ))}
                 </div>
               </div>
 
@@ -330,7 +338,7 @@ const Leadership = () => {
               <button
                 onClick={prevSlide}
                 className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-card border border-border rounded-full p-3 hover:bg-accent hover:text-accent-foreground transition-colors shadow-lg z-10"
-                aria-label="Previous board"
+                aria-label="Previous advisors"
               >
                 <ChevronLeft className="h-6 w-6" />
               </button>
@@ -338,21 +346,21 @@ const Leadership = () => {
               <button
                 onClick={nextSlide}
                 className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-card border border-border rounded-full p-3 hover:bg-accent hover:text-accent-foreground transition-colors shadow-lg z-10"
-                aria-label="Next board"
+                aria-label="Next advisors"
               >
                 <ChevronRight className="h-6 w-6" />
               </button>
 
               {/* Indicators */}
               <div className="flex justify-center gap-2 mt-8">
-                {allAdvisors.map((_, index) => (
+                {Array.from({ length: totalSlides }).map((_, index) => (
                   <button
                     key={index}
                     onClick={() => setCurrentSlide(index)}
                     className={`h-2 rounded-full transition-all ${
                       index === currentSlide ? 'w-8 bg-accent' : 'w-2 bg-border'
                     }`}
-                    aria-label={`Go to board ${index + 1}`}
+                    aria-label={`Go to slide ${index + 1}`}
                   />
                 ))}
               </div>
