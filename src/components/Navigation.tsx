@@ -105,10 +105,10 @@ const Navigation = () => {
             ) : session ? (
               <>
                 <Button 
-                  variant="outline"
+                  variant={isHomePage && !isScrolled ? "secondary" : "ghost"}
                   size="sm" 
                   asChild
-                  className={isHomePage && !isScrolled ? "border-white/80 text-white hover:bg-white/20 hover:border-white" : ""}
+                  className={isHomePage && !isScrolled ? "bg-white text-foreground hover:bg-white/90" : ""}
                 >
                   <Link to="/admin">
                     <User className="mr-2 h-4 w-4" />
@@ -116,10 +116,10 @@ const Navigation = () => {
                   </Link>
                 </Button>
                 <Button 
-                  variant="outline" 
+                  variant={isHomePage && !isScrolled ? "secondary" : "outline"}
                   size="sm" 
                   onClick={handleSignOut}
-                  className={isHomePage && !isScrolled ? "border-white/80 text-white hover:bg-white/20 hover:border-white" : ""}
+                  className={isHomePage && !isScrolled ? "bg-white text-foreground hover:bg-white/90" : ""}
                 >
                   <LogOut className="mr-2 h-4 w-4" />
                   Sign Out
@@ -127,14 +127,19 @@ const Navigation = () => {
               </>
             ) : (
               <>
-                <Button asChild variant="accent" size="sm">
+                <Button 
+                  asChild 
+                  variant={isHomePage && !isScrolled ? "default" : "accent"}
+                  size="sm"
+                  className={isHomePage && !isScrolled ? "bg-primary text-primary-foreground hover:bg-primary/90" : ""}
+                >
                   <Link to="/contact">Request Access</Link>
                 </Button>
                 <Button 
                   asChild 
-                  variant="outline" 
+                  variant={isHomePage && !isScrolled ? "secondary" : "outline"}
                   size="sm"
-                  className={isHomePage && !isScrolled ? "border-white text-white hover:bg-white/10" : "text-foreground"}
+                  className={isHomePage && !isScrolled ? "bg-white text-foreground hover:bg-white/90" : ""}
                 >
                   <Link to="/auth">Login</Link>
                 </Button>
