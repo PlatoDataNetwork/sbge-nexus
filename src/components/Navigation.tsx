@@ -99,14 +99,16 @@ const Navigation = () => {
           {/* CTA Button + Auth */}
           <div className="hidden lg:flex items-center gap-3">
             {loading ? (
-              <div className="h-10 w-32 animate-pulse bg-muted rounded-md"></div>
+              <div className={`h-10 w-32 animate-pulse rounded-md ${
+                isHomePage && !isScrolled ? 'bg-white/20' : 'bg-muted'
+              }`}></div>
             ) : session ? (
               <>
                 <Button 
-                  variant={isHomePage && !isScrolled ? "outline" : "ghost"} 
+                  variant="outline"
                   size="sm" 
                   asChild
-                  className={isHomePage && !isScrolled ? "border-white text-white hover:bg-white/10" : ""}
+                  className={isHomePage && !isScrolled ? "border-white/80 text-white hover:bg-white/20 hover:border-white" : ""}
                 >
                   <Link to="/admin">
                     <User className="mr-2 h-4 w-4" />
@@ -117,7 +119,7 @@ const Navigation = () => {
                   variant="outline" 
                   size="sm" 
                   onClick={handleSignOut}
-                  className={isHomePage && !isScrolled ? "border-white text-white hover:bg-white/10" : ""}
+                  className={isHomePage && !isScrolled ? "border-white/80 text-white hover:bg-white/20 hover:border-white" : ""}
                 >
                   <LogOut className="mr-2 h-4 w-4" />
                   Sign Out
