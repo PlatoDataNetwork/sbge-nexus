@@ -16,6 +16,14 @@ const InvestorPortal = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    // Check if user has already accepted terms in this session
+    const termsAccepted = sessionStorage.getItem('investor_terms_accepted');
+    if (termsAccepted === 'true') {
+      setHasAccepted(true);
+    }
+  }, []);
+
+  useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (!session) {
         navigate("/auth");
@@ -52,6 +60,7 @@ const InvestorPortal = () => {
 
   const handleAcceptTerms = () => {
     setHasAccepted(true);
+    sessionStorage.setItem('investor_terms_accepted', 'true');
     toast.success("Terms accepted. Welcome to the Investor Portal!");
     
     // Log terms acceptance
