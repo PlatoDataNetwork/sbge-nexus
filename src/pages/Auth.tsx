@@ -20,7 +20,7 @@ const Auth = () => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
       if (session) {
-        navigate('/');
+        navigate('/investor-portal');
       }
     });
 
@@ -30,7 +30,7 @@ const Auth = () => {
     } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
       if (session) {
-        navigate('/');
+        navigate('/investor-portal');
       }
     });
 
@@ -64,7 +64,7 @@ const Auth = () => {
           full_name: fullName,
           company: company,
         },
-        emailRedirectTo: `${window.location.origin}/`,
+        emailRedirectTo: `${window.location.origin}/investor-portal`,
       },
     });
 
