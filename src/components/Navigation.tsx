@@ -10,6 +10,7 @@ const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [session, setSession] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   
@@ -31,16 +32,35 @@ const Navigation = () => {
     } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
       setLoading(false);
+      if (session) {
+        checkAdminStatus(session.user.id);
+      } else {
+        setIsAdmin(false);
+      }
     });
 
     // Then check for existing session
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
       setLoading(false);
+      if (session) {
+        checkAdminStatus(session.user.id);
+      }
     });
 
     return () => subscription.unsubscribe();
   }, []);
+
+  const checkAdminStatus = async (userId: string) => {
+    const { data } = await supabase
+      .from('user_roles')
+      .select('role')
+      .eq('user_id', userId)
+      .eq('role', 'admin')
+      .maybeSingle();
+    
+    setIsAdmin(!!data);
+  };
 
   const handleSignOut = async () => {
     await supabase.auth.signOut();
@@ -110,9 +130,9 @@ const Navigation = () => {
                   asChild
                   className={isHomePage && !isScrolled ? "bg-white text-foreground hover:bg-white/90" : ""}
                 >
-                  <Link to="/admin">
+                  <Link to={isAdmin ? "/admin" : "/investor-portal"}>
                     <User className="mr-2 h-4 w-4" />
-                    Dashboard
+                    {isAdmin ? "Admin Dashboard" : "Investor Portal"}
                   </Link>
                 </Button>
                 <Button 
@@ -189,9 +209,9 @@ const Navigation = () => {
                     className={`w-full ${isHomePage && !isScrolled ? 'border-white text-white hover:bg-white/10' : ''}`}
                     asChild
                   >
-                    <Link to="/admin" onClick={() => setIsMobileMenuOpen(false)}>
+                    <Link to={isAdmin ? "/admin" : "/investor-portal"} onClick={() => setIsMobileMenuOpen(false)}>
                       <User className="mr-2 h-4 w-4" />
-                      Dashboard
+                      {isAdmin ? "Admin Dashboard" : "Investor Portal"}
                     </Link>
                   </Button>
                   <Button 
