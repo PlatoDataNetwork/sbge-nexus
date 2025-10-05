@@ -11,6 +11,8 @@ const Navigation = () => {
   const [session, setSession] = useState<any>(null);
   const location = useLocation();
   const navigate = useNavigate();
+  
+  const isHomePage = location.pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -54,14 +56,16 @@ const Navigation = () => {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-background/95 backdrop-blur-md shadow-md' : 'bg-transparent'
+        isScrolled ? 'bg-background/95 backdrop-blur-md shadow-md' : isHomePage ? 'bg-gradient-to-b from-black/40 to-transparent' : 'bg-background/95 backdrop-blur-md shadow-md'
       }`}
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <div className="text-2xl font-heading font-bold text-primary">
+            <div className={`text-2xl font-heading font-bold transition-colors ${
+              isHomePage && !isScrolled ? 'text-white' : 'text-primary'
+            }`}>
               StorageBlue
             </div>
           </Link>
@@ -74,8 +78,12 @@ const Navigation = () => {
                 to={item.href}
                 className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
                   location.pathname === item.href
-                    ? 'text-primary bg-muted'
-                    : 'text-foreground hover:text-primary hover:bg-muted/50'
+                    ? isHomePage && !isScrolled
+                      ? 'text-white bg-white/20'
+                      : 'text-primary bg-muted'
+                    : isHomePage && !isScrolled
+                      ? 'text-white/90 hover:text-white hover:bg-white/10'
+                      : 'text-foreground hover:text-primary hover:bg-muted/50'
                 }`}
               >
                 {item.name}
@@ -87,23 +95,38 @@ const Navigation = () => {
           <div className="hidden lg:flex items-center gap-3">
             {session ? (
               <>
-                <Button variant="ghost" size="sm" asChild>
+                <Button 
+                  variant={isHomePage && !isScrolled ? "outline" : "ghost"} 
+                  size="sm" 
+                  asChild
+                  className={isHomePage && !isScrolled ? "border-white text-white hover:bg-white/10" : ""}
+                >
                   <Link to="/admin">
                     <User className="mr-2 h-4 w-4" />
                     Dashboard
                   </Link>
                 </Button>
-                <Button variant="outline" size="sm" onClick={handleSignOut}>
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  onClick={handleSignOut}
+                  className={isHomePage && !isScrolled ? "border-white text-white hover:bg-white/10" : ""}
+                >
                   <LogOut className="mr-2 h-4 w-4" />
                   Sign Out
                 </Button>
               </>
             ) : (
               <>
-                <Button asChild variant="premium" className="bg-gradient-primary hover:opacity-90">
+                <Button asChild variant="accent" size="sm">
                   <Link to="/contact">Request Access</Link>
                 </Button>
-                <Button asChild variant="outline">
+                <Button 
+                  asChild 
+                  variant="outline" 
+                  size="sm"
+                  className={isHomePage && !isScrolled ? "border-white text-white hover:bg-white/10" : ""}
+                >
                   <Link to="/auth">Login</Link>
                 </Button>
               </>
@@ -112,7 +135,7 @@ const Navigation = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="lg:hidden p-2"
+            className={`lg:hidden p-2 ${isHomePage && !isScrolled ? 'text-white' : 'text-foreground'}`}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -122,15 +145,21 @@ const Navigation = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden py-4 space-y-2 animate-fade-in">
+          <div className={`lg:hidden py-4 space-y-2 animate-fade-in ${
+            isHomePage && !isScrolled ? 'bg-black/90' : 'bg-background'
+          }`}>
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 to={item.href}
                 className={`block px-4 py-2 text-sm font-medium rounded-md transition-colors ${
                   location.pathname === item.href
-                    ? 'text-primary bg-muted'
-                    : 'text-foreground hover:text-primary hover:bg-muted/50'
+                    ? isHomePage && !isScrolled
+                      ? 'text-white bg-white/20'
+                      : 'text-primary bg-muted'
+                    : isHomePage && !isScrolled
+                      ? 'text-white/90 hover:text-white hover:bg-white/10'
+                      : 'text-foreground hover:text-primary hover:bg-muted/50'
                 }`}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
@@ -140,23 +169,38 @@ const Navigation = () => {
             <div className="px-4 pt-2 space-y-2 border-t border-border mt-2">
               {session ? (
                 <>
-                  <Button variant="outline" size="sm" className="w-full" asChild>
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className={`w-full ${isHomePage && !isScrolled ? 'border-white text-white hover:bg-white/10' : ''}`}
+                    asChild
+                  >
                     <Link to="/admin" onClick={() => setIsMobileMenuOpen(false)}>
                       <User className="mr-2 h-4 w-4" />
                       Dashboard
                     </Link>
                   </Button>
-                  <Button variant="outline" size="sm" className="w-full" onClick={() => { handleSignOut(); setIsMobileMenuOpen(false); }}>
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className={`w-full ${isHomePage && !isScrolled ? 'border-white text-white hover:bg-white/10' : ''}`}
+                    onClick={() => { handleSignOut(); setIsMobileMenuOpen(false); }}
+                  >
                     <LogOut className="mr-2 h-4 w-4" />
                     Sign Out
                   </Button>
                 </>
               ) : (
                 <>
-                  <Button asChild variant="premium" className="w-full">
+                  <Button asChild variant="accent" size="sm" className="w-full">
                     <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>Request Access</Link>
                   </Button>
-                  <Button asChild variant="outline" className="w-full">
+                  <Button 
+                    asChild 
+                    variant="outline" 
+                    size="sm" 
+                    className={`w-full ${isHomePage && !isScrolled ? 'border-white text-white hover:bg-white/10' : ''}`}
+                  >
                     <Link to="/auth" onClick={() => setIsMobileMenuOpen(false)}>Login</Link>
                   </Button>
                 </>
