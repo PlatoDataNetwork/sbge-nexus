@@ -157,7 +157,7 @@ const Home = () => {
               </div>
             </div>
             
-            <Button asChild size="lg" variant="outline" className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10 mt-8">
+            <Button asChild size="lg" variant="secondary" className="mt-8">
               <Link to="/contact">Get Started <ArrowRight className="ml-2 h-5 w-5" /></Link>
             </Button>
           </div>
