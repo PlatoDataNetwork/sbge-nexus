@@ -217,15 +217,28 @@ const Navigation = () => {
             <div className="px-4 pt-2 space-y-2 border-t border-border mt-2">
               {session ? (
                 <>
+                  {isAdmin && (
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      className={`w-full ${isHomePage && !isScrolled ? 'border-white text-white hover:bg-white/10' : ''}`}
+                      asChild
+                    >
+                      <Link to="/admin" onClick={() => setIsMobileMenuOpen(false)}>
+                        <User className="mr-2 h-4 w-4" />
+                        Admin Dashboard
+                      </Link>
+                    </Button>
+                  )}
                   <Button 
                     variant="outline" 
                     size="sm" 
                     className={`w-full ${isHomePage && !isScrolled ? 'border-white text-white hover:bg-white/10' : ''}`}
                     asChild
                   >
-                    <Link to={isAdmin ? "/admin" : "/investor-portal"} onClick={() => setIsMobileMenuOpen(false)}>
+                    <Link to="/investor-portal" onClick={() => setIsMobileMenuOpen(false)}>
                       <User className="mr-2 h-4 w-4" />
-                      {isAdmin ? "Admin Dashboard" : "Investor Portal"}
+                      Investor Portal
                     </Link>
                   </Button>
                   <Button 
