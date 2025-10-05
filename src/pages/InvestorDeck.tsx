@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { ArrowLeft, Download, ZoomIn, ZoomOut, ChevronLeft, ChevronRight } from "lucide-react";
-import { Document, Page, pdfjs } from 'react-pdf';
+import { pdfjs } from 'react-pdf';
 import workerSrc from 'pdfjs-dist/build/pdf.worker.min.mjs?url';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import 'react-pdf/dist/esm/Page/TextLayer.css';
@@ -21,6 +21,8 @@ const InvestorDeck = () => {
   const [pageNumber, setPageNumber] = useState<number>(1);
   const [scale, setScale] = useState(1.2);
   const [pdfData, setPdfData] = useState<Uint8Array | null>(null);
+  const [pdfDoc, setPdfDoc] = useState<any>(null);
+  const mainCanvasRef = useRef<HTMLCanvasElement | null>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -64,6 +66,47 @@ const InvestorDeck = () => {
     };
     loadPdf();
   }, []);
+
+  // Load PDF document with pdf.js
+  useEffect(() => {
+    if (!pdfData) return;
+    const loadingTask = pdfjs.getDocument({ data: pdfData });
+    let cancelled = false;
+
+    loadingTask.promise
+      .then((doc: any) => {
+        if (cancelled) return;
+        setPdfDoc(doc);
+        setNumPages(doc.numPages);
+      })
+      .catch((e: any) => console.error('PDF load error', e));
+
+    return () => {
+      cancelled = true;
+      try { loadingTask.destroy(); } catch {}
+    };
+  }, [pdfData]);
+
+  // Render current page to main canvas
+  useEffect(() => {
+    if (!pdfDoc || !mainCanvasRef.current) return;
+
+    let cancelled = false;
+    (async () => {
+      const page = await pdfDoc.getPage(pageNumber);
+      const viewport = page.getViewport({ scale });
+      const canvas = mainCanvasRef.current!;
+      const context = canvas.getContext('2d');
+      if (!context) return;
+      canvas.width = Math.floor(viewport.width);
+      canvas.height = Math.floor(viewport.height);
+      const renderTask = page.render({ canvasContext: context, viewport });
+      await renderTask.promise;
+      if (cancelled) return;
+    })();
+
+    return () => { cancelled = true; };
+  }, [pdfDoc, pageNumber, scale]);
 
   const handleZoomIn = () => setScale(prev => Math.min(prev + 0.2, 2));
   const handleZoomOut = () => setScale(prev => Math.max(prev - 0.2, 0.5));
@@ -162,22 +205,8 @@ const InvestorDeck = () => {
                   onClick={() => goToPage(index + 1)}
                 >
                   <div className="p-2">
-                    {pdfData ? (
-                      <Document
-                        file={{ data: pdfData }}
-                        loading={
-                          <div className="flex items-center justify-center h-24 bg-muted">
-                            <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-primary"></div>
-                          </div>
-                        }
-                      >
-                        <Page
-                          pageNumber={index + 1}
-                          width={160}
-                          renderTextLayer={false}
-                          renderAnnotationLayer={false}
-                        />
-                      </Document>
+                    {pdfDoc ? (
+                      <Thumbnail pdf={pdfDoc} pageNumber={index + 1} />
                     ) : (
                       <div className="flex items-center justify-center h-24 bg-muted">
                         <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-primary"></div>
@@ -197,30 +226,10 @@ const InvestorDeck = () => {
         <div className="flex-1 overflow-auto bg-muted/10">
           <div className="flex items-center justify-center min-h-full p-8">
             <div className="bg-white shadow-2xl">
-              {pdfData ? (
-                <Document
-                  file={{ data: pdfData }}
-                  onLoadSuccess={onDocumentLoadSuccess}
-                  loading={
-                    <div className="flex flex-col items-center justify-center h-[600px] w-[800px]">
-                      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mb-4"></div>
-                      <p className="text-muted-foreground">Loading presentation...</p>
-                    </div>
-                  }
-                  error={
-                    <div className="flex flex-col items-center justify-center h-[600px] w-[800px]">
-                      <p className="text-destructive mb-4">Failed to load PDF</p>
-                      <Button onClick={() => window.location.reload()}>Retry</Button>
-                    </div>
-                  }
-                >
-                  <Page
-                    pageNumber={pageNumber}
-                    scale={scale}
-                    renderTextLayer={true}
-                    renderAnnotationLayer={true}
-                  />
-                </Document>
+              {pdfDoc ? (
+                <div className="p-4">
+                  <canvas ref={mainCanvasRef} className="block max-w-full h-auto" />
+                </div>
               ) : (
                 <div className="flex flex-col items-center justify-center h-[600px] w-[800px]">
                   <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mb-4"></div>
@@ -233,6 +242,30 @@ const InvestorDeck = () => {
       </div>
     </div>
   );
+};
+
+const Thumbnail = ({ pdf, pageNumber }: { pdf: any; pageNumber: number }) => {
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+
+  useEffect(() => {
+    if (!pdf || !canvasRef.current) return;
+    let cancelled = false;
+    (async () => {
+      const page = await pdf.getPage(pageNumber);
+      const viewport = page.getViewport({ scale: 0.22 });
+      const canvas = canvasRef.current!;
+      const context = canvas.getContext('2d');
+      if (!context) return;
+      canvas.width = Math.floor(viewport.width);
+      canvas.height = Math.floor(viewport.height);
+      const renderTask = page.render({ canvasContext: context, viewport });
+      await renderTask.promise;
+      if (cancelled) return;
+    })();
+    return () => { cancelled = true; };
+  }, [pdf, pageNumber]);
+
+  return <canvas ref={canvasRef} className="w-full h-auto bg-white" />;
 };
 
 export default InvestorDeck;
