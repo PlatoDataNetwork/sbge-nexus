@@ -33,13 +33,10 @@ const InvestorDeck = () => {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((event, session) => {
       if (event === 'INITIAL_SESSION') {
-        if (!session) {
-          navigate("/auth");
-          return;
-        }
-        setSession(session);
+        // Finish auth hydration without redirecting to avoid flicker
+        setSession(session ?? null);
         setLoading(false);
-        if (session.user) {
+        if (session?.user) {
           logActivity(session.user.id, "deck_view", {
             page: "investor_deck",
             timestamp: new Date().toISOString(),
@@ -49,7 +46,8 @@ const InvestorDeck = () => {
       }
 
       if (event === 'SIGNED_OUT') {
-        navigate("/auth");
+        setSession(null);
+        setLoading(false);
         return;
       }
 
@@ -89,6 +87,21 @@ const InvestorDeck = () => {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+      </div>
+    );
+  }
+
+  if (!session) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <Card className="max-w-md p-6 text-center">
+          <h1 className="text-2xl font-semibold mb-2">Sign in required</h1>
+          <p className="text-muted-foreground mb-4">Please sign in to view the investor deck.</p>
+          <div className="flex gap-2 justify-center">
+            <Button onClick={() => navigate("/auth")}>Go to Sign In</Button>
+            <Button variant="outline" onClick={() => navigate("/investor-portal")}>Back</Button>
+          </div>
+        </Card>
       </div>
     );
   }
