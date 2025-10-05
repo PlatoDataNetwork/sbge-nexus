@@ -201,28 +201,6 @@ const InvestorPortal = () => {
             </CardContent>
           </Card>
 
-          {/* Investment Memorandum Card */}
-          <Card className="hover:shadow-lg transition-shadow cursor-pointer group">
-            <CardHeader>
-              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                <FileText className="h-6 w-6 text-primary" />
-              </div>
-              <CardTitle>Investment Memorandum</CardTitle>
-              <CardDescription>
-                Comprehensive overview of the fund structure, terms, and investment thesis
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Button 
-                variant="outline" 
-                className="w-full"
-                onClick={() => toast.info("Investment Memorandum will be available soon")}
-              >
-                View Document
-              </Button>
-            </CardContent>
-          </Card>
-
           {/* Investor Deck Card */}
           <Card className="hover:shadow-lg transition-shadow cursor-pointer group">
             <CardHeader>
@@ -245,6 +223,30 @@ const InvestorPortal = () => {
             </CardContent>
           </Card>
 
+          {/* Investment Memorandum Card */}
+          <Card className="hover:shadow-lg transition-shadow cursor-pointer group">
+            <CardHeader>
+              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+                <FileText className="h-6 w-6 text-primary" />
+              </div>
+              <CardTitle>Investment Memorandum</CardTitle>
+              <CardDescription>
+                Comprehensive overview of the fund structure, terms, and investment thesis
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Button 
+                variant="outline" 
+                className="w-full"
+                onClick={() => toast.info("Investment Memorandum will be available soon")}
+              >
+                View Document
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-6">
           {/* Investor Questionnaire Card */}
           <Card className="hover:shadow-lg transition-shadow cursor-pointer group">
             <CardHeader>
@@ -266,9 +268,6 @@ const InvestorPortal = () => {
               </Button>
             </CardContent>
           </Card>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-6">
           {/* Case Studies Card */}
           <Card className="hover:shadow-lg transition-shadow cursor-pointer group">
             <CardHeader>
