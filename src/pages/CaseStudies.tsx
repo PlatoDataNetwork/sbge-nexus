@@ -208,24 +208,6 @@ const CaseStudies = () => {
         </div>
       </section>
 
-      {/* Call to Action */}
-      <section className="py-12 bg-muted/30">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-4">Ready to Learn More?</h2>
-          <p className="text-xl text-muted-foreground mb-8">
-            Schedule a call with our team to discuss investment opportunities
-          </p>
-          <div className="flex gap-4 justify-center">
-            <Button size="lg" onClick={() => navigate("/schedule-call")}>
-              <Calendar className="h-5 w-5 mr-2" />
-              Schedule a Call
-            </Button>
-            <Button size="lg" variant="outline" onClick={() => navigate("/investor-portal")}>
-              Back to Portal
-            </Button>
-          </div>
-        </div>
-      </section>
     </div>
   );
 };
