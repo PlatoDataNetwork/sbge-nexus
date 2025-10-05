@@ -115,48 +115,47 @@ const InvestorDeck = () => {
       <div className="sticky top-0 z-10 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b">
         <div className="max-w-full mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={previousPage}
+                disabled={pageNumber <= 1}
+              >
+                <ChevronLeft className="h-4 w-4" />
+              </Button>
+              <span className="text-sm text-muted-foreground min-w-[80px] text-center">
+                Page {pageNumber} of {numPages}
+              </span>
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={nextPage}
+                disabled={pageNumber >= numPages}
+              >
+                <ChevronRight className="h-4 w-4" />
+              </Button>
+            </div>
+            
+            <div className="absolute left-1/2 transform -translate-x-1/2">
+              <h1 className="text-xl font-semibold whitespace-nowrap">StorageBlue Growth Fund - Investor Deck</h1>
+            </div>
+            
+            <div className="flex items-center gap-2">
+              <Button variant="default" asChild>
+                <a href="/documents/investor-deck.pdf" download>
+                  <Download className="h-4 w-4 mr-2" />
+                  Download
+                </a>
+              </Button>
               <Button
                 variant="ghost"
                 onClick={() => navigate("/investor-portal")}
               >
-                <ArrowLeft className="h-5 w-5 mr-2" />
                 Back to Investor Portal
+                <ArrowLeft className="h-5 w-5 ml-2 rotate-180" />
               </Button>
-              <div>
-                <h1 className="text-xl font-semibold">StorageBlue Growth Fund - Investor Deck</h1>
-              </div>
             </div>
-            
-              <div className="flex items-center gap-2">
-                <div className="flex items-center gap-2 mr-4">
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    onClick={previousPage}
-                    disabled={pageNumber <= 1}
-                  >
-                    <ChevronLeft className="h-4 w-4" />
-                  </Button>
-                  <span className="text-sm text-muted-foreground min-w-[80px] text-center">
-                    Page {pageNumber} of {numPages}
-                  </span>
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    onClick={nextPage}
-                    disabled={pageNumber >= numPages}
-                  >
-                    <ChevronRight className="h-4 w-4" />
-                  </Button>
-                </div>
-                <Button variant="default" asChild>
-                  <a href="/documents/investor-deck.pdf" download>
-                    <Download className="h-4 w-4 mr-2" />
-                    Download
-                  </a>
-                </Button>
-              </div>
           </div>
         </div>
       </div>
