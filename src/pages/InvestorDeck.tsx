@@ -125,121 +125,29 @@ const InvestorDeck = () => {
               </Button>
               <div>
                 <h1 className="text-xl font-semibold">StorageBlue Growth Fund - Investor Deck</h1>
-                <p className="text-sm text-muted-foreground">
-                  Page {pageNumber} of {numPages}
-                </p>
               </div>
             </div>
             
-            <div className="flex items-center gap-2">
-              <Button variant="outline" size="icon" onClick={previousPage} disabled={pageNumber <= 1}>
-                <ChevronLeft className="h-4 w-4" />
-              </Button>
-              <Button variant="outline" size="icon" onClick={nextPage} disabled={pageNumber >= numPages}>
-                <ChevronRight className="h-4 w-4" />
-              </Button>
-              <div className="w-px h-6 bg-border mx-2" />
-              <Button variant="outline" size="icon" onClick={handleZoomOut}>
-                <ZoomOut className="h-4 w-4" />
-              </Button>
-              <span className="text-sm text-muted-foreground min-w-[60px] text-center">
-                {Math.round(scale * 100)}%
-              </span>
-              <Button variant="outline" size="icon" onClick={handleZoomIn}>
-                <ZoomIn className="h-4 w-4" />
-              </Button>
-              <div className="w-px h-6 bg-border mx-2" />
-              <Button variant="default" asChild>
-                <a href="/documents/investor-deck.pdf" download>
-                  <Download className="h-4 w-4 mr-2" />
-                  Download
-                </a>
-              </Button>
-            </div>
+              <div className="flex items-center gap-2">
+                <Button variant="default" asChild>
+                  <a href="/documents/investor-deck.pdf" download>
+                    <Download className="h-4 w-4 mr-2" />
+                    Download
+                  </a>
+                </Button>
+              </div>
           </div>
         </div>
       </div>
 
-      {/* Main Content with Thumbnails and Viewer */}
-      <div className="flex-1 flex overflow-hidden">
-        {/* Thumbnail Sidebar */}
-        <div className="w-48 border-r bg-muted/20">
-          <ScrollArea className="h-full">
-            <div className="p-2 space-y-2">
-              {numPages > 0 && (
-                <Document
-                  file={pdfFile}
-                  loading={
-                    <div className="flex items-center justify-center p-4">
-                      <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-primary"></div>
-                    </div>
-                  }
-                >
-                  {Array.from({ length: numPages }).map((_, index) => (
-                    <Card
-                      key={`thumb_${index + 1}`}
-                      className={`cursor-pointer transition-all hover:shadow-md ${
-                        pageNumber === index + 1 ? 'ring-2 ring-primary shadow-lg' : ''
-                      }`}
-                      onClick={() => goToPage(index + 1)}
-                    >
-                      <div className="p-2">
-                        {Math.abs((index + 1) - pageNumber) <= 4 ? (
-                          <Page
-                            pageNumber={index + 1}
-                            width={160}
-                            renderTextLayer={false}
-                            renderAnnotationLayer={false}
-                          />
-                        ) : (
-                          <div className="flex items-center justify-center h-24 bg-muted">
-                            <div className="h-6 w-6 rounded-full border-b-2 border-primary animate-spin" />
-                          </div>
-                        )}
-                        <p className="text-xs text-center mt-1 text-muted-foreground">
-                          {index + 1}
-                        </p>
-                      </div>
-                    </Card>
-                  ))}
-                </Document>
-              )}
-            </div>
-          </ScrollArea>
-        </div>
-
-        {/* Main Viewer */}
-        <div className="flex-1 overflow-auto bg-muted/10">
-          <div className="flex items-center justify-center min-h-full p-8">
-            <div className="bg-white shadow-2xl rounded-lg overflow-hidden">
-              <Document
-                file={pdfFile}
-                onLoadSuccess={onDocumentLoadSuccess}
-                onLoadError={(err) => { console.error('PDF load error', err); }}
-                loading={
-                  <div className="flex flex-col items-center justify-center h-[600px] w-[800px]">
-                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mb-4"></div>
-                    <p className="text-muted-foreground">Loading presentation...</p>
-                  </div>
-                }
-                error={
-                  <div className="flex flex-col items-center justify-center h-[600px] w-[800px]">
-                    <p className="text-destructive mb-4">Failed to load PDF</p>
-                    <Button onClick={() => window.location.reload()}>Retry</Button>
-                  </div>
-                }
-              >
-                <Page
-                  pageNumber={pageNumber}
-                  scale={scale}
-                  renderTextLayer={true}
-                  renderAnnotationLayer={true}
-                  onRenderError={(err) => { console.error('Page render error', err); }}
-                  onRenderSuccess={() => { /* page rendered */ }}
-                />
-              </Document>
-            </div>
-          </div>
+      {/* Main Content - Hard Embed PDF */}
+      <div className="flex-1 overflow-hidden bg-muted/10">
+        <div className="w-full h-[calc(100vh-168px)]">{/* subtract approx header+hero height */}
+          <iframe
+            src="/documents/investor-deck.pdf#toolbar=1&navpanes=0&scrollbar=1"
+            title="Investor Deck PDF"
+            className="w-full h-full"
+          />
         </div>
       </div>
     </div>
