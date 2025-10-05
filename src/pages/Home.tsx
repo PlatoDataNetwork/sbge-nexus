@@ -31,7 +31,7 @@ const Home = () => {
                   Request Access <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10">
+              <Button asChild size="lg" variant="secondary">
                 <Link to="/strategy">Download Overview</Link>
               </Button>
             </div>
