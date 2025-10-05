@@ -6,15 +6,13 @@ import { Card } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { ArrowLeft, Download, ZoomIn, ZoomOut, ChevronLeft, ChevronRight } from "lucide-react";
 import { Document, Page, pdfjs } from 'react-pdf';
+import workerSrc from 'pdfjs-dist/build/pdf.worker.min.mjs?url';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import 'react-pdf/dist/esm/Page/TextLayer.css';
 import { logActivity } from "@/lib/activityTracker";
 
-// Configure PDF.js worker
-pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-  'pdfjs-dist/build/pdf.worker.min.mjs',
-  import.meta.url,
-).toString();
+// Configure PDF.js worker (Vite-friendly URL import)
+pdfjs.GlobalWorkerOptions.workerSrc = workerSrc as unknown as string;
 
 const InvestorDeck = () => {
   const [session, setSession] = useState<any>(null);
@@ -199,6 +197,7 @@ const InvestorDeck = () => {
               <Document
                 file={pdfFile}
                 onLoadSuccess={onDocumentLoadSuccess}
+                onLoadError={(err) => { console.error('PDF load error', err); }}
                 loading={
                   <div className="flex flex-col items-center justify-center h-[600px] w-[800px]">
                     <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mb-4"></div>
@@ -217,6 +216,8 @@ const InvestorDeck = () => {
                   scale={scale}
                   renderTextLayer={true}
                   renderAnnotationLayer={true}
+                  onRenderError={(err) => { console.error('Page render error', err); }}
+                  onRenderSuccess={() => { /* page rendered */ }}
                 />
               </Document>
             </div>
