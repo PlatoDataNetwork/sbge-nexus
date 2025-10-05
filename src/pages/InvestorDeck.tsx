@@ -23,11 +23,7 @@ const InvestorDeck = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      // Prime local state; final redirect happens on INITIAL_SESSION to avoid flicker
-      setSession(session);
-      // Do not setLoading here; wait for INITIAL_SESSION event
-    });
+    // Do not pre-set session; wait for INITIAL_SESSION to avoid flashes
 
     const {
       data: { subscription },
