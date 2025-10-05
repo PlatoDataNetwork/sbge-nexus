@@ -6,6 +6,7 @@ const Strategy = () => {
   const targetMarkets = [
     'New York / New Jersey',
     'Florida',
+    'Virginia',
     'Texas',
     'Nevada',
     'Arizona',
