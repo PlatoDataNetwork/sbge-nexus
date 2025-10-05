@@ -5,7 +5,6 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Building2 } from 'lucide-react';
 
@@ -14,6 +13,7 @@ const Auth = () => {
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
   const [session, setSession] = useState<any>(null);
+  const [activeTab, setActiveTab] = useState<'signin' | 'signup'>('signin');
 
   useEffect(() => {
     // Check for existing session
@@ -125,13 +125,29 @@ const Auth = () => {
           </p>
         </div>
 
-        <Tabs defaultValue="signin" className="w-full">
-          <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="signin">Sign In</TabsTrigger>
-            <TabsTrigger value="signup">Sign Up</TabsTrigger>
-          </TabsList>
+        <div className="w-full">
+          <div className="inline-flex h-10 items-center justify-center rounded-md bg-muted p-1 text-muted-foreground w-full mb-4">
+            <button
+              type="button"
+              onClick={() => setActiveTab('signin')}
+              className={`inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all w-1/2 ${
+                activeTab === 'signin' ? 'bg-background text-foreground shadow-sm' : ''
+              }`}
+            >
+              Sign In
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveTab('signup')}
+              className={`inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all w-1/2 ${
+                activeTab === 'signup' ? 'bg-background text-foreground shadow-sm' : ''
+              }`}
+            >
+              Sign Up
+            </button>
+          </div>
 
-          <TabsContent value="signin">
+          {activeTab === 'signin' && (
             <Card>
               <CardHeader>
                 <CardTitle>Sign In</CardTitle>
@@ -172,9 +188,9 @@ const Auth = () => {
                 </form>
               </CardContent>
             </Card>
-          </TabsContent>
+          )}
 
-          <TabsContent value="signup">
+          {activeTab === 'signup' && (
             <Card>
               <CardHeader>
                 <CardTitle>Create Account</CardTitle>
@@ -235,8 +251,8 @@ const Auth = () => {
                 </form>
               </CardContent>
             </Card>
-          </TabsContent>
-        </Tabs>
+          )}
+        </div>
       </div>
     </div>
   );
