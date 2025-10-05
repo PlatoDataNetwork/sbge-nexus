@@ -24,31 +24,36 @@ const InvestorDeck = () => {
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
-      if (!session) {
-        navigate("/auth");
-        return;
-      }
+      // Prime local state; final redirect happens on INITIAL_SESSION to avoid flicker
       setSession(session);
-      setLoading(false);
-      
-      // Log deck view
-      if (session?.user) {
-        logActivity(session.user.id, "deck_view", {
-          page: "investor_deck",
-          timestamp: new Date().toISOString()
-        });
-      }
+      // Do not setLoading here; wait for INITIAL_SESSION event
     });
 
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((event, session) => {
-      // Redirect only when the user explicitly signs out
+      if (event === 'INITIAL_SESSION') {
+        if (!session) {
+          navigate("/auth");
+          return;
+        }
+        setSession(session);
+        setLoading(false);
+        if (session.user) {
+          logActivity(session.user.id, "deck_view", {
+            page: "investor_deck",
+            timestamp: new Date().toISOString(),
+          });
+        }
+        return;
+      }
+
       if (event === 'SIGNED_OUT') {
         navigate("/auth");
         return;
       }
-      // Update session for other events (INITIAL_SESSION, TOKEN_REFRESHED, USER_UPDATED)
+
+      // TOKEN_REFRESHED, USER_UPDATED, etc.
       setSession(session);
     });
 
