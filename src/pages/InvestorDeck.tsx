@@ -142,18 +142,18 @@ const InvestorDeck = () => {
             </div>
             
             <div className="flex items-center gap-2">
-              <Button variant="default" asChild>
-                <a href="/documents/investor-deck.pdf" download>
-                  <Download className="h-4 w-4 mr-2" />
-                  Download
-                </a>
-              </Button>
               <Button
                 variant="ghost"
                 onClick={() => navigate("/investor-portal")}
               >
                 Back to Investor Portal
                 <ArrowLeft className="h-5 w-5 ml-2 rotate-180" />
+              </Button>
+              <Button variant="default" asChild>
+                <a href="/documents/investor-deck.pdf" download>
+                  <Download className="h-4 w-4 mr-2" />
+                  Download
+                </a>
               </Button>
             </div>
           </div>
