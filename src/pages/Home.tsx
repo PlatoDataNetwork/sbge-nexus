@@ -35,6 +35,10 @@ const Home = () => {
                 <Link to="/strategy">Download Overview</Link>
               </Button>
             </div>
+            
+            <p className="text-lg font-semibold text-white pt-6">
+              StorageBlue Growth Fund LP
+            </p>
           </div>
         </div>
         
