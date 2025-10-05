@@ -4,7 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { FileText, Presentation, ClipboardList, CheckCircle, TrendingUp, Briefcase, Calendar } from "lucide-react";
+import { FileText, Presentation, ClipboardList, CheckCircle, TrendingUp, Briefcase } from "lucide-react";
 import { toast } from "sonner";
 import { logActivity } from "@/lib/activityTracker";
 
@@ -179,6 +179,28 @@ const InvestorPortal = () => {
         </div>
 
         <div className="grid md:grid-cols-3 gap-6 mb-6">
+          {/* Fund Overview Card */}
+          <Card className="hover:shadow-lg transition-shadow cursor-pointer group">
+            <CardHeader>
+              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+                <TrendingUp className="h-6 w-6 text-primary" />
+              </div>
+              <CardTitle>Fund Overview</CardTitle>
+              <CardDescription>
+                Complete fund metrics including capital raise, buying power, and investment strategy
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Button 
+                variant="outline" 
+                className="w-full"
+                onClick={() => navigate("/strategy")}
+              >
+                View Overview
+              </Button>
+            </CardContent>
+          </Card>
+
           {/* Investment Memorandum Card */}
           <Card className="hover:shadow-lg transition-shadow cursor-pointer group">
             <CardHeader>
@@ -291,27 +313,6 @@ const InvestorPortal = () => {
             </CardContent>
           </Card>
 
-          {/* Schedule a Call Card */}
-          <Card className="hover:shadow-lg transition-shadow cursor-pointer group">
-            <CardHeader>
-              <div className="w-12 h-12 rounded-lg bg-secondary/10 flex items-center justify-center mb-4 group-hover:bg-secondary/20 transition-colors">
-                <Calendar className="h-6 w-6 text-secondary-foreground" />
-              </div>
-              <CardTitle>Schedule a Call</CardTitle>
-              <CardDescription>
-                Book a consultation to discuss investment opportunities and next steps
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Button 
-                variant="outline" 
-                className="w-full"
-                onClick={() => navigate("/schedule-call")}
-              >
-                Schedule Now
-              </Button>
-            </CardContent>
-          </Card>
         </div>
       </div>
     </div>
