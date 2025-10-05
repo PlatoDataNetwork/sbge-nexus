@@ -129,6 +129,27 @@ const InvestorDeck = () => {
             </div>
             
               <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 mr-4">
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    onClick={previousPage}
+                    disabled={pageNumber <= 1}
+                  >
+                    <ChevronLeft className="h-4 w-4" />
+                  </Button>
+                  <span className="text-sm text-muted-foreground min-w-[80px] text-center">
+                    Page {pageNumber} of {numPages}
+                  </span>
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    onClick={nextPage}
+                    disabled={pageNumber >= numPages}
+                  >
+                    <ChevronRight className="h-4 w-4" />
+                  </Button>
+                </div>
                 <Button variant="default" asChild>
                   <a href="/documents/investor-deck.pdf" download>
                     <Download className="h-4 w-4 mr-2" />
@@ -140,58 +161,25 @@ const InvestorDeck = () => {
         </div>
       </div>
 
-      {/* Main Content - PDF Viewer with Thumbnails */}
-      <div className="flex-1 overflow-hidden bg-muted/10 flex">
-        {/* Thumbnail Sidebar */}
-        <div className="w-48 border-r bg-card overflow-y-auto p-2">
-          <Document file={pdfFile}>
-            {Array.from(new Array(numPages), (el, index) => (
-              <button
-                key={`thumb_${index + 1}`}
-                onClick={() => {
-                  const element = document.getElementById(`page_${index + 1}`);
-                  element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }}
-                className={`mb-2 w-full border-2 rounded transition-all hover:border-primary ${
-                  pageNumber === index + 1 ? 'border-primary' : 'border-border'
-                }`}
+      {/* Main Content - PDF Viewer */}
+      <div className="flex-1 overflow-auto bg-muted/10">
+        <div className="max-w-5xl mx-auto p-6">
+          <Card className="p-4">
+            <div className="flex flex-col items-center">
+              <Document
+                file={pdfFile}
+                onLoadSuccess={onDocumentLoadSuccess}
+                className="w-full"
               >
                 <Page
-                  pageNumber={index + 1}
-                  width={160}
-                  renderTextLayer={false}
-                  renderAnnotationLayer={false}
+                  pageNumber={pageNumber}
+                  width={Math.min(window.innerWidth - 100, 800)}
+                  renderTextLayer={true}
+                  renderAnnotationLayer={true}
                 />
-                <p className="text-xs text-center py-1">Page {index + 1}</p>
-              </button>
-            ))}
-          </Document>
-        </div>
-
-        {/* Main PDF View */}
-        <div className="flex-1 overflow-auto">
-          <div className="max-w-5xl mx-auto p-6">
-            <Card className="p-4">
-              <div className="flex flex-col items-center">
-                <Document
-                  file={pdfFile}
-                  onLoadSuccess={onDocumentLoadSuccess}
-                  className="w-full"
-                >
-                  {Array.from(new Array(numPages), (el, index) => (
-                    <div key={`page_${index + 1}`} id={`page_${index + 1}`} className="mb-4">
-                      <Page
-                        pageNumber={index + 1}
-                        width={Math.min(window.innerWidth - 300, 800)}
-                        renderTextLayer={true}
-                        renderAnnotationLayer={true}
-                      />
-                    </div>
-                  ))}
-                </Document>
-              </div>
-            </Card>
-          </div>
+              </Document>
+            </div>
+          </Card>
         </div>
       </div>
     </div>
