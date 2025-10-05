@@ -484,6 +484,66 @@ const Profile = () => {
         </div>
       </section>
 
+      {/* Key Achievements Highlight - Special for Alan Mruvka */}
+      {slug === 'alan-mruvka' && (
+        <section className="py-20 bg-gradient-primary text-primary-foreground">
+          <div className="container mx-auto px-4">
+            <div className="max-w-6xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-heading font-bold text-center mb-12">
+                Key Achievements
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="bg-primary-foreground/10 backdrop-blur-sm rounded-lg p-8 border border-primary-foreground/20 text-center">
+                  <div className="text-5xl font-heading font-bold mb-3">$15B+</div>
+                  <div className="text-xl font-semibold mb-2">E! Entertainment Value</div>
+                  <p className="text-primary-foreground/80 text-sm">
+                    Founded and built E! Entertainment Television, now valued at over $15 Billion
+                  </p>
+                </div>
+                <div className="bg-primary-foreground/10 backdrop-blur-sm rounded-lg p-8 border border-primary-foreground/20 text-center">
+                  <div className="text-5xl font-heading font-bold mb-3">3M+</div>
+                  <div className="text-xl font-semibold mb-2">Square Feet Developed</div>
+                  <p className="text-primary-foreground/80 text-sm">
+                    Built and managed nearly three million square feet of self-storage facilities
+                  </p>
+                </div>
+                <div className="bg-primary-foreground/10 backdrop-blur-sm rounded-lg p-8 border border-primary-foreground/20 text-center">
+                  <div className="text-5xl font-heading font-bold mb-3">35+</div>
+                  <div className="text-xl font-semibold mb-2">Years of Experience</div>
+                  <p className="text-primary-foreground/80 text-sm">
+                    Over three decades in self-storage, real estate development, and entertainment
+                  </p>
+                </div>
+              </div>
+              <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="bg-primary-foreground/10 backdrop-blur-sm rounded-lg p-6 border border-primary-foreground/20">
+                  <div className="flex items-start gap-4">
+                    <Award className="h-8 w-8 text-accent flex-shrink-0 mt-1" />
+                    <div>
+                      <h3 className="text-xl font-heading font-bold mb-2">StorageBlue Success</h3>
+                      <p className="text-primary-foreground/80">
+                        #1 self-storage operator in North Jersey with successful exit of 6 facilities in 2024 achieving 17-34% IRR
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-primary-foreground/10 backdrop-blur-sm rounded-lg p-6 border border-primary-foreground/20">
+                  <div className="flex items-start gap-4">
+                    <Award className="h-8 w-8 text-accent flex-shrink-0 mt-1" />
+                    <div>
+                      <h3 className="text-xl font-heading font-bold mb-2">Entertainment Pioneer</h3>
+                      <p className="text-primary-foreground/80">
+                        Revolutionized celebrity-based television and created a pop culture icon watched by millions worldwide
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Experience */}
       {profile.experience && profile.experience.length > 0 && (
         <section className="py-20 bg-muted/30">

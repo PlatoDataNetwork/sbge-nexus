@@ -313,10 +313,9 @@ const Leadership = () => {
                         {allAdvisors
                           .slice(slideIndex * ADVISORS_PER_VIEW, (slideIndex + 1) * ADVISORS_PER_VIEW)
                           .map((advisor, index) => (
-                            <Link
+                            <div
                               key={index}
-                              to={`/profile/${advisor.slug}`}
-                              className="bg-card border border-border rounded-lg p-6 hover-lift block"
+                              className="bg-card border border-border rounded-lg p-6 hover-lift"
                             >
                               <div className="h-48 bg-gradient-primary rounded-lg mb-4 flex items-center justify-center">
                                 <Linkedin className="h-12 w-12 text-primary-foreground/30" />
@@ -330,11 +329,15 @@ const Leadership = () => {
                                 {advisor.name}
                               </h4>
                               <p className="text-accent font-medium text-sm mb-3">{advisor.title}</p>
-                              <p className="text-sm text-muted-foreground leading-relaxed mb-3">
+                              <p className="text-sm text-muted-foreground leading-relaxed mb-4">
                                 {advisor.description}
                               </p>
-                              <span className="text-accent font-medium hover:underline text-sm">View Profile →</span>
-                            </Link>
+                              <Button asChild variant="outline" size="sm" className="w-full">
+                                <Link to={`/profile/${advisor.slug}`}>
+                                  View Bio
+                                </Link>
+                              </Button>
+                            </div>
                           ))}
                       </div>
                     </div>
