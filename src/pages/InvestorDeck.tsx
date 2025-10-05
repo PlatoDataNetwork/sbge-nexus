@@ -24,9 +24,7 @@ const InvestorDeck = () => {
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
-      if (!session) {
-        navigate("/auth");
-      }
+      // Don't redirect here; wait for auth state to initialize to avoid flicker
       setSession(session);
       setLoading(false);
       
@@ -42,9 +40,10 @@ const InvestorDeck = () => {
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((event, session) => {
-      // Only redirect when the user explicitly signs out to avoid flicker
-      if (event === 'SIGNED_OUT') {
+      // Redirect only when signed out or when initial session is missing
+      if (event === 'SIGNED_OUT' || (event === 'INITIAL_SESSION' && !session)) {
         navigate("/auth");
+        return;
       }
       setSession(session);
     });
