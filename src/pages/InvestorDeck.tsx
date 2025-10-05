@@ -6,12 +6,13 @@ import { Card } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { ArrowLeft, Download, ZoomIn, ZoomOut, ChevronLeft, ChevronRight } from "lucide-react";
 import { Document, Page, pdfjs } from 'react-pdf';
+import workerSrc from 'pdfjs-dist/build/pdf.worker.min.mjs?url';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import 'react-pdf/dist/esm/Page/TextLayer.css';
 import { logActivity } from "@/lib/activityTracker";
 
 // Set up PDF.js worker
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
+pdfjs.GlobalWorkerOptions.workerSrc = workerSrc;
 
 const InvestorDeck = () => {
   const [session, setSession] = useState<any>(null);
