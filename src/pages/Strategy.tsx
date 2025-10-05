@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 
 const Strategy = () => {
   const targetMarkets = [
-    'New York / New Jersey',
+    'New Jersey',
+    'New York',
     'Florida',
     'Virginia',
     'Texas',
