@@ -23,16 +23,34 @@ const UsersList = () => {
 
   const loadUsers = async () => {
     try {
-      const { data: profiles, error } = await supabase
+      // Fetch profiles
+      const { data: profiles, error: profilesError } = await supabase
         .from('profiles')
-        .select('*, user_roles(role)')
+        .select('*')
         .order('created_at', { ascending: false });
 
-      if (error) throw error;
+      if (profilesError) throw profilesError;
 
+      // Fetch all user roles
+      const { data: userRoles, error: rolesError } = await supabase
+        .from('user_roles')
+        .select('user_id, role');
+
+      if (rolesError) throw rolesError;
+
+      // Create a map of user_id to roles
+      const rolesMap = new Map();
+      userRoles?.forEach(ur => {
+        if (!rolesMap.has(ur.user_id)) {
+          rolesMap.set(ur.user_id, []);
+        }
+        rolesMap.get(ur.user_id).push(ur.role);
+      });
+
+      // Combine profiles with roles
       const formattedUsers = profiles?.map(profile => ({
         ...profile,
-        role: (profile.user_roles as any)?.[0]?.role || 'user',
+        role: rolesMap.get(profile.id)?.[0] || 'user',
       })) || [];
 
       setUsers(formattedUsers);
