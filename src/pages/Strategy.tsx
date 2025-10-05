@@ -298,22 +298,6 @@ const Strategy = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center space-y-8">
-            <h2 className="text-4xl md:text-5xl font-heading font-bold text-primary">
-              Ready to Learn More?
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              Request access to our full investment memorandum and financial projections
-            </p>
-            <Button asChild size="lg" variant="premium">
-              <Link to="/contact">Request Access</Link>
-            </Button>
-          </div>
-        </div>
-      </section>
     </div>
   );
 };
