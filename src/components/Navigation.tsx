@@ -9,6 +9,7 @@ const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [session, setSession] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
   const location = useLocation();
   const navigate = useNavigate();
   
@@ -24,14 +25,18 @@ const Navigation = () => {
   }, []);
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-    });
-
+    // Set up auth state listener first
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
+      setLoading(false);
+    });
+
+    // Then check for existing session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+      setLoading(false);
     });
 
     return () => subscription.unsubscribe();
@@ -93,7 +98,9 @@ const Navigation = () => {
 
           {/* CTA Button + Auth */}
           <div className="hidden lg:flex items-center gap-3">
-            {session ? (
+            {loading ? (
+              <div className="h-10 w-32 animate-pulse bg-muted rounded-md"></div>
+            ) : session ? (
               <>
                 <Button 
                   variant={isHomePage && !isScrolled ? "outline" : "ghost"} 
