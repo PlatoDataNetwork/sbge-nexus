@@ -5,14 +5,12 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { ArrowLeft, Download, ZoomIn, ZoomOut, ChevronLeft, ChevronRight } from "lucide-react";
-import { pdfjs } from 'react-pdf';
+import * as pdfjsLib from 'pdfjs-dist';
 import workerSrc from 'pdfjs-dist/build/pdf.worker.min.mjs?url';
-import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
-import 'react-pdf/dist/esm/Page/TextLayer.css';
 import { logActivity } from "@/lib/activityTracker";
 
 // Set up PDF.js worker
-pdfjs.GlobalWorkerOptions.workerSrc = workerSrc;
+pdfjsLib.GlobalWorkerOptions.workerSrc = workerSrc;
 
 const InvestorDeck = () => {
   const [session, setSession] = useState<any>(null);
@@ -70,7 +68,7 @@ const InvestorDeck = () => {
   // Load PDF document with pdf.js
   useEffect(() => {
     if (!pdfData) return;
-    const loadingTask = pdfjs.getDocument({ data: pdfData });
+    const loadingTask = pdfjsLib.getDocument({ data: pdfData });
     let cancelled = false;
 
     loadingTask.promise
@@ -83,7 +81,7 @@ const InvestorDeck = () => {
 
     return () => {
       cancelled = true;
-      try { loadingTask.destroy(); } catch {}
+      try { (loadingTask as any).destroy?.(); } catch {}
     };
   }, [pdfData]);
 
@@ -141,6 +139,13 @@ const InvestorDeck = () => {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      {/* Hero */}
+      <section className="pt-24 pb-6 bg-gradient-to-b from-muted/50 to-transparent border-b">
+        <div className="max-w-6xl mx-auto px-4">
+          <h1 className="text-3xl md:text-4xl font-bold">Investor Presentation</h1>
+          <p className="mt-2 text-muted-foreground">Use the tray to navigate pages, zoom, and download the deck.</p>
+        </div>
+      </section>
       {/* Header */}
       <div className="sticky top-0 z-10 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b">
         <div className="max-w-full mx-auto px-4 py-4">
