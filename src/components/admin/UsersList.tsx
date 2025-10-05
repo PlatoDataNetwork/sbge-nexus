@@ -9,7 +9,8 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Label } from '@/components/ui/label';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { formatDistanceToNow, format } from 'date-fns';
-import { Search, Mail, Phone, Building2, DollarSign, Shield, Calendar, User, Eye, Filter } from 'lucide-react';
+import { Search, Mail, Phone, Building2, DollarSign, Shield, Calendar, User, Eye, Filter, UserCog } from 'lucide-react';
+import { toast } from 'sonner';
 
 interface User {
   id: string;
@@ -105,6 +106,31 @@ const UsersList = () => {
     }
 
     setFilteredUsers(filtered);
+  };
+
+  const changeUserRole = async (userId: string, newRole: 'admin' | 'user') => {
+    try {
+      // First, delete existing role
+      await supabase
+        .from('user_roles')
+        .delete()
+        .eq('user_id', userId);
+
+      // Then insert new role
+      const { error } = await supabase
+        .from('user_roles')
+        .insert({ user_id: userId, role: newRole });
+
+      if (error) throw error;
+
+      toast.success(`User role updated to ${newRole}`);
+      
+      // Reload users
+      await loadUsers();
+    } catch (error) {
+      console.error('Error updating user role:', error);
+      toast.error('Failed to update user role');
+    }
   };
 
   if (loading) {
@@ -230,17 +256,33 @@ const UsersList = () => {
                   </div>
 
                   {/* Actions */}
-                  <Dialog>
-                    <DialogTrigger asChild>
-                      <Button 
-                        variant="outline" 
-                        size="sm"
-                        onClick={() => setSelectedUser(user)}
-                      >
-                        <Eye className="h-4 w-4 mr-2" />
-                        View Details
-                      </Button>
-                    </DialogTrigger>
+                  <div className="flex gap-2">
+                    {/* Role Management */}
+                    <Select
+                      value={user.role}
+                      onValueChange={(value) => changeUserRole(user.id, value as 'admin' | 'user')}
+                    >
+                      <SelectTrigger className="w-[140px]">
+                        <UserCog className="h-4 w-4 mr-2" />
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="user">User</SelectItem>
+                        <SelectItem value="admin">Admin</SelectItem>
+                      </SelectContent>
+                    </Select>
+
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <Button 
+                          variant="outline" 
+                          size="sm"
+                          onClick={() => setSelectedUser(user)}
+                        >
+                          <Eye className="h-4 w-4 mr-2" />
+                          View Details
+                        </Button>
+                      </DialogTrigger>
                     <DialogContent className="max-w-2xl">
                       <DialogHeader>
                         <DialogTitle className="text-2xl">User Profile Details</DialogTitle>
@@ -350,6 +392,7 @@ const UsersList = () => {
                       )}
                     </DialogContent>
                   </Dialog>
+                  </div>
                 </div>
               </CardContent>
             </Card>
