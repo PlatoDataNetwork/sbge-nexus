@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { FileText, Presentation, ClipboardList, CheckCircle } from "lucide-react";
 import { toast } from "sonner";
+import { logActivity } from "@/lib/activityTracker";
 
 const InvestorPortal = () => {
   const [session, setSession] = useState<any>(null);
@@ -21,6 +22,14 @@ const InvestorPortal = () => {
       }
       setSession(session);
       setLoading(false);
+      
+      // Log portal visit
+      if (session?.user) {
+        logActivity(session.user.id, "portal_visit", {
+          page: "investor_portal",
+          timestamp: new Date().toISOString()
+        });
+      }
     });
 
     const {
@@ -44,6 +53,14 @@ const InvestorPortal = () => {
   const handleAcceptTerms = () => {
     setHasAccepted(true);
     toast.success("Terms accepted. Welcome to the Investor Portal!");
+    
+    // Log terms acceptance
+    if (session?.user) {
+      logActivity(session.user.id, "terms_accepted", {
+        page: "investor_portal",
+        timestamp: new Date().toISOString()
+      });
+    }
   };
 
   if (loading) {

@@ -8,9 +8,11 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { formatDistanceToNow, format } from 'date-fns';
 import { Search, Mail, Phone, Building2, DollarSign, Shield, Calendar, User, Eye, Filter, UserCog } from 'lucide-react';
 import { toast } from 'sonner';
+import ActivityLog from './ActivityLog';
 
 interface User {
   id: string;
@@ -283,13 +285,20 @@ const UsersList = () => {
                           View Details
                         </Button>
                       </DialogTrigger>
-                    <DialogContent className="max-w-2xl">
+                    <DialogContent className="max-w-3xl max-h-[90vh]">
                       <DialogHeader>
-                        <DialogTitle className="text-2xl">User Profile Details</DialogTitle>
+                        <DialogTitle className="text-2xl">User Profile & Activity</DialogTitle>
                       </DialogHeader>
                       {selectedUser && selectedUser.id === user.id && (
-                        <ScrollArea className="max-h-[600px] pr-4">
-                          <div className="space-y-6">
+                        <Tabs defaultValue="profile" className="w-full">
+                          <TabsList className="grid w-full grid-cols-2">
+                            <TabsTrigger value="profile">Profile Details</TabsTrigger>
+                            <TabsTrigger value="activity">Activity Log</TabsTrigger>
+                          </TabsList>
+                          
+                          <TabsContent value="profile" className="mt-4">
+                            <ScrollArea className="h-[600px] pr-4">
+                              <div className="space-y-6">
                             {/* Basic Information */}
                             <div>
                               <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
@@ -387,8 +396,14 @@ const UsersList = () => {
                               <Label className="text-muted-foreground">User ID</Label>
                               <p className="text-xs font-mono bg-muted p-2 rounded mt-2">{selectedUser.id}</p>
                             </div>
-                          </div>
-                        </ScrollArea>
+                            </div>
+                          </ScrollArea>
+                        </TabsContent>
+                        
+                        <TabsContent value="activity" className="mt-4">
+                          <ActivityLog userId={selectedUser.id} />
+                        </TabsContent>
+                      </Tabs>
                       )}
                     </DialogContent>
                   </Dialog>

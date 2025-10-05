@@ -10,6 +10,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { ArrowLeft, CheckCircle } from "lucide-react";
 import { toast } from "sonner";
 import { z } from "zod";
+import { logActivity } from "@/lib/activityTracker";
 
 const questionnaireSchema = z.object({
   investmentEntity: z.string().min(1, "Please select an option"),
@@ -40,6 +41,14 @@ const InvestorQuestionnaire = () => {
       }
       setSession(session);
       setLoading(false);
+      
+      // Log questionnaire visit
+      if (session?.user) {
+        logActivity(session.user.id, "questionnaire_visit", {
+          page: "investor_questionnaire",
+          timestamp: new Date().toISOString()
+        });
+      }
     });
 
     const {
@@ -61,8 +70,16 @@ const InvestorQuestionnaire = () => {
       questionnaireSchema.parse(formData);
       setSubmitting(true);
 
-      // Here you would typically save to database
-      // For now, just show success message
+      // Log questionnaire submission
+      if (session?.user) {
+        await logActivity(session.user.id, "questionnaire_submitted", {
+          page: "investor_questionnaire",
+          responses: formData,
+          timestamp: new Date().toISOString()
+        });
+      }
+
+      // Simulate saving
       await new Promise(resolve => setTimeout(resolve, 1000));
 
       toast.success("Questionnaire submitted successfully!");
