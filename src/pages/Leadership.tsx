@@ -40,38 +40,44 @@ const Leadership = () => {
   const allAdvisors = [
     {
       name: 'John Calipari',
-      title: 'Kentucky Men\'s Basketball Coach',
+      title: 'Hall of Fame Basketball Coach',
       board: 'Strategic Advisors',
+      slug: 'john-calipari',
       description: 'Hall of Fame basketball coach bringing strategic leadership and winning mentality to the organization.',
     },
     {
       name: 'Byron Scott',
-      title: 'NBA Veteran & Hall of Famer',
+      title: 'NBA Champion & Hall of Famer',
       board: 'Strategic Advisors',
+      slug: 'byron-scott',
       description: 'Three-time NBA champion with the Los Angeles Lakers during their Showtime era, bringing championship experience and leadership.',
     },
     {
       name: 'Wladimir Klitschko',
       title: 'Boxing Legend & Hall of Famer',
       board: 'Strategic Advisors',
+      slug: 'wladimir-klitschko',
       description: 'Former heavyweight world champion known for technical skill, intelligence, and athleticism in the ring and business.',
     },
     {
       name: 'Roger Mason Jr.',
       title: 'NBA Executive & Former Player',
       board: 'Strategic Advisors',
+      slug: 'roger-mason-jr',
       description: 'Ten-season NBA veteran turned executive, bringing sports business acumen and strategic partnerships.',
     },
     {
       name: 'Donald DiFrancesco',
-      title: 'Former New Jersey Governor',
+      title: 'Former Governor of New Jersey',
       board: 'Government Affairs',
+      slug: 'donald-difrancesco',
       description: '51st Governor of New Jersey with over 25 years serving in the State Senate with distinction.',
     },
     {
       name: 'Raymond Lesniak',
       title: 'Former NJ State Senator',
       board: 'Government Affairs',
+      slug: 'raymond-lesniak',
       description: 'Served in the New Jersey State Senate from 1983 to 2018, representing the 20th Legislative District.',
     },
     {
@@ -307,9 +313,10 @@ const Leadership = () => {
                         {allAdvisors
                           .slice(slideIndex * ADVISORS_PER_VIEW, (slideIndex + 1) * ADVISORS_PER_VIEW)
                           .map((advisor, index) => (
-                            <div
+                            <Link
                               key={index}
-                              className="bg-card border border-border rounded-lg p-6 hover-lift"
+                              to={`/profile/${advisor.slug}`}
+                              className="bg-card border border-border rounded-lg p-6 hover-lift block"
                             >
                               <div className="h-48 bg-gradient-primary rounded-lg mb-4 flex items-center justify-center">
                                 <Linkedin className="h-12 w-12 text-primary-foreground/30" />
@@ -323,10 +330,11 @@ const Leadership = () => {
                                 {advisor.name}
                               </h4>
                               <p className="text-accent font-medium text-sm mb-3">{advisor.title}</p>
-                              <p className="text-sm text-muted-foreground leading-relaxed">
+                              <p className="text-sm text-muted-foreground leading-relaxed mb-3">
                                 {advisor.description}
                               </p>
-                            </div>
+                              <span className="text-accent font-medium hover:underline text-sm">View Profile →</span>
+                            </Link>
                           ))}
                       </div>
                     </div>
