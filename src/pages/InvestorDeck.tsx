@@ -143,11 +143,10 @@ const InvestorDeck = () => {
             
             <div className="flex items-center gap-2">
               <Button
-                variant="ghost"
+                variant="default"
                 onClick={() => navigate("/investor-portal")}
               >
-                Back to Investor Portal
-                <ArrowLeft className="h-5 w-5 ml-2 rotate-180" />
+                Investment Portal
               </Button>
               <Button variant="default" asChild>
                 <a href="/documents/investor-deck.pdf" download>
