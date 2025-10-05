@@ -160,51 +160,51 @@ const InvestorDeck = () => {
       </div>
 
       {/* Main Content - PDF Viewer with Thumbnails */}
-      <div className="flex-1 overflow-hidden bg-muted/10 flex">
-        {/* Thumbnail Sidebar */}
-        <div className="w-48 border-r bg-card overflow-y-auto p-2">
-          <div className="text-xs font-semibold text-muted-foreground mb-2 px-2">Pages</div>
-          <Document file={pdfFile}>
-            {numPages > 0 && Array.from(new Array(numPages), (el, index) => (
-              <button
-                key={`thumb_${index + 1}`}
-                onClick={() => setPageNumber(index + 1)}
-                className={`mb-2 w-full border-2 rounded transition-all hover:border-primary ${
-                  pageNumber === index + 1 ? 'border-primary bg-primary/5' : 'border-border'
-                }`}
-              >
-                <Page
-                  pageNumber={index + 1}
-                  width={160}
-                  renderTextLayer={false}
-                  renderAnnotationLayer={false}
-                />
-                <p className="text-xs text-center py-1 font-medium">Page {index + 1}</p>
-              </button>
-            ))}
-          </Document>
-        </div>
-
-        {/* Main PDF View */}
-        <div className="flex-1 overflow-auto">
-          <div className="max-w-5xl mx-auto p-6">
-            <Card className="p-4">
-              <div className="flex flex-col items-center">
-                <Document
-                  file={pdfFile}
-                  onLoadSuccess={onDocumentLoadSuccess}
-                  className="w-full"
+      <div className="flex h-[calc(100vh-180px)]">
+        {/* Thumbnail Sidebar - Fixed height showing 4 thumbnails */}
+        <div className="w-48 border-r bg-card flex flex-col">
+          <div className="text-xs font-semibold text-muted-foreground mb-2 px-2 pt-2">Pages</div>
+          <ScrollArea className="flex-1 px-2">
+            <Document file={pdfFile}>
+              {numPages > 0 && Array.from(new Array(numPages), (el, index) => (
+                <button
+                  key={`thumb_${index + 1}`}
+                  onClick={() => setPageNumber(index + 1)}
+                  className={`mb-2 w-full border-2 rounded transition-all hover:border-primary ${
+                    pageNumber === index + 1 ? 'border-primary bg-primary/5' : 'border-border'
+                  }`}
                 >
                   <Page
-                    pageNumber={pageNumber}
-                    width={Math.min(window.innerWidth - 300, 800)}
-                    renderTextLayer={true}
-                    renderAnnotationLayer={true}
+                    pageNumber={index + 1}
+                    width={160}
+                    renderTextLayer={false}
+                    renderAnnotationLayer={false}
                   />
-                </Document>
-              </div>
-            </Card>
-          </div>
+                  <p className="text-xs text-center py-1 font-medium">Page {index + 1}</p>
+                </button>
+              ))}
+            </Document>
+          </ScrollArea>
+        </div>
+
+        {/* Main PDF View - Locked in position */}
+        <div className="flex-1 flex items-center justify-center p-6 overflow-hidden">
+          <Card className="p-4 max-h-full overflow-auto">
+            <div className="flex flex-col items-center">
+              <Document
+                file={pdfFile}
+                onLoadSuccess={onDocumentLoadSuccess}
+                className="w-full"
+              >
+                <Page
+                  pageNumber={pageNumber}
+                  width={Math.min(window.innerWidth - 300, 800)}
+                  renderTextLayer={true}
+                  renderAnnotationLayer={true}
+                />
+              </Document>
+            </div>
+          </Card>
         </div>
       </div>
     </div>
