@@ -20,6 +20,7 @@ const InvestorDeck = () => {
   const [numPages, setNumPages] = useState<number>(0);
   const [pageNumber, setPageNumber] = useState<number>(1);
   const [scale, setScale] = useState(1.2);
+  const [pdfData, setPdfData] = useState<Uint8Array | null>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -50,6 +51,19 @@ const InvestorDeck = () => {
 
     return () => subscription.unsubscribe();
   }, [navigate]);
+
+  useEffect(() => {
+    const loadPdf = async () => {
+      try {
+        const res = await fetch('/documents/investor-deck.pdf', { cache: 'no-store' });
+        const arrayBuffer = await res.arrayBuffer();
+        setPdfData(new Uint8Array(arrayBuffer));
+      } catch (e) {
+        console.error('Failed to load PDF', e);
+      }
+    };
+    loadPdf();
+  }, []);
 
   const handleZoomIn = () => setScale(prev => Math.min(prev + 0.2, 2));
   const handleZoomOut = () => setScale(prev => Math.max(prev - 0.2, 0.5));
@@ -91,10 +105,10 @@ const InvestorDeck = () => {
             <div className="flex items-center gap-4">
               <Button
                 variant="ghost"
-                size="icon"
                 onClick={() => navigate("/investor-portal")}
               >
-                <ArrowLeft className="h-5 w-5" />
+                <ArrowLeft className="h-5 w-5 mr-2" />
+                Back to Investor Portal
               </Button>
               <div>
                 <h1 className="text-xl font-semibold">StorageBlue Growth Fund - Investor Deck</h1>
@@ -148,21 +162,27 @@ const InvestorDeck = () => {
                   onClick={() => goToPage(index + 1)}
                 >
                   <div className="p-2">
-                    <Document
-                      file="/documents/investor-deck.pdf"
-                      loading={
-                        <div className="flex items-center justify-center h-24 bg-muted">
-                          <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-primary"></div>
-                        </div>
-                      }
-                    >
-                      <Page
-                        pageNumber={index + 1}
-                        width={160}
-                        renderTextLayer={false}
-                        renderAnnotationLayer={false}
-                      />
-                    </Document>
+                    {pdfData ? (
+                      <Document
+                        file={{ data: pdfData }}
+                        loading={
+                          <div className="flex items-center justify-center h-24 bg-muted">
+                            <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-primary"></div>
+                          </div>
+                        }
+                      >
+                        <Page
+                          pageNumber={index + 1}
+                          width={160}
+                          renderTextLayer={false}
+                          renderAnnotationLayer={false}
+                        />
+                      </Document>
+                    ) : (
+                      <div className="flex items-center justify-center h-24 bg-muted">
+                        <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-primary"></div>
+                      </div>
+                    )}
                     <p className="text-xs text-center mt-1 text-muted-foreground">
                       {index + 1}
                     </p>
@@ -177,29 +197,36 @@ const InvestorDeck = () => {
         <div className="flex-1 overflow-auto bg-muted/10">
           <div className="flex items-center justify-center min-h-full p-8">
             <div className="bg-white shadow-2xl">
-              <Document
-                file="/documents/investor-deck.pdf"
-                onLoadSuccess={onDocumentLoadSuccess}
-                loading={
-                  <div className="flex flex-col items-center justify-center h-[600px] w-[800px]">
-                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mb-4"></div>
-                    <p className="text-muted-foreground">Loading presentation...</p>
-                  </div>
-                }
-                error={
-                  <div className="flex flex-col items-center justify-center h-[600px] w-[800px]">
-                    <p className="text-destructive mb-4">Failed to load PDF</p>
-                    <Button onClick={() => window.location.reload()}>Retry</Button>
-                  </div>
-                }
-              >
-                <Page
-                  pageNumber={pageNumber}
-                  scale={scale}
-                  renderTextLayer={true}
-                  renderAnnotationLayer={true}
-                />
-              </Document>
+              {pdfData ? (
+                <Document
+                  file={{ data: pdfData }}
+                  onLoadSuccess={onDocumentLoadSuccess}
+                  loading={
+                    <div className="flex flex-col items-center justify-center h-[600px] w-[800px]">
+                      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mb-4"></div>
+                      <p className="text-muted-foreground">Loading presentation...</p>
+                    </div>
+                  }
+                  error={
+                    <div className="flex flex-col items-center justify-center h-[600px] w-[800px]">
+                      <p className="text-destructive mb-4">Failed to load PDF</p>
+                      <Button onClick={() => window.location.reload()}>Retry</Button>
+                    </div>
+                  }
+                >
+                  <Page
+                    pageNumber={pageNumber}
+                    scale={scale}
+                    renderTextLayer={true}
+                    renderAnnotationLayer={true}
+                  />
+                </Document>
+              ) : (
+                <div className="flex flex-col items-center justify-center h-[600px] w-[800px]">
+                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mb-4"></div>
+                  <p className="text-muted-foreground">Loading presentation...</p>
+                </div>
+              )}
             </div>
           </div>
         </div>

@@ -124,15 +124,28 @@ const Navigation = () => {
               }`}></div>
             ) : session ? (
               <>
+                {isAdmin && (
+                  <Button 
+                    variant={isHomePage && !isScrolled ? "secondary" : "ghost"}
+                    size="sm" 
+                    asChild
+                    className={isHomePage && !isScrolled ? "bg-white text-foreground hover:bg-white/90" : ""}
+                  >
+                    <Link to="/admin">
+                      <User className="mr-2 h-4 w-4" />
+                      Admin Dashboard
+                    </Link>
+                  </Button>
+                )}
                 <Button 
                   variant={isHomePage && !isScrolled ? "secondary" : "ghost"}
                   size="sm" 
                   asChild
                   className={isHomePage && !isScrolled ? "bg-white text-foreground hover:bg-white/90" : ""}
                 >
-                  <Link to={isAdmin ? "/admin" : "/investor-portal"}>
+                  <Link to="/investor-portal">
                     <User className="mr-2 h-4 w-4" />
-                    {isAdmin ? "Admin Dashboard" : "Investor Portal"}
+                    Investor Portal
                   </Link>
                 </Button>
                 <Button 
@@ -158,13 +171,14 @@ const Navigation = () => {
                 <Button 
                   asChild 
                   variant={isHomePage && !isScrolled ? "secondary" : "outline"}
-                  size="sm"
+                  size="sm" 
                   className={isHomePage && !isScrolled ? "bg-white text-foreground hover:bg-white/90" : ""}
                 >
                   <Link to="/auth">Login</Link>
                 </Button>
               </>
             )}
+
           </div>
 
           {/* Mobile Menu Button */}
