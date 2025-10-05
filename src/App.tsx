@@ -17,6 +17,9 @@ import Contact from "./pages/Contact";
 import Profile from "./pages/Profile";
 import Auth from "./pages/Auth";
 import AdminDashboard from "./pages/admin/Dashboard";
+import InvestorPortal from "./pages/InvestorPortal";
+import InvestorDeck from "./pages/InvestorDeck";
+import InvestorQuestionnaire from "./pages/InvestorQuestionnaire";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -43,6 +46,9 @@ const App = () => (
               <Route path="/contact" element={<Contact />} />
               <Route path="/auth" element={<Auth />} />
               <Route path="/admin" element={<AdminDashboard />} />
+              <Route path="/investor-portal" element={<InvestorPortal />} />
+              <Route path="/investor-deck" element={<InvestorDeck />} />
+              <Route path="/investor-questionnaire" element={<InvestorQuestionnaire />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
