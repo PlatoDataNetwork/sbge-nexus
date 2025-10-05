@@ -140,14 +140,29 @@ const InvestorDeck = () => {
         </div>
       </div>
 
-      {/* Main Content - Hard Embed PDF */}
-      <div className="flex-1 overflow-hidden bg-muted/10">
-        <div className="w-full h-[calc(100vh-168px)]">{/* subtract approx header+hero height */}
-          <iframe
-            src="/documents/investor-deck.pdf#toolbar=1&navpanes=0&scrollbar=1"
-            title="Investor Deck PDF"
-            className="w-full h-full"
-          />
+      {/* Main Content - PDF Viewer */}
+      <div className="flex-1 overflow-auto bg-muted/10">
+        <div className="max-w-5xl mx-auto p-6">
+          <Card className="p-4">
+            <div className="flex flex-col items-center">
+              <Document
+                file={pdfFile}
+                onLoadSuccess={onDocumentLoadSuccess}
+                className="w-full"
+              >
+                {Array.from(new Array(numPages), (el, index) => (
+                  <div key={`page_${index + 1}`} className="mb-4">
+                    <Page
+                      pageNumber={index + 1}
+                      width={Math.min(window.innerWidth - 100, 800)}
+                      renderTextLayer={true}
+                      renderAnnotationLayer={true}
+                    />
+                  </div>
+                ))}
+              </Document>
+            </div>
+          </Card>
         </div>
       </div>
     </div>
