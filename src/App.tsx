@@ -14,6 +14,8 @@ import Innovation from "./pages/Innovation";
 import Leadership from "./pages/Leadership";
 import Contact from "./pages/Contact";
 import Profile from "./pages/Profile";
+import Auth from "./pages/Auth";
+import AdminDashboard from "./pages/admin/Dashboard";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -37,6 +39,8 @@ const App = () => (
               <Route path="/leadership" element={<Leadership />} />
               <Route path="/profile/:slug" element={<Profile />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/auth" element={<Auth />} />
+              <Route path="/admin" element={<AdminDashboard />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>

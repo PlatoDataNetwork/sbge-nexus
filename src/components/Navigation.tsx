@@ -1,12 +1,16 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, User, LogOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { supabase } from '@/integrations/supabase/client';
+import { useNavigate } from 'react-router-dom';
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [session, setSession] = useState<any>(null);
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,6 +20,25 @@ const Navigation = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+    });
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const handleSignOut = async () => {
+    await supabase.auth.signOut();
+    navigate('/');
+  };
 
   const navigation = [
     { name: 'Home', href: '/' },
@@ -60,10 +83,32 @@ const Navigation = () => {
             ))}
           </div>
 
-          {/* CTA Button */}
-              <Button asChild variant="premium" className="bg-gradient-primary hover:opacity-90">
-              <Link to="/contact">Request Access</Link>
-            </Button>
+          {/* CTA Button + Auth */}
+          <div className="hidden lg:flex items-center gap-3">
+            {session ? (
+              <>
+                <Button variant="ghost" size="sm" asChild>
+                  <Link to="/admin">
+                    <User className="mr-2 h-4 w-4" />
+                    Dashboard
+                  </Link>
+                </Button>
+                <Button variant="outline" size="sm" onClick={handleSignOut}>
+                  <LogOut className="mr-2 h-4 w-4" />
+                  Sign Out
+                </Button>
+              </>
+            ) : (
+              <>
+                <Button asChild variant="premium" className="bg-gradient-primary hover:opacity-90">
+                  <Link to="/contact">Request Access</Link>
+                </Button>
+                <Button asChild variant="outline">
+                  <Link to="/auth">Login</Link>
+                </Button>
+              </>
+            )}
+          </div>
 
           {/* Mobile Menu Button */}
           <button
@@ -92,10 +137,30 @@ const Navigation = () => {
                 {item.name}
               </Link>
             ))}
-            <div className="px-4 pt-2">
-              <Button asChild variant="premium" className="w-full">
-                <Link to="/contact">Request Access</Link>
-              </Button>
+            <div className="px-4 pt-2 space-y-2 border-t border-border mt-2">
+              {session ? (
+                <>
+                  <Button variant="outline" size="sm" className="w-full" asChild>
+                    <Link to="/admin" onClick={() => setIsMobileMenuOpen(false)}>
+                      <User className="mr-2 h-4 w-4" />
+                      Dashboard
+                    </Link>
+                  </Button>
+                  <Button variant="outline" size="sm" className="w-full" onClick={() => { handleSignOut(); setIsMobileMenuOpen(false); }}>
+                    <LogOut className="mr-2 h-4 w-4" />
+                    Sign Out
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Button asChild variant="premium" className="w-full">
+                    <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>Request Access</Link>
+                  </Button>
+                  <Button asChild variant="outline" className="w-full">
+                    <Link to="/auth" onClick={() => setIsMobileMenuOpen(false)}>Login</Link>
+                  </Button>
+                </>
+              )}
             </div>
           </div>
         )}

@@ -1,0 +1,187 @@
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { supabase } from '@/integrations/supabase/client';
+import { Button } from '@/components/ui/button';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Users, TrendingUp, UserCog, LogOut } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
+import UsersList from '@/components/admin/UsersList';
+import InquiriesList from '@/components/admin/InquiriesList';
+import AnalyticsDashboard from '@/components/admin/AnalyticsDashboard';
+
+const AdminDashboard = () => {
+  const navigate = useNavigate();
+  const { toast } = useToast();
+  const [loading, setLoading] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [stats, setStats] = useState({
+    totalUsers: 0,
+    totalInquiries: 0,
+    newInquiries: 0,
+  });
+
+  useEffect(() => {
+    checkAdminAccess();
+  }, []);
+
+  const checkAdminAccess = async () => {
+    try {
+      const { data: { session } } = await supabase.auth.getSession();
+      
+      if (!session) {
+        navigate('/auth');
+        return;
+      }
+
+      // Check if user has admin role
+      const { data: roles, error } = await supabase
+        .from('user_roles')
+        .select('role')
+        .eq('user_id', session.user.id)
+        .eq('role', 'admin')
+        .single();
+
+      if (error || !roles) {
+        toast({
+          variant: 'destructive',
+          title: 'Access Denied',
+          description: 'You do not have admin privileges.',
+        });
+        navigate('/');
+        return;
+      }
+
+      setIsAdmin(true);
+      loadStats();
+    } catch (error) {
+      console.error('Admin access check error:', error);
+      navigate('/');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const loadStats = async () => {
+    // Get total users
+    const { count: usersCount } = await supabase
+      .from('profiles')
+      .select('*', { count: 'exact', head: true });
+
+    // Get total inquiries
+    const { count: inquiriesCount } = await supabase
+      .from('investor_inquiries')
+      .select('*', { count: 'exact', head: true });
+
+    // Get new inquiries (last 7 days)
+    const sevenDaysAgo = new Date();
+    sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+    const { count: newInquiriesCount } = await supabase
+      .from('investor_inquiries')
+      .select('*', { count: 'exact', head: true })
+      .gte('created_at', sevenDaysAgo.toISOString());
+
+    setStats({
+      totalUsers: usersCount || 0,
+      totalInquiries: inquiriesCount || 0,
+      newInquiries: newInquiriesCount || 0,
+    });
+  };
+
+  const handleSignOut = async () => {
+    await supabase.auth.signOut();
+    navigate('/');
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin h-12 w-12 border-4 border-accent border-t-transparent rounded-full mx-auto mb-4"></div>
+          <p className="text-muted-foreground">Loading admin dashboard...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!isAdmin) {
+    return null;
+  }
+
+  return (
+    <div className="min-h-screen pt-20 pb-12 bg-background">
+      <div className="container mx-auto px-4">
+        <div className="flex justify-between items-center mb-8">
+          <div>
+            <h1 className="text-4xl font-heading font-bold text-primary mb-2">
+              Admin Dashboard
+            </h1>
+            <p className="text-muted-foreground">
+              Manage users, inquiries, and view analytics
+            </p>
+          </div>
+          <Button onClick={handleSignOut} variant="outline">
+            <LogOut className="mr-2 h-4 w-4" />
+            Sign Out
+          </Button>
+        </div>
+
+        {/* Stats Overview */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <div className="bg-card border border-border rounded-lg p-6">
+            <div className="flex items-center justify-between mb-4">
+              <Users className="h-8 w-8 text-accent" />
+            </div>
+            <div className="space-y-2">
+              <p className="text-sm text-muted-foreground">Total Users</p>
+              <p className="text-3xl font-bold text-primary">{stats.totalUsers}</p>
+              <p className="text-xs text-muted-foreground">Registered investors</p>
+            </div>
+          </div>
+          <div className="bg-card border border-border rounded-lg p-6">
+            <div className="flex items-center justify-between mb-4">
+              <TrendingUp className="h-8 w-8 text-accent" />
+            </div>
+            <div className="space-y-2">
+              <p className="text-sm text-muted-foreground">Total Inquiries</p>
+              <p className="text-3xl font-bold text-primary">{stats.totalInquiries}</p>
+              <p className="text-xs text-muted-foreground">Investment inquiries</p>
+            </div>
+          </div>
+          <div className="bg-card border border-border rounded-lg p-6">
+            <div className="flex items-center justify-between mb-4">
+              <UserCog className="h-8 w-8 text-accent" />
+            </div>
+            <div className="space-y-2">
+              <p className="text-sm text-muted-foreground">New Inquiries</p>
+              <p className="text-3xl font-bold text-primary">{stats.newInquiries}</p>
+              <p className="text-xs text-muted-foreground">Last 7 days</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Main Content */}
+        <Tabs defaultValue="users" className="w-full">
+          <TabsList className="grid w-full grid-cols-3 mb-8">
+            <TabsTrigger value="users">Users</TabsTrigger>
+            <TabsTrigger value="inquiries">Inquiries</TabsTrigger>
+            <TabsTrigger value="analytics">Analytics</TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="users">
+            <UsersList />
+          </TabsContent>
+
+          <TabsContent value="inquiries">
+            <InquiriesList onUpdate={loadStats} />
+          </TabsContent>
+
+          <TabsContent value="analytics">
+            <AnalyticsDashboard />
+          </TabsContent>
+        </Tabs>
+      </div>
+    </div>
+  );
+};
+
+export default AdminDashboard;
