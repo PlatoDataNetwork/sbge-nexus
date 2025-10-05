@@ -125,7 +125,7 @@ const Navigation = () => {
                   asChild 
                   variant="outline" 
                   size="sm"
-                  className={isHomePage && !isScrolled ? "border-white text-white hover:bg-white/10" : ""}
+                  className={isHomePage && !isScrolled ? "border-white text-white hover:bg-white/10" : "text-foreground"}
                 >
                   <Link to="/auth">Login</Link>
                 </Button>
@@ -199,7 +199,7 @@ const Navigation = () => {
                     asChild 
                     variant="outline" 
                     size="sm" 
-                    className={`w-full ${isHomePage && !isScrolled ? 'border-white text-white hover:bg-white/10' : ''}`}
+                    className={`w-full ${isHomePage && !isScrolled ? 'border-white text-white hover:bg-white/10' : 'text-foreground'}`}
                   >
                     <Link to="/auth" onClick={() => setIsMobileMenuOpen(false)}>Login</Link>
                   </Button>
