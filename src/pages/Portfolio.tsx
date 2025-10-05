@@ -200,16 +200,16 @@ const Portfolio = () => {
                 </div>
                 <div className="grid grid-cols-3 gap-4 pt-4 border-t border-border">
                   <div>
-                    <div className="text-sm text-muted-foreground mb-1">Investment</div>
-                    <div className="font-semibold text-foreground">$42M</div>
+                    <div className="text-xs sm:text-sm text-muted-foreground mb-1">Investment</div>
+                    <div className="text-sm sm:text-base font-semibold text-foreground">$42M</div>
                   </div>
                   <div>
-                    <div className="text-sm text-muted-foreground mb-1">MOIC</div>
-                    <div className="font-semibold text-foreground">2.1x</div>
+                    <div className="text-xs sm:text-sm text-muted-foreground mb-1">MOIC</div>
+                    <div className="text-sm sm:text-base font-semibold text-foreground">2.1x</div>
                   </div>
                   <div>
-                    <div className="text-sm text-muted-foreground mb-1">Hold Period</div>
-                    <div className="font-semibold text-foreground">4.5 years</div>
+                    <div className="text-xs sm:text-sm text-muted-foreground mb-1">Hold Period</div>
+                    <div className="text-sm sm:text-base font-semibold text-foreground">4.5 years</div>
                   </div>
                 </div>
               </div>
@@ -229,16 +229,16 @@ const Portfolio = () => {
                 </div>
                 <div className="grid grid-cols-3 gap-4 pt-4 border-t border-border">
                   <div>
-                    <div className="text-sm text-muted-foreground mb-1">Investment</div>
-                    <div className="font-semibold text-foreground">$28M</div>
+                    <div className="text-xs sm:text-sm text-muted-foreground mb-1">Investment</div>
+                    <div className="text-sm sm:text-base font-semibold text-foreground">$28M</div>
                   </div>
                   <div>
-                    <div className="text-sm text-muted-foreground mb-1">MOIC</div>
-                    <div className="font-semibold text-foreground">1.8x</div>
+                    <div className="text-xs sm:text-sm text-muted-foreground mb-1">MOIC</div>
+                    <div className="text-sm sm:text-base font-semibold text-foreground">1.8x</div>
                   </div>
                   <div>
-                    <div className="text-sm text-muted-foreground mb-1">Hold Period</div>
-                    <div className="font-semibold text-foreground">3.2 years</div>
+                    <div className="text-xs sm:text-sm text-muted-foreground mb-1">Hold Period</div>
+                    <div className="text-sm sm:text-base font-semibold text-foreground">3.2 years</div>
                   </div>
                 </div>
               </div>

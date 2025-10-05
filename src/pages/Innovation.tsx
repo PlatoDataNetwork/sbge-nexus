@@ -142,18 +142,18 @@ const Innovation = () => {
                   maintaining higher service quality. AI-powered systems handle routine tasks, allowing our 
                   team to focus on strategic initiatives and customer relationships.
                 </p>
-                <div className="flex items-center space-x-8">
+                <div className="grid grid-cols-3 gap-4 sm:flex sm:items-center sm:space-x-8">
                   <div>
-                    <div className="text-3xl font-heading font-bold text-green-600">40%</div>
-                    <div className="text-sm text-muted-foreground">Cost Reduction</div>
+                    <div className="text-2xl sm:text-3xl font-heading font-bold text-green-600">40%</div>
+                    <div className="text-xs sm:text-sm text-muted-foreground">Cost Reduction</div>
                   </div>
                   <div>
-                    <div className="text-3xl font-heading font-bold text-green-600">98%</div>
-                    <div className="text-sm text-muted-foreground">Uptime</div>
+                    <div className="text-2xl sm:text-3xl font-heading font-bold text-green-600">98%</div>
+                    <div className="text-xs sm:text-sm text-muted-foreground">Uptime</div>
                   </div>
                   <div>
-                    <div className="text-3xl font-heading font-bold text-green-600">24/7</div>
-                    <div className="text-sm text-muted-foreground">Availability</div>
+                    <div className="text-2xl sm:text-3xl font-heading font-bold text-green-600">24/7</div>
+                    <div className="text-xs sm:text-sm text-muted-foreground">Availability</div>
                   </div>
                 </div>
               </div>
@@ -167,18 +167,18 @@ const Innovation = () => {
                   for maximum revenue. Our AI considers local competition, seasonal trends, occupancy levels, 
                   and customer behavior patterns to set optimal pricing.
                 </p>
-                <div className="flex items-center space-x-8">
+                <div className="grid grid-cols-3 gap-4 sm:flex sm:items-center sm:space-x-8">
                   <div>
-                    <div className="text-3xl font-heading font-bold text-green-600">12-18%</div>
-                    <div className="text-sm text-muted-foreground">Revenue Lift</div>
+                    <div className="text-2xl sm:text-3xl font-heading font-bold text-green-600">12-18%</div>
+                    <div className="text-xs sm:text-sm text-muted-foreground">Revenue Lift</div>
                   </div>
                   <div>
-                    <div className="text-3xl font-heading font-bold text-green-600">Real-time</div>
-                    <div className="text-sm text-muted-foreground">Adjustments</div>
+                    <div className="text-2xl sm:text-3xl font-heading font-bold text-green-600">Real-time</div>
+                    <div className="text-xs sm:text-sm text-muted-foreground">Adjustments</div>
                   </div>
                   <div>
-                    <div className="text-3xl font-heading font-bold text-green-600">300+</div>
-                    <div className="text-sm text-muted-foreground">Data Points</div>
+                    <div className="text-2xl sm:text-3xl font-heading font-bold text-green-600">300+</div>
+                    <div className="text-xs sm:text-sm text-muted-foreground">Data Points</div>
                   </div>
                 </div>
               </div>
@@ -192,18 +192,18 @@ const Innovation = () => {
                   inquiry to move-in and ongoing support, our technology enables convenient, contactless 
                   interactions that today's customers expect.
                 </p>
-                <div className="flex items-center space-x-8">
+                <div className="grid grid-cols-3 gap-4 sm:flex sm:items-center sm:space-x-8">
                   <div>
-                    <div className="text-3xl font-heading font-bold text-green-600">4.8/5</div>
-                    <div className="text-sm text-muted-foreground">Customer Rating</div>
+                    <div className="text-2xl sm:text-3xl font-heading font-bold text-green-600">4.8/5</div>
+                    <div className="text-xs sm:text-sm text-muted-foreground">Customer Rating</div>
                   </div>
                   <div>
-                    <div className="text-3xl font-heading font-bold text-green-600">&lt;2min</div>
-                    <div className="text-sm text-muted-foreground">Response Time</div>
+                    <div className="text-2xl sm:text-3xl font-heading font-bold text-green-600">&lt;2min</div>
+                    <div className="text-xs sm:text-sm text-muted-foreground">Response Time</div>
                   </div>
                   <div>
-                    <div className="text-3xl font-heading font-bold text-green-600">85%</div>
-                    <div className="text-sm text-muted-foreground">Mobile Usage</div>
+                    <div className="text-2xl sm:text-3xl font-heading font-bold text-green-600">85%</div>
+                    <div className="text-xs sm:text-sm text-muted-foreground">Mobile Usage</div>
                   </div>
                 </div>
               </div>
