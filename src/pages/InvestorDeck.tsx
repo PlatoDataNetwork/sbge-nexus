@@ -41,8 +41,9 @@ const InvestorDeck = () => {
 
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      if (!session) {
+    } = supabase.auth.onAuthStateChange((event, session) => {
+      // Only redirect when the user explicitly signs out to avoid flicker
+      if (event === 'SIGNED_OUT') {
         navigate("/auth");
       }
       setSession(session);
