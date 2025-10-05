@@ -150,36 +150,44 @@ const InvestorDeck = () => {
         <div className="w-48 border-r bg-muted/20">
           <ScrollArea className="h-full">
             <div className="p-2 space-y-2">
-              {numPages > 0 && Array.from(new Array(numPages), (el, index) => (
-                <Card
-                  key={`thumb_${index + 1}`}
-                  className={`cursor-pointer transition-all hover:shadow-md ${
-                    pageNumber === index + 1 ? 'ring-2 ring-primary shadow-lg' : ''
-                  }`}
-                  onClick={() => goToPage(index + 1)}
+              {numPages > 0 && (
+                <Document
+                  file={pdfFile}
+                  loading={
+                    <div className="flex items-center justify-center p-4">
+                      <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-primary"></div>
+                    </div>
+                  }
                 >
-                  <div className="p-2">
-                    <Document
-                      file={pdfFile}
-                      loading={
-                        <div className="flex items-center justify-center h-24 bg-muted">
-                          <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-primary"></div>
-                        </div>
-                      }
+                  {Array.from({ length: numPages }).map((_, index) => (
+                    <Card
+                      key={`thumb_${index + 1}`}
+                      className={`cursor-pointer transition-all hover:shadow-md ${
+                        pageNumber === index + 1 ? 'ring-2 ring-primary shadow-lg' : ''
+                      }`}
+                      onClick={() => goToPage(index + 1)}
                     >
-                      <Page
-                        pageNumber={index + 1}
-                        width={160}
-                        renderTextLayer={false}
-                        renderAnnotationLayer={false}
-                      />
-                    </Document>
-                    <p className="text-xs text-center mt-1 text-muted-foreground">
-                      {index + 1}
-                    </p>
-                  </div>
-                </Card>
-              ))}
+                      <div className="p-2">
+                        {Math.abs((index + 1) - pageNumber) <= 4 ? (
+                          <Page
+                            pageNumber={index + 1}
+                            width={160}
+                            renderTextLayer={false}
+                            renderAnnotationLayer={false}
+                          />
+                        ) : (
+                          <div className="flex items-center justify-center h-24 bg-muted">
+                            <div className="h-6 w-6 rounded-full border-b-2 border-primary animate-spin" />
+                          </div>
+                        )}
+                        <p className="text-xs text-center mt-1 text-muted-foreground">
+                          {index + 1}
+                        </p>
+                      </div>
+                    </Card>
+                  ))}
+                </Document>
+              )}
             </div>
           </ScrollArea>
         </div>
