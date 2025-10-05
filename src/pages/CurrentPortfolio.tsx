@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, Building2, MapPin, TrendingUp, Calendar } from "lucide-react";
+import { ArrowLeft, Building2, MapPin, TrendingUp, Calendar, Square } from "lucide-react";
 
 const CurrentPortfolio = () => {
   const navigate = useNavigate();
@@ -13,6 +13,72 @@ const CurrentPortfolio = () => {
     nrsf: "400,000",
     projectedValue: "$150M"
   };
+
+  const facilities = [
+    {
+      name: 'Facility 1',
+      location: 'North Jersey',
+      sqft: '250,000',
+      occupancy: '92%',
+      status: 'Stabilized',
+    },
+    {
+      name: 'Facility 2',
+      location: 'NYC Metro',
+      sqft: '180,000',
+      occupancy: '88%',
+      status: 'Stabilized',
+    },
+    {
+      name: 'Facility 3',
+      location: 'New Jersey',
+      sqft: '320,000',
+      occupancy: '95%',
+      status: 'Stabilized',
+    },
+    {
+      name: 'Facility 4',
+      location: 'North Jersey',
+      sqft: '210,000',
+      occupancy: '90%',
+      status: 'Value-Add',
+    },
+    {
+      name: 'Facility 5',
+      location: 'NYC Metro',
+      sqft: '275,000',
+      occupancy: '87%',
+      status: 'Development',
+    },
+    {
+      name: 'Facility 6',
+      location: 'New Jersey',
+      sqft: '195,000',
+      occupancy: '93%',
+      status: 'Stabilized',
+    },
+  ];
+
+  const performanceMetrics = [
+    {
+      title: 'Total Square Feet',
+      value: '1.43M',
+      change: '+12% YoY',
+      positive: true,
+    },
+    {
+      title: 'Average Occupancy',
+      value: '90.8%',
+      change: '+3.2% vs Target',
+      positive: true,
+    },
+    {
+      title: 'Facilities',
+      value: '6',
+      change: 'Initial Portfolio',
+      positive: true,
+    },
+  ];
 
   return (
     <div className="min-h-screen bg-background">
@@ -192,6 +258,147 @@ const CurrentPortfolio = () => {
               </div>
             </CardContent>
           </Card>
+        </div>
+      </section>
+
+      {/* Performance Metrics */}
+      <section className="py-12 bg-muted/30">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-3xl font-bold mb-8 text-center">Performance Metrics</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {performanceMetrics.map((metric) => (
+              <div key={metric.title} className="bg-card border border-border rounded-lg p-6 hover-lift">
+                <div className="text-sm text-muted-foreground mb-2">{metric.title}</div>
+                <div className="text-4xl font-heading font-bold text-primary mb-2">{metric.value}</div>
+                <div className={`text-sm font-medium ${metric.positive ? 'text-green-600' : 'text-red-600'}`}>
+                  {metric.change}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Facility Grid */}
+      <section className="py-12">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-3xl font-bold mb-8 text-center">Current Assets</h2>
+          <p className="text-center text-muted-foreground mb-8 max-w-2xl mx-auto">
+            High-quality facilities in strategic locations across the NYC Metropolitan Area
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {facilities.map((facility, index) => (
+              <div
+                key={index}
+                className="bg-card border border-border rounded-lg overflow-hidden hover-lift"
+              >
+                <div className="h-48 bg-gradient-to-br from-primary/80 to-primary relative">
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <Square className="h-16 w-16 text-primary-foreground/30" />
+                  </div>
+                </div>
+                <div className="p-6 space-y-4">
+                  <div>
+                    <h3 className="text-xl font-heading font-bold text-foreground mb-1">
+                      {facility.name}
+                    </h3>
+                    <div className="flex items-center text-sm text-muted-foreground">
+                      <MapPin className="h-4 w-4 mr-1" />
+                      {facility.location}
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-muted-foreground">Square Feet</span>
+                      <span className="font-semibold text-foreground">{facility.sqft}</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-muted-foreground">Occupancy</span>
+                      <span className="font-semibold text-green-600">{facility.occupancy}</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-muted-foreground">Status</span>
+                      <span className="px-2 py-1 text-xs font-medium bg-accent/20 text-accent rounded-full">
+                        {facility.status}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Realized Returns */}
+      <section className="py-12 bg-muted/30">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-3xl font-bold mb-4 text-center">Realized Returns</h2>
+          <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
+            Proven performance across multiple investment strategies
+          </p>
+
+          <div className="max-w-4xl mx-auto space-y-6">
+            <div className="bg-card border border-border rounded-lg p-8 hover-lift">
+              <div className="flex items-start justify-between mb-4">
+                <div>
+                  <h3 className="text-2xl font-heading font-bold text-foreground mb-2">
+                    Portfolio Acquisition 2019
+                  </h3>
+                  <p className="text-muted-foreground">North Jersey / NYC Metro</p>
+                </div>
+                <div className="text-right">
+                  <div className="text-sm text-muted-foreground mb-1">IRR</div>
+                  <div className="text-3xl font-heading font-bold text-green-600">22.4%</div>
+                </div>
+              </div>
+              <div className="grid grid-cols-3 gap-4 pt-4 border-t border-border">
+                <div>
+                  <div className="text-xs sm:text-sm text-muted-foreground mb-1">Investment</div>
+                  <div className="text-sm sm:text-base font-semibold text-foreground">$42M</div>
+                </div>
+                <div>
+                  <div className="text-xs sm:text-sm text-muted-foreground mb-1">MOIC</div>
+                  <div className="text-sm sm:text-base font-semibold text-foreground">2.1x</div>
+                </div>
+                <div>
+                  <div className="text-xs sm:text-sm text-muted-foreground mb-1">Hold Period</div>
+                  <div className="text-sm sm:text-base font-semibold text-foreground">4.5 years</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-card border border-border rounded-lg p-8 hover-lift">
+              <div className="flex items-start justify-between mb-4">
+                <div>
+                  <h3 className="text-2xl font-heading font-bold text-foreground mb-2">
+                    Ground-Up Development 2020
+                  </h3>
+                  <p className="text-muted-foreground">New Jersey</p>
+                </div>
+                <div className="text-right">
+                  <div className="text-sm text-muted-foreground mb-1">IRR</div>
+                  <div className="text-3xl font-heading font-bold text-green-600">18.7%</div>
+                </div>
+              </div>
+              <div className="grid grid-cols-3 gap-4 pt-4 border-t border-border">
+                <div>
+                  <div className="text-xs sm:text-sm text-muted-foreground mb-1">Investment</div>
+                  <div className="text-sm sm:text-base font-semibold text-foreground">$28M</div>
+                </div>
+                <div>
+                  <div className="text-xs sm:text-sm text-muted-foreground mb-1">MOIC</div>
+                  <div className="text-sm sm:text-base font-semibold text-foreground">1.8x</div>
+                </div>
+                <div>
+                  <div className="text-xs sm:text-sm text-muted-foreground mb-1">Hold Period</div>
+                  <div className="text-sm sm:text-base font-semibold text-foreground">3.2 years</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
