@@ -281,6 +281,7 @@ const Strategy = () => {
                 'Industrial Outdoor Storage (IOS)',
                 'General Industrial Warehouses',
                 'Outdoor RV Storage',
+                'Boat & Marine Storage',
               ].map((type) => (
                 <div
                   key={type}
