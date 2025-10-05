@@ -22,7 +22,8 @@ const Home = () => {
             </h1>
             
             <p className="text-xl md:text-2xl text-primary-foreground/90 max-w-3xl mx-auto">
-              StorageBlue Growth Fund, LP: $350M Growth Fund | $1B Buying Power | 35+ Years of Proven Performance
+              StorageBlue Growth Fund, LP: $350M Growth Fund<br />
+              $1B Buying Power | 35+ Years of Proven Performance
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
