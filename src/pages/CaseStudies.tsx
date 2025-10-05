@@ -1,0 +1,233 @@
+import { useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { ArrowLeft, TrendingUp, DollarSign, Building2, Calendar } from "lucide-react";
+
+const CaseStudies = () => {
+  const navigate = useNavigate();
+
+  const caseStudyData = {
+    totalFacilities: 6,
+    totalSqft: "335,000",
+    totalUnits: "4,700",
+    developmentCost: "$46.5M",
+    salePrice: "$100M",
+    avgLeveredIRR: "33.79%",
+    avgLeveredMOIC: "34.00X",
+    unlEveredIRR: "17.14%",
+    unleveredMOIC: "2.94X"
+  };
+
+  const facilities = [
+    {
+      location: "3322 Hudson Avenue, Union City, NJ",
+      basis: "$11.7M",
+      year: "2014",
+      sale: "$28.5M",
+      saleYear: "2024",
+      irr: "16.69% / 29.40%",
+      cashOnCash: "13.00%"
+    },
+    {
+      location: "190 Baldwin Avenue, Jersey City, NJ",
+      basis: "$7.6M",
+      year: "2014",
+      sale: "$21.6M",
+      saleYear: "2024",
+      irr: "18.72% / 48.92%",
+      cashOnCash: "14.38%"
+    },
+    {
+      location: "315 Coles Street, Jersey City, NJ",
+      basis: "$4.5M",
+      year: "2014",
+      sale: "$13.0M",
+      saleYear: "2024",
+      irr: "18.26% / 32.06%",
+      cashOnCash: "12.74%"
+    },
+    {
+      location: "200 Mt. Pleasant Avenue, Newark, NJ",
+      basis: "$6.3M",
+      year: "2014",
+      sale: "$17.8M",
+      saleYear: "2024",
+      irr: "18.78% / 32.80%",
+      cashOnCash: "15.44%"
+    },
+    {
+      location: "123 W Tryon Avenue, Teaneck, NJ",
+      basis: "$9.6M",
+      year: "2022",
+      sale: "$11.2M",
+      saleYear: "2024",
+      irr: "17.42% / 52.39%",
+      cashOnCash: "7.83%"
+    },
+    {
+      location: "170 River Drive, Garfield, NJ",
+      basis: "$6.8M",
+      year: "2018/19",
+      sale: "$7.95M",
+      saleYear: "2024",
+      irr: "4.92%",
+      cashOnCash: "4.68%"
+    }
+  ];
+
+  return (
+    <div className="min-h-screen bg-background">
+      {/* Hero Section */}
+      <section className="pt-24 pb-12 bg-gradient-to-b from-muted/50 to-transparent border-b">
+        <div className="max-w-7xl mx-auto px-4">
+          <Button
+            variant="ghost"
+            onClick={() => navigate("/investor-portal")}
+            className="mb-6"
+          >
+            <ArrowLeft className="h-4 w-4 mr-2" />
+            Back to Investor Portal
+          </Button>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">StorageBlue Case Studies</h1>
+          <p className="text-xl text-muted-foreground max-w-3xl">
+            In March 2024, StorageBlue sold 6 of its storage facilities sourced, developed and managed by StorageBlue
+          </p>
+        </div>
+      </section>
+
+      {/* Summary Stats */}
+      <section className="py-12 bg-muted/30">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid md:grid-cols-4 gap-6">
+            <Card>
+              <CardHeader className="pb-3">
+                <CardTitle className="text-sm font-medium text-muted-foreground">Total Facilities</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-3xl font-bold">{caseStudyData.totalFacilities}</div>
+                <p className="text-xs text-muted-foreground mt-1">{caseStudyData.totalUnits} Units</p>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader className="pb-3">
+                <CardTitle className="text-sm font-medium text-muted-foreground">Development Cost</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-3xl font-bold">{caseStudyData.developmentCost}</div>
+                <p className="text-xs text-muted-foreground mt-1">Unlevered</p>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader className="pb-3">
+                <CardTitle className="text-sm font-medium text-muted-foreground">Sale Price</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-3xl font-bold text-primary">{caseStudyData.salePrice}</div>
+                <p className="text-xs text-muted-foreground mt-1">{caseStudyData.totalSqft} Sqft</p>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader className="pb-3">
+                <CardTitle className="text-sm font-medium text-muted-foreground">Avg. Levered IRR</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-3xl font-bold text-primary">{caseStudyData.avgLeveredIRR}</div>
+                <p className="text-xs text-muted-foreground mt-1">{caseStudyData.avgLeveredMOIC} MOIC</p>
+              </CardContent>
+            </Card>
+          </div>
+
+          <Card className="mt-6">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <TrendingUp className="h-5 w-5 text-primary" />
+                Performance Metrics
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="grid md:grid-cols-2 gap-4">
+              <div>
+                <p className="text-sm font-medium text-muted-foreground mb-1">Unlevered IRR</p>
+                <p className="text-2xl font-bold">{caseStudyData.unlEveredIRR}</p>
+              </div>
+              <div>
+                <p className="text-sm font-medium text-muted-foreground mb-1">Unlevered MOIC</p>
+                <p className="text-2xl font-bold">{caseStudyData.unleveredMOIC}</p>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      {/* Individual Facilities */}
+      <section className="py-12">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-3xl font-bold mb-8">Portfolio Sale Details</h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            {facilities.map((facility, index) => (
+              <Card key={index} className="hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <div className="flex items-start justify-between">
+                    <div className="flex-1">
+                      <CardTitle className="text-lg mb-2 flex items-start gap-2">
+                        <Building2 className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+                        <span>{facility.location}</span>
+                      </CardTitle>
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <p className="text-sm text-muted-foreground mb-1">Basis ({facility.year})</p>
+                      <p className="text-xl font-bold">{facility.basis}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-muted-foreground mb-1">Sale ({facility.saleYear})</p>
+                      <p className="text-xl font-bold text-primary">{facility.sale}</p>
+                    </div>
+                  </div>
+
+                  <div className="pt-4 border-t space-y-3">
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-muted-foreground">IRR (Unlevered / Levered)</span>
+                      <Badge variant="secondary">{facility.irr}</Badge>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-muted-foreground">2023 Cash on Cash</span>
+                      <Badge variant="outline">{facility.cashOnCash}</Badge>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Call to Action */}
+      <section className="py-12 bg-muted/30">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold mb-4">Ready to Learn More?</h2>
+          <p className="text-xl text-muted-foreground mb-8">
+            Schedule a call with our team to discuss investment opportunities
+          </p>
+          <div className="flex gap-4 justify-center">
+            <Button size="lg" onClick={() => navigate("/schedule-call")}>
+              <Calendar className="h-5 w-5 mr-2" />
+              Schedule a Call
+            </Button>
+            <Button size="lg" variant="outline" onClick={() => navigate("/investor-portal")}>
+              Back to Portal
+            </Button>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default CaseStudies;

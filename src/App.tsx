@@ -20,6 +20,9 @@ import AdminDashboard from "./pages/admin/Dashboard";
 import InvestorPortal from "./pages/InvestorPortal";
 import InvestorDeck from "./pages/InvestorDeck";
 import InvestorQuestionnaire from "./pages/InvestorQuestionnaire";
+import CaseStudies from "./pages/CaseStudies";
+import CurrentPortfolio from "./pages/CurrentPortfolio";
+import ScheduleCall from "./pages/ScheduleCall";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -49,6 +52,9 @@ const App = () => (
               <Route path="/investor-portal" element={<InvestorPortal />} />
               <Route path="/investor-deck" element={<InvestorDeck />} />
               <Route path="/investor-questionnaire" element={<InvestorQuestionnaire />} />
+              <Route path="/case-studies" element={<CaseStudies />} />
+              <Route path="/current-portfolio" element={<CurrentPortfolio />} />
+              <Route path="/schedule-call" element={<ScheduleCall />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>

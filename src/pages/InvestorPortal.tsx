@@ -4,7 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { FileText, Presentation, ClipboardList, CheckCircle } from "lucide-react";
+import { FileText, Presentation, ClipboardList, CheckCircle, TrendingUp, Briefcase, Calendar } from "lucide-react";
 import { toast } from "sonner";
 import { logActivity } from "@/lib/activityTracker";
 
@@ -178,7 +178,7 @@ const InvestorPortal = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-6 mb-6">
           {/* Investment Memorandum Card */}
           <Card className="hover:shadow-lg transition-shadow cursor-pointer group">
             <CardHeader>
@@ -241,6 +241,74 @@ const InvestorPortal = () => {
                 onClick={() => navigate("/investor-questionnaire")}
               >
                 Complete Form
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-6">
+          {/* Case Studies Card */}
+          <Card className="hover:shadow-lg transition-shadow cursor-pointer group">
+            <CardHeader>
+              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+                <TrendingUp className="h-6 w-6 text-primary" />
+              </div>
+              <CardTitle>Case Studies</CardTitle>
+              <CardDescription>
+                Track record of successful facility developments and exits with proven returns
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Button 
+                variant="outline" 
+                className="w-full"
+                onClick={() => navigate("/case-studies")}
+              >
+                View Case Studies
+              </Button>
+            </CardContent>
+          </Card>
+
+          {/* Current Portfolio Card */}
+          <Card className="hover:shadow-lg transition-shadow cursor-pointer group">
+            <CardHeader>
+              <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center mb-4 group-hover:bg-accent/20 transition-colors">
+                <Briefcase className="h-6 w-6 text-accent-foreground" />
+              </div>
+              <CardTitle>Current Portfolio</CardTitle>
+              <CardDescription>
+                Overview of active StorageBlue facilities and investment opportunities
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Button 
+                variant="outline" 
+                className="w-full"
+                onClick={() => navigate("/current-portfolio")}
+              >
+                View Portfolio
+              </Button>
+            </CardContent>
+          </Card>
+
+          {/* Schedule a Call Card */}
+          <Card className="hover:shadow-lg transition-shadow cursor-pointer group">
+            <CardHeader>
+              <div className="w-12 h-12 rounded-lg bg-secondary/10 flex items-center justify-center mb-4 group-hover:bg-secondary/20 transition-colors">
+                <Calendar className="h-6 w-6 text-secondary-foreground" />
+              </div>
+              <CardTitle>Schedule a Call</CardTitle>
+              <CardDescription>
+                Book a consultation to discuss investment opportunities and next steps
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Button 
+                variant="outline" 
+                className="w-full"
+                onClick={() => navigate("/schedule-call")}
+              >
+                Schedule Now
               </Button>
             </CardContent>
           </Card>
