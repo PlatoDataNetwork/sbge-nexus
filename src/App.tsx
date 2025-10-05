@@ -13,6 +13,7 @@ import Market from "./pages/Market";
 import Innovation from "./pages/Innovation";
 import Leadership from "./pages/Leadership";
 import Contact from "./pages/Contact";
+import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -34,6 +35,7 @@ const App = () => (
               <Route path="/market" element={<Market />} />
               <Route path="/innovation" element={<Innovation />} />
               <Route path="/leadership" element={<Leadership />} />
+              <Route path="/profile/:slug" element={<Profile />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
