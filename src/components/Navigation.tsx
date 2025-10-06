@@ -107,8 +107,8 @@ const Navigation = () => {
                       ? 'text-white bg-white/20'
                       : 'text-primary bg-muted'
                     : isHomePage && !isScrolled
-                      ? 'text-white/90 hover:text-white hover:bg-white/10'
-                      : 'text-foreground hover:text-primary hover:bg-muted/50'
+                      ? 'text-white/90 hover:text-white hover:bg-[hsl(220,90%,30%)]'
+                      : 'text-foreground hover:text-white hover:bg-[hsl(220,90%,30%)]'
                 }`}
               >
                 {item.name}
@@ -206,8 +206,8 @@ const Navigation = () => {
                       ? 'text-white bg-white/20'
                       : 'text-primary bg-muted'
                     : isHomePage && !isScrolled
-                      ? 'text-white/90 hover:text-white hover:bg-white/10'
-                      : 'text-foreground hover:text-primary hover:bg-muted/50'
+                      ? 'text-white/90 hover:text-white hover:bg-[hsl(220,90%,30%)]'
+                      : 'text-foreground hover:text-white hover:bg-[hsl(220,90%,30%)]'
                 }`}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
