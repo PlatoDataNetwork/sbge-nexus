@@ -8,7 +8,7 @@ interface StatCardProps {
 const StatCard = ({ value, label, description, icon }: StatCardProps) => {
   return (
     <div className="bg-card border border-border rounded-lg p-4 sm:p-6 hover-lift">
-      {icon && <div className="mb-3 sm:mb-4 text-accent">{icon}</div>}
+      {icon && <div className="mb-3 sm:mb-4 text-primary">{icon}</div>}
       <div className="text-3xl sm:text-4xl md:text-5xl font-heading font-bold text-primary mb-2">
         {value}
       </div>

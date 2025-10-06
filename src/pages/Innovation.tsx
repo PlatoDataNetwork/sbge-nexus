@@ -90,7 +90,7 @@ const Innovation = () => {
               {innovations.map((innovation) => (
                 <div key={innovation.title} className="bg-card border border-border rounded-lg p-8 hover-lift">
                   <div className="flex items-start space-x-4 mb-6">
-                    <div className="p-3 bg-accent/20 rounded-lg flex-shrink-0 text-accent">
+                    <div className="p-3 bg-primary/10 rounded-lg flex-shrink-0 text-primary">
                       {innovation.icon}
                     </div>
                     <div>

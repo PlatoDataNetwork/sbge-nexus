@@ -91,21 +91,21 @@ const Home = () => {
               </p>
               <div className="space-y-4">
                 <div className="flex items-start space-x-3">
-                  <Target className="h-6 w-6 text-accent flex-shrink-0 mt-1" />
+                  <Target className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
                   <div>
                     <h3 className="font-semibold text-foreground mb-1">Free Pickup Service</h3>
                     <p className="text-muted-foreground">No other self-storage company offers free pickup in NYC</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <Target className="h-6 w-6 text-accent flex-shrink-0 mt-1" />
+                  <Target className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
                   <div>
                     <h3 className="font-semibold text-foreground mb-1">Lowest Price Guarantee</h3>
                     <p className="text-muted-foreground">Competitive pricing with premium service</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <Target className="h-6 w-6 text-accent flex-shrink-0 mt-1" />
+                  <Target className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
                   <div>
                     <h3 className="font-semibold text-foreground mb-1">Vertically Integrated</h3>
                     <p className="text-muted-foreground">Full control from acquisition to operations</p>

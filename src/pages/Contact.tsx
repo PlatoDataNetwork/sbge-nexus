@@ -118,33 +118,33 @@ const Contact = () => {
 
                 <div className="space-y-6">
                   <div className="flex items-start space-x-4">
-                    <div className="p-3 bg-accent/20 rounded-lg flex-shrink-0">
-                      <Mail className="h-5 w-5 text-accent" />
-                    </div>
-                    <div>
-                      <div className="font-semibold text-foreground mb-1">Email</div>
-                      <a href="mailto:invest@storageblue.com" className="text-muted-foreground hover:text-accent transition-colors">
-                        invest@storageblue.com
-                      </a>
-                    </div>
+                  <div className="p-3 bg-primary/10 rounded-lg flex-shrink-0">
+                    <Mail className="h-5 w-5 text-primary" />
                   </div>
-
-                  <div className="flex items-start space-x-4">
-                    <div className="p-3 bg-accent/20 rounded-lg flex-shrink-0">
-                      <Phone className="h-5 w-5 text-accent" />
-                    </div>
-                    <div>
-                      <div className="font-semibold text-foreground mb-1">Phone</div>
-                      <a href="tel:+1234567890" className="text-muted-foreground hover:text-accent transition-colors">
-                        +1 (234) 567-8900
-                      </a>
-                    </div>
+                  <div>
+                    <div className="font-semibold text-foreground mb-1">Email</div>
+                    <a href="mailto:invest@storageblue.com" className="text-muted-foreground hover:text-primary transition-colors">
+                      invest@storageblue.com
+                    </a>
                   </div>
+                </div>
 
-                  <div className="flex items-start space-x-4">
-                    <div className="p-3 bg-accent/20 rounded-lg flex-shrink-0">
-                      <MapPin className="h-5 w-5 text-accent" />
-                    </div>
+                <div className="flex items-start space-x-4">
+                  <div className="p-3 bg-primary/10 rounded-lg flex-shrink-0">
+                    <Phone className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <div className="font-semibold text-foreground mb-1">Phone</div>
+                    <a href="tel:+1234567890" className="text-muted-foreground hover:text-primary transition-colors">
+                      +1 (234) 567-8900
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-4">
+                  <div className="p-3 bg-primary/10 rounded-lg flex-shrink-0">
+                    <MapPin className="h-5 w-5 text-primary" />
+                  </div>
                     <div>
                       <div className="font-semibold text-foreground mb-1">Location</div>
                       <p className="text-muted-foreground">

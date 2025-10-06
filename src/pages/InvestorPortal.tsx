@@ -192,8 +192,7 @@ const InvestorPortal = () => {
             </CardHeader>
             <CardContent>
               <Button 
-                variant="outline" 
-                className="w-full"
+                className="w-full bg-primary text-primary-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
                 onClick={() => navigate("/strategy")}
               >
                 View Overview
@@ -204,8 +203,8 @@ const InvestorPortal = () => {
           {/* Investor Deck Card */}
           <Card className="hover:shadow-lg transition-shadow cursor-pointer group">
             <CardHeader>
-              <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center mb-4 group-hover:bg-accent/20 transition-colors">
-                <Presentation className="h-6 w-6 text-accent-foreground" />
+              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+                <Presentation className="h-6 w-6 text-primary" />
               </div>
               <CardTitle>Investor Deck</CardTitle>
               <CardDescription>
@@ -214,8 +213,7 @@ const InvestorPortal = () => {
             </CardHeader>
             <CardContent>
               <Button 
-                variant="outline" 
-                className="w-full"
+                className="w-full bg-primary text-primary-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
                 onClick={() => navigate("/investor-deck")}
               >
                 View Presentation
@@ -236,8 +234,7 @@ const InvestorPortal = () => {
             </CardHeader>
             <CardContent>
               <Button 
-                variant="outline" 
-                className="w-full"
+                className="w-full bg-primary text-primary-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
                 onClick={() => toast.info("Investment Memorandum will be available soon")}
               >
                 View Document
@@ -250,8 +247,8 @@ const InvestorPortal = () => {
           {/* Investor Questionnaire Card */}
           <Card className="hover:shadow-lg transition-shadow cursor-pointer group">
             <CardHeader>
-              <div className="w-12 h-12 rounded-lg bg-secondary/10 flex items-center justify-center mb-4 group-hover:bg-secondary/20 transition-colors">
-                <ClipboardList className="h-6 w-6 text-secondary-foreground" />
+              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+                <ClipboardList className="h-6 w-6 text-primary" />
               </div>
               <CardTitle>Investor Questionnaire</CardTitle>
               <CardDescription>
@@ -260,8 +257,7 @@ const InvestorPortal = () => {
             </CardHeader>
             <CardContent>
               <Button 
-                variant="outline" 
-                className="w-full"
+                className="w-full bg-primary text-primary-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
                 onClick={() => navigate("/investor-questionnaire")}
               >
                 Complete Form
@@ -281,8 +277,7 @@ const InvestorPortal = () => {
             </CardHeader>
             <CardContent>
               <Button 
-                variant="outline" 
-                className="w-full"
+                className="w-full bg-primary text-primary-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
                 onClick={() => navigate("/case-studies")}
               >
                 View Case Studies
@@ -293,8 +288,8 @@ const InvestorPortal = () => {
           {/* Current Portfolio Card */}
           <Card className="hover:shadow-lg transition-shadow cursor-pointer group">
             <CardHeader>
-              <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center mb-4 group-hover:bg-accent/20 transition-colors">
-                <Briefcase className="h-6 w-6 text-accent-foreground" />
+              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+                <Briefcase className="h-6 w-6 text-primary" />
               </div>
               <CardTitle>Current Portfolio</CardTitle>
               <CardDescription>
@@ -303,8 +298,7 @@ const InvestorPortal = () => {
             </CardHeader>
             <CardContent>
               <Button 
-                variant="outline" 
-                className="w-full"
+                className="w-full bg-primary text-primary-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
                 onClick={() => navigate("/current-portfolio")}
               >
                 View Portfolio

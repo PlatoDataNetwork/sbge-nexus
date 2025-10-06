@@ -67,8 +67,8 @@ const About = () => {
               {/* Timeline Item 1 */}
               <div className="bg-card border border-border rounded-lg p-8 hover-lift">
                 <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center">
-                    <span className="text-2xl font-heading font-bold text-accent">1</span>
+                  <div className="flex-shrink-0 w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
+                    <span className="text-2xl font-heading font-bold text-primary">1</span>
                   </div>
                   <div className="flex-1">
                     <h3 className="text-2xl font-heading font-bold text-foreground mb-3">
@@ -86,8 +86,8 @@ const About = () => {
               {/* Timeline Item 2 */}
               <div className="bg-card border border-border rounded-lg p-8 hover-lift">
                 <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center">
-                    <span className="text-2xl font-heading font-bold text-accent">2</span>
+                  <div className="flex-shrink-0 w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
+                    <span className="text-2xl font-heading font-bold text-primary">2</span>
                   </div>
                   <div className="flex-1">
                     <h3 className="text-2xl font-heading font-bold text-foreground mb-3">
@@ -105,8 +105,8 @@ const About = () => {
               {/* Timeline Item 3 */}
               <div className="bg-card border border-border rounded-lg p-8 hover-lift">
                 <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center">
-                    <span className="text-2xl font-heading font-bold text-accent">3</span>
+                  <div className="flex-shrink-0 w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
+                    <span className="text-2xl font-heading font-bold text-primary">3</span>
                   </div>
                   <div className="flex-1">
                     <h3 className="text-2xl font-heading font-bold text-foreground mb-3">

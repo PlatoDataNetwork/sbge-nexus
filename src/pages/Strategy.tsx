@@ -71,8 +71,8 @@ const Strategy = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
               <div className="bg-card border border-border rounded-lg p-6 hover-lift">
                 <div className="flex items-center space-x-3 mb-4">
-                  <div className="p-2 bg-accent/20 rounded-lg">
-                    <DollarSign className="h-6 w-6 text-accent" />
+                  <div className="p-2 bg-primary/10 rounded-lg">
+                    <DollarSign className="h-6 w-6 text-primary" />
                   </div>
                   <h3 className="text-lg font-semibold text-foreground">Capital Raise</h3>
                 </div>
@@ -82,8 +82,8 @@ const Strategy = () => {
 
               <div className="bg-card border border-border rounded-lg p-6 hover-lift">
                 <div className="flex items-center space-x-3 mb-4">
-                  <div className="p-2 bg-accent/20 rounded-lg">
-                    <TrendingUp className="h-6 w-6 text-accent" />
+                  <div className="p-2 bg-primary/10 rounded-lg">
+                    <TrendingUp className="h-6 w-6 text-primary" />
                   </div>
                   <h3 className="text-lg font-semibold text-foreground">Buying Power</h3>
                 </div>
@@ -93,8 +93,8 @@ const Strategy = () => {
 
               <div className="bg-card border border-border rounded-lg p-6 hover-lift">
                 <div className="flex items-center space-x-3 mb-4">
-                  <div className="p-2 bg-accent/20 rounded-lg">
-                    <Target className="h-6 w-6 text-accent" />
+                  <div className="p-2 bg-primary/10 rounded-lg">
+                    <Target className="h-6 w-6 text-primary" />
                   </div>
                   <h3 className="text-lg font-semibold text-foreground">Target IRR</h3>
                 </div>
@@ -104,8 +104,8 @@ const Strategy = () => {
 
               <div className="bg-card border border-border rounded-lg p-6 hover-lift">
                 <div className="flex items-center space-x-3 mb-4">
-                  <div className="p-2 bg-accent/20 rounded-lg">
-                    <Shield className="h-6 w-6 text-accent" />
+                  <div className="p-2 bg-primary/10 rounded-lg">
+                    <Shield className="h-6 w-6 text-primary" />
                   </div>
                   <h3 className="text-lg font-semibold text-foreground">Leverage</h3>
                 </div>
@@ -115,8 +115,8 @@ const Strategy = () => {
 
               <div className="bg-card border border-border rounded-lg p-6 hover-lift">
                 <div className="flex items-center space-x-3 mb-4">
-                  <div className="p-2 bg-accent/20 rounded-lg">
-                    <Building className="h-6 w-6 text-accent" />
+                  <div className="p-2 bg-primary/10 rounded-lg">
+                    <Building className="h-6 w-6 text-primary" />
                   </div>
                   <h3 className="text-lg font-semibold text-foreground">Identified Equity</h3>
                 </div>
