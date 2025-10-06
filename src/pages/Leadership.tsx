@@ -283,16 +283,16 @@ const Leadership = () => {
         </div>
       </section>
 
-      {/* Advisory Board Carousel */}
+      {/* Advisory Boards Carousel */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-4xl md:text-5xl font-heading font-bold text-primary mb-6">
-                Advisory Board
+                Advisory Boards
               </h2>
               <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                Distinguished board providing expertise in strategy, government affairs, and business development
+                Distinguished boards providing expertise in strategy, government affairs, and business development
               </p>
             </div>
 
