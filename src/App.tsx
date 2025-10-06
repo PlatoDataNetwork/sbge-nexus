@@ -23,6 +23,7 @@ import InvestorQuestionnaire from "./pages/InvestorQuestionnaire";
 import CaseStudies from "./pages/CaseStudies";
 import CurrentPortfolio from "./pages/CurrentPortfolio";
 import ScheduleCall from "./pages/ScheduleCall";
+import EmailPreview from "./pages/EmailPreview";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -55,6 +56,7 @@ const App = () => (
               <Route path="/case-studies" element={<CaseStudies />} />
               <Route path="/current-portfolio" element={<CurrentPortfolio />} />
               <Route path="/schedule-call" element={<ScheduleCall />} />
+              <Route path="/email-preview" element={<EmailPreview />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
