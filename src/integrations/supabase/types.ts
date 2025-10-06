@@ -97,6 +97,8 @@ export type Database = {
       }
       investor_questionnaire_responses: {
         Row: {
+          address: string
+          company_name: string
           created_at: string
           email: string | null
           full_name: string | null
@@ -105,11 +107,17 @@ export type Database = {
           investment_goals: string
           investment_range: string
           investment_timeline: string
+          is_qualified_institutional: boolean
+          phone: string
+          state: string
           storage_experience: string
           updated_at: string
           user_id: string | null
+          zip: string
         }
         Insert: {
+          address: string
+          company_name: string
           created_at?: string
           email?: string | null
           full_name?: string | null
@@ -118,11 +126,17 @@ export type Database = {
           investment_goals: string
           investment_range: string
           investment_timeline: string
+          is_qualified_institutional: boolean
+          phone: string
+          state: string
           storage_experience: string
           updated_at?: string
           user_id?: string | null
+          zip: string
         }
         Update: {
+          address?: string
+          company_name?: string
           created_at?: string
           email?: string | null
           full_name?: string | null
@@ -131,9 +145,13 @@ export type Database = {
           investment_goals?: string
           investment_range?: string
           investment_timeline?: string
+          is_qualified_institutional?: boolean
+          phone?: string
+          state?: string
           storage_experience?: string
           updated_at?: string
           user_id?: string | null
+          zip?: string
         }
         Relationships: []
       }

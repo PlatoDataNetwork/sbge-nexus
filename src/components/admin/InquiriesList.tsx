@@ -24,6 +24,12 @@ interface QuestionnaireResponse {
   id: string;
   full_name: string;
   email: string;
+  company_name: string;
+  address: string;
+  state: string;
+  zip: string;
+  phone: string;
+  is_qualified_institutional: boolean;
   investment_entity: string;
   investment_range: string;
   investment_timeline: string;
@@ -172,6 +178,7 @@ const InquiriesList = ({ onUpdate }: InquiriesListProps) => {
                     <div>
                       <h3 className="font-semibold text-lg text-foreground">{response.full_name}</h3>
                       <p className="text-sm text-muted-foreground">{response.email}</p>
+                      <p className="text-sm font-medium text-foreground mt-1">{response.company_name}</p>
                       {response.user_id && (
                         <Badge variant="outline" className="mt-1">
                           Registered User
@@ -186,6 +193,24 @@ const InquiriesList = ({ onUpdate }: InquiriesListProps) => {
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <p className="text-xs font-medium text-muted-foreground mb-1">Phone</p>
+                      <p className="text-sm font-medium">{response.phone}</p>
+                    </div>
+                    <div>
+                      <p className="text-xs font-medium text-muted-foreground mb-1">Address</p>
+                      <p className="text-sm font-medium">{response.address}, {response.state} {response.zip}</p>
+                    </div>
+                    <div>
+                      <p className="text-xs font-medium text-muted-foreground mb-1">Qualified Institutional</p>
+                      <p className="text-sm font-medium">
+                        {response.is_qualified_institutional ? (
+                          <Badge className="bg-green-500">Yes ($75M+ AUM)</Badge>
+                        ) : (
+                          <Badge variant="secondary">No</Badge>
+                        )}
+                      </p>
+                    </div>
                     <div>
                       <p className="text-xs font-medium text-muted-foreground mb-1">Investment Entity</p>
                       <p className="text-sm font-medium">{response.investment_entity}</p>

@@ -15,6 +15,12 @@ import { logActivity } from "@/lib/activityTracker";
 const questionnaireSchema = z.object({
   fullName: z.string().trim().min(2, "Please enter your full name"),
   email: z.string().trim().email("Please enter a valid email address"),
+  companyName: z.string().trim().min(2, "Please enter your company name"),
+  address: z.string().trim().min(5, "Please enter your address"),
+  state: z.string().trim().min(2, "Please enter your state"),
+  zip: z.string().trim().min(5, "Please enter your zip code"),
+  phone: z.string().trim().min(10, "Please enter a valid phone number"),
+  isQualifiedInstitutional: z.boolean(),
   investmentEntity: z.string().min(1, "Please select an option"),
   investmentRange: z.string().min(1, "Please select an investment range"),
   investmentTimeline: z.string().min(1, "Please select a timeline"),
@@ -31,6 +37,12 @@ const InvestorQuestionnaire = () => {
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
+    companyName: "",
+    address: "",
+    state: "",
+    zip: "",
+    phone: "",
+    isQualifiedInstitutional: false,
     investmentEntity: "",
     investmentRange: "",
     investmentTimeline: "",
@@ -75,6 +87,12 @@ const InvestorQuestionnaire = () => {
         .insert({
           full_name: formData.fullName,
           email: formData.email,
+          company_name: formData.companyName,
+          address: formData.address,
+          state: formData.state,
+          zip: formData.zip,
+          phone: formData.phone,
+          is_qualified_institutional: formData.isQualifiedInstitutional,
           investment_entity: formData.investmentEntity,
           investment_range: formData.investmentRange,
           investment_timeline: formData.investmentTimeline,
@@ -169,6 +187,83 @@ const InvestorQuestionnaire = () => {
                     required
                   />
                 </div>
+                <div className="space-y-2">
+                  <Label htmlFor="companyName">Company Name *</Label>
+                  <Input
+                    id="companyName"
+                    value={formData.companyName}
+                    onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
+                    placeholder="ABC Investment Corp"
+                    required
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="phone">Phone Number *</Label>
+                  <Input
+                    id="phone"
+                    type="tel"
+                    value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    placeholder="(555) 123-4567"
+                    required
+                  />
+                </div>
+                <div className="space-y-2 md:col-span-2">
+                  <Label htmlFor="address">Address *</Label>
+                  <Input
+                    id="address"
+                    value={formData.address}
+                    onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+                    placeholder="123 Main Street"
+                    required
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="state">State *</Label>
+                  <Input
+                    id="state"
+                    value={formData.state}
+                    onChange={(e) => setFormData({ ...formData, state: e.target.value })}
+                    placeholder="NY"
+                    required
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="zip">Zip Code *</Label>
+                  <Input
+                    id="zip"
+                    value={formData.zip}
+                    onChange={(e) => setFormData({ ...formData, zip: e.target.value })}
+                    placeholder="10001"
+                    required
+                  />
+                </div>
+              </div>
+
+              {/* Qualified Institutional Investor */}
+              <div className="space-y-4">
+                <Label className="text-base font-semibold">
+                  Are you a qualified institutional investor with at least $75M under management? *
+                </Label>
+                <RadioGroup
+                  value={formData.isQualifiedInstitutional.toString()}
+                  onValueChange={(value) =>
+                    setFormData({ ...formData, isQualifiedInstitutional: value === "true" })
+                  }
+                >
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="true" id="qii-yes" />
+                    <Label htmlFor="qii-yes" className="font-normal cursor-pointer">
+                      Yes
+                    </Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="false" id="qii-no" />
+                    <Label htmlFor="qii-no" className="font-normal cursor-pointer">
+                      No
+                    </Label>
+                  </div>
+                </RadioGroup>
               </div>
 
               {/* Investment Entity */}
