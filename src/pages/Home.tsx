@@ -33,7 +33,7 @@ const Home = () => {
                 </Link>
               </Button>
               <Button asChild size="lg" variant="secondary">
-                <Link to="/investor-questionnaire">Download Overview</Link>
+                <Link to="/strategy">Fund Overview</Link>
               </Button>
             </div>
             
