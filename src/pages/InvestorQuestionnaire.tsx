@@ -116,13 +116,36 @@ const InvestorQuestionnaire = () => {
         });
       }
 
-      toast.success("Questionnaire submitted! Please create an account to continue.");
+      // Create account for user automatically
+      const password = Math.random().toString(36).slice(-12) + Math.random().toString(36).slice(-12).toUpperCase() + "!1";
       
-      // Store email in session storage to pre-fill signup form
-      sessionStorage.setItem('investor_email', formData.email);
-      sessionStorage.setItem('investor_name', formData.fullName);
+      const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
+        email: formData.email,
+        password: password,
+        options: {
+          emailRedirectTo: `${window.location.origin}/investor-portal`,
+          data: {
+            full_name: formData.fullName,
+          }
+        }
+      });
+
+      if (signUpError) {
+        // If user already exists, just log them in
+        if (signUpError.message?.includes('already registered')) {
+          toast.success("Account already exists. Please check your email to set up your password.");
+          navigate("/auth");
+        } else {
+          console.error('Error creating account:', signUpError);
+          toast.error("Questionnaire submitted but failed to create account. Please sign up manually.");
+          navigate("/auth");
+        }
+        return;
+      }
+
+      toast.success("Questionnaire submitted! Check your email to set up your password and access the investor portal.");
       
-      // Redirect to signup page
+      // Redirect to auth page with confirmation message
       navigate("/auth");
     } catch (error) {
       if (error instanceof z.ZodError) {
