@@ -14,6 +14,42 @@ export type Database = {
   }
   public: {
     Tables: {
+      contact_form_submissions: {
+        Row: {
+          accreditation: string | null
+          aum: string | null
+          created_at: string
+          email: string
+          firm: string
+          id: string
+          message: string | null
+          name: string
+          user_id: string | null
+        }
+        Insert: {
+          accreditation?: string | null
+          aum?: string | null
+          created_at?: string
+          email: string
+          firm: string
+          id?: string
+          message?: string | null
+          name: string
+          user_id?: string | null
+        }
+        Update: {
+          accreditation?: string | null
+          aum?: string | null
+          created_at?: string
+          email?: string
+          firm?: string
+          id?: string
+          message?: string | null
+          name?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       investor_inquiries: {
         Row: {
           accreditation_status: string | null
@@ -54,6 +90,48 @@ export type Database = {
           message?: string | null
           phone?: string | null
           status?: string | null
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      investor_questionnaire_responses: {
+        Row: {
+          created_at: string
+          email: string | null
+          full_name: string | null
+          id: string
+          investment_entity: string
+          investment_goals: string
+          investment_range: string
+          investment_timeline: string
+          storage_experience: string
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          investment_entity: string
+          investment_goals: string
+          investment_range: string
+          investment_timeline: string
+          storage_experience: string
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          investment_entity?: string
+          investment_goals?: string
+          investment_range?: string
+          investment_timeline?: string
+          storage_experience?: string
           updated_at?: string
           user_id?: string | null
         }

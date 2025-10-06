@@ -166,7 +166,7 @@ const Navigation = () => {
                   size="sm"
                   className={isHomePage && !isScrolled ? "bg-primary text-primary-foreground hover:bg-primary/90" : ""}
                 >
-                  <Link to="/contact">Request Access</Link>
+                  <Link to="/investor-questionnaire">Request Access</Link>
                 </Button>
                 <Button 
                   asChild 
@@ -254,7 +254,7 @@ const Navigation = () => {
               ) : (
                 <>
                   <Button asChild variant="accent" size="sm" className="w-full">
-                    <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>Request Access</Link>
+                    <Link to="/investor-questionnaire" onClick={() => setIsMobileMenuOpen(false)}>Request Access</Link>
                   </Button>
                   <Button 
                     asChild 

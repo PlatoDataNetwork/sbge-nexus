@@ -48,7 +48,7 @@ const Footer = () => {
               <li>StorageBlue, LLC</li>
               <li>New Jersey</li>
               <li>
-                <Link to="/contact" className="hover:text-primary-foreground transition-colors">
+                <Link to="/investor-questionnaire" className="hover:text-primary-foreground transition-colors">
                   Request Access
                 </Link>
               </li>

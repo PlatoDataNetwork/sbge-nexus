@@ -13,6 +13,8 @@ import { z } from "zod";
 import { logActivity } from "@/lib/activityTracker";
 
 const questionnaireSchema = z.object({
+  fullName: z.string().trim().min(2, "Please enter your full name"),
+  email: z.string().trim().email("Please enter a valid email address"),
   investmentEntity: z.string().min(1, "Please select an option"),
   investmentRange: z.string().min(1, "Please select an investment range"),
   investmentTimeline: z.string().min(1, "Please select a timeline"),
@@ -27,6 +29,8 @@ const InvestorQuestionnaire = () => {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
     investmentEntity: "",
     investmentRange: "",
     investmentTimeline: "",
@@ -35,14 +39,12 @@ const InvestorQuestionnaire = () => {
   });
 
   useEffect(() => {
+    // No authentication required - allow anyone to access
     supabase.auth.getSession().then(({ data: { session } }) => {
-      if (!session) {
-        navigate("/auth");
-      }
       setSession(session);
       setLoading(false);
       
-      // Log questionnaire visit
+      // Log questionnaire visit if authenticated
       if (session?.user) {
         logActivity(session.user.id, "questionnaire_visit", {
           page: "investor_questionnaire",
@@ -54,9 +56,6 @@ const InvestorQuestionnaire = () => {
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
-      if (!session) {
-        navigate("/auth");
-      }
       setSession(session);
     });
 
@@ -70,7 +69,27 @@ const InvestorQuestionnaire = () => {
       questionnaireSchema.parse(formData);
       setSubmitting(true);
 
-      // Log questionnaire submission
+      // Save to database for CRM
+      const { error: dbError } = await supabase
+        .from('investor_questionnaire_responses')
+        .insert({
+          full_name: formData.fullName,
+          email: formData.email,
+          investment_entity: formData.investmentEntity,
+          investment_range: formData.investmentRange,
+          investment_timeline: formData.investmentTimeline,
+          storage_experience: formData.storageExperience,
+          investment_goals: formData.investmentGoals,
+          user_id: session?.user?.id || null,
+        });
+
+      if (dbError) {
+        console.error('Error saving questionnaire:', dbError);
+        toast.error("Failed to submit questionnaire");
+        return;
+      }
+
+      // Log questionnaire submission if authenticated
       if (session?.user) {
         await logActivity(session.user.id, "questionnaire_submitted", {
           page: "investor_questionnaire",
@@ -79,11 +98,14 @@ const InvestorQuestionnaire = () => {
         });
       }
 
-      // Simulate saving
-      await new Promise(resolve => setTimeout(resolve, 1000));
-
-      toast.success("Questionnaire submitted successfully!");
-      navigate("/investor-portal");
+      toast.success("Questionnaire submitted! Please create an account to continue.");
+      
+      // Store email in session storage to pre-fill signup form
+      sessionStorage.setItem('investor_email', formData.email);
+      sessionStorage.setItem('investor_name', formData.fullName);
+      
+      // Redirect to signup page
+      navigate("/auth");
     } catch (error) {
       if (error instanceof z.ZodError) {
         toast.error(error.errors[0].message);
@@ -104,15 +126,15 @@ const InvestorQuestionnaire = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background py-12 px-4">
+    <div className="min-h-screen bg-background pt-24 pb-12 px-4">
       <div className="max-w-3xl mx-auto">
         <Button
           variant="ghost"
-          onClick={() => navigate("/investor-portal")}
+          onClick={() => navigate("/")}
           className="mb-6"
         >
           <ArrowLeft className="h-4 w-4 mr-2" />
-          Back to Portal
+          Back to Home
         </Button>
 
         <Card>
@@ -124,6 +146,31 @@ const InvestorQuestionnaire = () => {
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-8">
+              {/* Contact Information */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <Label htmlFor="fullName">Full Name *</Label>
+                  <Input
+                    id="fullName"
+                    value={formData.fullName}
+                    onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                    placeholder="John Smith"
+                    required
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="email">Email Address *</Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    placeholder="john@example.com"
+                    required
+                  />
+                </div>
+              </div>
+
               {/* Investment Entity */}
               <div className="space-y-4">
                 <Label className="text-base font-semibold">

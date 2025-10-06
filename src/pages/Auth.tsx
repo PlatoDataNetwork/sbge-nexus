@@ -13,7 +13,27 @@ const Auth = () => {
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
   const [session, setSession] = useState<any>(null);
-  const [activeTab, setActiveTab] = useState<'signin' | 'signup'>('signin');
+  const [activeTab, setActiveTab] = useState<'signin' | 'signup'>('signup');
+  const [signupEmail, setSignupEmail] = useState('');
+  const [signupName, setSignupName] = useState('');
+
+  useEffect(() => {
+    // Pre-fill from session storage if coming from questionnaire
+    const investorEmail = sessionStorage.getItem('investor_email');
+    const investorName = sessionStorage.getItem('investor_name');
+    
+    if (investorEmail) {
+      setSignupEmail(investorEmail);
+      setActiveTab('signup');
+    }
+    if (investorName) {
+      setSignupName(investorName);
+    }
+    
+    // Clear session storage after reading
+    sessionStorage.removeItem('investor_email');
+    sessionStorage.removeItem('investor_name');
+  }, []);
 
   useEffect(() => {
     // Check for existing session
@@ -208,6 +228,7 @@ const Auth = () => {
                       type="text"
                       required
                       placeholder="John Doe"
+                      defaultValue={signupName}
                     />
                   </div>
                   <div>
@@ -218,6 +239,7 @@ const Auth = () => {
                       type="email"
                       required
                       placeholder="your@email.com"
+                      defaultValue={signupEmail}
                     />
                   </div>
                   <div>

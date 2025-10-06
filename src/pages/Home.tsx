@@ -28,7 +28,7 @@ const Home = () => {
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
               <Button asChild size="lg" variant="accent">
-                <Link to="/contact">
+                <Link to="/investor-questionnaire">
                   Request Access <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>

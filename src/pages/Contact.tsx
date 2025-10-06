@@ -6,6 +6,7 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
 
 const Contact = () => {
   const { toast } = useToast();
@@ -18,7 +19,7 @@ const Contact = () => {
     message: '',
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Basic validation
@@ -31,21 +32,51 @@ const Contact = () => {
       return;
     }
 
-    // Show success message
-    toast({
-      title: 'Request Submitted',
-      description: 'Thank you for your interest. Our team will contact you shortly.',
-    });
+    try {
+      // Save to database for CRM
+      const { error: dbError } = await supabase
+        .from('contact_form_submissions')
+        .insert({
+          name: formData.name,
+          email: formData.email,
+          firm: formData.firm,
+          aum: formData.aum,
+          accreditation: formData.accreditation,
+          message: formData.message,
+        });
 
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      firm: '',
-      aum: '',
-      accreditation: '',
-      message: '',
-    });
+      if (dbError) {
+        console.error('Error saving contact form:', dbError);
+        toast({
+          title: 'Error',
+          description: 'Failed to submit form. Please try again.',
+          variant: 'destructive',
+        });
+        return;
+      }
+
+      // Show success message
+      toast({
+        title: 'Message Sent',
+        description: 'Thank you for your interest. Our team will contact you shortly.',
+      });
+
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        firm: '',
+        aum: '',
+        accreditation: '',
+        message: '',
+      });
+    } catch (error) {
+      toast({
+        title: 'Error',
+        description: 'Failed to submit form. Please try again.',
+        variant: 'destructive',
+      });
+    }
   };
 
   const handleChange = (field: string, value: string) => {
