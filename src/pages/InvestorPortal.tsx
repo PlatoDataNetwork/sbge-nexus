@@ -333,51 +333,6 @@ const InvestorPortal = () => {
             </CardContent>
           </Card>
         </div>
-
-        <div className="grid md:grid-cols-3 gap-6">
-          {/* Case Studies Card */}
-          <Card className="hover:shadow-lg transition-shadow cursor-pointer group">
-            <CardHeader>
-              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                <TrendingUp className="h-6 w-6 text-primary" />
-              </div>
-              <CardTitle>Case Studies</CardTitle>
-              <CardDescription>
-                Track record of successful facility developments and exits with proven returns
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Button 
-                className="w-full bg-primary text-primary-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
-                onClick={() => navigate("/case-studies")}
-              >
-                View Case Studies
-              </Button>
-            </CardContent>
-          </Card>
-
-          {/* Current Portfolio Card */}
-          <Card className="hover:shadow-lg transition-shadow cursor-pointer group">
-            <CardHeader>
-              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                <Briefcase className="h-6 w-6 text-primary" />
-              </div>
-              <CardTitle>Current Portfolio</CardTitle>
-              <CardDescription>
-                Overview of active StorageBlue facilities and investment opportunities
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Button 
-                className="w-full bg-primary text-primary-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
-                onClick={() => navigate("/current-portfolio")}
-              >
-                View Portfolio
-              </Button>
-            </CardContent>
-          </Card>
-
-        </div>
       </div>
     </div>
   );
