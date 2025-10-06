@@ -137,7 +137,7 @@ const Contact = () => {
               <div className="lg:col-span-2">
                 <div className="bg-card border border-border rounded-lg p-8 hover-lift">
                   <h2 className="text-3xl font-heading font-bold text-foreground mb-6">
-                    Request Access
+                    Contact us
                   </h2>
 
                   <form onSubmit={handleSubmit} className="space-y-6">
