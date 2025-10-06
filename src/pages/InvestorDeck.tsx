@@ -104,15 +104,8 @@ const InvestorDeck = () => {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
-      {/* Hero */}
-      <section className="pt-24 pb-6 bg-gradient-to-b from-muted/50 to-transparent border-b">
-        <div className="max-w-6xl mx-auto px-4">
-          <h1 className="text-3xl md:text-4xl font-bold">Investor Presentation</h1>
-          <p className="mt-2 text-muted-foreground">Use the tray to navigate pages, zoom, and download the deck.</p>
-        </div>
-      </section>
-      {/* Header */}
-      <div className="sticky top-0 z-10 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b">
+      {/* Header - Sticky Navigation */}
+      <div className="sticky top-0 z-50 bg-background border-b shadow-sm">
         <div className="max-w-full mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
