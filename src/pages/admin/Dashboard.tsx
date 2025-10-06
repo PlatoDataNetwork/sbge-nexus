@@ -67,23 +67,37 @@ const AdminDashboard = () => {
       .from('profiles')
       .select('*', { count: 'exact', head: true });
 
-    // Get total inquiries
-    const { count: inquiriesCount } = await supabase
+    // Get total inquiries (questionnaires + contacts + legacy)
+    const { count: questionnaireCount } = await supabase
+      .from('investor_questionnaire_responses')
+      .select('*', { count: 'exact', head: true });
+    
+    const { count: contactCount } = await supabase
+      .from('contact_form_submissions')
+      .select('*', { count: 'exact', head: true });
+
+    const { count: legacyCount } = await supabase
       .from('investor_inquiries')
       .select('*', { count: 'exact', head: true });
 
     // Get new inquiries (last 7 days)
     const sevenDaysAgo = new Date();
     sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
-    const { count: newInquiriesCount } = await supabase
-      .from('investor_inquiries')
+    
+    const { count: newQuestionnaireCount } = await supabase
+      .from('investor_questionnaire_responses')
+      .select('*', { count: 'exact', head: true })
+      .gte('created_at', sevenDaysAgo.toISOString());
+    
+    const { count: newContactCount } = await supabase
+      .from('contact_form_submissions')
       .select('*', { count: 'exact', head: true })
       .gte('created_at', sevenDaysAgo.toISOString());
 
     setStats({
       totalUsers: usersCount || 0,
-      totalInquiries: inquiriesCount || 0,
-      newInquiries: newInquiriesCount || 0,
+      totalInquiries: (questionnaireCount || 0) + (contactCount || 0) + (legacyCount || 0),
+      newInquiries: (newQuestionnaireCount || 0) + (newContactCount || 0),
     });
   };
 
