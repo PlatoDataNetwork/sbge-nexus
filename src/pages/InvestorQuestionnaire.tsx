@@ -423,7 +423,7 @@ const InvestorQuestionnaire = () => {
                 />
               </div>
 
-              <Button type="submit" size="lg" className="w-full" disabled={submitting}>
+              <Button type="submit" size="lg" className="w-full bg-primary text-primary-foreground hover:bg-primary/90" disabled={submitting}>
                 {submitting ? (
                   <>
                     <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-background mr-2" />
