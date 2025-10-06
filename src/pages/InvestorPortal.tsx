@@ -266,15 +266,15 @@ const InvestorPortal = () => {
           {/* Investor Questionnaire Card */}
           <Card className="hover:shadow-lg transition-shadow cursor-pointer group">
             <CardHeader>
-              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                <ClipboardList className="h-6 w-6 text-primary" />
-              </div>
-              <div className="flex items-center justify-between">
-                <CardTitle>Investor Questionnaire</CardTitle>
+              <div className="flex items-center justify-between mb-4">
+                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                  <ClipboardList className="h-6 w-6 text-primary" />
+                </div>
                 {questionnaireData && (
                   <CheckCircle className="h-5 w-5 text-green-600" />
                 )}
               </div>
+              <CardTitle>Investor Questionnaire</CardTitle>
               <CardDescription>
                 {questionnaireData 
                   ? "Qualification form completed" 
