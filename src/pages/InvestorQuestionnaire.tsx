@@ -143,6 +143,22 @@ const InvestorQuestionnaire = () => {
         return;
       }
 
+      // Send welcome email
+      try {
+        const { error: functionError } = await supabase.functions.invoke('send-welcome-email', {
+          body: {
+            fullName: formData.fullName,
+            email: formData.email,
+          },
+        });
+
+        if (functionError) {
+          console.error('Error sending welcome email:', functionError);
+        }
+      } catch (emailError) {
+        console.error('Error sending welcome email:', emailError);
+      }
+
       toast.success("Questionnaire submitted! Check your email to set up your password and access the investor portal.");
       
       // Redirect to auth page with confirmation message
