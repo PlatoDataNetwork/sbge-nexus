@@ -162,9 +162,9 @@ const Navigation = () => {
               <>
                 <Button 
                   asChild 
-                  variant={isHomePage && !isScrolled ? "default" : "accent"}
+                  variant="default"
                   size="sm"
-                  className={isHomePage && !isScrolled ? "bg-primary text-primary-foreground hover:bg-primary/90" : ""}
+                  className="bg-[hsl(220,90%,30%)] text-white hover:bg-[hsl(220,90%,25%)]"
                 >
                   <Link to="/investor-questionnaire">Request Access</Link>
                 </Button>
@@ -253,7 +253,7 @@ const Navigation = () => {
                 </>
               ) : (
                 <>
-                  <Button asChild variant="accent" size="sm" className="w-full">
+                  <Button asChild variant="default" size="sm" className="w-full bg-[hsl(220,90%,30%)] text-white hover:bg-[hsl(220,90%,25%)]">
                     <Link to="/investor-questionnaire" onClick={() => setIsMobileMenuOpen(false)}>Request Access</Link>
                   </Button>
                   <Button 
