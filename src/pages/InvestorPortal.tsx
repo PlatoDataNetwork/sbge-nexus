@@ -13,6 +13,7 @@ const InvestorPortal = () => {
   const [loading, setLoading] = useState(true);
   const [hasAccepted, setHasAccepted] = useState(false);
   const [scrolledToBottom, setScrolledToBottom] = useState(false);
+  const [questionnaireData, setQuestionnaireData] = useState<any>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -31,12 +32,15 @@ const InvestorPortal = () => {
       setSession(session);
       setLoading(false);
       
-      // Log portal visit
+      // Log portal visit and fetch questionnaire data
       if (session?.user) {
         logActivity(session.user.id, "portal_visit", {
           page: "investor_portal",
           timestamp: new Date().toISOString()
         });
+        
+        // Fetch questionnaire data
+        fetchQuestionnaireData(session.user.id);
       }
     });
 
@@ -47,10 +51,27 @@ const InvestorPortal = () => {
         navigate("/auth");
       }
       setSession(session);
+      if (session?.user) {
+        fetchQuestionnaireData(session.user.id);
+      }
     });
 
     return () => subscription.unsubscribe();
   }, [navigate]);
+
+  const fetchQuestionnaireData = async (userId: string) => {
+    const { data, error } = await supabase
+      .from('investor_questionnaire_responses')
+      .select('*')
+      .eq('user_id', userId)
+      .order('created_at', { ascending: false })
+      .limit(1)
+      .maybeSingle();
+    
+    if (!error && data) {
+      setQuestionnaireData(data);
+    }
+  };
 
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
     const target = e.target as HTMLDivElement;
@@ -243,27 +264,118 @@ const InvestorPortal = () => {
           </Card>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-1 gap-6 mb-6">
           {/* Investor Questionnaire Card */}
-          <Card className="hover:shadow-lg transition-shadow cursor-pointer group">
+          <Card className="hover:shadow-lg transition-shadow">
             <CardHeader>
-              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                <ClipboardList className="h-6 w-6 text-primary" />
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
+                    <ClipboardList className="h-6 w-6 text-primary" />
+                  </div>
+                  <div>
+                    <CardTitle>Investor Questionnaire</CardTitle>
+                    <CardDescription>
+                      {questionnaireData ? "Your submitted qualification details" : "Quick qualification form to verify accredited investor status"}
+                    </CardDescription>
+                  </div>
+                </div>
+                {questionnaireData && (
+                  <div className="flex items-center gap-2 text-green-600">
+                    <CheckCircle className="h-5 w-5" />
+                    <span className="text-sm font-medium">Completed</span>
+                  </div>
+                )}
               </div>
-              <CardTitle>Investor Questionnaire</CardTitle>
-              <CardDescription>
-                Quick qualification form to verify accredited investor status
-              </CardDescription>
             </CardHeader>
             <CardContent>
-              <Button 
-                className="w-full bg-primary text-primary-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
-                onClick={() => navigate("/investor-questionnaire")}
-              >
-                Complete Form
-              </Button>
+              {questionnaireData ? (
+                <div className="space-y-6">
+                  {/* Contact Information */}
+                  <div>
+                    <h3 className="font-semibold text-lg mb-3">Contact Information</h3>
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <div>
+                        <p className="text-sm text-muted-foreground">Full Name</p>
+                        <p className="font-medium">{questionnaireData.full_name}</p>
+                      </div>
+                      <div>
+                        <p className="text-sm text-muted-foreground">Email</p>
+                        <p className="font-medium">{questionnaireData.email}</p>
+                      </div>
+                      <div>
+                        <p className="text-sm text-muted-foreground">Company</p>
+                        <p className="font-medium">{questionnaireData.company_name}</p>
+                      </div>
+                      <div>
+                        <p className="text-sm text-muted-foreground">Phone</p>
+                        <p className="font-medium">{questionnaireData.phone}</p>
+                      </div>
+                      <div className="md:col-span-2">
+                        <p className="text-sm text-muted-foreground">Address</p>
+                        <p className="font-medium">
+                          {questionnaireData.address}, {questionnaireData.state} {questionnaireData.zip}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Investment Profile */}
+                  <div>
+                    <h3 className="font-semibold text-lg mb-3">Investment Profile</h3>
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <div>
+                        <p className="text-sm text-muted-foreground">Qualified Institutional Investor</p>
+                        <p className="font-medium">
+                          {questionnaireData.is_qualified_institutional ? "Yes ($75M+ AUM)" : "No"}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-sm text-muted-foreground">Investment Entity</p>
+                        <p className="font-medium capitalize">{questionnaireData.investment_entity.replace('-', ' ')}</p>
+                      </div>
+                      <div>
+                        <p className="text-sm text-muted-foreground">Investment Range</p>
+                        <p className="font-medium">{questionnaireData.investment_range}</p>
+                      </div>
+                      <div>
+                        <p className="text-sm text-muted-foreground">Investment Timeline</p>
+                        <p className="font-medium capitalize">{questionnaireData.investment_timeline.replace('-', ' ')}</p>
+                      </div>
+                      <div>
+                        <p className="text-sm text-muted-foreground">Storage Experience</p>
+                        <p className="font-medium capitalize">{questionnaireData.storage_experience}</p>
+                      </div>
+                      <div className="md:col-span-2">
+                        <p className="text-sm text-muted-foreground">Investment Goals</p>
+                        <p className="font-medium">{questionnaireData.investment_goals}</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="pt-4 border-t">
+                    <Button 
+                      variant="outline"
+                      className="w-full"
+                      onClick={() => navigate("/investor-questionnaire")}
+                    >
+                      Update Questionnaire
+                    </Button>
+                  </div>
+                </div>
+              ) : (
+                <Button 
+                  className="w-full bg-primary text-primary-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
+                  onClick={() => navigate("/investor-questionnaire")}
+                >
+                  Complete Form
+                </Button>
+              )}
             </CardContent>
           </Card>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-6">
           {/* Case Studies Card */}
           <Card className="hover:shadow-lg transition-shadow cursor-pointer group">
             <CardHeader>
