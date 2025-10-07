@@ -214,43 +214,43 @@ const Leadership = () => {
     {
       name: 'Nawaf Althari',
       title: 'The Althari Group - Founding Partner',
-      board: 'Business Advisors',
+      board: 'Strategic Advisors',
       description: 'Founding Partner of The Althari Group, bringing strategic business development and investment expertise.',
     },
     {
       name: 'Brian Cury',
       title: 'EarthCam - Founder & CEO',
-      board: 'Business Advisors',
+      board: 'Strategic Advisors',
       description: 'Founder and CEO of EarthCam, pioneer in construction monitoring and jobsite camera technology.',
     },
     {
       name: 'Kery Davis',
       title: 'Howard University - Athletic Director',
-      board: 'Business Advisors',
+      board: 'Strategic Advisors',
       description: 'Athletic Director at Howard University with leadership experience in sports management and operations.',
     },
     {
       name: 'David Feldman',
       title: 'BFBST LLP - Co-Founder',
-      board: 'Business Advisors',
+      board: 'Strategic Advisors',
       description: 'Co-Founder of BFBST LLP, providing strategic financial and business advisory services.',
     },
     {
       name: 'Steven Greener',
       title: 'Primary Wave',
-      board: 'Business Advisors',
+      board: 'Strategic Advisors',
       description: 'Executive at Primary Wave bringing entertainment industry expertise and brand development experience.',
     },
     {
       name: 'Ramses Ishak',
       title: 'United Talent Agency',
-      board: 'Business Advisors',
+      board: 'Strategic Advisors',
       description: 'Partner at United Talent Agency with expertise in talent management and strategic partnerships.',
     },
     {
       name: 'Michael Sheresky',
       title: 'Partner',
-      board: 'Business Advisors',
+      board: 'Strategic Advisors',
       description: 'Strategic partner providing business advisory and operational expertise.',
     },
   ];
@@ -420,68 +420,6 @@ const Leadership = () => {
         </div>
       </section>
 
-      {/* Executive Team */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-4xl md:text-5xl font-heading font-bold text-primary mb-6">
-                Executive Team
-              </h2>
-              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                Senior executives with extensive experience in real estate and self-storage investment
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {executives.map((exec, index) => (
-                <Link
-                  key={index}
-                  to={`/profile/${exec.slug}`}
-                  className="bg-card border border-border rounded-lg overflow-hidden hover-lift"
-                >
-                  <div className="h-64 bg-gradient-primary relative">
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <Building2 className="h-24 w-24 text-primary-foreground/20" />
-                    </div>
-                  </div>
-                  <div className="p-8 space-y-4">
-                    <div>
-                      <h3 className="text-2xl font-heading font-bold text-foreground mb-1">
-                        {exec.name}
-                      </h3>
-                      <p className="text-accent font-medium">{exec.title}</p>
-                    </div>
-                    
-                    <p className="text-muted-foreground leading-relaxed">
-                      {exec.bio}
-                    </p>
-                    
-                    <div className="space-y-2 pt-4 border-t border-border">
-                      <div className="text-sm font-semibold text-foreground">Key Achievements:</div>
-                      <ul className="space-y-1">
-                        {exec.achievements.map((achievement, i) => (
-                          <li key={i} className="flex items-center text-sm text-muted-foreground">
-                            <Award className="h-4 w-4 text-accent mr-2 flex-shrink-0" />
-                            {achievement}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    
-                    <div className="pt-4">
-                      <Button asChild variant="outline" size="sm" className="w-full">
-                        <span>View Bio</span>
-                      </Button>
-                    </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Founder Spotlight */}
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
@@ -526,7 +464,7 @@ const Leadership = () => {
       </section>
 
       {/* Board of Governmental Affairs */}
-      <section className="py-20 bg-muted/30">
+      <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
@@ -578,7 +516,7 @@ const Leadership = () => {
       </section>
 
       {/* Advisory Boards Carousel */}
-      <section className="py-20 bg-background">
+      <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-12">
@@ -676,58 +614,6 @@ const Leadership = () => {
                   />
                 ))}
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Business Advisors */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-4xl md:text-5xl font-heading font-bold text-primary mb-6">
-                Board of Business Advisors
-              </h2>
-              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                Industry experts providing strategic business guidance and operational expertise
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {allAdvisors
-                .filter(advisor => advisor.board === 'Business Advisors')
-                .map((advisor, index) => (
-                  <div
-                    key={index}
-                    className="bg-card border border-border rounded-lg p-6 hover-lift"
-                  >
-                    <div className="rounded-lg mb-4 overflow-hidden bg-gradient-primary">
-                      <div className="aspect-[4/3] w-full flex items-center justify-center">
-                        <Building2 className="h-12 w-12 text-primary-foreground/30" />
-                      </div>
-                    </div>
-                    <div className="mb-2">
-                      <span className="text-xs font-semibold text-accent uppercase tracking-wide">
-                        {advisor.board}
-                      </span>
-                    </div>
-                    <h4 className="text-lg font-heading font-bold text-foreground mb-1">
-                      {advisor.name}
-                    </h4>
-                    <p className="text-accent font-medium text-sm mb-3">{advisor.title}</p>
-                    <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-                      {advisor.description}
-                    </p>
-                    {advisor.slug && (
-                      <Button asChild variant="outline" size="sm" className="w-full">
-                        <Link to={`/profile/${advisor.slug}`}>
-                          View Bio
-                        </Link>
-                      </Button>
-                    )}
-                  </div>
-                ))}
             </div>
           </div>
         </div>
