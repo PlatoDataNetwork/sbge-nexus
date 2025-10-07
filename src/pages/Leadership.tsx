@@ -271,7 +271,8 @@ const Leadership = () => {
   };
 
   const ADVISORS_PER_VIEW = 3;
-  const totalSlides = Math.ceil(allAdvisors.length / ADVISORS_PER_VIEW);
+  const strategicAdvisors = allAdvisors.filter(advisor => advisor.board === 'Strategic Advisors');
+  const totalSlides = Math.ceil(strategicAdvisors.length / ADVISORS_PER_VIEW);
   const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
@@ -515,16 +516,68 @@ const Leadership = () => {
         </div>
       </section>
 
+      {/* Board of Governmental Affairs */}
+      <section className="py-20 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl md:text-5xl font-heading font-bold text-primary mb-6">
+                Board of Governmental Affairs
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+                Distinguished government leaders providing regulatory expertise and strategic guidance
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {allAdvisors
+                .filter(advisor => advisor.board === 'Government Affairs')
+                .map((advisor, index) => (
+                  <div
+                    key={index}
+                    className="bg-card border border-border rounded-lg p-6 hover-lift"
+                  >
+                    <div className="rounded-lg mb-4 overflow-hidden bg-gradient-primary">
+                      <div className="aspect-[4/3] w-full flex items-center justify-center">
+                        <Building2 className="h-12 w-12 text-primary-foreground/30" />
+                      </div>
+                    </div>
+                    <div className="mb-2">
+                      <span className="text-xs font-semibold text-accent uppercase tracking-wide">
+                        {advisor.board}
+                      </span>
+                    </div>
+                    <h4 className="text-lg font-heading font-bold text-foreground mb-1">
+                      {advisor.name}
+                    </h4>
+                    <p className="text-accent font-medium text-sm mb-3">{advisor.title}</p>
+                    <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+                      {advisor.description}
+                    </p>
+                    {advisor.slug && (
+                      <Button asChild variant="outline" size="sm" className="w-full">
+                        <Link to={`/profile/${advisor.slug}`}>
+                          View Bio
+                        </Link>
+                      </Button>
+                    )}
+                  </div>
+                ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Advisory Boards Carousel */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-4xl md:text-5xl font-heading font-bold text-primary mb-6">
-                Advisory Boards
+                Strategic Advisors
               </h2>
               <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                Distinguished boards providing expertise in strategy, government affairs, and business development
+                Distinguished advisors providing expertise in strategy and business development
               </p>
             </div>
 
@@ -543,6 +596,7 @@ const Leadership = () => {
                     <div key={slideIndex} className="w-full flex-shrink-0">
                       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
                         {allAdvisors
+                          .filter(advisor => advisor.board === 'Strategic Advisors')
                           .slice(slideIndex * ADVISORS_PER_VIEW, (slideIndex + 1) * ADVISORS_PER_VIEW)
                           .map((advisor, index) => (
                             <div
@@ -613,6 +667,58 @@ const Leadership = () => {
                   />
                 ))}
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Business Advisors */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl md:text-5xl font-heading font-bold text-primary mb-6">
+                Board of Business Advisors
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+                Industry experts providing strategic business guidance and operational expertise
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {allAdvisors
+                .filter(advisor => advisor.board === 'Business Advisors')
+                .map((advisor, index) => (
+                  <div
+                    key={index}
+                    className="bg-card border border-border rounded-lg p-6 hover-lift"
+                  >
+                    <div className="rounded-lg mb-4 overflow-hidden bg-gradient-primary">
+                      <div className="aspect-[4/3] w-full flex items-center justify-center">
+                        <Building2 className="h-12 w-12 text-primary-foreground/30" />
+                      </div>
+                    </div>
+                    <div className="mb-2">
+                      <span className="text-xs font-semibold text-accent uppercase tracking-wide">
+                        {advisor.board}
+                      </span>
+                    </div>
+                    <h4 className="text-lg font-heading font-bold text-foreground mb-1">
+                      {advisor.name}
+                    </h4>
+                    <p className="text-accent font-medium text-sm mb-3">{advisor.title}</p>
+                    <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+                      {advisor.description}
+                    </p>
+                    {advisor.slug && (
+                      <Button asChild variant="outline" size="sm" className="w-full">
+                        <Link to={`/profile/${advisor.slug}`}>
+                          View Bio
+                        </Link>
+                      </Button>
+                    )}
+                  </div>
+                ))}
             </div>
           </div>
         </div>
