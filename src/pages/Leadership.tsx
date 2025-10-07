@@ -58,7 +58,7 @@ const Leadership = () => {
       bio: 'Chief Executive Officer of Massey Knakal Realty Services with deep market knowledge and transaction expertise.',
       achievements: ['Investment Sales', 'Market Analysis', 'Transaction Advisory'],
       image: paulMasseyImage,
-      imagePosition: 'face-high',
+      imagePosition: 'upper',
     },
     {
       name: 'Scott Rechler',
@@ -67,7 +67,7 @@ const Leadership = () => {
       bio: 'Chairman and CEO of RXR Realty, leading one of the region\'s premier real estate development firms.',
       achievements: ['Development Leadership', 'Real Estate Innovation', 'Portfolio Management'],
       image: scottRechlerImage,
-      imagePosition: 'face-high',
+      imagePosition: 'upper',
     },
   ];
 
@@ -191,7 +191,7 @@ const Leadership = () => {
     slug?: string;
     description: string;
     image?: string;
-    imagePosition?: 'top' | 'center' | 'top-center' | 'face-high' | 'face-low';
+    imagePosition?: 'top' | 'center' | 'top-center' | 'face-high' | 'face-low' | 'upper';
   };
 
   const allAdvisors: Advisor[] = [
@@ -243,7 +243,7 @@ const Leadership = () => {
       slug: 'raymond-lesniak',
       description: 'Served in the New Jersey State Senate from 1983 to 2018, representing the 20th Legislative District.',
       image: raymondLesniakImage,
-      imagePosition: 'top',
+      imagePosition: 'upper',
     },
     {
       name: 'Gualberto Medina',
@@ -261,7 +261,7 @@ const Leadership = () => {
       slug: 'rinaldo-dargenio',
       description: 'One of New Jersey\'s most influential attorneys specializing in complex regulatory matters including utilities and environmental issues.',
       image: rinaldoDArgenioImage,
-      imagePosition: 'top-center',
+      imagePosition: 'upper',
     },
     {
       name: 'Paul Weiner',
@@ -270,7 +270,7 @@ const Leadership = () => {
       slug: 'paul-weiner',
       description: 'Master strategist with diverse expertise in corporate law, real estate development, and municipal government law.',
       image: paulWeinerImage,
-      imagePosition: 'top-center',
+      imagePosition: 'upper',
     },
     {
       name: 'Nawaf Althari',
@@ -279,7 +279,7 @@ const Leadership = () => {
       slug: 'nawaf-althari',
       description: 'Founding Partner of The Althari Group, bringing strategic business development and investment expertise.',
       image: nawafAlthariImage,
-      imagePosition: 'top',
+      imagePosition: 'upper',
     },
     {
       name: 'Brian Cury',
@@ -312,7 +312,7 @@ const Leadership = () => {
       slug: 'steven-greener',
       description: 'Executive at Primary Wave bringing entertainment industry expertise and brand development experience.',
       image: stevenGreenerImage,
-      imagePosition: 'face-low',
+      imagePosition: 'upper',
     },
     {
       name: 'Ramses Ishak',
@@ -321,7 +321,7 @@ const Leadership = () => {
       slug: 'ramses-ishak',
       description: 'Partner at United Talent Agency with expertise in talent management and strategic partnerships.',
       image: ramsesIshakImage,
-      imagePosition: 'face-low',
+      imagePosition: 'upper',
     },
     {
       name: 'Michael Sheresky',
@@ -335,12 +335,13 @@ const Leadership = () => {
   ];
 
   // Responsive image component to improve headshot placement across varying aspect ratios
-  const ResponsiveHeadshot = ({ src, alt, position = 'center' }: { src: string; alt: string; position?: 'top' | 'center' | 'top-center' | 'face-high' | 'face-low' }) => {
+  const ResponsiveHeadshot = ({ src, alt, position = 'center' }: { src: string; alt: string; position?: 'top' | 'center' | 'top-center' | 'face-high' | 'face-low' | 'upper' }) => {
     const positionClass =
-      position === 'face-high' ? 'object-[center_35%]' :
-      position === 'face-low' ? 'object-[center_65%]' :
+      position === 'upper' ? 'object-[center_15%]' :
       position === 'top' ? 'object-[center_20%]' :
       position === 'top-center' ? 'object-[center_30%]' :
+      position === 'face-high' ? 'object-[center_35%]' :
+      position === 'face-low' ? 'object-[center_65%]' :
       'object-center';
     return (
       <div className="rounded-lg mb-4 overflow-hidden bg-muted/20">
