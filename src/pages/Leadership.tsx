@@ -156,20 +156,13 @@ const Leadership = () => {
 
   // Responsive image component to improve headshot placement across varying aspect ratios
   const ResponsiveHeadshot = ({ src, alt }: { src: string; alt: string }) => {
-    const [fit, setFit] = useState<'cover' | 'contain'>('cover');
-    const onLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
-      const img = e.currentTarget;
-      if (img.naturalHeight > img.naturalWidth * 1.05) setFit('contain');
-      else setFit('cover');
-    };
     return (
-      <div className="rounded-lg mb-4 overflow-hidden bg-card">
-        <div className="aspect-[4/3] w-full flex items-center justify-center">
+      <div className="rounded-lg mb-4 overflow-hidden bg-muted/20">
+        <div className="aspect-[4/3] w-full flex items-center justify-center p-2">
           <img
             src={src}
             alt={alt}
-            onLoad={onLoad}
-            className={`w-full h-full ${fit === 'contain' ? 'object-contain' : 'object-cover'} object-top`}
+            className="w-full h-full object-contain"
           />
         </div>
       </div>
