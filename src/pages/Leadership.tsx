@@ -400,7 +400,7 @@ const Leadership = () => {
                         src={exec.image} 
                         alt={exec.name} 
                         className={`w-full h-full object-cover ${
-                          exec.imagePosition === 'upper' ? 'object-[center_15%]' :
+                          exec.imagePosition === 'upper' ? 'object-[center_8%]' :
                           exec.imagePosition === 'top' ? 'object-[center_20%]' :
                           exec.imagePosition === 'top-center' ? 'object-[center_30%]' :
                           exec.imagePosition === 'face-high' ? 'object-[center_35%]' :
