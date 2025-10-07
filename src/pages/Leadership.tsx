@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import jaRuleImage from '@/assets/ja-rule.png';
+import byronScottImage from '@/assets/byron-scott.jpg';
 
 const Leadership = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -52,6 +53,7 @@ const Leadership = () => {
       board: 'Strategic Advisors',
       slug: 'byron-scott',
       description: 'Three-time NBA champion with the Los Angeles Lakers during their Showtime era, bringing championship experience and leadership.',
+      image: byronScottImage,
     },
     {
       name: 'Wladimir Klitschko',
@@ -318,8 +320,16 @@ const Leadership = () => {
                               key={index}
                               className="bg-card border border-border rounded-lg p-6 hover-lift"
                             >
-                              <div className="h-48 bg-gradient-primary rounded-lg mb-4 flex items-center justify-center">
-                                <Linkedin className="h-12 w-12 text-primary-foreground/30" />
+                              <div className="h-48 bg-gradient-primary rounded-lg mb-4 flex items-center justify-center overflow-hidden">
+                                {advisor.image ? (
+                                  <img 
+                                    src={advisor.image} 
+                                    alt={advisor.name}
+                                    className="w-full h-full object-cover"
+                                  />
+                                ) : (
+                                  <Linkedin className="h-12 w-12 text-primary-foreground/30" />
+                                )}
                               </div>
                               <div className="mb-2">
                                 <span className="text-xs font-semibold text-accent uppercase tracking-wide">
