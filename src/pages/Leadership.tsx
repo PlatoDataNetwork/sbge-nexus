@@ -386,7 +386,7 @@ const Leadership = () => {
                       <img 
                         src={exec.image} 
                         alt={exec.name} 
-                        className={`w-full h-full object-cover ${exec.imagePosition === 'top-center' ? 'object-[center_30%]' : 'object-center'}`}
+                        className={`w-full h-full object-cover ${exec.imagePosition === 'top-center' ? 'object-[center_65%]' : 'object-center'}`}
                       />
                     </div>
                   ) : (
