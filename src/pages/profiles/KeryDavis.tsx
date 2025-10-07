@@ -20,7 +20,7 @@ const KeryDavis = () => {
               <img 
                 src={keryDavisImage} 
                 alt="Kery Davis" 
-                className="w-full h-full object-cover object-[45%_35%]"
+                className="w-full h-full object-cover object-[center_30%]"
               />
             </div>
 
