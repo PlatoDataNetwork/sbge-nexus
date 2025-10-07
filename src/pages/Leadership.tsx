@@ -50,6 +50,7 @@ const Leadership = () => {
       bio: 'Chief Executive Officer of Newmark, bringing extensive expertise in real estate and hospitality sectors.',
       achievements: ['Real Estate Leadership', 'Hospitality Expertise', 'Strategic Advisory'],
       image: barryGosinImage,
+      imagePosition: 'upper',
     },
     {
       name: 'Paul Massey',
