@@ -67,7 +67,7 @@ const Leadership = () => {
       bio: 'Chairman and CEO of RXR Realty, leading one of the region\'s premier real estate development firms.',
       achievements: ['Development Leadership', 'Real Estate Innovation', 'Portfolio Management'],
       image: scottRechlerImage,
-      imagePosition: 'upper',
+      imagePosition: 'top-center',
     },
   ];
 
