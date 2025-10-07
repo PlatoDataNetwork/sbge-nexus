@@ -24,6 +24,8 @@ import warrenDiamondImage from '@/assets/warren-diamond.png';
 import larryNamerImage from '@/assets/larry-namer.png';
 import alanMruvkaImage from '@/assets/alan-mruvka.png';
 import mollyFordImage from '@/assets/molly-ford.jpg';
+import johnCalipariImage from '@/assets/john-calipari.png';
+import nawafAlthariImage from '@/assets/nawaf-althari.png';
 
 const Leadership = () => {
 
@@ -189,6 +191,7 @@ const Leadership = () => {
       board: 'Strategic Advisors',
       slug: 'john-calipari',
       description: 'Hall of Fame basketball coach bringing strategic leadership and winning mentality to the organization.',
+      image: johnCalipariImage,
     },
     {
       name: 'Byron Scott',
@@ -264,6 +267,7 @@ const Leadership = () => {
       board: 'Strategic Advisors',
       slug: 'nawaf-althari',
       description: 'Founding Partner of The Althari Group, bringing strategic business development and investment expertise.',
+      image: nawafAlthariImage,
     },
     {
       name: 'Brian Cury',
