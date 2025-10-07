@@ -325,7 +325,7 @@ const Leadership = () => {
                                   <img 
                                     src={advisor.image} 
                                     alt={advisor.name}
-                                    className="w-full h-full object-cover"
+                                    className="w-full h-full object-cover object-center"
                                   />
                                 ) : (
                                   <Linkedin className="h-12 w-12 text-primary-foreground/30" />
