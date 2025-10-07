@@ -243,7 +243,7 @@ const Leadership = () => {
       slug: 'raymond-lesniak',
       description: 'Served in the New Jersey State Senate from 1983 to 2018, representing the 20th Legislative District.',
       image: raymondLesniakImage,
-      imagePosition: 'upper',
+      imagePosition: 'face-low',
     },
     {
       name: 'Gualberto Medina',
@@ -279,7 +279,7 @@ const Leadership = () => {
       slug: 'nawaf-althari',
       description: 'Founding Partner of The Althari Group, bringing strategic business development and investment expertise.',
       image: nawafAlthariImage,
-      imagePosition: 'upper',
+      imagePosition: 'face-low',
     },
     {
       name: 'Brian Cury',
@@ -345,7 +345,7 @@ const Leadership = () => {
       'object-center';
     return (
       <div className="rounded-lg mb-4 overflow-hidden bg-muted/20">
-        <div className="aspect-[4/3] w-full flex items-center justify-center">
+        <div className="aspect-[3/4] w-full flex items-center justify-center">
           <img
             src={src}
             alt={alt}
