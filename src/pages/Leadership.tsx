@@ -594,59 +594,6 @@ const Leadership = () => {
         </div>
       </section>
 
-      {/* Team Values */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-4xl md:text-5xl font-heading font-bold text-primary mb-6">
-                Our Values
-              </h2>
-              <p className="text-lg text-muted-foreground">
-                Guiding principles that drive our success
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="bg-card border border-border rounded-lg p-8">
-                <h3 className="text-xl font-heading font-bold text-foreground mb-3">
-                  Founder-Driven Passion
-                </h3>
-                <p className="text-muted-foreground">
-                  Unmatched commitment and alignment with investor success through ownership mentality
-                </p>
-              </div>
-              
-              <div className="bg-card border border-border rounded-lg p-8">
-                <h3 className="text-xl font-heading font-bold text-foreground mb-3">
-                  Innovation Focus
-                </h3>
-                <p className="text-muted-foreground">
-                  Continuously advancing technology and service models to maintain competitive advantage
-                </p>
-              </div>
-              
-              <div className="bg-card border border-border rounded-lg p-8">
-                <h3 className="text-xl font-heading font-bold text-foreground mb-3">
-                  Institutional Discipline
-                </h3>
-                <p className="text-muted-foreground">
-                  Rigorous investment processes and operational standards that institutional investors expect
-                </p>
-              </div>
-              
-              <div className="bg-card border border-border rounded-lg p-8">
-                <h3 className="text-xl font-heading font-bold text-foreground mb-3">
-                  Customer Excellence
-                </h3>
-                <p className="text-muted-foreground">
-                  Exceptional service and innovation that drives customer satisfaction and retention
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   );
 };
