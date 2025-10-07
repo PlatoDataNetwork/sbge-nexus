@@ -43,6 +43,7 @@ import WladimirKlitschko from "./pages/profiles/WladimirKlitschko";
 import RogerMasonJr from "./pages/profiles/RogerMasonJr";
 import DonaldDiFrancesco from "./pages/profiles/DonaldDiFrancesco";
 import RaymondLesniak from "./pages/profiles/RaymondLesniak";
+import GualbertoMedina from "./pages/profiles/GualbertoMedina";
 
 const queryClient = new QueryClient();
 
@@ -75,6 +76,7 @@ const App = () => (
               <Route path="/profile/roger-mason-jr" element={<RogerMasonJr />} />
               <Route path="/profile/donald-difrancesco" element={<DonaldDiFrancesco />} />
               <Route path="/profile/raymond-lesniak" element={<RaymondLesniak />} />
+              <Route path="/profile/gualberto-medina" element={<GualbertoMedina />} />
               <Route path="/profile/winston-ma" element={<WinstonMa />} />
               <Route path="/profile/molly-ford" element={<MollyFord />} />
               <Route path="/profile/conrad-roncati" element={<ConradRoncati />} />

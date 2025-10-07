@@ -195,6 +195,7 @@ const Leadership = () => {
       name: 'Gualberto Medina',
       title: 'Former Secretary of Commerce',
       board: 'Government Affairs',
+      slug: 'gualberto-medina',
       description: 'Attorney and CPA with extensive expertise in management, sales, business development, and regulatory matters.',
     },
     {
