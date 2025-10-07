@@ -310,7 +310,7 @@ const Leadership = () => {
       slug: 'steven-greener',
       description: 'Executive at Primary Wave bringing entertainment industry expertise and brand development experience.',
       image: stevenGreenerImage,
-      imagePosition: 'top-center',
+      imagePosition: 'top',
     },
     {
       name: 'Ramses Ishak',
@@ -319,7 +319,7 @@ const Leadership = () => {
       slug: 'ramses-ishak',
       description: 'Partner at United Talent Agency with expertise in talent management and strategic partnerships.',
       image: ramsesIshakImage,
-      imagePosition: 'top-center',
+      imagePosition: 'top',
     },
     {
       name: 'Michael Sheresky',
