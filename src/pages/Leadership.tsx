@@ -202,12 +202,14 @@ const Leadership = () => {
       name: 'Rinaldo D\'Argenio',
       title: 'Attorney',
       board: 'Government Affairs',
+      slug: 'rinaldo-dargenio',
       description: 'One of New Jersey\'s most influential attorneys specializing in complex regulatory matters including utilities and environmental issues.',
     },
     {
       name: 'Paul Weiner',
       title: 'Attorney',
       board: 'Government Affairs',
+      slug: 'paul-weiner',
       description: 'Master strategist with diverse expertise in corporate law, real estate development, and municipal government law.',
     },
     {
