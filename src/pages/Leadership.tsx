@@ -297,7 +297,7 @@ const Leadership = () => {
       slug: 'kery-davis',
       description: 'Athletic Director at Howard University with leadership experience in sports management and operations.',
       image: keryDavisImage,
-      imagePosition: 'center',
+      imagePosition: 'face-high',
     },
     {
       name: 'David Feldman',
