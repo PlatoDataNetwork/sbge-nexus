@@ -40,7 +40,7 @@ const Leadership = () => {
       bio: 'Founder and CEO with over 35 years of experience in self-storage, real estate development and entertainment. Founded E! Entertainment Television, now an NBC/Comcast company valued at over $15 Billion.',
       achievements: ['35+ years industry experience', 'Founded E! Entertainment Television', 'Built 3M+ sqft of self-storage'],
       image: alanMruvkaImage,
-      imagePosition: 'top-center' as const,
+      imagePosition: 'face-high',
     },
     {
       name: 'Barry Gosin',
@@ -57,6 +57,7 @@ const Leadership = () => {
       bio: 'Chief Executive Officer of Massey Knakal Realty Services with deep market knowledge and transaction expertise.',
       achievements: ['Investment Sales', 'Market Analysis', 'Transaction Advisory'],
       image: paulMasseyImage,
+      imagePosition: 'face-high',
     },
     {
       name: 'Scott Rechler',
@@ -65,6 +66,7 @@ const Leadership = () => {
       bio: 'Chairman and CEO of RXR Realty, leading one of the region\'s premier real estate development firms.',
       achievements: ['Development Leadership', 'Real Estate Innovation', 'Portfolio Management'],
       image: scottRechlerImage,
+      imagePosition: 'face-high',
     },
   ];
 
@@ -164,7 +166,7 @@ const Leadership = () => {
         'Degrees in Real Estate Development from Columbia University'
       ],
       image: frankZisaImage,
-      imagePosition: 'top-center' as const,
+      imagePosition: 'top' as const,
     },
     {
       name: 'Justin Horowitz',
@@ -239,7 +241,7 @@ const Leadership = () => {
       slug: 'raymond-lesniak',
       description: 'Served in the New Jersey State Senate from 1983 to 2018, representing the 20th Legislative District.',
       image: raymondLesniakImage,
-      imagePosition: 'top-center',
+      imagePosition: 'top',
     },
     {
       name: 'Gualberto Medina',
@@ -386,7 +388,12 @@ const Leadership = () => {
                       <img 
                         src={exec.image} 
                         alt={exec.name} 
-                        className={`w-full h-full object-cover ${exec.imagePosition === 'top-center' ? 'object-[center_65%]' : 'object-center'}`}
+                        className={`w-full h-full object-cover ${
+                          exec.imagePosition === 'face-high' ? 'object-[center_35%]' :
+                          exec.imagePosition === 'face-low' ? 'object-[center_65%]' :
+                          exec.imagePosition === 'top-center' ? 'object-[center_45%]' :
+                          'object-center'
+                        }`}
                       />
                     </div>
                   ) : (
