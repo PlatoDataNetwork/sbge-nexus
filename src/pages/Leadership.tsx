@@ -67,7 +67,7 @@ const Leadership = () => {
       bio: 'Chairman and CEO of RXR Realty, leading one of the region\'s premier real estate development firms.',
       achievements: ['Development Leadership', 'Real Estate Innovation', 'Portfolio Management'],
       image: scottRechlerImage,
-      imagePosition: 'top-center',
+      imagePosition: 'upper',
     },
   ];
 
@@ -399,9 +399,11 @@ const Leadership = () => {
                         src={exec.image} 
                         alt={exec.name} 
                         className={`w-full h-full object-cover ${
+                          exec.imagePosition === 'upper' ? 'object-[center_15%]' :
+                          exec.imagePosition === 'top' ? 'object-[center_20%]' :
+                          exec.imagePosition === 'top-center' ? 'object-[center_30%]' :
                           exec.imagePosition === 'face-high' ? 'object-[center_35%]' :
                           exec.imagePosition === 'face-low' ? 'object-[center_65%]' :
-                          exec.imagePosition === 'top-center' ? 'object-[center_45%]' :
                           'object-center'
                         }`}
                       />
