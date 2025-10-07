@@ -5,6 +5,9 @@ import jaRuleImage from '@/assets/ja-rule.png';
 import byronScottImage from '@/assets/byron-scott.jpg';
 import rinaldoDArgenioImage from '@/assets/rinaldo-dargenio.jpg';
 import paulWeinerImage from '@/assets/paul-weiner.jpg';
+import wladimirKlitschkoImage from '@/assets/wladimir-klitschko.jpg';
+import gualbertoMedinaImage from '@/assets/gualberto-medina.png';
+import michaelShereskyImage from '@/assets/michael-sheresky.png';
 
 const Leadership = () => {
 
@@ -171,6 +174,7 @@ const Leadership = () => {
       board: 'Strategic Advisors',
       slug: 'wladimir-klitschko',
       description: 'Former heavyweight world champion known for technical skill, intelligence, and athleticism in the ring and business.',
+      image: wladimirKlitschkoImage,
     },
     {
       name: 'Roger Mason Jr.',
@@ -199,6 +203,7 @@ const Leadership = () => {
       board: 'Government Affairs',
       slug: 'gualberto-medina',
       description: 'Attorney and CPA with extensive expertise in management, sales, business development, and regulatory matters.',
+      image: gualbertoMedinaImage,
     },
     {
       name: 'Rinaldo D\'Argenio',
@@ -264,6 +269,7 @@ const Leadership = () => {
       board: 'Strategic Advisors',
       slug: 'michael-sheresky',
       description: 'Strategic partner providing business advisory and operational expertise.',
+      image: michaelShereskyImage,
     },
   ];
 
@@ -271,11 +277,11 @@ const Leadership = () => {
   const ResponsiveHeadshot = ({ src, alt }: { src: string; alt: string }) => {
     return (
       <div className="rounded-lg mb-4 overflow-hidden bg-muted/20">
-        <div className="aspect-[4/3] w-full flex items-center justify-center p-2">
+        <div className="aspect-[4/3] w-full flex items-center justify-center">
           <img
             src={src}
             alt={alt}
-            className="w-full h-full object-contain"
+            className="w-full h-full object-cover"
           />
         </div>
       </div>
