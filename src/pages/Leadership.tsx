@@ -400,11 +400,11 @@ const Leadership = () => {
             </h2>
             
             <div className="bg-primary-foreground/10 backdrop-blur-sm rounded-lg p-8 border border-primary-foreground/20">
-              <div className="w-40 h-40 mx-auto mb-6 overflow-hidden rounded-full border-4 border-primary-foreground/30">
+              <div className="w-64 h-64 mx-auto mb-6">
                 <img 
                   src={jaRuleImage} 
                   alt="Jeffrey Atkins 'Ja Rule' - Brand Ambassador" 
-                  className="w-full h-full object-cover object-center"
+                  className="w-full h-full object-contain"
                 />
               </div>
               
