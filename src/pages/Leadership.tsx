@@ -16,6 +16,10 @@ import justinHorowitzImage from '@/assets/justin-horowitz.jpg';
 import frankZisaImage from '@/assets/frank-zisa.jpg';
 import conradRoncatiImage from '@/assets/conrad-roncati.jpg';
 import brianCuryImage from '@/assets/brian-cury.jpg';
+import davidFeldmanImage from '@/assets/david-feldman.png';
+import nicholasHornerImage from '@/assets/nicholas-horner.jpg';
+import ramsesIshakImage from '@/assets/ramses-ishak.png';
+import donaldDiFrancescoImage from '@/assets/donald-difrancesco.png';
 
 const Leadership = () => {
 
@@ -101,6 +105,7 @@ const Leadership = () => {
         'Expertise in M&A and securities compliance',
         'Represented corporations in transactions over $300M'
       ],
+      image: nicholasHornerImage,
     },
     {
       name: 'Warren Diamond',
@@ -202,6 +207,7 @@ const Leadership = () => {
       board: 'Government Affairs',
       slug: 'donald-difrancesco',
       description: '51st Governor of New Jersey with over 25 years serving in the State Senate with distinction.',
+      image: donaldDiFrancescoImage,
     },
     {
       name: 'Raymond Lesniak',
@@ -263,6 +269,7 @@ const Leadership = () => {
       board: 'Strategic Advisors',
       slug: 'david-feldman',
       description: 'Co-Founder of BFBST LLP, providing strategic financial and business advisory services.',
+      image: davidFeldmanImage,
     },
     {
       name: 'Steven Greener',
@@ -278,6 +285,7 @@ const Leadership = () => {
       board: 'Strategic Advisors',
       slug: 'ramses-ishak',
       description: 'Partner at United Talent Agency with expertise in talent management and strategic partnerships.',
+      image: ramsesIshakImage,
     },
     {
       name: 'Michael Sheresky',
