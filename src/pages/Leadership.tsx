@@ -217,6 +217,7 @@ const Leadership = () => {
       slug: 'wladimir-klitschko',
       description: 'Former heavyweight world champion known for technical skill, intelligence, and athleticism in the ring and business.',
       image: wladimirKlitschkoImage,
+      imagePosition: 'top',
     },
     {
       name: 'Roger Mason Jr.',
