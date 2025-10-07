@@ -58,7 +58,7 @@ const Leadership = () => {
       bio: 'Chief Executive Officer of Massey Knakal Realty Services with deep market knowledge and transaction expertise.',
       achievements: ['Investment Sales', 'Market Analysis', 'Transaction Advisory'],
       image: paulMasseyImage,
-      imagePosition: 'upper',
+      imagePosition: 'top',
     },
     {
       name: 'Scott Rechler',
