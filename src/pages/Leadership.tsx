@@ -167,6 +167,7 @@ const Leadership = () => {
     slug?: string;
     description: string;
     image?: string;
+    imagePosition?: 'top' | 'center' | 'top-center';
   };
 
   const allAdvisors: Advisor[] = [
@@ -216,6 +217,7 @@ const Leadership = () => {
       slug: 'raymond-lesniak',
       description: 'Served in the New Jersey State Senate from 1983 to 2018, representing the 20th Legislative District.',
       image: raymondLesniakImage,
+      imagePosition: 'top-center',
     },
     {
       name: 'Gualberto Medina',
@@ -224,6 +226,7 @@ const Leadership = () => {
       slug: 'gualberto-medina',
       description: 'Attorney and CPA with extensive expertise in management, sales, business development, and regulatory matters.',
       image: gualbertoMedinaImage,
+      imagePosition: 'top-center',
     },
     {
       name: 'Rinaldo D\'Argenio',
@@ -232,6 +235,7 @@ const Leadership = () => {
       slug: 'rinaldo-dargenio',
       description: 'One of New Jersey\'s most influential attorneys specializing in complex regulatory matters including utilities and environmental issues.',
       image: rinaldoDArgenioImage,
+      imagePosition: 'top-center',
     },
     {
       name: 'Paul Weiner',
@@ -240,6 +244,7 @@ const Leadership = () => {
       slug: 'paul-weiner',
       description: 'Master strategist with diverse expertise in corporate law, real estate development, and municipal government law.',
       image: paulWeinerImage,
+      imagePosition: 'top-center',
     },
     {
       name: 'Nawaf Althari',
@@ -278,6 +283,7 @@ const Leadership = () => {
       slug: 'steven-greener',
       description: 'Executive at Primary Wave bringing entertainment industry expertise and brand development experience.',
       image: stevenGreenerImage,
+      imagePosition: 'top-center',
     },
     {
       name: 'Ramses Ishak',
@@ -286,6 +292,7 @@ const Leadership = () => {
       slug: 'ramses-ishak',
       description: 'Partner at United Talent Agency with expertise in talent management and strategic partnerships.',
       image: ramsesIshakImage,
+      imagePosition: 'top-center',
     },
     {
       name: 'Michael Sheresky',
@@ -294,18 +301,20 @@ const Leadership = () => {
       slug: 'michael-sheresky',
       description: 'Strategic partner providing business advisory and operational expertise.',
       image: michaelShereskyImage,
+      imagePosition: 'top-center',
     },
   ];
 
   // Responsive image component to improve headshot placement across varying aspect ratios
-  const ResponsiveHeadshot = ({ src, alt }: { src: string; alt: string }) => {
+  const ResponsiveHeadshot = ({ src, alt, position = 'center' }: { src: string; alt: string; position?: 'top' | 'center' | 'top-center' }) => {
+    const positionClass = position === 'top' ? 'object-[center_20%]' : position === 'top-center' ? 'object-[center_30%]' : 'object-center';
     return (
       <div className="rounded-lg mb-4 overflow-hidden bg-muted/20">
         <div className="aspect-[4/3] w-full flex items-center justify-center">
           <img
             src={src}
             alt={alt}
-            className="w-full h-full object-cover object-top"
+            className={`w-full h-full object-cover ${positionClass}`}
           />
         </div>
       </div>
@@ -509,7 +518,7 @@ const Leadership = () => {
                     className="bg-card border border-border rounded-lg p-6 hover-lift"
                   >
                     {advisor.image ? (
-                      <ResponsiveHeadshot src={advisor.image} alt={advisor.name} />
+                      <ResponsiveHeadshot src={advisor.image} alt={advisor.name} position={advisor.imagePosition} />
                     ) : (
                       <div className="rounded-lg mb-4 overflow-hidden bg-gradient-primary">
                         <div className="aspect-[4/3] w-full flex items-center justify-center">
@@ -565,7 +574,7 @@ const Leadership = () => {
                     className="bg-card border border-border rounded-lg p-6 hover-lift"
                   >
                     {advisor.image ? (
-                      <ResponsiveHeadshot src={advisor.image} alt={advisor.name} />
+                      <ResponsiveHeadshot src={advisor.image} alt={advisor.name} position={advisor.imagePosition} />
                     ) : (
                       <div className="rounded-lg mb-4 overflow-hidden bg-gradient-primary">
                         <div className="aspect-[4/3] w-full flex items-center justify-center">
