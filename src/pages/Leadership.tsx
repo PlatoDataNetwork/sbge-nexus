@@ -394,7 +394,7 @@ const Leadership = () => {
                 <img 
                   src={jaRuleImage} 
                   alt="Jeffrey Atkins 'Ja Rule' - Brand Ambassador" 
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-center"
                 />
               </div>
               
