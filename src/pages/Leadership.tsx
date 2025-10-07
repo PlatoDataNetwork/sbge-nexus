@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import jaRuleImage from '@/assets/ja-rule.png';
 import byronScottImage from '@/assets/byron-scott.jpg';
+import rinaldoDArgenioImage from '@/assets/rinaldo-dargenio.jpg';
+import paulWeinerImage from '@/assets/paul-weiner.jpg';
 
 const Leadership = () => {
 
@@ -204,6 +206,7 @@ const Leadership = () => {
       board: 'Government Affairs',
       slug: 'rinaldo-dargenio',
       description: 'One of New Jersey\'s most influential attorneys specializing in complex regulatory matters including utilities and environmental issues.',
+      image: rinaldoDArgenioImage,
     },
     {
       name: 'Paul Weiner',
@@ -211,6 +214,7 @@ const Leadership = () => {
       board: 'Government Affairs',
       slug: 'paul-weiner',
       description: 'Master strategist with diverse expertise in corporate law, real estate development, and municipal government law.',
+      image: paulWeinerImage,
     },
     {
       name: 'Nawaf Althari',
@@ -470,11 +474,15 @@ const Leadership = () => {
                     key={index}
                     className="bg-card border border-border rounded-lg p-6 hover-lift"
                   >
-                    <div className="rounded-lg mb-4 overflow-hidden bg-gradient-primary">
-                      <div className="aspect-[4/3] w-full flex items-center justify-center">
-                        <Building2 className="h-12 w-12 text-primary-foreground/30" />
+                    {advisor.image ? (
+                      <ResponsiveHeadshot src={advisor.image} alt={advisor.name} />
+                    ) : (
+                      <div className="rounded-lg mb-4 overflow-hidden bg-gradient-primary">
+                        <div className="aspect-[4/3] w-full flex items-center justify-center">
+                          <Building2 className="h-12 w-12 text-primary-foreground/30" />
+                        </div>
                       </div>
-                    </div>
+                    )}
                     <div className="mb-2">
                       <span className="text-xs font-semibold text-accent uppercase tracking-wide">
                         {advisor.board}
