@@ -23,6 +23,7 @@ import donaldDiFrancescoImage from '@/assets/donald-difrancesco.png';
 import warrenDiamondImage from '@/assets/warren-diamond.png';
 import larryNamerImage from '@/assets/larry-namer.png';
 import alanMruvkaImage from '@/assets/alan-mruvka.png';
+import mollyFordImage from '@/assets/molly-ford.jpg';
 
 const Leadership = () => {
 
@@ -72,6 +73,7 @@ const Leadership = () => {
         'Corporate Lawyer at Davis Polk & Wardwell'
       ],
       image: winstonMaImage,
+      imagePosition: 'top-center' as const,
     },
     {
       name: 'Molly Ford',
@@ -84,6 +86,8 @@ const Leadership = () => {
         'Corporate transaction expertise',
         'Degree from Brown University'
       ],
+      image: mollyFordImage,
+      imagePosition: 'top-center' as const,
     },
     {
       name: 'Conrad Roncati',
@@ -97,6 +101,7 @@ const Leadership = () => {
         'Oversees acquisition, entitlements, design, engineering, and construction'
       ],
       image: conradRoncatiImage,
+      imagePosition: 'top-center' as const,
     },
     {
       name: 'Nicholas Horner',
@@ -150,6 +155,7 @@ const Leadership = () => {
         'Degrees in Real Estate Development from Columbia University'
       ],
       image: frankZisaImage,
+      imagePosition: 'top-center' as const,
     },
     {
       name: 'Justin Horowitz',
@@ -437,7 +443,7 @@ const Leadership = () => {
                   className="bg-card border border-border rounded-lg overflow-hidden hover-lift group"
                 >
                   {exec.image ? (
-                    <ResponsiveHeadshot src={exec.image} alt={exec.name} />
+                    <ResponsiveHeadshot src={exec.image} alt={exec.name} position={exec.imagePosition} />
                   ) : (
                     <div className="h-48 bg-gradient-primary relative">
                       <div className="absolute inset-0 flex items-center justify-center">
