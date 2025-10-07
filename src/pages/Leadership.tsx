@@ -39,7 +39,16 @@ const Leadership = () => {
     },
   ];
 
-  const allAdvisors = [
+  type Advisor = {
+    name: string;
+    title: string;
+    board: string;
+    slug?: string;
+    description: string;
+    image?: string;
+  };
+
+  const allAdvisors: Advisor[] = [
     {
       name: 'John Calipari',
       title: 'Hall of Fame Basketball Coach',
@@ -144,6 +153,28 @@ const Leadership = () => {
       description: 'Strategic partner providing business advisory and operational expertise.',
     },
   ];
+
+  // Responsive image component to improve headshot placement across varying aspect ratios
+  const ResponsiveHeadshot = ({ src, alt }: { src: string; alt: string }) => {
+    const [fit, setFit] = useState<'cover' | 'contain'>('cover');
+    const onLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
+      const img = e.currentTarget;
+      if (img.naturalHeight > img.naturalWidth * 1.05) setFit('contain');
+      else setFit('cover');
+    };
+    return (
+      <div className="rounded-lg mb-4 overflow-hidden bg-card">
+        <div className="aspect-[4/3] w-full flex items-center justify-center">
+          <img
+            src={src}
+            alt={alt}
+            onLoad={onLoad}
+            className={`w-full h-full ${fit === 'contain' ? 'object-contain' : 'object-cover'} object-top`}
+          />
+        </div>
+      </div>
+    );
+  };
 
   const ADVISORS_PER_VIEW = 3;
   const totalSlides = Math.ceil(allAdvisors.length / ADVISORS_PER_VIEW);
@@ -320,17 +351,15 @@ const Leadership = () => {
                               key={index}
                               className="bg-card border border-border rounded-lg p-6 hover-lift"
                             >
-                              <div className="h-48 bg-gradient-primary rounded-lg mb-4 flex items-center justify-center overflow-hidden">
-                                {advisor.image ? (
-                                  <img 
-                                    src={advisor.image} 
-                                    alt={advisor.name}
-                                    className="w-full h-full object-cover object-center"
-                                  />
-                                ) : (
-                                  <Linkedin className="h-12 w-12 text-primary-foreground/30" />
-                                )}
-                              </div>
+                              {advisor.image ? (
+                                <ResponsiveHeadshot src={advisor.image} alt={advisor.name} />
+                              ) : (
+                                <div className="rounded-lg mb-4 overflow-hidden bg-gradient-primary">
+                                  <div className="aspect-[4/3] w-full flex items-center justify-center">
+                                    <Linkedin className="h-12 w-12 text-primary-foreground/30" />
+                                  </div>
+                                </div>
+                              )}
                               <div className="mb-2">
                                 <span className="text-xs font-semibold text-accent uppercase tracking-wide">
                                   {advisor.board}
