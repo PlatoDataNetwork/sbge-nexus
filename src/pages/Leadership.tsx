@@ -39,6 +39,107 @@ const Leadership = () => {
     },
   ];
 
+  const executiveTeam = [
+    {
+      name: 'Winston Ma',
+      title: 'Chief Investment Officer',
+      subtitle: 'Partner',
+      slug: 'winston-ma',
+      bio: 'Investor, attorney, author, and adjunct professor at NYU with extensive experience in international finance.',
+      achievements: [
+        'Former Managing Director at China Investment Corporation (CIC)',
+        'Former Deputy Head of Equity Capital Markets at Barclays',
+        'VP Investment Banking at J.P. Morgan',
+        'Corporate Lawyer at Davis Polk & Wardwell'
+      ],
+    },
+    {
+      name: 'Molly Ford',
+      title: 'Chief Strategy Officer',
+      subtitle: 'Partner',
+      slug: 'molly-ford',
+      bio: 'Expert in financing acquisitions with focus on sourcing, evaluation, and capitalization.',
+      achievements: [
+        'Specializes in single-asset and portfolio transactions',
+        'Corporate transaction expertise',
+        'Degree from Brown University'
+      ],
+    },
+    {
+      name: 'Conrad Roncati',
+      title: 'Chief Operating Officer',
+      subtitle: 'Partner',
+      slug: 'conrad-roncati',
+      bio: 'Architect and developer with over 40 years of experience overseeing comprehensive real estate development.',
+      achievements: [
+        '40+ years in architecture and development',
+        'Founder of Architectura with offices in NYC, NJ, CA, FL, CT',
+        'Oversees acquisition, entitlements, design, engineering, and construction'
+      ],
+    },
+    {
+      name: 'Nicholas Horner',
+      title: 'Outside General Counsel',
+      subtitle: 'Shumaker, Loop & Kendrick, LLP',
+      slug: 'nicholas-horner',
+      bio: 'Business lawyer with over 10 years of experience in M&A, securities compliance, and fund formation.',
+      achievements: [
+        '10+ years business law experience',
+        'Expertise in M&A and securities compliance',
+        'Represented corporations in transactions over $300M'
+      ],
+    },
+    {
+      name: 'Warren Diamond',
+      title: 'Senior Advisor',
+      subtitle: 'Partner',
+      slug: 'warren-diamond',
+      bio: 'Self-storage pioneer with over 40 years of experience in the NY/NJ markets.',
+      achievements: [
+        'CEO of American Real Estate Management',
+        '40+ years in self-storage',
+        'Former partner (25 years) in American Self Storage',
+        'Deep expertise in NY/NJ self-storage markets'
+      ],
+    },
+    {
+      name: 'Larry Namer',
+      title: 'Senior Advisor',
+      subtitle: 'Partner',
+      slug: 'larry-namer',
+      bio: 'Entertainment, media, and real estate entrepreneur with over 50 years of experience.',
+      achievements: [
+        'Co-Founder of E! Entertainment Television (valued over $15B)',
+        '50+ years entrepreneurial experience',
+        'Founded Comspan Communications, Steeplechase Media, Metan Global Entertainment Group'
+      ],
+    },
+    {
+      name: 'Frank Zisa',
+      title: 'SVP Investor Relations',
+      subtitle: 'Partner',
+      slug: 'frank-zisa',
+      bio: 'Former Senior Development Manager with expertise in acquisitions and developments across multiple asset classes.',
+      achievements: [
+        'Managed over $1.4B in acquisitions & developments',
+        'Former roles at Prudential Investment Management and Extra Space Self Storage',
+        'Degrees in Real Estate Development from Columbia University'
+      ],
+    },
+    {
+      name: 'Justin Horowitz',
+      title: 'Chief Debt Officer',
+      subtitle: 'Partner',
+      slug: 'justin-horowitz',
+      bio: 'Capital markets advisor specializing in nationwide debt and equity placement.',
+      achievements: [
+        'Capital markets advisor at Cooper Horowitz (NYC)',
+        'Previous roles at Savills Studley and Brickman',
+        'Degree from Syracuse University Whitman School of Management'
+      ],
+    },
+  ];
+
   type Advisor = {
     name: string;
     title: string;
@@ -203,6 +304,110 @@ const Leadership = () => {
             <p className="text-xl md:text-2xl text-primary-foreground/90">
               Experienced team with proven track record in self-storage and real estate
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Leadership Team */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl md:text-5xl font-heading font-bold text-primary mb-6">
+                Leadership Team
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+                Senior executives with extensive experience in real estate and self-storage investment
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {executives.map((exec, index) => (
+                <Link
+                  key={index}
+                  to={`/profile/${exec.slug}`}
+                  className="bg-card border border-border rounded-lg overflow-hidden hover-lift"
+                >
+                  <div className="h-64 bg-gradient-primary relative">
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <Building2 className="h-24 w-24 text-primary-foreground/20" />
+                    </div>
+                  </div>
+                  <div className="p-8 space-y-4">
+                    <div>
+                      <h3 className="text-2xl font-heading font-bold text-foreground mb-1">
+                        {exec.name}
+                      </h3>
+                      <p className="text-accent font-medium">{exec.title}</p>
+                    </div>
+                    
+                    <p className="text-muted-foreground leading-relaxed">
+                      {exec.bio}
+                    </p>
+                    
+                    <div className="space-y-2 pt-4 border-t border-border">
+                      <div className="text-sm font-semibold text-foreground">Key Achievements:</div>
+                      <ul className="space-y-1">
+                        {exec.achievements.map((achievement, i) => (
+                          <li key={i} className="flex items-center text-sm text-muted-foreground">
+                            <Award className="h-4 w-4 text-accent mr-2 flex-shrink-0" />
+                            {achievement}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    
+                    <div className="pt-4">
+                      <span className="text-accent font-medium hover:underline">View Full Profile →</span>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Executive Team */}
+      <section className="py-20 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl md:text-5xl font-heading font-bold text-primary mb-6">
+                Executive Team
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+                Experienced professionals driving operational excellence and strategic growth
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {executiveTeam.map((exec, index) => (
+                <Link
+                  key={index}
+                  to={`/profile/${exec.slug}`}
+                  className="bg-card border border-border rounded-lg overflow-hidden hover-lift group"
+                >
+                  <div className="h-48 bg-gradient-primary relative">
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <Building2 className="h-16 w-16 text-primary-foreground/20" />
+                    </div>
+                  </div>
+                  <div className="p-6 space-y-2">
+                    <h3 className="text-lg font-heading font-bold text-foreground group-hover:text-accent transition-colors">
+                      {exec.name}
+                    </h3>
+                    <p className="text-accent font-medium text-sm">{exec.title}</p>
+                    {exec.subtitle && (
+                      <p className="text-xs text-muted-foreground">{exec.subtitle}</p>
+                    )}
+                    <p className="text-sm text-muted-foreground leading-relaxed pt-2">
+                      {exec.bio}
+                    </p>
+                  </div>
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </section>
