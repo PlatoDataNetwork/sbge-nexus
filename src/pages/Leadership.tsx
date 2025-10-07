@@ -192,7 +192,7 @@ const Leadership = () => {
     slug?: string;
     description: string;
     image?: string;
-    imagePosition?: 'top' | 'center' | 'top-center' | 'face-high' | 'face-low' | 'upper';
+    imagePosition?: 'top' | 'center' | 'top-center' | 'face-high' | 'face-low' | 'upper' | 'center-right';
   };
 
   const allAdvisors: Advisor[] = [
@@ -297,7 +297,7 @@ const Leadership = () => {
       slug: 'kery-davis',
       description: 'Athletic Director at Howard University with leadership experience in sports management and operations.',
       image: keryDavisImage,
-      imagePosition: 'center',
+      imagePosition: 'center-right',
     },
     {
       name: 'David Feldman',
@@ -337,13 +337,14 @@ const Leadership = () => {
   ];
 
   // Responsive image component to improve headshot placement across varying aspect ratios
-  const ResponsiveHeadshot = ({ src, alt, position = 'center' }: { src: string; alt: string; position?: 'top' | 'center' | 'top-center' | 'face-high' | 'face-low' | 'upper' }) => {
+  const ResponsiveHeadshot = ({ src, alt, position = 'center' }: { src: string; alt: string; position?: 'top' | 'center' | 'top-center' | 'face-high' | 'face-low' | 'upper' | 'center-right' }) => {
     const positionClass =
       position === 'upper' ? 'object-[center_15%]' :
       position === 'top' ? 'object-[center_20%]' :
       position === 'top-center' ? 'object-[center_30%]' :
       position === 'face-high' ? 'object-[center_35%]' :
       position === 'face-low' ? 'object-[center_65%]' :
+      position === 'center-right' ? 'object-[55%_center]' :
       'object-center';
     return (
       <div className="rounded-lg mb-4 overflow-hidden bg-muted/20">
