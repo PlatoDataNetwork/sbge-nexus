@@ -278,6 +278,7 @@ const Leadership = () => {
       slug: 'nawaf-althari',
       description: 'Founding Partner of The Althari Group, bringing strategic business development and investment expertise.',
       image: nawafAlthariImage,
+      imagePosition: 'top',
     },
     {
       name: 'Brian Cury',
