@@ -46,6 +46,13 @@ import RaymondLesniak from "./pages/profiles/RaymondLesniak";
 import GualbertoMedina from "./pages/profiles/GualbertoMedina";
 import RinaldoDArgenio from "./pages/profiles/RinaldoDArgenio";
 import PaulWeiner from "./pages/profiles/PaulWeiner";
+import NawafAlthari from "./pages/profiles/NawafAlthari";
+import BrianCury from "./pages/profiles/BrianCury";
+import KeryDavis from "./pages/profiles/KeryDavis";
+import DavidFeldman from "./pages/profiles/DavidFeldman";
+import StevenGreener from "./pages/profiles/StevenGreener";
+import RamsesIshak from "./pages/profiles/RamsesIshak";
+import MichaelSheresky from "./pages/profiles/MichaelSheresky";
 
 const queryClient = new QueryClient();
 
@@ -81,6 +88,13 @@ const App = () => (
               <Route path="/profile/gualberto-medina" element={<GualbertoMedina />} />
               <Route path="/profile/rinaldo-dargenio" element={<RinaldoDArgenio />} />
               <Route path="/profile/paul-weiner" element={<PaulWeiner />} />
+              <Route path="/profile/nawaf-althari" element={<NawafAlthari />} />
+              <Route path="/profile/brian-cury" element={<BrianCury />} />
+              <Route path="/profile/kery-davis" element={<KeryDavis />} />
+              <Route path="/profile/david-feldman" element={<DavidFeldman />} />
+              <Route path="/profile/steven-greener" element={<StevenGreener />} />
+              <Route path="/profile/ramses-ishak" element={<RamsesIshak />} />
+              <Route path="/profile/michael-sheresky" element={<MichaelSheresky />} />
               <Route path="/profile/winston-ma" element={<WinstonMa />} />
               <Route path="/profile/molly-ford" element={<MollyFord />} />
               <Route path="/profile/conrad-roncati" element={<ConradRoncati />} />
