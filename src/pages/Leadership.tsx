@@ -26,6 +26,9 @@ import alanMruvkaImage from '@/assets/alan-mruvka.png';
 import mollyFordImage from '@/assets/molly-ford.jpg';
 import johnCalipariImage from '@/assets/john-calipari.png';
 import nawafAlthariImage from '@/assets/nawaf-althari.png';
+import paulMasseyImage from '@/assets/paul-massey.png';
+import barryGosinImage from '@/assets/barry-gosin.png';
+import scottRechlerImage from '@/assets/scott-rechler.png';
 
 const Leadership = () => {
 
@@ -44,6 +47,7 @@ const Leadership = () => {
       slug: 'barry-gosin',
       bio: 'Chief Executive Officer of Newmark, bringing extensive expertise in real estate and hospitality sectors.',
       achievements: ['Real Estate Leadership', 'Hospitality Expertise', 'Strategic Advisory'],
+      image: barryGosinImage,
     },
     {
       name: 'Paul Massey',
@@ -51,6 +55,7 @@ const Leadership = () => {
       slug: 'paul-massey',
       bio: 'Chief Executive Officer of Massey Knakal Realty Services with deep market knowledge and transaction expertise.',
       achievements: ['Investment Sales', 'Market Analysis', 'Transaction Advisory'],
+      image: paulMasseyImage,
     },
     {
       name: 'Scott Rechler',
@@ -58,6 +63,7 @@ const Leadership = () => {
       slug: 'scott-rechler',
       bio: 'Chairman and CEO of RXR Realty, leading one of the region\'s premier real estate development firms.',
       achievements: ['Development Leadership', 'Real Estate Innovation', 'Portfolio Management'],
+      image: scottRechlerImage,
     },
   ];
 
