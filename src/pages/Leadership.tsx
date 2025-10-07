@@ -40,6 +40,7 @@ const Leadership = () => {
       bio: 'Founder and CEO with over 35 years of experience in self-storage, real estate development and entertainment. Founded E! Entertainment Television, now an NBC/Comcast company valued at over $15 Billion.',
       achievements: ['35+ years industry experience', 'Founded E! Entertainment Television', 'Built 3M+ sqft of self-storage'],
       image: alanMruvkaImage,
+      imagePosition: 'top-center' as const,
     },
     {
       name: 'Barry Gosin',
@@ -385,7 +386,7 @@ const Leadership = () => {
                       <img 
                         src={exec.image} 
                         alt={exec.name} 
-                        className="w-full h-full object-cover object-center"
+                        className={`w-full h-full object-cover ${exec.imagePosition === 'top-center' ? 'object-[center_30%]' : 'object-center'}`}
                       />
                     </div>
                   ) : (
