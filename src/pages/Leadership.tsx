@@ -23,7 +23,7 @@ import donaldDiFrancescoImage from '@/assets/donald-difrancesco.png';
 import warrenDiamondImage from '@/assets/warren-diamond.png';
 import larryNamerImage from '@/assets/larry-namer.png';
 import alanMruvkaImage from '@/assets/alan-mruvka.png';
-import mollyFordImage from '@/assets/molly-ford.jpg';
+import mollyFordImage from '@/assets/molly-ford.png';
 import johnCalipariImage from '@/assets/john-calipari.png';
 import nawafAlthariImage from '@/assets/nawaf-althari.png';
 import paulMasseyImage from '@/assets/paul-massey.png';
