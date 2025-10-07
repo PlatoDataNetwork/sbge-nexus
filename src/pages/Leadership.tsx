@@ -359,7 +359,9 @@ const Leadership = () => {
                     </div>
                     
                     <div className="pt-4">
-                      <span className="text-accent font-medium hover:underline">View Full Profile →</span>
+                      <Button asChild variant="outline" size="sm" className="w-full">
+                        <span>View Bio</span>
+                      </Button>
                     </div>
                   </div>
                 </Link>
@@ -405,6 +407,11 @@ const Leadership = () => {
                     <p className="text-sm text-muted-foreground leading-relaxed pt-2">
                       {exec.bio}
                     </p>
+                    <div className="pt-3">
+                      <Button asChild variant="outline" size="sm" className="w-full">
+                        <span>View Bio</span>
+                      </Button>
+                    </div>
                   </div>
                 </Link>
               ))}
@@ -463,7 +470,9 @@ const Leadership = () => {
                     </div>
                     
                     <div className="pt-4">
-                      <span className="text-accent font-medium hover:underline">View Full Profile →</span>
+                      <Button asChild variant="outline" size="sm" className="w-full">
+                        <span>View Bio</span>
+                      </Button>
                     </div>
                   </div>
                 </Link>
