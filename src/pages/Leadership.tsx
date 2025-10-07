@@ -1,12 +1,10 @@
-import { Linkedin, Award, Building2, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Linkedin, Award, Building2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import jaRuleImage from '@/assets/ja-rule.png';
 import byronScottImage from '@/assets/byron-scott.jpg';
 
 const Leadership = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
 
   const executives = [
     {
@@ -270,28 +268,6 @@ const Leadership = () => {
     );
   };
 
-  const ADVISORS_PER_VIEW = 3;
-  const strategicAdvisors = allAdvisors.filter(advisor => advisor.board === 'Strategic Advisors');
-  const totalSlides = Math.ceil(strategicAdvisors.length / ADVISORS_PER_VIEW);
-  const [isPaused, setIsPaused] = useState(false);
-
-  useEffect(() => {
-    if (isPaused) return;
-    
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % totalSlides);
-    }, 4000);
-
-    return () => clearInterval(interval);
-  }, [isPaused, totalSlides]);
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % totalSlides);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
-  };
 
   return (
     <div className="min-h-screen pt-20">
@@ -515,10 +491,10 @@ const Leadership = () => {
         </div>
       </section>
 
-      {/* Advisory Boards Carousel */}
+      {/* Strategic Advisors */}
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
-          <div className="max-w-7xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-4xl md:text-5xl font-heading font-bold text-primary mb-6">
                 Strategic Advisors
@@ -528,92 +504,44 @@ const Leadership = () => {
               </p>
             </div>
 
-            {/* Carousel */}
-            <div 
-              className="relative"
-              onMouseEnter={() => setIsPaused(true)}
-              onMouseLeave={() => setIsPaused(false)}
-            >
-              <div className="overflow-hidden">
-                <div 
-                  className="flex transition-transform duration-700 ease-in-out"
-                  style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-                >
-                  {Array.from({ length: totalSlides }).map((_, slideIndex) => (
-                    <div key={slideIndex} className="w-full flex-shrink-0">
-                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
-                        {allAdvisors
-                          .filter(advisor => advisor.board === 'Strategic Advisors')
-                          .slice(slideIndex * ADVISORS_PER_VIEW, (slideIndex + 1) * ADVISORS_PER_VIEW)
-                          .map((advisor, index) => (
-                            <div
-                              key={index}
-                              className="bg-card border border-border rounded-lg p-6 hover-lift"
-                            >
-                              {advisor.image ? (
-                                <ResponsiveHeadshot src={advisor.image} alt={advisor.name} />
-                              ) : (
-                                <div className="rounded-lg mb-4 overflow-hidden bg-gradient-primary">
-                                  <div className="aspect-[4/3] w-full flex items-center justify-center">
-                                    <Linkedin className="h-12 w-12 text-primary-foreground/30" />
-                                  </div>
-                                </div>
-                              )}
-                              <div className="mb-2">
-                                <span className="text-xs font-semibold text-accent uppercase tracking-wide">
-                                  {advisor.board}
-                                </span>
-                              </div>
-                              <h4 className="text-lg font-heading font-bold text-foreground mb-1">
-                                {advisor.name}
-                              </h4>
-                              <p className="text-accent font-medium text-sm mb-3">{advisor.title}</p>
-                              <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-                                {advisor.description}
-                              </p>
-                              <Button asChild variant="outline" size="sm" className="w-full">
-                                <Link to={`/profile/${advisor.slug}`}>
-                                  View Bio
-                                </Link>
-                              </Button>
-                            </div>
-                          ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Navigation Buttons */}
-              <button
-                onClick={prevSlide}
-                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-card border border-border rounded-full p-3 hover:bg-accent hover:text-accent-foreground transition-colors shadow-lg z-10"
-                aria-label="Previous advisors"
-              >
-                <ChevronLeft className="h-6 w-6" />
-              </button>
-              
-              <button
-                onClick={nextSlide}
-                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-card border border-border rounded-full p-3 hover:bg-accent hover:text-accent-foreground transition-colors shadow-lg z-10"
-                aria-label="Next advisors"
-              >
-                <ChevronRight className="h-6 w-6" />
-              </button>
-
-              {/* Indicators */}
-              <div className="flex justify-center gap-2 mt-8">
-                {Array.from({ length: totalSlides }).map((_, index) => (
-                  <button
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {allAdvisors
+                .filter(advisor => advisor.board === 'Strategic Advisors')
+                .map((advisor, index) => (
+                  <div
                     key={index}
-                    onClick={() => setCurrentSlide(index)}
-                    className={`h-2 rounded-full transition-all ${
-                      index === currentSlide ? 'w-8 bg-accent' : 'w-2 bg-border'
-                    }`}
-                    aria-label={`Go to slide ${index + 1}`}
-                  />
+                    className="bg-card border border-border rounded-lg p-6 hover-lift"
+                  >
+                    {advisor.image ? (
+                      <ResponsiveHeadshot src={advisor.image} alt={advisor.name} />
+                    ) : (
+                      <div className="rounded-lg mb-4 overflow-hidden bg-gradient-primary">
+                        <div className="aspect-[4/3] w-full flex items-center justify-center">
+                          <Linkedin className="h-12 w-12 text-primary-foreground/30" />
+                        </div>
+                      </div>
+                    )}
+                    <div className="mb-2">
+                      <span className="text-xs font-semibold text-accent uppercase tracking-wide">
+                        {advisor.board}
+                      </span>
+                    </div>
+                    <h4 className="text-lg font-heading font-bold text-foreground mb-1">
+                      {advisor.name}
+                    </h4>
+                    <p className="text-accent font-medium text-sm mb-3">{advisor.title}</p>
+                    <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+                      {advisor.description}
+                    </p>
+                    {advisor.slug && (
+                      <Button asChild variant="outline" size="sm" className="w-full">
+                        <Link to={`/profile/${advisor.slug}`}>
+                          View Bio
+                        </Link>
+                      </Button>
+                    )}
+                  </div>
                 ))}
-              </div>
             </div>
           </div>
         </div>
