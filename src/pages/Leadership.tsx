@@ -29,6 +29,7 @@ import nawafAlthariImage from '@/assets/nawaf-althari.png';
 import paulMasseyImage from '@/assets/paul-massey.png';
 import barryGosinImage from '@/assets/barry-gosin.png';
 import scottRechlerImage from '@/assets/scott-rechler.png';
+import keryDavisImage from '@/assets/kery-davis.jpg';
 
 const Leadership = () => {
 
@@ -294,6 +295,7 @@ const Leadership = () => {
       board: 'Strategic Advisors',
       slug: 'kery-davis',
       description: 'Athletic Director at Howard University with leadership experience in sports management and operations.',
+      image: keryDavisImage,
     },
     {
       name: 'David Feldman',
