@@ -20,6 +20,9 @@ import davidFeldmanImage from '@/assets/david-feldman.png';
 import nicholasHornerImage from '@/assets/nicholas-horner.jpg';
 import ramsesIshakImage from '@/assets/ramses-ishak.png';
 import donaldDiFrancescoImage from '@/assets/donald-difrancesco.png';
+import warrenDiamondImage from '@/assets/warren-diamond.png';
+import larryNamerImage from '@/assets/larry-namer.png';
+import alanMruvkaImage from '@/assets/alan-mruvka.png';
 
 const Leadership = () => {
 
@@ -30,6 +33,7 @@ const Leadership = () => {
       slug: 'alan-mruvka',
       bio: 'Founder and CEO with over 35 years of experience in self-storage, real estate development and entertainment. Founded E! Entertainment Television, now an NBC/Comcast company valued at over $15 Billion.',
       achievements: ['35+ years industry experience', 'Founded E! Entertainment Television', 'Built 3M+ sqft of self-storage'],
+      image: alanMruvkaImage,
     },
     {
       name: 'Barry Gosin',
@@ -119,6 +123,7 @@ const Leadership = () => {
         'Former partner (25 years) in American Self Storage',
         'Deep expertise in NY/NJ self-storage markets'
       ],
+      image: warrenDiamondImage,
     },
     {
       name: 'Larry Namer',
@@ -131,6 +136,7 @@ const Leadership = () => {
         '50+ years entrepreneurial experience',
         'Founded Comspan Communications, Steeplechase Media, Metan Global Entertainment Group'
       ],
+      image: larryNamerImage,
     },
     {
       name: 'Frank Zisa',
@@ -358,11 +364,21 @@ const Leadership = () => {
                   to={`/profile/${exec.slug}`}
                   className="bg-card border border-border rounded-lg overflow-hidden hover-lift"
                 >
-                  <div className="h-64 bg-gradient-primary relative">
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <Building2 className="h-24 w-24 text-primary-foreground/20" />
+                  {exec.image ? (
+                    <div className="h-64 relative overflow-hidden bg-muted/20">
+                      <img 
+                        src={exec.image} 
+                        alt={exec.name} 
+                        className="w-full h-full object-cover object-center"
+                      />
                     </div>
-                  </div>
+                  ) : (
+                    <div className="h-64 bg-gradient-primary relative">
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <Building2 className="h-24 w-24 text-primary-foreground/20" />
+                      </div>
+                    </div>
+                  )}
                   <div className="p-8 space-y-4">
                     <div>
                       <h3 className="text-2xl font-heading font-bold text-foreground mb-1">
