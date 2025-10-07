@@ -8,6 +8,14 @@ import paulWeinerImage from '@/assets/paul-weiner.jpg';
 import wladimirKlitschkoImage from '@/assets/wladimir-klitschko.jpg';
 import gualbertoMedinaImage from '@/assets/gualberto-medina.png';
 import michaelShereskyImage from '@/assets/michael-sheresky.png';
+import raymondLesniakImage from '@/assets/raymond-lesniak.jpg';
+import rogerMasonJrImage from '@/assets/roger-mason-jr.jpg';
+import stevenGreenerImage from '@/assets/steven-greener.jpg';
+import winstonMaImage from '@/assets/winston-ma.jpg';
+import justinHorowitzImage from '@/assets/justin-horowitz.jpg';
+import frankZisaImage from '@/assets/frank-zisa.jpg';
+import conradRoncatiImage from '@/assets/conrad-roncati.jpg';
+import brianCuryImage from '@/assets/brian-cury.jpg';
 
 const Leadership = () => {
 
@@ -55,6 +63,7 @@ const Leadership = () => {
         'VP Investment Banking at J.P. Morgan',
         'Corporate Lawyer at Davis Polk & Wardwell'
       ],
+      image: winstonMaImage,
     },
     {
       name: 'Molly Ford',
@@ -79,6 +88,7 @@ const Leadership = () => {
         'Founder of Architectura with offices in NYC, NJ, CA, FL, CT',
         'Oversees acquisition, entitlements, design, engineering, and construction'
       ],
+      image: conradRoncatiImage,
     },
     {
       name: 'Nicholas Horner',
@@ -128,6 +138,7 @@ const Leadership = () => {
         'Former roles at Prudential Investment Management and Extra Space Self Storage',
         'Degrees in Real Estate Development from Columbia University'
       ],
+      image: frankZisaImage,
     },
     {
       name: 'Justin Horowitz',
@@ -140,6 +151,7 @@ const Leadership = () => {
         'Previous roles at Savills Studley and Brickman',
         'Degree from Syracuse University Whitman School of Management'
       ],
+      image: justinHorowitzImage,
     },
   ];
 
@@ -182,6 +194,7 @@ const Leadership = () => {
       board: 'Strategic Advisors',
       slug: 'roger-mason-jr',
       description: 'Ten-season NBA veteran turned executive, bringing sports business acumen and strategic partnerships.',
+      image: rogerMasonJrImage,
     },
     {
       name: 'Donald DiFrancesco',
@@ -196,6 +209,7 @@ const Leadership = () => {
       board: 'Government Affairs',
       slug: 'raymond-lesniak',
       description: 'Served in the New Jersey State Senate from 1983 to 2018, representing the 20th Legislative District.',
+      image: raymondLesniakImage,
     },
     {
       name: 'Gualberto Medina',
@@ -234,6 +248,7 @@ const Leadership = () => {
       board: 'Strategic Advisors',
       slug: 'brian-cury',
       description: 'Founder and CEO of EarthCam, pioneer in construction monitoring and jobsite camera technology.',
+      image: brianCuryImage,
     },
     {
       name: 'Kery Davis',
@@ -255,6 +270,7 @@ const Leadership = () => {
       board: 'Strategic Advisors',
       slug: 'steven-greener',
       description: 'Executive at Primary Wave bringing entertainment industry expertise and brand development experience.',
+      image: stevenGreenerImage,
     },
     {
       name: 'Ramses Ishak',
@@ -387,11 +403,15 @@ const Leadership = () => {
                   to={`/profile/${exec.slug}`}
                   className="bg-card border border-border rounded-lg overflow-hidden hover-lift group"
                 >
-                  <div className="h-48 bg-gradient-primary relative">
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <Building2 className="h-16 w-16 text-primary-foreground/20" />
+                  {exec.image ? (
+                    <ResponsiveHeadshot src={exec.image} alt={exec.name} />
+                  ) : (
+                    <div className="h-48 bg-gradient-primary relative">
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <Building2 className="h-16 w-16 text-primary-foreground/20" />
+                      </div>
                     </div>
-                  </div>
+                  )}
                   <div className="p-6 space-y-2">
                     <h3 className="text-lg font-heading font-bold text-foreground group-hover:text-accent transition-colors">
                       {exec.name}
