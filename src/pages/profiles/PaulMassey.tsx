@@ -1,6 +1,7 @@
 import { Building2, Award, ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import paulMasseyImage from '@/assets/paul-massey.png';
 
 const PaulMassey = () => {
   return (
@@ -15,10 +16,12 @@ const PaulMassey = () => {
 
         <div className="max-w-4xl mx-auto">
           <div className="bg-card border border-border rounded-lg overflow-hidden">
-            <div className="h-96 bg-gradient-primary relative">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <Building2 className="h-32 w-32 text-primary-foreground/20" />
-              </div>
+            <div className="h-96 relative overflow-hidden">
+              <img 
+                src={paulMasseyImage} 
+                alt="Paul Massey" 
+                className="w-full h-full object-cover object-[center_15%]"
+              />
             </div>
 
             <div className="p-8 md:p-12 space-y-8">
