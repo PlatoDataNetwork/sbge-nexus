@@ -2,6 +2,7 @@ import { Linkedin, Award, Building2, ChevronLeft, ChevronRight } from 'lucide-re
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
+import jaRuleImage from '@/assets/ja-rule.png';
 
 const Leadership = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -389,8 +390,12 @@ const Leadership = () => {
             </h2>
             
             <div className="bg-primary-foreground/10 backdrop-blur-sm rounded-lg p-8 border border-primary-foreground/20">
-              <div className="w-32 h-32 bg-primary-foreground/20 rounded-full mx-auto mb-6 flex items-center justify-center">
-                <Award className="h-16 w-16 text-primary-foreground" />
+              <div className="w-40 h-40 mx-auto mb-6 overflow-hidden rounded-full border-4 border-primary-foreground/30">
+                <img 
+                  src={jaRuleImage} 
+                  alt="Jeffrey Atkins 'Ja Rule' - Brand Ambassador" 
+                  className="w-full h-full object-cover"
+                />
               </div>
               
               <h3 className="text-3xl font-heading font-bold mb-2">Jeffrey Atkins "Ja Rule"</h3>
