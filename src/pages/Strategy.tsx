@@ -1,42 +1,57 @@
 import { Target, MapPin, TrendingUp, DollarSign, Shield, Building } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import { memo } from 'react';
+
+// Static data moved outside component to prevent recreation on each render
+const targetMarkets = [
+  'New Jersey',
+  'New York',
+  'Florida',
+  'Virginia',
+  'Texas',
+  'Nevada',
+  'Arizona',
+  'California',
+  'Tennessee',
+];
+
+const investmentTypes = [
+  {
+    title: 'Stabilized Acquisitions',
+    description: 'Acquiring performing assets in strategic locations with immediate cash flow',
+  },
+  {
+    title: 'Ground-Up Development',
+    description: 'New construction in high-demand areas with strong development returns',
+  },
+  {
+    title: 'Value-Add Redevelopment',
+    description: 'Repositioning underperforming assets to maximize returns',
+  },
+  {
+    title: 'Portfolio Acquisitions',
+    description: 'Strategic multi-property acquisitions for scale and efficiency',
+  },
+];
+
+const additionalOpportunities = [
+  'Small Bay Industrial Storage',
+  'Vehicle & Truck Storage',
+  'Industrial Outdoor Storage (IOS)',
+  'General Industrial Warehouses',
+  'Outdoor RV Storage',
+  'Boat & Marine Storage',
+];
+
+const iconMap = {
+  'Stabilized Acquisitions': Building,
+  'Ground-Up Development': Target,
+  'Value-Add Redevelopment': TrendingUp,
+  'Portfolio Acquisitions': MapPin,
+};
 
 const Strategy = () => {
-  const targetMarkets = [
-    'New Jersey',
-    'New York',
-    'Florida',
-    'Virginia',
-    'Texas',
-    'Nevada',
-    'Arizona',
-    'California',
-    'Tennessee',
-  ];
-
-  const investmentTypes = [
-    {
-      title: 'Stabilized Acquisitions',
-      description: 'Acquiring performing assets in strategic locations with immediate cash flow',
-      icon: <Building className="h-6 w-6" />,
-    },
-    {
-      title: 'Ground-Up Development',
-      description: 'New construction in high-demand areas with strong development returns',
-      icon: <Target className="h-6 w-6" />,
-    },
-    {
-      title: 'Value-Add Redevelopment',
-      description: 'Repositioning underperforming assets to maximize returns',
-      icon: <TrendingUp className="h-6 w-6" />,
-    },
-    {
-      title: 'Portfolio Acquisitions',
-      description: 'Strategic multi-property acquisitions for scale and efficiency',
-      icon: <MapPin className="h-6 w-6" />,
-    },
-  ];
 
   return (
     <div className="min-h-screen pt-20">
@@ -218,21 +233,24 @@ const Strategy = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {investmentTypes.map((type) => (
-                <div key={type.title} className="bg-card border border-border rounded-lg p-8 hover-lift">
-                  <div className="flex items-start space-x-4">
-                    <div className="p-3 bg-accent/20 rounded-lg flex-shrink-0">
-                      {type.icon}
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-heading font-semibold text-foreground mb-2">
-                        {type.title}
-                      </h3>
-                      <p className="text-muted-foreground">{type.description}</p>
+              {investmentTypes.map((type) => {
+                const IconComponent = iconMap[type.title as keyof typeof iconMap];
+                return (
+                  <div key={type.title} className="bg-card border border-border rounded-lg p-8 hover-lift">
+                    <div className="flex items-start space-x-4">
+                      <div className="p-3 bg-accent/20 rounded-lg flex-shrink-0">
+                        <IconComponent className="h-6 w-6" />
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-heading font-semibold text-foreground mb-2">
+                          {type.title}
+                        </h3>
+                        <p className="text-muted-foreground">{type.description}</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>
@@ -275,14 +293,7 @@ const Strategy = () => {
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {[
-                'Small Bay Industrial Storage',
-                'Vehicle & Truck Storage',
-                'Industrial Outdoor Storage (IOS)',
-                'General Industrial Warehouses',
-                'Outdoor RV Storage',
-                'Boat & Marine Storage',
-              ].map((type) => (
+              {additionalOpportunities.map((type) => (
                 <div
                   key={type}
                   className="bg-primary-foreground/10 backdrop-blur-sm rounded-lg p-6 border border-primary-foreground/20"
@@ -302,4 +313,4 @@ const Strategy = () => {
   );
 };
 
-export default Strategy;
+export default memo(Strategy);
