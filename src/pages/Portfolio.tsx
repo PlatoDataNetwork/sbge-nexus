@@ -75,7 +75,7 @@ const Portfolio = () => {
     {
       title: 'Facilities',
       value: '6',
-      change: 'Initial Portfolio',
+      change: 'Current Portfolio',
       positive: true,
     },
   ];
