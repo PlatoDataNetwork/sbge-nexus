@@ -8,7 +8,7 @@ import facilityStatenIslandImage from '@/assets/facility-staten-island.png';
 const Portfolio = () => {
   const facilities = [
     {
-      name: 'Facility 1',
+      name: 'StorageBlue Newark',
       location: 'Newark, NJ',
       sqft: '95,000',
       occupancy: '92%',
@@ -16,7 +16,7 @@ const Portfolio = () => {
       image: facilityFerryImage,
     },
     {
-      name: 'Facility 2',
+      name: 'StorageBlue Paterson',
       location: 'Paterson, NJ',
       sqft: '24,000',
       occupancy: '88%',
@@ -24,7 +24,7 @@ const Portfolio = () => {
       image: facilityPatersonImage,
     },
     {
-      name: 'Facility 3',
+      name: 'StorageBlue Paterson',
       location: 'Clifton, NJ',
       sqft: '35,000',
       occupancy: '95%',
@@ -32,7 +32,7 @@ const Portfolio = () => {
       image: facilityCliftonImage,
     },
     {
-      name: 'Facility 4',
+      name: 'StorageBlue Staten Island',
       location: 'Staten Island, NY',
       sqft: '267,000',
       occupancy: '90%',
