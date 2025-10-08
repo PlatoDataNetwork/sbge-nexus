@@ -1,14 +1,16 @@
 import { MapPin, Square, TrendingUp, Calendar } from 'lucide-react';
 import StatCard from '@/components/StatCard';
+import facilityFerryImage from '@/assets/facility-ferry.jpg';
 
 const Portfolio = () => {
   const facilities = [
     {
       name: 'Facility 1',
       location: 'North Jersey',
-      sqft: '250,000',
+      sqft: '95,000',
       occupancy: '92%',
       status: 'Stabilized',
+      image: facilityFerryImage,
     },
     {
       name: 'Facility 2',
@@ -131,10 +133,20 @@ const Portfolio = () => {
                   key={index}
                   className="bg-card border border-border rounded-lg overflow-hidden hover-lift"
                 >
-                  <div className="h-48 bg-gradient-primary relative">
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <Square className="h-16 w-16 text-primary-foreground/30" />
-                    </div>
+                  <div className="h-48 relative overflow-hidden">
+                    {facility.image ? (
+                      <img 
+                        src={facility.image} 
+                        alt={facility.name}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <div className="h-full bg-gradient-primary relative">
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <Square className="h-16 w-16 text-primary-foreground/30" />
+                        </div>
+                      </div>
+                    )}
                   </div>
                   <div className="p-6 space-y-4">
                     <div>
