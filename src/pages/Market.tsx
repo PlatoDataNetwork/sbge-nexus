@@ -1,52 +1,58 @@
 import { TrendingUp, Users, Building2, DollarSign, PieChart, BarChart3 } from 'lucide-react';
 import StatCard from '@/components/StatCard';
+import { memo } from 'react';
+
+// Static data moved outside component to prevent recreation on each render
+const marketStats = [
+  {
+    value: '$39.5B',
+    label: 'Market Size',
+    description: 'Total U.S. self-storage market value',
+  },
+  {
+    value: '3.5%',
+    label: 'Annual Growth (CAGR)',
+    description: 'Projected through 2028',
+  },
+  {
+    value: '90%',
+    label: 'Ownership Fragmentation',
+    description: 'Operated by small owners',
+  },
+  {
+    value: '$15-20',
+    label: 'Avg. Rental Rate/SqFt',
+    description: 'National average annual rate',
+  },
+];
+
+const growthDrivers = [
+  {
+    title: 'Urbanization Trends',
+    description: 'Continued migration to metropolitan areas creating demand for flexible storage solutions',
+  },
+  {
+    title: 'E-Commerce Growth',
+    description: 'Online retail driving demand for inventory storage and last-mile logistics',
+  },
+  {
+    title: 'Housing Market Dynamics',
+    description: 'Home transitions, downsizing, and remote work driving storage needs',
+  },
+  {
+    title: 'Business Storage Demand',
+    description: 'Small businesses requiring flexible, cost-effective storage options',
+  },
+];
+
+const iconMap = {
+  'Urbanization Trends': Building2,
+  'E-Commerce Growth': TrendingUp,
+  'Housing Market Dynamics': Users,
+  'Business Storage Demand': DollarSign,
+};
 
 const Market = () => {
-  const marketStats = [
-    {
-      value: '$39.5B',
-      label: 'Market Size',
-      description: 'Total U.S. self-storage market value',
-    },
-    {
-      value: '3.5%',
-      label: 'Annual Growth (CAGR)',
-      description: 'Projected through 2028',
-    },
-    {
-      value: '90%',
-      label: 'Ownership Fragmentation',
-      description: 'Operated by small owners',
-    },
-    {
-      value: '$15-20',
-      label: 'Avg. Rental Rate/SqFt',
-      description: 'National average annual rate',
-    },
-  ];
-
-  const growthDrivers = [
-    {
-      title: 'Urbanization Trends',
-      description: 'Continued migration to metropolitan areas creating demand for flexible storage solutions',
-      icon: <Building2 className="h-6 w-6" />,
-    },
-    {
-      title: 'E-Commerce Growth',
-      description: 'Online retail driving demand for inventory storage and last-mile logistics',
-      icon: <TrendingUp className="h-6 w-6" />,
-    },
-    {
-      title: 'Housing Market Dynamics',
-      description: 'Home transitions, downsizing, and remote work driving storage needs',
-      icon: <Users className="h-6 w-6" />,
-    },
-    {
-      title: 'Business Storage Demand',
-      description: 'Small businesses requiring flexible, cost-effective storage options',
-      icon: <DollarSign className="h-6 w-6" />,
-    },
-  ];
 
   return (
     <div className="min-h-screen pt-20">
@@ -105,21 +111,24 @@ const Market = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {growthDrivers.map((driver) => (
-                <div key={driver.title} className="bg-card border border-border rounded-lg p-8 hover-lift">
-                  <div className="flex items-start space-x-4">
-                    <div className="p-3 bg-accent/20 rounded-lg flex-shrink-0">
-                      {driver.icon}
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-heading font-semibold text-foreground mb-2">
-                        {driver.title}
-                      </h3>
-                      <p className="text-muted-foreground">{driver.description}</p>
+              {growthDrivers.map((driver) => {
+                const IconComponent = iconMap[driver.title as keyof typeof iconMap];
+                return (
+                  <div key={driver.title} className="bg-card border border-border rounded-lg p-8 hover-lift">
+                    <div className="flex items-start space-x-4">
+                      <div className="p-3 bg-accent/20 rounded-lg flex-shrink-0">
+                        <IconComponent className="h-6 w-6" />
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-heading font-semibold text-foreground mb-2">
+                          {driver.title}
+                        </h3>
+                        <p className="text-muted-foreground">{driver.description}</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>
@@ -271,4 +280,4 @@ const Market = () => {
   );
 };
 
-export default Market;
+export default memo(Market);

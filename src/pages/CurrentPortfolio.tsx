@@ -3,82 +3,84 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, Building2, MapPin, TrendingUp, Calendar, Square } from "lucide-react";
+import { memo } from 'react';
+
+// Static data moved outside component to prevent recreation on each render
+const portfolioStats = {
+  facilities: 6,
+  units: "5,400+",
+  nrsf: "400,000",
+  projectedValue: "$150M"
+};
+
+const facilities = [
+  {
+    name: 'Facility 1',
+    location: 'North Jersey',
+    sqft: '250,000',
+    occupancy: '92%',
+    status: 'Stabilized',
+  },
+  {
+    name: 'Facility 2',
+    location: 'NYC Metro',
+    sqft: '180,000',
+    occupancy: '88%',
+    status: 'Stabilized',
+  },
+  {
+    name: 'Facility 3',
+    location: 'New Jersey',
+    sqft: '320,000',
+    occupancy: '95%',
+    status: 'Stabilized',
+  },
+  {
+    name: 'Facility 4',
+    location: 'North Jersey',
+    sqft: '210,000',
+    occupancy: '90%',
+    status: 'Value-Add',
+  },
+  {
+    name: 'Facility 5',
+    location: 'NYC Metro',
+    sqft: '275,000',
+    occupancy: '87%',
+    status: 'Development',
+  },
+  {
+    name: 'Facility 6',
+    location: 'New Jersey',
+    sqft: '195,000',
+    occupancy: '93%',
+    status: 'Stabilized',
+  },
+];
+
+const performanceMetrics = [
+  {
+    title: 'Total Square Feet',
+    value: '1.43M',
+    change: '+12% YoY',
+    positive: true,
+  },
+  {
+    title: 'Average Occupancy',
+    value: '90.8%',
+    change: '+3.2% vs Target',
+    positive: true,
+  },
+  {
+    title: 'Facilities',
+    value: '6',
+    change: 'Initial Portfolio',
+    positive: true,
+  },
+];
 
 const CurrentPortfolio = () => {
   const navigate = useNavigate();
-
-  const portfolioStats = {
-    facilities: 6,
-    units: "5,400+",
-    nrsf: "400,000",
-    projectedValue: "$150M"
-  };
-
-  const facilities = [
-    {
-      name: 'Facility 1',
-      location: 'North Jersey',
-      sqft: '250,000',
-      occupancy: '92%',
-      status: 'Stabilized',
-    },
-    {
-      name: 'Facility 2',
-      location: 'NYC Metro',
-      sqft: '180,000',
-      occupancy: '88%',
-      status: 'Stabilized',
-    },
-    {
-      name: 'Facility 3',
-      location: 'New Jersey',
-      sqft: '320,000',
-      occupancy: '95%',
-      status: 'Stabilized',
-    },
-    {
-      name: 'Facility 4',
-      location: 'North Jersey',
-      sqft: '210,000',
-      occupancy: '90%',
-      status: 'Value-Add',
-    },
-    {
-      name: 'Facility 5',
-      location: 'NYC Metro',
-      sqft: '275,000',
-      occupancy: '87%',
-      status: 'Development',
-    },
-    {
-      name: 'Facility 6',
-      location: 'New Jersey',
-      sqft: '195,000',
-      occupancy: '93%',
-      status: 'Stabilized',
-    },
-  ];
-
-  const performanceMetrics = [
-    {
-      title: 'Total Square Feet',
-      value: '1.43M',
-      change: '+12% YoY',
-      positive: true,
-    },
-    {
-      title: 'Average Occupancy',
-      value: '90.8%',
-      change: '+3.2% vs Target',
-      positive: true,
-    },
-    {
-      title: 'Facilities',
-      value: '6',
-      change: 'Initial Portfolio',
-      positive: true,
-    },
-  ];
 
   return (
     <div className="min-h-screen bg-background">
@@ -424,4 +426,4 @@ const CurrentPortfolio = () => {
   );
 };
 
-export default CurrentPortfolio;
+export default memo(CurrentPortfolio);

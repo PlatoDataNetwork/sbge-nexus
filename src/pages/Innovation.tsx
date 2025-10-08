@@ -1,44 +1,56 @@
 import { Bot, TrendingUp, Zap, Shield, Smartphone, BarChart } from 'lucide-react';
+import { memo } from 'react';
+
+// Static data moved outside component to prevent recreation on each render
+const innovations = [
+  {
+    title: 'AI-Powered Chatbots',
+    description: 'Intelligent customer service available 24/7 for inquiries, bookings, and support',
+    icon: 'Bot',
+    benefits: ['24/7 availability', 'Instant response', 'Multilingual support'],
+  },
+  {
+    title: 'Predictive Maintenance',
+    description: 'Machine learning algorithms predict equipment failures before they occur',
+    icon: 'Shield',
+    benefits: ['Reduced downtime', 'Cost savings', 'Enhanced reliability'],
+  },
+  {
+    title: 'Dynamic Pricing',
+    description: 'AI-driven pricing optimization based on demand, seasonality, and competition',
+    icon: 'TrendingUp',
+    benefits: ['Revenue optimization', 'Competitive positioning', 'Real-time adjustment'],
+  },
+  {
+    title: 'Smart Access Systems',
+    description: 'Mobile-first access control with biometric authentication and real-time monitoring',
+    icon: 'Smartphone',
+    benefits: ['Enhanced security', 'Contactless access', 'Usage analytics'],
+  },
+  {
+    title: 'Revenue Optimization',
+    description: 'Advanced analytics platform for performance tracking and strategic decisions',
+    icon: 'BarChart',
+    benefits: ['Data-driven insights', 'Performance tracking', 'Predictive analytics'],
+  },
+  {
+    title: 'Automated Operations',
+    description: 'Streamlined operations reducing labor costs while improving service quality',
+    icon: 'Zap',
+    benefits: ['Cost reduction', 'Operational efficiency', 'Scalability'],
+  },
+];
+
+const iconMap = {
+  Bot,
+  Shield,
+  TrendingUp,
+  Smartphone,
+  BarChart,
+  Zap,
+};
 
 const Innovation = () => {
-  const innovations = [
-    {
-      title: 'AI-Powered Chatbots',
-      description: 'Intelligent customer service available 24/7 for inquiries, bookings, and support',
-      icon: <Bot className="h-8 w-8" />,
-      benefits: ['24/7 availability', 'Instant response', 'Multilingual support'],
-    },
-    {
-      title: 'Predictive Maintenance',
-      description: 'Machine learning algorithms predict equipment failures before they occur',
-      icon: <Shield className="h-8 w-8" />,
-      benefits: ['Reduced downtime', 'Cost savings', 'Enhanced reliability'],
-    },
-    {
-      title: 'Dynamic Pricing',
-      description: 'AI-driven pricing optimization based on demand, seasonality, and competition',
-      icon: <TrendingUp className="h-8 w-8" />,
-      benefits: ['Revenue optimization', 'Competitive positioning', 'Real-time adjustment'],
-    },
-    {
-      title: 'Smart Access Systems',
-      description: 'Mobile-first access control with biometric authentication and real-time monitoring',
-      icon: <Smartphone className="h-8 w-8" />,
-      benefits: ['Enhanced security', 'Contactless access', 'Usage analytics'],
-    },
-    {
-      title: 'Revenue Optimization',
-      description: 'Advanced analytics platform for performance tracking and strategic decisions',
-      icon: <BarChart className="h-8 w-8" />,
-      benefits: ['Data-driven insights', 'Performance tracking', 'Predictive analytics'],
-    },
-    {
-      title: 'Automated Operations',
-      description: 'Streamlined operations reducing labor costs while improving service quality',
-      icon: <Zap className="h-8 w-8" />,
-      benefits: ['Cost reduction', 'Operational efficiency', 'Scalability'],
-    },
-  ];
 
   return (
     <div className="min-h-screen pt-20">
@@ -87,33 +99,36 @@ const Innovation = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {innovations.map((innovation) => (
-                <div key={innovation.title} className="bg-card border border-border rounded-lg p-8 hover-lift">
-                  <div className="flex items-start space-x-4 mb-6">
-                    <div className="p-3 bg-primary/10 rounded-lg flex-shrink-0 text-primary">
-                      {innovation.icon}
+              {innovations.map((innovation) => {
+                const IconComponent = iconMap[innovation.icon as keyof typeof iconMap];
+                return (
+                  <div key={innovation.title} className="bg-card border border-border rounded-lg p-8 hover-lift">
+                    <div className="flex items-start space-x-4 mb-6">
+                      <div className="p-3 bg-primary/10 rounded-lg flex-shrink-0 text-primary">
+                        <IconComponent className="h-8 w-8" />
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-heading font-bold text-foreground mb-2">
+                          {innovation.title}
+                        </h3>
+                        <p className="text-muted-foreground">{innovation.description}</p>
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="text-xl font-heading font-bold text-foreground mb-2">
-                        {innovation.title}
-                      </h3>
-                      <p className="text-muted-foreground">{innovation.description}</p>
+                    
+                    <div className="space-y-2">
+                      <div className="text-sm font-semibold text-foreground">Key Benefits:</div>
+                      <ul className="space-y-1">
+                        {innovation.benefits.map((benefit, index) => (
+                          <li key={index} className="flex items-center text-sm text-muted-foreground">
+                            <div className="w-1.5 h-1.5 bg-accent rounded-full mr-2" />
+                            {benefit}
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   </div>
-                  
-                  <div className="space-y-2">
-                    <div className="text-sm font-semibold text-foreground">Key Benefits:</div>
-                    <ul className="space-y-1">
-                      {innovation.benefits.map((benefit, index) => (
-                        <li key={index} className="flex items-center text-sm text-muted-foreground">
-                          <div className="w-1.5 h-1.5 bg-accent rounded-full mr-2" />
-                          {benefit}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>
@@ -252,4 +267,4 @@ const Innovation = () => {
   );
 };
 
-export default Innovation;
+export default memo(Innovation);

@@ -1,5 +1,6 @@
 import { MapPin, Square, TrendingUp, Calendar } from 'lucide-react';
 import StatCard from '@/components/StatCard';
+import { memo } from 'react';
 import facilityFerryImage from '@/assets/facility-ferry.jpg';
 import facilityPatersonImage from '@/assets/facility-paterson.jpg';
 import facilityCliftonImage from '@/assets/facility-clifton.jpg';
@@ -7,78 +8,80 @@ import facilityStatenIslandImage from '@/assets/facility-staten-island.png';
 import facilityAberdeenImage from '@/assets/facility-aberdeen.jpg';
 import facilityWestLongBranchImage from '@/assets/facility-west-long-branch.png';
 
-const Portfolio = () => {
-  const facilities = [
-    {
-      name: 'StorageBlue Newark',
-      location: 'Newark, NJ',
-      sqft: '95,000',
-      occupancy: '92%',
-      status: 'Stabilized',
-      image: facilityFerryImage,
-    },
-    {
-      name: 'StorageBlue Paterson',
-      location: 'Paterson, NJ',
-      sqft: '24,000',
-      occupancy: '88%',
-      status: 'Stabilized',
-      image: facilityPatersonImage,
-    },
-    {
-      name: 'StorageBlue Paterson',
-      location: 'Clifton, NJ',
-      sqft: '35,000',
-      occupancy: '95%',
-      status: 'Stabilized',
-      image: facilityCliftonImage,
-    },
-    {
-      name: 'StorageBlue Staten Island',
-      location: 'Staten Island, NY',
-      sqft: '267,000',
-      occupancy: '90%',
-      status: 'Value-Add',
-      image: facilityStatenIslandImage,
-    },
-    {
-      name: 'StorageBlue Aberdeen',
-      location: 'Aberdeen, NJ',
-      sqft: '85,000',
-      occupancy: '87%',
-      status: 'Development',
-      image: facilityAberdeenImage,
-    },
-    {
-      name: 'StorageBlue West Long Branch',
-      location: 'West Long Branch, NJ',
-      sqft: '68,000',
-      occupancy: '93%',
-      status: 'Stabilized',
-      image: facilityWestLongBranchImage,
-    },
-  ];
+// Static data moved outside component to prevent recreation on each render
+const facilities = [
+  {
+    name: 'StorageBlue Newark',
+    location: 'Newark, NJ',
+    sqft: '95,000',
+    occupancy: '92%',
+    status: 'Stabilized',
+    image: facilityFerryImage,
+  },
+  {
+    name: 'StorageBlue Paterson',
+    location: 'Paterson, NJ',
+    sqft: '24,000',
+    occupancy: '88%',
+    status: 'Stabilized',
+    image: facilityPatersonImage,
+  },
+  {
+    name: 'StorageBlue Paterson',
+    location: 'Clifton, NJ',
+    sqft: '35,000',
+    occupancy: '95%',
+    status: 'Stabilized',
+    image: facilityCliftonImage,
+  },
+  {
+    name: 'StorageBlue Staten Island',
+    location: 'Staten Island, NY',
+    sqft: '267,000',
+    occupancy: '90%',
+    status: 'Value-Add',
+    image: facilityStatenIslandImage,
+  },
+  {
+    name: 'StorageBlue Aberdeen',
+    location: 'Aberdeen, NJ',
+    sqft: '85,000',
+    occupancy: '87%',
+    status: 'Development',
+    image: facilityAberdeenImage,
+  },
+  {
+    name: 'StorageBlue West Long Branch',
+    location: 'West Long Branch, NJ',
+    sqft: '68,000',
+    occupancy: '93%',
+    status: 'Stabilized',
+    image: facilityWestLongBranchImage,
+  },
+];
 
-  const performanceMetrics = [
-    {
-      title: 'Total Square Feet',
-      value: '574K',
-      change: '+12% YoY',
-      positive: true,
-    },
-    {
-      title: 'Average Occupancy',
-      value: '90.5%',
-      change: '+3.2% vs Target',
-      positive: true,
-    },
-    {
-      title: 'Facilities',
-      value: '6',
-      change: 'Current Portfolio',
-      positive: true,
-    },
-  ];
+const performanceMetrics = [
+  {
+    title: 'Total Square Feet',
+    value: '574K',
+    change: '+12% YoY',
+    positive: true,
+  },
+  {
+    title: 'Average Occupancy',
+    value: '90.5%',
+    change: '+3.2% vs Target',
+    positive: true,
+  },
+  {
+    title: 'Facilities',
+    value: '6',
+    change: 'Current Portfolio',
+    positive: true,
+  },
+];
+
+const Portfolio = () => {
 
   return (
     <div className="min-h-screen pt-20">
@@ -317,4 +320,4 @@ const Portfolio = () => {
   );
 };
 
-export default Portfolio;
+export default memo(Portfolio);

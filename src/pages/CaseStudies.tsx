@@ -3,78 +3,80 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, TrendingUp, DollarSign, Building2, Calendar } from "lucide-react";
+import { memo } from 'react';
+
+// Static data moved outside component to prevent recreation on each render
+const caseStudyData = {
+  totalFacilities: 6,
+  totalSqft: "335,000",
+  totalUnits: "4,700",
+  developmentCost: "$46.5M",
+  salePrice: "$100M",
+  avgLeveredIRR: "33.79%",
+  avgLeveredMOIC: "34.00X",
+  unlEveredIRR: "17.14%",
+  unleveredMOIC: "2.94X"
+};
+
+const facilities = [
+  {
+    location: "3322 Hudson Avenue, Union City, NJ",
+    basis: "$11.7M",
+    year: "2014",
+    sale: "$28.5M",
+    saleYear: "2024",
+    irr: "16.69% / 29.40%",
+    cashOnCash: "13.00%"
+  },
+  {
+    location: "190 Baldwin Avenue, Jersey City, NJ",
+    basis: "$7.6M",
+    year: "2014",
+    sale: "$21.6M",
+    saleYear: "2024",
+    irr: "18.72% / 48.92%",
+    cashOnCash: "14.38%"
+  },
+  {
+    location: "315 Coles Street, Jersey City, NJ",
+    basis: "$4.5M",
+    year: "2014",
+    sale: "$13.0M",
+    saleYear: "2024",
+    irr: "18.26% / 32.06%",
+    cashOnCash: "12.74%"
+  },
+  {
+    location: "200 Mt. Pleasant Avenue, Newark, NJ",
+    basis: "$6.3M",
+    year: "2014",
+    sale: "$17.8M",
+    saleYear: "2024",
+    irr: "18.78% / 32.80%",
+    cashOnCash: "15.44%"
+  },
+  {
+    location: "123 W Tryon Avenue, Teaneck, NJ",
+    basis: "$9.6M",
+    year: "2022",
+    sale: "$11.2M",
+    saleYear: "2024",
+    irr: "17.42% / 52.39%",
+    cashOnCash: "7.83%"
+  },
+  {
+    location: "170 River Drive, Garfield, NJ",
+    basis: "$6.8M",
+    year: "2018/19",
+    sale: "$7.95M",
+    saleYear: "2024",
+    irr: "4.92%",
+    cashOnCash: "4.68%"
+  }
+];
 
 const CaseStudies = () => {
   const navigate = useNavigate();
-
-  const caseStudyData = {
-    totalFacilities: 6,
-    totalSqft: "335,000",
-    totalUnits: "4,700",
-    developmentCost: "$46.5M",
-    salePrice: "$100M",
-    avgLeveredIRR: "33.79%",
-    avgLeveredMOIC: "34.00X",
-    unlEveredIRR: "17.14%",
-    unleveredMOIC: "2.94X"
-  };
-
-  const facilities = [
-    {
-      location: "3322 Hudson Avenue, Union City, NJ",
-      basis: "$11.7M",
-      year: "2014",
-      sale: "$28.5M",
-      saleYear: "2024",
-      irr: "16.69% / 29.40%",
-      cashOnCash: "13.00%"
-    },
-    {
-      location: "190 Baldwin Avenue, Jersey City, NJ",
-      basis: "$7.6M",
-      year: "2014",
-      sale: "$21.6M",
-      saleYear: "2024",
-      irr: "18.72% / 48.92%",
-      cashOnCash: "14.38%"
-    },
-    {
-      location: "315 Coles Street, Jersey City, NJ",
-      basis: "$4.5M",
-      year: "2014",
-      sale: "$13.0M",
-      saleYear: "2024",
-      irr: "18.26% / 32.06%",
-      cashOnCash: "12.74%"
-    },
-    {
-      location: "200 Mt. Pleasant Avenue, Newark, NJ",
-      basis: "$6.3M",
-      year: "2014",
-      sale: "$17.8M",
-      saleYear: "2024",
-      irr: "18.78% / 32.80%",
-      cashOnCash: "15.44%"
-    },
-    {
-      location: "123 W Tryon Avenue, Teaneck, NJ",
-      basis: "$9.6M",
-      year: "2022",
-      sale: "$11.2M",
-      saleYear: "2024",
-      irr: "17.42% / 52.39%",
-      cashOnCash: "7.83%"
-    },
-    {
-      location: "170 River Drive, Garfield, NJ",
-      basis: "$6.8M",
-      year: "2018/19",
-      sale: "$7.95M",
-      saleYear: "2024",
-      irr: "4.92%",
-      cashOnCash: "4.68%"
-    }
-  ];
 
   return (
     <div className="min-h-screen bg-background">
@@ -212,4 +214,4 @@ const CaseStudies = () => {
   );
 };
 
-export default CaseStudies;
+export default memo(CaseStudies);

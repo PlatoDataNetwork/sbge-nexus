@@ -1,6 +1,7 @@
 import { Linkedin, Award, Building2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { memo } from 'react';
 import jaRuleImage from '@/assets/ja-rule.png';
 import byronScottImage from '@/assets/byron-scott.jpg';
 import rinaldoDArgenioImage from '@/assets/rinaldo-dargenio.jpg';
@@ -31,9 +32,8 @@ import barryGosinImage from '@/assets/barry-gosin.png';
 import scottRechlerImage from '@/assets/scott-rechler.png';
 import keryDavisImage from '@/assets/kery-davis.jpg';
 
-const Leadership = () => {
-
-  const executives = [
+// Static data moved outside component to prevent recreation on each render
+const executives = [
     {
       name: 'Alan Mruvka',
       title: 'Founder & CEO',
@@ -69,10 +69,10 @@ const Leadership = () => {
       achievements: ['Development Leadership', 'Real Estate Innovation', 'Portfolio Management'],
       image: scottRechlerImage,
       imagePosition: 'upper',
-    },
-  ];
+  },
+];
 
-  const executiveTeam = [
+const executiveTeam = [
     {
       name: 'Winston Ma',
       title: 'Chief Investment Officer',
@@ -182,20 +182,20 @@ const Leadership = () => {
         'Degree from Syracuse University Whitman School of Management'
       ],
       image: justinHorowitzImage,
-    },
-  ];
+  },
+];
 
-  type Advisor = {
-    name: string;
-    title: string;
-    board: string;
-    slug?: string;
-    description: string;
-    image?: string;
-    imagePosition?: 'top' | 'center' | 'top-center' | 'face-high' | 'face-low' | 'upper' | 'center-right';
-  };
+type Advisor = {
+  name: string;
+  title: string;
+  board: string;
+  slug?: string;
+  description: string;
+  image?: string;
+  imagePosition?: 'top' | 'center' | 'top-center' | 'face-high' | 'face-low' | 'upper' | 'center-right';
+};
 
-  const allAdvisors: Advisor[] = [
+const allAdvisors: Advisor[] = [
     {
       name: 'John Calipari',
       title: 'Hall of Fame Basketball Coach',
@@ -333,33 +333,33 @@ const Leadership = () => {
       description: 'Strategic partner providing business advisory and operational expertise.',
       image: michaelShereskyImage,
       imagePosition: 'top-center',
-    },
-  ];
+  },
+];
 
-  // Responsive image component to improve headshot placement across varying aspect ratios
-  const ResponsiveHeadshot = ({ src, alt, position = 'center' }: { src: string; alt: string; position?: 'top' | 'center' | 'top-center' | 'face-high' | 'face-low' | 'upper' | 'center-right' }) => {
-    const positionClass =
-      position === 'upper' ? 'object-[center_15%]' :
-      position === 'top' ? 'object-[center_20%]' :
-      position === 'top-center' ? 'object-[center_30%]' :
-      position === 'face-high' ? 'object-[center_35%]' :
-      position === 'face-low' ? 'object-[center_65%]' :
-      position === 'center-right' ? 'object-[55%_center]' :
-      'object-center';
-    return (
-      <div className="rounded-lg mb-4 overflow-hidden bg-muted/20">
-        <div className="aspect-[3/4] w-full flex items-center justify-center">
-          <img
-            src={src}
-            alt={alt}
-            className={`w-full h-full object-cover ${positionClass}`}
-          />
-        </div>
+// Responsive image component to improve headshot placement across varying aspect ratios
+const ResponsiveHeadshot = ({ src, alt, position = 'center' }: { src: string; alt: string; position?: 'top' | 'center' | 'top-center' | 'face-high' | 'face-low' | 'upper' | 'center-right' }) => {
+  const positionClass =
+    position === 'upper' ? 'object-[center_15%]' :
+    position === 'top' ? 'object-[center_20%]' :
+    position === 'top-center' ? 'object-[center_30%]' :
+    position === 'face-high' ? 'object-[center_35%]' :
+    position === 'face-low' ? 'object-[center_65%]' :
+    position === 'center-right' ? 'object-[55%_center]' :
+    'object-center';
+  return (
+    <div className="rounded-lg mb-4 overflow-hidden bg-muted/20">
+      <div className="aspect-[3/4] w-full flex items-center justify-center">
+        <img
+          src={src}
+          alt={alt}
+          className={`w-full h-full object-cover ${positionClass}`}
+        />
       </div>
-    );
-  };
+    </div>
+  );
+};
 
-
+const Leadership = () => {
   return (
     <div className="min-h-screen pt-20">
       {/* Hero Section */}
@@ -718,4 +718,4 @@ const Leadership = () => {
   );
 };
 
-export default Leadership;
+export default memo(Leadership);
