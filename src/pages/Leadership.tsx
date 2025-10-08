@@ -514,8 +514,12 @@ const Leadership = () => {
           <div className="max-w-4xl mx-auto">
             <div className="bg-card border border-border rounded-lg p-8 md:p-12">
               <div className="text-center mb-8">
-                <div className="w-32 h-32 bg-gradient-primary rounded-full mx-auto mb-6 flex items-center justify-center">
-                  <Building2 className="h-16 w-16 text-primary-foreground" />
+                <div className="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-accent/20">
+                  <img 
+                    src={alanMruvkaImage} 
+                    alt="Alan Mruvka" 
+                    className="w-full h-full object-cover object-[center_35%]"
+                  />
                 </div>
                 <h2 className="text-3xl md:text-4xl font-heading font-bold text-primary mb-2">
                   Alan Mruvka
