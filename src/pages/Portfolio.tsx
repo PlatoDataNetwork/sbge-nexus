@@ -2,6 +2,8 @@ import { MapPin, Square, TrendingUp, Calendar } from 'lucide-react';
 import StatCard from '@/components/StatCard';
 import facilityFerryImage from '@/assets/facility-ferry.jpg';
 import facilityPatersonImage from '@/assets/facility-paterson.jpg';
+import facilityCliftonImage from '@/assets/facility-clifton.jpg';
+import facilityStatenIslandImage from '@/assets/facility-staten-island.png';
 
 const Portfolio = () => {
   const facilities = [
@@ -23,17 +25,19 @@ const Portfolio = () => {
     },
     {
       name: 'Facility 3',
-      location: 'New Jersey',
-      sqft: '320,000',
+      location: 'Clifton, NJ',
+      sqft: '35,000',
       occupancy: '95%',
       status: 'Stabilized',
+      image: facilityCliftonImage,
     },
     {
       name: 'Facility 4',
-      location: 'North Jersey',
-      sqft: '210,000',
+      location: 'Staten Island, NY',
+      sqft: '267,000',
       occupancy: '90%',
       status: 'Value-Add',
+      image: facilityStatenIslandImage,
     },
     {
       name: 'Facility 5',
