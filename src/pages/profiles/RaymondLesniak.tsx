@@ -1,7 +1,6 @@
-import { Building2, Award, ArrowLeft } from 'lucide-react';
+import { Award, ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import raymondLesniakImage from '@/assets/raymond-lesniak.jpg';
 
 const RaymondLesniak = () => {
   return (
@@ -16,14 +15,6 @@ const RaymondLesniak = () => {
 
         <div className="max-w-4xl mx-auto">
           <div className="bg-card border border-border rounded-lg overflow-hidden">
-            <div className="h-96 relative overflow-hidden">
-              <img 
-                src={raymondLesniakImage} 
-                alt="Raymond Lesniak" 
-                className="w-full h-full object-cover object-[center_65%]"
-              />
-            </div>
-
             <div className="p-8 md:p-12 space-y-8">
               <div>
                 <h1 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-2">
