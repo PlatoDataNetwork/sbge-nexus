@@ -1,12 +1,13 @@
 import { MapPin, Square, TrendingUp, Calendar } from 'lucide-react';
 import StatCard from '@/components/StatCard';
 import facilityFerryImage from '@/assets/facility-ferry.jpg';
+import facilityPatersonImage from '@/assets/facility-paterson.jpg';
 
 const Portfolio = () => {
   const facilities = [
     {
       name: 'Facility 1',
-      location: 'North Jersey',
+      location: 'Newark, NJ',
       sqft: '95,000',
       occupancy: '92%',
       status: 'Stabilized',
@@ -14,10 +15,11 @@ const Portfolio = () => {
     },
     {
       name: 'Facility 2',
-      location: 'NYC Metro',
-      sqft: '180,000',
+      location: 'Paterson, NJ',
+      sqft: '24,000',
       occupancy: '88%',
       status: 'Stabilized',
+      image: facilityPatersonImage,
     },
     {
       name: 'Facility 3',
