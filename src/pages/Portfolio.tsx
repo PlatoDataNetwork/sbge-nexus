@@ -4,6 +4,8 @@ import facilityFerryImage from '@/assets/facility-ferry.jpg';
 import facilityPatersonImage from '@/assets/facility-paterson.jpg';
 import facilityCliftonImage from '@/assets/facility-clifton.jpg';
 import facilityStatenIslandImage from '@/assets/facility-staten-island.png';
+import facilityAberdeenImage from '@/assets/facility-aberdeen.jpg';
+import facilityWestLongBranchImage from '@/assets/facility-west-long-branch.png';
 
 const Portfolio = () => {
   const facilities = [
@@ -40,18 +42,20 @@ const Portfolio = () => {
       image: facilityStatenIslandImage,
     },
     {
-      name: 'Facility 5',
-      location: 'NYC Metro',
-      sqft: '275,000',
+      name: 'StorageBlue Aberdeen',
+      location: 'Aberdeen, NJ',
+      sqft: '85,000',
       occupancy: '87%',
       status: 'Development',
+      image: facilityAberdeenImage,
     },
     {
-      name: 'Facility 6',
-      location: 'New Jersey',
-      sqft: '195,000',
+      name: 'StorageBlue West Long Branch',
+      location: 'West Long Branch, NJ',
+      sqft: '68,000',
       occupancy: '93%',
       status: 'Stabilized',
+      image: facilityWestLongBranchImage,
     },
   ];
 
