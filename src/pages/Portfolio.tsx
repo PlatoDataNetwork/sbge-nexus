@@ -62,13 +62,13 @@ const Portfolio = () => {
   const performanceMetrics = [
     {
       title: 'Total Square Feet',
-      value: '1.43M',
+      value: '574K',
       change: '+12% YoY',
       positive: true,
     },
     {
       title: 'Average Occupancy',
-      value: '90.8%',
+      value: '90.5%',
       change: '+3.2% vs Target',
       positive: true,
     },
