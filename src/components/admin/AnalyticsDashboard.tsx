@@ -102,9 +102,9 @@ const AnalyticsDashboard = () => {
     const pageCounts: { [key: string]: number } = {};
     
     data.forEach(item => {
-      if (item.activity_data && item.activity_data.path) {
-        const path = item.activity_data.path;
-        pageCounts[path] = (pageCounts[path] || 0) + 1;
+      if (item.activity_data && item.activity_data.page) {
+        const page = item.activity_data.page;
+        pageCounts[page] = (pageCounts[page] || 0) + 1;
       }
     });
 
@@ -112,7 +112,7 @@ const AnalyticsDashboard = () => {
       .sort((a, b) => b[1] - a[1])
       .slice(0, 5) // Top 5 pages
       .map(([page, count]) => ({
-        name: page === '/' ? 'Home' : page.replace('/', ''),
+        name: page.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
         value: count,
       }));
   };
