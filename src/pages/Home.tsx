@@ -13,7 +13,7 @@ const Home = () => {
         className="relative min-h-screen flex items-center justify-center bg-cover bg-center"
         style={{ backgroundImage: `url(${heroBg})` }}
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-primary/70 via-primary/60 to-primary/50" />
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/90 via-primary/80 to-primary/70" />
         
         <div className="relative z-10 container mx-auto px-4 text-center text-primary-foreground">
           <div className="max-w-4xl mx-auto space-y-8 animate-fade-in-up">
