@@ -131,7 +131,7 @@ const About = () => {
           <div className="max-w-4xl mx-auto">
             <div className="bg-card border border-border rounded-lg p-8 md:p-12">
               <div className="text-center mb-8">
-                <div className="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-accent/20">
+                <div className="w-48 h-48 mx-auto mb-6 rounded-full overflow-hidden border-4 border-accent/20">
                   <img 
                     src="/src/assets/alan-mruvka.png"
                     alt="Alan Mruvka" 
