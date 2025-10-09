@@ -126,7 +126,7 @@ const AdminDashboard = () => {
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center mb-8">
           <div>
-            <h1 className="text-4xl font-heading font-bold text-primary mb-2">
+            <h1 className="text-4xl font-bold text-primary mb-2">
               Admin Dashboard
             </h1>
             <p className="text-muted-foreground">
