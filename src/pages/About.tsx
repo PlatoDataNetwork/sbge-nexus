@@ -125,22 +125,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* Founder Quote Section */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <blockquote className="space-y-6">
-              <p className="text-3xl md:text-4xl font-heading italic text-primary">
-                "You can't match the passion for success as in a Founder-driven company."
-              </p>
-              <footer className="text-lg text-muted-foreground">
-                — Alan Mruvka, Founder
-              </footer>
-            </blockquote>
-          </div>
-        </div>
-      </section>
-
       {/* Founder Spotlight */}
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
