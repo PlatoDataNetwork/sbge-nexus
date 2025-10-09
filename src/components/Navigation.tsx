@@ -141,7 +141,7 @@ const Navigation = () => {
                   variant={isHomePage && !isScrolled ? "secondary" : "ghost"}
                   size="sm" 
                   asChild
-                  className={isHomePage && !isScrolled ? "bg-white text-foreground hover:bg-white/90" : ""}
+                  className={isHomePage && !isScrolled ? "bg-white/20 text-white hover:bg-white/10" : ""}
                 >
                   <Link to="/investor-portal">
                     <User className="mr-2 h-4 w-4" />
@@ -152,7 +152,7 @@ const Navigation = () => {
                   variant={isHomePage && !isScrolled ? "secondary" : "outline"}
                   size="sm" 
                   onClick={handleSignOut}
-                  className={isHomePage && !isScrolled ? "bg-white text-foreground hover:bg-white/90" : ""}
+                  className={isHomePage && !isScrolled ? "bg-white/20 text-white hover:bg-white/10" : ""}
                 >
                   <LogOut className="mr-2 h-4 w-4" />
                   Sign Out
@@ -233,7 +233,7 @@ const Navigation = () => {
                   <Button 
                     variant="outline" 
                     size="sm" 
-                    className={`w-full ${isHomePage && !isScrolled ? 'border-white text-white hover:bg-white/10' : ''}`}
+                    className={`w-full ${isHomePage && !isScrolled ? 'bg-white/20 border-white/20 text-white hover:bg-white/10' : ''}`}
                     asChild
                   >
                     <Link to="/investor-portal" onClick={() => setIsMobileMenuOpen(false)}>
@@ -244,7 +244,7 @@ const Navigation = () => {
                   <Button 
                     variant="outline" 
                     size="sm" 
-                    className={`w-full ${isHomePage && !isScrolled ? 'border-white text-white hover:bg-white/10' : ''}`}
+                    className={`w-full ${isHomePage && !isScrolled ? 'bg-white/20 border-white/20 text-white hover:bg-white/10' : ''}`}
                     onClick={() => { handleSignOut(); setIsMobileMenuOpen(false); }}
                   >
                     <LogOut className="mr-2 h-4 w-4" />
