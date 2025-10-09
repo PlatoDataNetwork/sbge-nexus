@@ -34,41 +34,14 @@ import keryDavisImage from '@/assets/kery-davis.jpg';
 
 // Static data moved outside component to prevent recreation on each render
 const executives = [
-    {
-      name: 'Alan Mruvka',
-      title: 'Founder & CEO',
-      slug: 'alan-mruvka',
-      bio: 'Founder and CEO with over 35 years of experience in self-storage, real estate development and entertainment. Founded E! Entertainment Television, now an NBC/Comcast company valued at over $15 Billion.',
-      achievements: ['35+ years industry experience', 'Founded E! Entertainment Television', 'Built 3M+ sqft of self-storage'],
-      image: alanMruvkaImage,
-      imagePosition: 'face-high',
-    },
-    {
-      name: 'Barry Gosin',
-      title: 'CEO, Newmark',
-      slug: 'barry-gosin',
-      bio: 'Chief Executive Officer of Newmark, bringing extensive expertise in real estate and hospitality sectors.',
-      achievements: ['Real Estate Leadership', 'Hospitality Expertise', 'Strategic Advisory'],
-      image: barryGosinImage,
-      imagePosition: 'upper',
-    },
-    {
-      name: 'Paul Massey',
-      title: 'CEO, Massey Knakal Realty Services',
-      slug: 'paul-massey',
-      bio: 'Chief Executive Officer of Massey Knakal Realty Services with deep market knowledge and transaction expertise.',
-      achievements: ['Investment Sales', 'Market Analysis', 'Transaction Advisory'],
-      image: paulMasseyImage,
-      imagePosition: 'upper',
-    },
-    {
-      name: 'Scott Rechler',
-      title: 'Chairman & CEO, RXR Realty',
-      slug: 'scott-rechler',
-      bio: 'Chairman and CEO of RXR Realty, leading one of the region\'s premier real estate development firms.',
-      achievements: ['Development Leadership', 'Real Estate Innovation', 'Portfolio Management'],
-      image: scottRechlerImage,
-      imagePosition: 'upper',
+  {
+    name: 'Alan Mruvka',
+    title: 'Founder & CEO',
+    slug: 'alan-mruvka',
+    bio: 'Founder and CEO with over 35 years of experience in self-storage, real estate development and entertainment. Founded E! Entertainment Television, now an NBC/Comcast company valued at over $15 Billion.',
+    achievements: ['35+ years industry experience', 'Founded E! Entertainment Television', 'Built 3M+ sqft of self-storage'],
+    image: alanMruvkaImage,
+    imagePosition: 'face-high',
   },
 ];
 
@@ -197,17 +170,9 @@ type Advisor = {
 
 const allAdvisors: Advisor[] = [
     {
-      name: 'John Calipari',
-      title: 'Hall of Fame Basketball Coach',
-      board: 'Strategic Advisors',
-      slug: 'john-calipari',
-      description: 'Hall of Fame basketball coach bringing strategic leadership and winning mentality to the organization.',
-      image: johnCalipariImage,
-    },
-    {
       name: 'Byron Scott',
       title: 'NBA Champion & Hall of Famer',
-      board: 'Strategic Advisors',
+      board: 'Board of Advisors',
       slug: 'byron-scott',
       description: 'Three-time NBA champion with the Los Angeles Lakers during their Showtime era, bringing championship experience and leadership.',
       image: byronScottImage,
@@ -215,7 +180,7 @@ const allAdvisors: Advisor[] = [
     {
       name: 'Wladimir Klitschko',
       title: 'Boxing Legend & Hall of Famer',
-      board: 'Strategic Advisors',
+      board: 'Board of Advisors',
       slug: 'wladimir-klitschko',
       description: 'Former heavyweight world champion known for technical skill, intelligence, and athleticism in the ring and business.',
       image: wladimirKlitschkoImage,
@@ -224,7 +189,7 @@ const allAdvisors: Advisor[] = [
     {
       name: 'Roger Mason Jr.',
       title: 'NBA Executive & Former Player',
-      board: 'Strategic Advisors',
+      board: 'Board of Advisors',
       slug: 'roger-mason-jr',
       description: 'Ten-season NBA veteran turned executive, bringing sports business acumen and strategic partnerships.',
       image: rogerMasonJrImage,
@@ -276,7 +241,7 @@ const allAdvisors: Advisor[] = [
     {
       name: 'Nawaf Althari',
       title: 'The Althari Group - Founding Partner',
-      board: 'Strategic Advisors',
+      board: 'Board of Advisors',
       slug: 'nawaf-althari',
       description: 'Founding Partner of The Althari Group, bringing strategic business development and investment expertise.',
       image: nawafAlthariImage,
@@ -285,7 +250,7 @@ const allAdvisors: Advisor[] = [
     {
       name: 'Brian Cury',
       title: 'EarthCam - Founder & CEO',
-      board: 'Strategic Advisors',
+      board: 'Board of Advisors',
       slug: 'brian-cury',
       description: 'Founder and CEO of EarthCam, pioneer in construction monitoring and jobsite camera technology.',
       image: brianCuryImage,
@@ -293,7 +258,7 @@ const allAdvisors: Advisor[] = [
     {
       name: 'Kery Davis',
       title: 'Howard University - Athletic Director',
-      board: 'Strategic Advisors',
+      board: 'Board of Advisors',
       slug: 'kery-davis',
       description: 'Athletic Director at Howard University with leadership experience in sports management and operations.',
       image: keryDavisImage,
@@ -302,7 +267,7 @@ const allAdvisors: Advisor[] = [
     {
       name: 'David Feldman',
       title: 'BFBST LLP - Co-Founder',
-      board: 'Strategic Advisors',
+      board: 'Board of Advisors',
       slug: 'david-feldman',
       description: 'Co-Founder of BFBST LLP, providing strategic financial and business advisory services.',
       image: davidFeldmanImage,
@@ -310,7 +275,7 @@ const allAdvisors: Advisor[] = [
     {
       name: 'Steven Greener',
       title: 'Primary Wave',
-      board: 'Strategic Advisors',
+      board: 'Board of Advisors',
       slug: 'steven-greener',
       description: 'Executive at Primary Wave bringing entertainment industry expertise and brand development experience.',
       image: stevenGreenerImage,
@@ -319,7 +284,7 @@ const allAdvisors: Advisor[] = [
     {
       name: 'Ramses Ishak',
       title: 'United Talent Agency',
-      board: 'Strategic Advisors',
+      board: 'Board of Advisors',
       slug: 'ramses-ishak',
       description: 'Partner at United Talent Agency with expertise in talent management and strategic partnerships.',
       image: ramsesIshakImage,
@@ -328,7 +293,7 @@ const allAdvisors: Advisor[] = [
     {
       name: 'Michael Sheresky',
       title: 'Partner',
-      board: 'Strategic Advisors',
+      board: 'Board of Advisors',
       slug: 'michael-sheresky',
       description: 'Strategic partner providing business advisory and operational expertise.',
       image: michaelShereskyImage,
@@ -564,13 +529,13 @@ const Leadership = () => {
         </div>
       </section>
 
-      {/* Strategic Advisors */}
+      {/* Board of Advisors */}
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-4xl md:text-5xl font-heading font-bold text-primary mb-6">
-                Strategic Advisors
+                Board of Advisors
               </h2>
               <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
                 Distinguished advisors providing expertise in strategy and business development
@@ -579,7 +544,7 @@ const Leadership = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {allAdvisors
-                .filter(advisor => advisor.board === 'Strategic Advisors')
+                .filter(advisor => advisor.board === 'Board of Advisors')
                 .map((advisor, index) => (
                   <div
                     key={index}
