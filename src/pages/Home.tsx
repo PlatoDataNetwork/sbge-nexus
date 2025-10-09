@@ -32,7 +32,7 @@ const Home = () => {
                   Request Access <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
-              <Button asChild size="lg" className="bg-[hsl(45,100%,51%)] text-foreground hover:bg-[hsl(45,100%,45%)]">
+              <Button asChild size="lg" className="bg-[hsl(43,48%,62%)] text-foreground hover:bg-[hsl(43,48%,55%)]">
                 <Link to="/strategy">Fund Overview</Link>
               </Button>
             </div>

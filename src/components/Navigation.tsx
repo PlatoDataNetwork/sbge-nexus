@@ -172,7 +172,7 @@ const Navigation = () => {
                   asChild 
                   variant="default"
                   size="sm" 
-                  className="bg-[hsl(45,100%,51%)] text-foreground hover:bg-[hsl(45,100%,45%)]"
+                  className="bg-[hsl(43,48%,62%)] text-foreground hover:bg-[hsl(43,48%,55%)]"
                 >
                   <Link to="/auth">Login</Link>
                 </Button>
@@ -260,7 +260,7 @@ const Navigation = () => {
                     asChild 
                     variant="default" 
                     size="sm" 
-                    className="w-full bg-[hsl(45,100%,51%)] text-foreground hover:bg-[hsl(45,100%,45%)]"
+                    className="w-full bg-[hsl(43,48%,62%)] text-foreground hover:bg-[hsl(43,48%,55%)]"
                   >
                     <Link to="/auth" onClick={() => setIsMobileMenuOpen(false)}>Login</Link>
                   </Button>
