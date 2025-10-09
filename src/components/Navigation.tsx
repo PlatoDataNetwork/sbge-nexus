@@ -170,9 +170,9 @@ const Navigation = () => {
                 </Button>
                 <Button 
                   asChild 
-                  variant={isHomePage && !isScrolled ? "secondaryGold" : "outlineGold"}
+                  variant="default"
                   size="sm" 
-                  className={isHomePage && !isScrolled ? "bg-white text-foreground" : ""}
+                  className="bg-[hsl(45,100%,51%)] text-foreground hover:bg-[hsl(45,100%,45%)]"
                 >
                   <Link to="/auth">Login</Link>
                 </Button>
@@ -258,9 +258,9 @@ const Navigation = () => {
                   </Button>
                   <Button 
                     asChild 
-                    variant="outlineGold" 
+                    variant="default" 
                     size="sm" 
-                    className={`w-full ${isHomePage && !isScrolled ? 'border-white text-white' : 'text-foreground'}`}
+                    className="w-full bg-[hsl(45,100%,51%)] text-foreground hover:bg-[hsl(45,100%,45%)]"
                   >
                     <Link to="/auth" onClick={() => setIsMobileMenuOpen(false)}>Login</Link>
                   </Button>
