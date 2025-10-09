@@ -141,6 +141,53 @@ const About = () => {
         </div>
       </section>
 
+      {/* Founder Spotlight */}
+      <section className="py-20 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-card border border-border rounded-lg p-8 md:p-12">
+              <div className="text-center mb-8">
+                <div className="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-accent/20">
+                  <img 
+                    src="/src/assets/alan-mruvka.png"
+                    alt="Alan Mruvka" 
+                    className="w-full h-full object-cover object-[center_35%]"
+                  />
+                </div>
+                <h2 className="text-3xl md:text-4xl font-heading font-bold text-primary mb-2">
+                  Alan Mruvka
+                </h2>
+                <p className="text-xl text-accent">Founder & CEO</p>
+              </div>
+              
+              <div className="space-y-6">
+                <blockquote className="text-xl md:text-2xl font-heading italic text-center text-primary border-l-4 border-accent pl-6">
+                  "You can't match the passion for success as in a Founder-driven company."
+                </blockquote>
+                
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  Alan Mruvka holds over 35 years of experience in self-storage, real estate development and entertainment. 
+                  His most distinguished success is revolutionizing celebrity-based television as the Founder of E! Entertainment 
+                  Television, now an NBC/Comcast company valued at over $15 Billion.
+                </p>
+                
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  As Founder and CEO of StorageBlue, Mruvka built a company that grew to seventeen buildings 
+                  (almost three million square feet) in the New Jersey/New York City metropolitan area. His leadership 
+                  combines entrepreneurial vision with proven operational excellence.
+                </p>
+
+                <div className="pt-6">
+                  <a href="/profile/alan-mruvka" className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-11 px-8">
+                    View Full Profile
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Our Values */}
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
