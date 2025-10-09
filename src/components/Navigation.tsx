@@ -105,7 +105,7 @@ const Navigation = () => {
                   location.pathname === item.href
                     ? isHomePage && !isScrolled
                       ? 'text-white bg-white/20'
-                      : 'text-primary bg-muted'
+                      : 'text-white bg-[hsl(220,90%,30%)]'
                     : isHomePage && !isScrolled
                       ? 'text-white/90 hover:text-white hover:bg-white/10'
                       : 'text-foreground hover:text-primary hover:bg-muted/50'
@@ -204,7 +204,7 @@ const Navigation = () => {
                   location.pathname === item.href
                     ? isHomePage && !isScrolled
                       ? 'text-white bg-white/20'
-                      : 'text-primary bg-muted'
+                      : 'text-white bg-[hsl(220,90%,30%)]'
                     : isHomePage && !isScrolled
                       ? 'text-white/90 hover:text-white hover:bg-white/10'
                       : 'text-foreground hover:text-primary hover:bg-muted/50'
