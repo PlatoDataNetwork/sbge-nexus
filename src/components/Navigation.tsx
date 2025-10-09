@@ -126,10 +126,10 @@ const Navigation = () => {
               <>
                 {isAdmin && (
                   <Button 
-                    variant={isHomePage && !isScrolled ? "secondary" : "ghost"}
+                    variant={isHomePage && !isScrolled ? "secondaryGold" : "outlineGold"}
                     size="sm" 
                     asChild
-                    className={isHomePage && !isScrolled ? "bg-white text-foreground hover:bg-white/90" : ""}
+                    className={isHomePage && !isScrolled ? "bg-white text-foreground" : ""}
                   >
                     <Link to="/admin">
                       <User className="mr-2 h-4 w-4" />
@@ -138,10 +138,10 @@ const Navigation = () => {
                   </Button>
                 )}
                 <Button 
-                  variant={isHomePage && !isScrolled ? "secondary" : "ghost"}
+                  variant={isHomePage && !isScrolled ? "secondaryGold" : "outlineGold"}
                   size="sm" 
                   asChild
-                  className={isHomePage && !isScrolled ? "bg-white/20 text-white hover:bg-white/10" : ""}
+                  className={isHomePage && !isScrolled ? "bg-white/20 text-white border-white/20" : ""}
                 >
                   <Link to="/investor-portal">
                     <User className="mr-2 h-4 w-4" />
@@ -149,10 +149,10 @@ const Navigation = () => {
                   </Link>
                 </Button>
                 <Button 
-                  variant={isHomePage && !isScrolled ? "secondary" : "outline"}
+                  variant={isHomePage && !isScrolled ? "secondaryGold" : "outlineGold"}
                   size="sm" 
                   onClick={handleSignOut}
-                  className={isHomePage && !isScrolled ? "bg-white/20 text-white hover:bg-white/10" : ""}
+                  className={isHomePage && !isScrolled ? "bg-white/20 text-white border-white/20" : ""}
                 >
                   <LogOut className="mr-2 h-4 w-4" />
                   Sign Out
@@ -170,9 +170,9 @@ const Navigation = () => {
                 </Button>
                 <Button 
                   asChild 
-                  variant={isHomePage && !isScrolled ? "secondary" : "outline"}
+                  variant={isHomePage && !isScrolled ? "secondaryGold" : "outlineGold"}
                   size="sm" 
-                  className={isHomePage && !isScrolled ? "bg-white text-foreground hover:bg-white/90" : ""}
+                  className={isHomePage && !isScrolled ? "bg-white text-foreground" : ""}
                 >
                   <Link to="/auth">Login</Link>
                 </Button>
@@ -219,9 +219,9 @@ const Navigation = () => {
                 <>
                   {isAdmin && (
                     <Button 
-                      variant="outline" 
+                      variant="outlineGold" 
                       size="sm" 
-                      className={`w-full ${isHomePage && !isScrolled ? 'border-white text-white hover:bg-white/10' : ''}`}
+                      className={`w-full ${isHomePage && !isScrolled ? 'border-white text-white' : ''}`}
                       asChild
                     >
                       <Link to="/admin" onClick={() => setIsMobileMenuOpen(false)}>
@@ -231,9 +231,9 @@ const Navigation = () => {
                     </Button>
                   )}
                   <Button 
-                    variant="outline" 
+                    variant="outlineGold" 
                     size="sm" 
-                    className={`w-full ${isHomePage && !isScrolled ? 'bg-white/20 border-white/20 text-white hover:bg-white/10' : ''}`}
+                    className={`w-full ${isHomePage && !isScrolled ? 'bg-white/20 border-white/20 text-white' : ''}`}
                     asChild
                   >
                     <Link to="/investor-portal" onClick={() => setIsMobileMenuOpen(false)}>
@@ -242,9 +242,9 @@ const Navigation = () => {
                     </Link>
                   </Button>
                   <Button 
-                    variant="outline" 
+                    variant="outlineGold" 
                     size="sm" 
-                    className={`w-full ${isHomePage && !isScrolled ? 'bg-white/20 border-white/20 text-white hover:bg-white/10' : ''}`}
+                    className={`w-full ${isHomePage && !isScrolled ? 'bg-white/20 border-white/20 text-white' : ''}`}
                     onClick={() => { handleSignOut(); setIsMobileMenuOpen(false); }}
                   >
                     <LogOut className="mr-2 h-4 w-4" />
@@ -258,9 +258,9 @@ const Navigation = () => {
                   </Button>
                   <Button 
                     asChild 
-                    variant="outline" 
+                    variant="outlineGold" 
                     size="sm" 
-                    className={`w-full ${isHomePage && !isScrolled ? 'border-white text-white hover:bg-white/10' : 'text-foreground'}`}
+                    className={`w-full ${isHomePage && !isScrolled ? 'border-white text-white' : 'text-foreground'}`}
                   >
                     <Link to="/auth" onClick={() => setIsMobileMenuOpen(false)}>Login</Link>
                   </Button>
