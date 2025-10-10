@@ -14,7 +14,7 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* Navigation Links */}
+          {/* Navigation Links - Column 1 */}
           <div>
             <h4 className="font-semibold mb-4">Navigation</h4>
             <ul className="space-y-2 text-sm">
@@ -38,6 +38,13 @@ const Footer = () => {
                   Portfolio
                 </Link>
               </li>
+            </ul>
+          </div>
+
+          {/* Navigation Links - Column 2 */}
+          <div>
+            <h4 className="font-semibold mb-4 opacity-0">Navigation</h4>
+            <ul className="space-y-2 text-sm">
               <li>
                 <Link to="/market" className="text-muted-foreground hover:text-foreground transition-colors">
                   Market Insight
