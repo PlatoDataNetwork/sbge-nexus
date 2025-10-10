@@ -5,13 +5,21 @@ const Footer = () => {
     <footer className="bg-primary text-primary-foreground">
       <div className="container mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-12">
-          {/* Brand */}
+          {/* Brand & Contact */}
           <div className="md:col-span-4">
             <h3 className="text-2xl font-heading font-bold mb-4">StorageBlue Growth Fund, LP</h3>
-            <p className="text-sm text-primary-foreground/80 leading-relaxed">
+            <p className="text-sm text-primary-foreground/80 leading-relaxed mb-6">
               Institutional access to the future of self-storage. $350M growth fund with $1B buying power,
               backed by 35+ years of proven performance.
             </p>
+            <div>
+              <h4 className="font-semibold mb-2 text-lg">Contact</h4>
+              <p className="text-sm text-primary-foreground/80">StorageBlue, LLC</p>
+              <p className="text-sm text-primary-foreground/80">New Jersey</p>
+              <a href="mailto:Investors@Storagebluecapital.com" className="text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors">
+                Investors@Storagebluecapital.com
+              </a>
+            </div>
           </div>
 
           {/* Navigation */}
@@ -65,28 +73,21 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Get Started & Contact */}
+          {/* Get Started */}
           <div className="md:col-span-4">
-            <div className="mb-8">
-              <h4 className="font-semibold mb-4 text-lg">Get Started</h4>
-              <ul className="space-y-2 text-sm">
-                <li>
-                  <Link to="/investor-questionnaire" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
-                    Request Access
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/auth" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
-                    Login
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-2 text-lg">Contact</h4>
-              <p className="text-sm text-primary-foreground/80">StorageBlue, LLC</p>
-              <p className="text-sm text-primary-foreground/80">New Jersey</p>
-            </div>
+            <h4 className="font-semibold mb-4 text-lg">Get Started</h4>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link to="/investor-questionnaire" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
+                  Request Access
+                </Link>
+              </li>
+              <li>
+                <Link to="/auth" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
+                  Login
+                </Link>
+              </li>
+            </ul>
           </div>
         </div>
 
