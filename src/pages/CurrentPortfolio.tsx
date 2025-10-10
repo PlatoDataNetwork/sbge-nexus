@@ -109,7 +109,7 @@ const CurrentPortfolio = () => {
           </Button>
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Current Portfolio</h1>
           <p className="text-xl text-muted-foreground max-w-3xl">
-            StorageBlue's active facilities and strategic market positioning in the NYC Metropolitan Area
+            StorageBlue owns and manages active facilities and strategic assets across multiple high-quality facilities in strategic locations across the NYC Metropolitan Area. Our streamlined execution strategy allows us to maximize consistent profitability across our portfolio.
           </p>
         </div>
       </section>
