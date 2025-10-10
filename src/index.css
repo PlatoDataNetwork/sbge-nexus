@@ -9,8 +9,8 @@ All colors MUST be HSL.
 @layer base {
   :root {
     /* Professional Navy Blue Palette */
-    --background: 220 70% 12%;
-    --foreground: 0 0% 98%;
+    --background: 0 0% 100%;
+    --foreground: 0 0% 17%;
     
     --primary: 220 70% 20%;
     --primary-foreground: 0 0% 100%;
