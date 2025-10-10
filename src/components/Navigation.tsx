@@ -4,7 +4,6 @@ import { Menu, X, User, LogOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { supabase } from '@/integrations/supabase/client';
 import { useNavigate } from 'react-router-dom';
-import storageBlueLogoImage from '@/assets/storageblue-logo.png';
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -89,11 +88,11 @@ const Navigation = () => {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <img 
-              src={storageBlueLogoImage} 
-              alt="StorageBlue"
-              className="h-8 w-auto"
-            />
+            <div className={`text-2xl font-heading font-bold transition-colors ${
+              isHomePage && !isScrolled ? 'text-white' : 'text-primary'
+            }`}>
+              StorageBlue
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
