@@ -157,142 +157,6 @@ const CurrentPortfolio = () => {
         </div>
       </section>
 
-      {/* Growth Timeline */}
-      <section className="py-12">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-8">Portfolio Growth</h2>
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <TrendingUp className="h-5 w-5 text-primary" />
-                Recent Expansion
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="border-l-2 border-primary pl-6 pb-6">
-                <Badge className="mb-2">2020 - Present</Badge>
-                <h3 className="text-xl font-semibold mb-2">Pandemic Era Growth</h3>
-                <p className="text-muted-foreground mb-4">
-                  Since the start of the pandemic in 2020, StorageBlue added 8 properties totaling 7,000+ units and over 500,000 NRSF.
-                </p>
-              </div>
-              
-              <div className="border-l-2 border-secondary pl-6 pb-6">
-                <Badge variant="secondary" className="mb-2">March 2024</Badge>
-                <h3 className="text-xl font-semibold mb-2">Strategic Portfolio Sale</h3>
-                <p className="text-muted-foreground mb-4">
-                  StorageBlue sold 6 fully stabilized properties for significant returns, demonstrating successful execution of the development and exit strategy.
-                </p>
-              </div>
-
-              <div className="border-l-2 border-accent pl-6">
-                <Badge variant="outline" className="mb-2">Current</Badge>
-                <h3 className="text-xl font-semibold mb-2">Active Portfolio</h3>
-                <p className="text-muted-foreground">
-                  6 institutional-quality properties with strong occupancy and cash flow, positioned for continued growth in the NYC Metropolitan Area.
-                </p>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-
-      {/* Competitive Advantages */}
-      <section className="py-12 bg-muted/30">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-8">Strategic Advantages</h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <MapPin className="h-5 w-5 text-primary" />
-                  Off-Market Deal Sourcing
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">
-                  Due to deep-market relationships created over 35 years within self-storage, Alan Mruvka and StorageBlue have access to high-quality off-market properties.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Building2 className="h-5 w-5 text-primary" />
-                  Vertically Integrated Operations
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-2">
-                  <p className="text-muted-foreground mb-3">Complete in-house capabilities:</p>
-                  <div className="grid grid-cols-2 gap-2 text-sm">
-                    <Badge variant="outline">Acquisitions</Badge>
-                    <Badge variant="outline">Development</Badge>
-                    <Badge variant="outline">Construction</Badge>
-                    <Badge variant="outline">Operations</Badge>
-                    <Badge variant="outline">Marketing</Badge>
-                    <Badge variant="outline">IT Management</Badge>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Market Position */}
-      <section className="py-12">
-        <div className="max-w-7xl mx-auto px-4">
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-2xl">Established Brand in North Jersey</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              <div className="grid md:grid-cols-3 gap-6">
-                <div className="text-center p-6 bg-muted/50 rounded-lg">
-                  <div className="text-4xl font-bold text-primary mb-2">140%</div>
-                  <p className="text-sm text-muted-foreground">Increase in Portfolio NRSF</p>
-                </div>
-                <div className="text-center p-6 bg-muted/50 rounded-lg">
-                  <div className="text-4xl font-bold text-primary mb-2">35+</div>
-                  <p className="text-sm text-muted-foreground">Years of Experience</p>
-                </div>
-                <div className="text-center p-6 bg-muted/50 rounded-lg">
-                  <div className="text-4xl font-bold text-primary mb-2">13</div>
-                  <p className="text-sm text-muted-foreground">Institutional Quality Properties</p>
-                </div>
-              </div>
-
-              <div className="pt-6 border-t">
-                <h3 className="text-xl font-semibold mb-4">High-Quality Partnerships</h3>
-                <p className="text-muted-foreground mb-4">
-                  StorageBlue maintains strategic relationships with leading financial institutions including Marcus & Millichap, Cooper Horowitz Real Estate Financing, Natixis, and Barclays.
-                </p>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-
-      {/* Performance Metrics */}
-      <section className="py-12 bg-muted/30">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-8 text-center">Performance Metrics</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {performanceMetrics.map((metric) => (
-              <div key={metric.title} className="bg-card border border-border rounded-lg p-6 hover-lift">
-                <div className="text-sm text-muted-foreground mb-2">{metric.title}</div>
-                <div className="text-4xl font-heading font-bold text-primary mb-2">{metric.value}</div>
-                <div className={`text-sm font-medium ${metric.positive ? 'text-green-600' : 'text-red-600'}`}>
-                  {metric.change}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Facility Grid */}
       <section className="py-12">
         <div className="max-w-7xl mx-auto px-4">
@@ -349,6 +213,142 @@ const CurrentPortfolio = () => {
                       </span>
                     </div>
                   </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Growth Timeline */}
+      <section className="py-12 bg-muted/30">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-3xl font-bold mb-8">Portfolio Growth</h2>
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <TrendingUp className="h-5 w-5 text-primary" />
+                Recent Expansion
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="border-l-2 border-primary pl-6 pb-6">
+                <Badge className="mb-2">2020 - Present</Badge>
+                <h3 className="text-xl font-semibold mb-2">Pandemic Era Growth</h3>
+                <p className="text-muted-foreground mb-4">
+                  Since the start of the pandemic in 2020, StorageBlue added 8 properties totaling 7,000+ units and over 500,000 NRSF.
+                </p>
+              </div>
+              
+              <div className="border-l-2 border-secondary pl-6 pb-6">
+                <Badge variant="secondary" className="mb-2">March 2024</Badge>
+                <h3 className="text-xl font-semibold mb-2">Strategic Portfolio Sale</h3>
+                <p className="text-muted-foreground mb-4">
+                  StorageBlue sold 6 fully stabilized properties for significant returns, demonstrating successful execution of the development and exit strategy.
+                </p>
+              </div>
+
+              <div className="border-l-2 border-accent pl-6">
+                <Badge variant="outline" className="mb-2">Current</Badge>
+                <h3 className="text-xl font-semibold mb-2">Active Portfolio</h3>
+                <p className="text-muted-foreground">
+                  6 institutional-quality properties with strong occupancy and cash flow, positioned for continued growth in the NYC Metropolitan Area.
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      {/* Competitive Advantages */}
+      <section className="py-12">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-3xl font-bold mb-8">Strategic Advantages</h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <MapPin className="h-5 w-5 text-primary" />
+                  Off-Market Deal Sourcing
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground">
+                  Due to deep-market relationships created over 35 years within self-storage, Alan Mruvka and StorageBlue have access to high-quality off-market properties.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Building2 className="h-5 w-5 text-primary" />
+                  Vertically Integrated Operations
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-2">
+                  <p className="text-muted-foreground mb-3">Complete in-house capabilities:</p>
+                  <div className="grid grid-cols-2 gap-2 text-sm">
+                    <Badge variant="outline">Acquisitions</Badge>
+                    <Badge variant="outline">Development</Badge>
+                    <Badge variant="outline">Construction</Badge>
+                    <Badge variant="outline">Operations</Badge>
+                    <Badge variant="outline">Marketing</Badge>
+                    <Badge variant="outline">IT Management</Badge>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Market Position */}
+      <section className="py-12 bg-muted/30">
+        <div className="max-w-7xl mx-auto px-4">
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-2xl">Established Brand in North Jersey</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="grid md:grid-cols-3 gap-6">
+                <div className="text-center p-6 bg-muted/50 rounded-lg">
+                  <div className="text-4xl font-bold text-primary mb-2">140%</div>
+                  <p className="text-sm text-muted-foreground">Increase in Portfolio NRSF</p>
+                </div>
+                <div className="text-center p-6 bg-muted/50 rounded-lg">
+                  <div className="text-4xl font-bold text-primary mb-2">35+</div>
+                  <p className="text-sm text-muted-foreground">Years of Experience</p>
+                </div>
+                <div className="text-center p-6 bg-muted/50 rounded-lg">
+                  <div className="text-4xl font-bold text-primary mb-2">13</div>
+                  <p className="text-sm text-muted-foreground">Institutional Quality Properties</p>
+                </div>
+              </div>
+
+              <div className="pt-6 border-t">
+                <h3 className="text-xl font-semibold mb-4">High-Quality Partnerships</h3>
+                <p className="text-muted-foreground mb-4">
+                  StorageBlue maintains strategic relationships with leading financial institutions including Marcus & Millichap, Cooper Horowitz Real Estate Financing, Natixis, and Barclays.
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      {/* Performance Metrics */}
+      <section className="py-12">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-3xl font-bold mb-8 text-center">Performance Metrics</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {performanceMetrics.map((metric) => (
+              <div key={metric.title} className="bg-card border border-border rounded-lg p-6 hover-lift">
+                <div className="text-sm text-muted-foreground mb-2">{metric.title}</div>
+                <div className="text-4xl font-heading font-bold text-primary mb-2">{metric.value}</div>
+                <div className={`text-sm font-medium ${metric.positive ? 'text-green-600' : 'text-red-600'}`}>
+                  {metric.change}
                 </div>
               </div>
             ))}
