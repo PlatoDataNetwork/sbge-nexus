@@ -27,7 +27,7 @@ const Home = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-              <Button asChild size="lg" className="bg-[hsl(220,50%,12%)] text-white hover:bg-[hsl(220,55%,15%)]">
+              <Button asChild size="lg" className="bg-[hsl(220,50%,15%)] text-white hover:bg-[hsl(220,55%,18%)]">
                 <Link to="/investor-questionnaire">
                   Request Access <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
