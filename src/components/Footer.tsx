@@ -61,8 +61,8 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p>© StorageBlue, LLC 2025. All rights reserved.</p>
             <p className="text-center md:text-right max-w-2xl">
-              Not an offer to sell or a solicitation to buy securities. See Private Placement Memorandum (PPM) for full terms and risks. 
-              This material is confidential and proprietary.
+              This is not an offer to sell or a solicitation to buy securities. See Private Placement Memorandum (PPM) for full terms and risks. 
+              This material is confidential and proprietary and for qualified institutional and accredited investors only.
             </p>
           </div>
         </div>
