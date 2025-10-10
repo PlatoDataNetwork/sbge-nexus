@@ -41,11 +41,8 @@ const executives = [
     bio: 'Founder and CEO with over 35 years of experience in self-storage, real estate development and entertainment. Founded E! Entertainment Television, now an NBC/Comcast company valued at over $15 Billion.',
     achievements: ['35+ years industry experience', 'Founded E! Entertainment Television', 'Built 3M+ sqft of self-storage'],
     image: alanMruvkaImage,
-    imagePosition: 'face-high',
+    imagePosition: 'face-high' as const,
   },
-];
-
-const executiveTeam = [
     {
       name: 'Winston Ma',
       title: 'Chief Investment Officer',
@@ -354,87 +351,8 @@ const Leadership = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {executives.map((exec, index) => (
-                <Link
-                  key={index}
-                  to={`/profile/${exec.slug}`}
-                  className="bg-card border border-border rounded-lg overflow-hidden hover-lift"
-                >
-                  {exec.image ? (
-                    <div className="h-64 relative overflow-hidden bg-muted/20">
-                      <img 
-                        src={exec.image} 
-                        alt={exec.name} 
-                        className={`w-full h-full object-cover ${
-                          exec.imagePosition === 'upper' ? 'object-[center_8%]' :
-                          exec.imagePosition === 'top' ? 'object-[center_20%]' :
-                          exec.imagePosition === 'top-center' ? 'object-[center_30%]' :
-                          exec.imagePosition === 'face-high' ? 'object-[center_35%]' :
-                          exec.imagePosition === 'face-low' ? 'object-[center_65%]' :
-                          'object-center'
-                        }`}
-                      />
-                    </div>
-                  ) : (
-                    <div className="h-64 bg-gradient-primary relative">
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <Building2 className="h-24 w-24 text-primary-foreground/20" />
-                      </div>
-                    </div>
-                  )}
-                  <div className="p-8 space-y-4">
-                    <div>
-                      <h3 className="text-2xl font-heading font-bold text-foreground mb-1">
-                        {exec.name}
-                      </h3>
-                      <p className="text-accent font-medium">{exec.title}</p>
-                    </div>
-                    
-                    <p className="text-muted-foreground leading-relaxed">
-                      {exec.bio}
-                    </p>
-                    
-                    <div className="space-y-2 pt-4 border-t border-border">
-                      <div className="text-sm font-semibold text-foreground">Key Achievements:</div>
-                      <ul className="space-y-1">
-                        {exec.achievements.map((achievement, i) => (
-                          <li key={i} className="flex items-center text-sm text-muted-foreground">
-                            <Award className="h-4 w-4 text-accent mr-2 flex-shrink-0" />
-                            {achievement}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    
-                    <div className="pt-4">
-                      <Button asChild variant="outline" size="sm" className="w-full">
-                        <span>View Bio</span>
-                      </Button>
-                    </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Executive Team */}
-      <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-4xl md:text-5xl font-heading font-bold text-primary mb-6">
-                Executive Team
-              </h2>
-              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                Experienced professionals driving operational excellence and strategic growth
-              </p>
-            </div>
-
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {executiveTeam.map((exec, index) => (
+              {executives.map((exec, index) => (
                 <Link
                   key={index}
                   to={`/profile/${exec.slug}`}
