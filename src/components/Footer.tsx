@@ -9,7 +9,8 @@ const Footer = () => {
           <div className="md:col-span-4">
             <h3 className="text-2xl font-heading font-bold mb-4">StorageBlue Growth Fund, LP</h3>
             <p className="text-sm text-primary-foreground/80 leading-relaxed mb-6">
-              Institutional access to the future of self-storage. $350M growth fund with $1B buying power,
+              Institutional access to the future of self-storage.<br />
+              $350M growth fund with $1B buying power,<br />
               backed by 35+ years of proven performance.
             </p>
             <div>
@@ -23,7 +24,7 @@ const Footer = () => {
           </div>
 
           {/* Navigation */}
-          <div className="md:col-span-4">
+          <div className="md:col-span-4 md:mt-8">
             <div className="grid grid-cols-2 gap-x-8 gap-y-2">
               <ul className="space-y-2 text-sm">
                 <li>
