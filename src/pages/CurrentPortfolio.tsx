@@ -4,77 +4,89 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, Building2, MapPin, TrendingUp, Calendar, Square } from "lucide-react";
 import { memo } from 'react';
+import facilityFerryImage from '@/assets/facility-ferry.jpg';
+import facilityPatersonImage from '@/assets/facility-paterson.jpg';
+import facilityCliftonImage from '@/assets/facility-clifton.jpg';
+import facilityStatenIslandImage from '@/assets/facility-staten-island.png';
+import facilityAberdeenImage from '@/assets/facility-aberdeen.jpg';
+import facilityWestLongBranchImage from '@/assets/facility-west-long-branch.png';
 
 // Static data moved outside component to prevent recreation on each render
 const portfolioStats = {
   facilities: 6,
   units: "5,400+",
-  nrsf: "400,000",
+  nrsf: "574,000",
   projectedValue: "$150M"
 };
 
 const facilities = [
   {
-    name: 'Facility 1',
-    location: 'North Jersey',
-    sqft: '250,000',
+    name: 'StorageBlue Newark',
+    location: 'Newark, NJ',
+    sqft: '95,000',
     occupancy: '92%',
     status: 'Stabilized',
+    image: facilityFerryImage,
   },
   {
-    name: 'Facility 2',
-    location: 'NYC Metro',
-    sqft: '180,000',
+    name: 'StorageBlue Paterson',
+    location: 'Paterson, NJ',
+    sqft: '24,000',
     occupancy: '88%',
     status: 'Stabilized',
+    image: facilityPatersonImage,
   },
   {
-    name: 'Facility 3',
-    location: 'New Jersey',
-    sqft: '320,000',
+    name: 'StorageBlue Clifton',
+    location: 'Clifton, NJ',
+    sqft: '35,000',
     occupancy: '95%',
     status: 'Stabilized',
+    image: facilityCliftonImage,
   },
   {
-    name: 'Facility 4',
-    location: 'North Jersey',
-    sqft: '210,000',
+    name: 'StorageBlue Staten Island',
+    location: 'Staten Island, NY',
+    sqft: '267,000',
     occupancy: '90%',
     status: 'Value-Add',
+    image: facilityStatenIslandImage,
   },
   {
-    name: 'Facility 5',
-    location: 'NYC Metro',
-    sqft: '275,000',
+    name: 'StorageBlue Aberdeen',
+    location: 'Aberdeen, NJ',
+    sqft: '85,000',
     occupancy: '87%',
     status: 'Development',
+    image: facilityAberdeenImage,
   },
   {
-    name: 'Facility 6',
-    location: 'New Jersey',
-    sqft: '195,000',
+    name: 'StorageBlue West Long Branch',
+    location: 'West Long Branch, NJ',
+    sqft: '68,000',
     occupancy: '93%',
     status: 'Stabilized',
+    image: facilityWestLongBranchImage,
   },
 ];
 
 const performanceMetrics = [
   {
     title: 'Total Square Feet',
-    value: '1.43M',
+    value: '574K',
     change: '+12% YoY',
     positive: true,
   },
   {
     title: 'Average Occupancy',
-    value: '90.8%',
+    value: '90.5%',
     change: '+3.2% vs Target',
     positive: true,
   },
   {
     title: 'Facilities',
     value: '6',
-    change: 'Initial Portfolio',
+    change: 'Current Portfolio',
     positive: true,
   },
 ];
@@ -295,10 +307,20 @@ const CurrentPortfolio = () => {
                 key={index}
                 className="bg-card border border-border rounded-lg overflow-hidden hover-lift"
               >
-                <div className="h-48 bg-gradient-to-br from-primary/80 to-primary relative">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <Square className="h-16 w-16 text-primary-foreground/30" />
-                  </div>
+                <div className="h-48 relative overflow-hidden">
+                  {facility.image ? (
+                    <img 
+                      src={facility.image} 
+                      alt={facility.name}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="h-full bg-gradient-primary relative">
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <Square className="h-16 w-16 text-primary-foreground/30" />
+                      </div>
+                    </div>
+                  )}
                 </div>
                 <div className="p-6 space-y-4">
                   <div>
