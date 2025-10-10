@@ -112,7 +112,7 @@ const Home = () => {
                   </div>
                 </div>
               </div>
-              <Button asChild size="lg" variant="premium">
+              <Button asChild size="lg" className="bg-[hsl(43,48%,62%)] text-foreground hover:bg-[hsl(43,48%,55%)]">
                 <Link to="/strategy">
                   View Full Strategy <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
