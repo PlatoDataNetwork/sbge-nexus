@@ -3,7 +3,7 @@ import storageBlueLogoWhiteImage from '@/assets/storageblue-logo-white.png';
 
 const Footer = () => {
   return (
-    <footer className="bg-[#2F5492] text-primary-foreground">
+    <footer className="bg-[#3D5A8C] text-primary-foreground">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand */}
