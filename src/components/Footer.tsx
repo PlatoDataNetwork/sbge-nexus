@@ -24,7 +24,7 @@ const Footer = () => {
           </div>
 
           {/* Navigation */}
-          <div className="md:col-span-4 md:mt-8">
+          <div className="md:col-span-4 md:mt-12">
             <div className="grid grid-cols-2 gap-x-8 gap-y-2">
               <ul className="space-y-2 text-sm">
                 <li>
@@ -74,7 +74,7 @@ const Footer = () => {
           </div>
 
           {/* Quick Links */}
-          <div className="md:col-span-4">
+          <div className="md:col-span-4 md:mt-12">
             <ul className="space-y-2 text-sm">
               <li>
                 <Link to="/investor-questionnaire" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
