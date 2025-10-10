@@ -14,6 +14,12 @@ const targetMarkets = [
   'Arizona',
   'California',
   'Tennessee',
+  'Connecticut',
+  'North Carolina',
+  'Maryland',
+  'Rhode Island',
+  'Las Vegas',
+  'Colorado',
 ];
 
 const investmentTypes = [
