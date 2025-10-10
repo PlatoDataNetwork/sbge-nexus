@@ -22,6 +22,7 @@ import InvestorDeck from "./pages/InvestorDeck";
 import InvestorQuestionnaire from "./pages/InvestorQuestionnaire";
 import CaseStudies from "./pages/CaseStudies";
 import CurrentPortfolio from "./pages/CurrentPortfolio";
+import FundOverview from "./pages/FundOverview";
 import ScheduleCall from "./pages/ScheduleCall";
 import EmailPreview from "./pages/EmailPreview";
 import NotFound from "./pages/NotFound";
@@ -111,6 +112,7 @@ const App = () => (
               <Route path="/investor-questionnaire" element={<InvestorQuestionnaire />} />
               <Route path="/case-studies" element={<CaseStudies />} />
               <Route path="/current-portfolio" element={<CurrentPortfolio />} />
+              <Route path="/fund-overview" element={<FundOverview />} />
               <Route path="/schedule-call" element={<ScheduleCall />} />
               <Route path="/email-preview" element={<EmailPreview />} />
               <Route path="*" element={<NotFound />} />

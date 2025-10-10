@@ -214,7 +214,7 @@ const InvestorPortal = () => {
             <CardContent>
               <Button 
                 className="w-full bg-primary text-primary-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
-                onClick={() => navigate("/strategy")}
+                onClick={() => navigate("/fund-overview")}
               >
                 View Overview
               </Button>
