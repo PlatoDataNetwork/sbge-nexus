@@ -14,10 +14,15 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* Quick Links */}
+          {/* Navigation Links */}
           <div>
-            <h4 className="font-semibold mb-4">Quick Links</h4>
+            <h4 className="font-semibold mb-4">Navigation</h4>
             <ul className="space-y-2 text-sm">
+              <li>
+                <Link to="/" className="text-muted-foreground hover:text-foreground transition-colors">
+                  Home
+                </Link>
+              </li>
               <li>
                 <Link to="/about" className="text-muted-foreground hover:text-foreground transition-colors">
                   About
@@ -34,25 +39,48 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
+                <Link to="/market" className="text-muted-foreground hover:text-foreground transition-colors">
+                  Market Insight
+                </Link>
+              </li>
+              <li>
+                <Link to="/innovation" className="text-muted-foreground hover:text-foreground transition-colors">
+                  Innovation
+                </Link>
+              </li>
+              <li>
                 <Link to="/leadership" className="text-muted-foreground hover:text-foreground transition-colors">
                   Leadership
+                </Link>
+              </li>
+              <li>
+                <Link to="/contact" className="text-muted-foreground hover:text-foreground transition-colors">
+                  Contact
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Contact */}
+          {/* Actions & Contact */}
           <div>
-            <h4 className="font-semibold mb-4">Contact</h4>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>StorageBlue, LLC</li>
-              <li>New Jersey</li>
+            <h4 className="font-semibold mb-4">Get Started</h4>
+            <ul className="space-y-2 text-sm">
               <li>
-                <Link to="/investor-questionnaire" className="hover:text-foreground transition-colors">
+                <Link to="/investor-questionnaire" className="text-muted-foreground hover:text-foreground transition-colors">
                   Request Access
                 </Link>
               </li>
+              <li>
+                <Link to="/auth" className="text-muted-foreground hover:text-foreground transition-colors">
+                  Login
+                </Link>
+              </li>
             </ul>
+            <div className="mt-6">
+              <h4 className="font-semibold mb-2">Contact</h4>
+              <p className="text-sm text-muted-foreground">StorageBlue, LLC</p>
+              <p className="text-sm text-muted-foreground">New Jersey</p>
+            </div>
           </div>
         </div>
 
