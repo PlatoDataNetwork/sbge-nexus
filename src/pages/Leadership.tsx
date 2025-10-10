@@ -100,6 +100,33 @@ const executives = [
       image: nicholasHornerImage,
     },
     {
+      name: 'Frank Zisa',
+      title: 'SVP Investor Relations',
+      subtitle: 'Partner',
+      slug: 'frank-zisa',
+      bio: 'Former Senior Development Manager with expertise in acquisitions and developments across multiple asset classes.',
+      achievements: [
+        'Managed over $1.4B in acquisitions & developments',
+        'Former roles at Prudential Investment Management and Extra Space Self Storage',
+        'Degrees in Real Estate Development from Columbia University'
+      ],
+      image: frankZisaImage,
+      imagePosition: 'top' as const,
+    },
+    {
+      name: 'Justin Horowitz',
+      title: 'Chief Debt Officer',
+      subtitle: 'Partner',
+      slug: 'justin-horowitz',
+      bio: 'Capital markets advisor specializing in nationwide debt and equity placement.',
+      achievements: [
+        'Capital markets advisor at Cooper Horowitz (NYC)',
+        'Previous roles at Savills Studley and Brickman',
+        'Degree from Syracuse University Whitman School of Management'
+      ],
+      image: justinHorowitzImage,
+    },
+    {
       name: 'Warren Diamond',
       title: 'Senior Advisor',
       subtitle: 'Partner',
@@ -126,33 +153,6 @@ const executives = [
       ],
       image: larryNamerImage,
     },
-    {
-      name: 'Frank Zisa',
-      title: 'SVP Investor Relations',
-      subtitle: 'Partner',
-      slug: 'frank-zisa',
-      bio: 'Former Senior Development Manager with expertise in acquisitions and developments across multiple asset classes.',
-      achievements: [
-        'Managed over $1.4B in acquisitions & developments',
-        'Former roles at Prudential Investment Management and Extra Space Self Storage',
-        'Degrees in Real Estate Development from Columbia University'
-      ],
-      image: frankZisaImage,
-      imagePosition: 'top' as const,
-    },
-    {
-      name: 'Justin Horowitz',
-      title: 'Chief Debt Officer',
-      subtitle: 'Partner',
-      slug: 'justin-horowitz',
-      bio: 'Capital markets advisor specializing in nationwide debt and equity placement.',
-      achievements: [
-        'Capital markets advisor at Cooper Horowitz (NYC)',
-        'Previous roles at Savills Studley and Brickman',
-        'Degree from Syracuse University Whitman School of Management'
-      ],
-      image: justinHorowitzImage,
-  },
 ];
 
 type Advisor = {
