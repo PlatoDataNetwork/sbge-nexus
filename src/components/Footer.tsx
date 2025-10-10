@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import storageBlueLogoImage from '@/assets/storageblue-logo.png';
 
 const Footer = () => {
   return (
@@ -7,6 +8,11 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="col-span-1 md:col-span-2">
+            <img 
+              src={storageBlueLogoImage} 
+              alt="StorageBlue"
+              className="h-10 w-auto mb-4"
+            />
             <h3 className="text-2xl font-heading font-bold mb-4">StorageBlue Growth Fund, LP</h3>
             <p className="text-sm text-primary-foreground/80 max-w-md">
               Institutional access to the future of self-storage. $350M growth fund with $1B buying power,
