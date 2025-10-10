@@ -159,7 +159,7 @@ const Home = () => {
             </div>
             
             <Button asChild size="lg" variant="secondary" className="mt-8">
-              <Link to="/contact">Get Started <ArrowRight className="ml-2 h-5 w-5" /></Link>
+              <Link to="/investor-portal">Get Started <ArrowRight className="ml-2 h-5 w-5" /></Link>
             </Button>
           </div>
         </div>
