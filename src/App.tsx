@@ -25,6 +25,7 @@ import CurrentPortfolio from "./pages/CurrentPortfolio";
 import FundOverview from "./pages/FundOverview";
 import ScheduleCall from "./pages/ScheduleCall";
 import EmailPreview from "./pages/EmailPreview";
+import Legal from "./pages/Legal";
 import NotFound from "./pages/NotFound";
 import WinstonMa from "./pages/profiles/WinstonMa";
 import MollyFord from "./pages/profiles/MollyFord";
@@ -115,6 +116,7 @@ const App = () => (
               <Route path="/fund-overview" element={<FundOverview />} />
               <Route path="/schedule-call" element={<ScheduleCall />} />
               <Route path="/email-preview" element={<EmailPreview />} />
+              <Route path="/legal" element={<Legal />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>

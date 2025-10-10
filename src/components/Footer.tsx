@@ -24,7 +24,6 @@ const Footer = () => {
 
           {/* Navigation */}
           <div className="md:col-span-4">
-            <h4 className="font-semibold mb-4 text-lg">Navigation</h4>
             <div className="grid grid-cols-2 gap-x-8 gap-y-2">
               <ul className="space-y-2 text-sm">
                 <li>
@@ -73,9 +72,8 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Get Started */}
+          {/* Quick Links */}
           <div className="md:col-span-4">
-            <h4 className="font-semibold mb-4 text-lg">Get Started</h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link to="/investor-questionnaire" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
@@ -85,6 +83,16 @@ const Footer = () => {
               <li>
                 <Link to="/auth" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
                   Login
+                </Link>
+              </li>
+              <li>
+                <Link to="/legal" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link to="/legal#disclaimer" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
+                  Disclaimer
                 </Link>
               </li>
             </ul>
