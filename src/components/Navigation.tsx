@@ -138,10 +138,9 @@ const Navigation = () => {
                   </Button>
                 )}
                 <Button 
-                  variant={isHomePage && !isScrolled ? "secondaryGold" : "outlineGold"}
                   size="sm" 
                   asChild
-                  className={isHomePage && !isScrolled ? "bg-white/20 text-white border-white/20" : ""}
+                  className={isHomePage && !isScrolled ? "bg-white/20 text-white border-white/20 hover:bg-[hsl(43,48%,55%)]" : "bg-[hsl(43,48%,62%)] text-foreground hover:bg-[hsl(43,48%,55%)]"}
                 >
                   <Link to="/investor-portal">
                     <User className="mr-2 h-4 w-4" />
@@ -231,9 +230,8 @@ const Navigation = () => {
                     </Button>
                   )}
                   <Button 
-                    variant="outlineGold" 
                     size="sm" 
-                    className={`w-full ${isHomePage && !isScrolled ? 'bg-white/20 border-white/20 text-white' : ''}`}
+                    className={`w-full ${isHomePage && !isScrolled ? 'bg-white/20 border-white/20 text-white hover:bg-[hsl(43,48%,55%)]' : 'bg-[hsl(43,48%,62%)] text-foreground hover:bg-[hsl(43,48%,55%)]'}`}
                     asChild
                   >
                     <Link to="/investor-portal" onClick={() => setIsMobileMenuOpen(false)}>
