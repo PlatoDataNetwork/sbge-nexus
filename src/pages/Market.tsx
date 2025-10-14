@@ -76,7 +76,7 @@ const Market = () => {
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-4xl md:text-5xl font-heading font-bold text-primary mb-6">
-                Market at a Glance
+                National Market at a Glance
               </h2>
               <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
                 A large, fragmented market with significant consolidation and growth opportunities
