@@ -93,7 +93,7 @@ const Navigation = () => {
             <img 
               src={isHomePage && !isScrolled ? logoWhite : logoBlue}
               alt="StorageBlue" 
-              className="h-10 w-auto transition-opacity duration-300"
+              className="h-8 w-auto transition-opacity duration-300"
             />
           </Link>
 
