@@ -149,15 +149,15 @@ const Contact = () => {
                       <div className="font-semibold text-foreground mb-3">Locations</div>
                       <div className="space-y-3 text-muted-foreground text-sm">
                         <p>
-                          230 Park Ave<br />
+                          230 Park Avenue, Suite 2045<br />
                           New York, NY 10169
                         </p>
                         <p>
-                          32 W 22nd St<br />
+                          32 West 22nd Street 4th Floor<br />
                           New York, NY 10010
                         </p>
                         <p>
-                          100 Executive Drive<br />
+                          1 Executive Drive, Suite LL100<br />
                           Fort Lee, NJ 07024
                         </p>
                       </div>
