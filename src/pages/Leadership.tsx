@@ -259,7 +259,7 @@ const allAdvisors: Advisor[] = [
       slug: 'kery-davis',
       description: 'Athletic Director at Howard University with leadership experience in sports management and operations.',
       image: keryDavisImage,
-      imagePosition: 'top-center',
+      imagePosition: 'center',
     },
     {
       name: 'David Feldman',
