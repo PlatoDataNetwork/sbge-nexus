@@ -243,7 +243,7 @@ const Portfolio = () => {
                 <div className="flex items-start justify-between mb-4">
                   <div>
                     <h3 className="text-2xl font-heading font-bold text-foreground mb-2">
-                      Ground-Up Development 2020
+                      Adaptive Re-Use Developments 2020
                     </h3>
                     <p className="text-muted-foreground">New Jersey</p>
                   </div>
