@@ -9,8 +9,9 @@ const Footer = () => {
           <div className="md:col-span-4">
             <h3 className="text-2xl font-heading font-bold mb-4">StorageBlue Growth Fund, LP</h3>
             <p className="text-sm text-primary-foreground/80 leading-relaxed mb-6">
-              StorageBlue Growth Fund, LP ("SBGF") a $350M Equity Fund.<br />
-              $1B of Buying Power. 35+ Years of Proven Performance.
+              Institutional access to the future of self-storage.<br />
+              $350M growth fund with $1B buying power,<br />
+              backed by 35+ years of proven performance.
             </p>
             <div>
               <h4 className="font-semibold mb-2 text-lg">Contact</h4>
