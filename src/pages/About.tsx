@@ -59,7 +59,7 @@ const About = () => {
                 Our Story
               </h2>
               <p className="text-xl text-muted-foreground">
-                From American Self-Storage to StorageBlue to SBGF
+                From American Self-Storage to StorageBlue to the SBGF
               </p>
             </div>
 
