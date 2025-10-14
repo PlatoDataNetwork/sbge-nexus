@@ -22,7 +22,7 @@ const Home = () => {
             </h1>
             
             <p className="text-lg sm:text-xl md:text-2xl text-primary-foreground/90 max-w-3xl mx-auto">
-              StorageBlue Growth Fund, LP: $350M Equity Fund.<br />
+              StorageBlue Growth Fund, LP ("SGBF"). $350M Equity Fund.<br />
               $1B Buying Power. 35+ Years of Proven Performance.
             </p>
             
