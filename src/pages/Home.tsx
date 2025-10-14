@@ -38,7 +38,7 @@ const Home = () => {
             </div>
             
             <p className="text-lg text-white pt-6">
-              StorageBlue Growth Fund LP ("SBGF")<br />
+              StorageBlue Growth Fund LP ("SBGF").<br />
               For Accredited and Institutional Investors Only.
             </p>
           </div>
