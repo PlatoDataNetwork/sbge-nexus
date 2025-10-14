@@ -205,19 +205,19 @@ const Strategy = () => {
               <h3 className="text-2xl font-heading font-bold text-primary mb-6 text-center">Investment Structure</h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="text-center">
-                  <div className="text-4xl font-heading font-bold text-primary mb-2">70%</div>
+                  <div className="text-4xl font-heading font-bold text-primary mb-2">50%</div>
                   <p className="text-sm font-semibold text-foreground mb-1">Stabilized Acquisitions</p>
                   <p className="text-xs text-muted-foreground">Immediate cash flow from performing assets</p>
+                </div>
+                <div className="text-center">
+                  <div className="text-4xl font-heading font-bold text-primary mb-2">30%</div>
+                  <p className="text-sm font-semibold text-foreground mb-1">Value-Add Opportunities</p>
+                  <p className="text-xs text-muted-foreground">Repositioning underperforming assets</p>
                 </div>
                 <div className="text-center">
                   <div className="text-4xl font-heading font-bold text-primary mb-2">20%</div>
                   <p className="text-sm font-semibold text-foreground mb-1">Ground-Up Development</p>
                   <p className="text-xs text-muted-foreground">New construction in high-demand areas</p>
-                </div>
-                <div className="text-center">
-                  <div className="text-4xl font-heading font-bold text-primary mb-2">10%</div>
-                  <p className="text-sm font-semibold text-foreground mb-1">Value-Add Opportunities</p>
-                  <p className="text-xs text-muted-foreground">Repositioning underperforming assets</p>
                 </div>
               </div>
             </div>
