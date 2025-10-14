@@ -18,12 +18,11 @@ const Home = () => {
         <div className="relative z-10 container mx-auto px-4 text-center text-primary-foreground">
           <div className="max-w-4xl mx-auto space-y-8 animate-fade-in-up">
             <h1 className="text-4xl sm:text-5xl md:text-7xl font-heading font-bold leading-tight">
-              Institutional Access to the Future of Self-Storage
+              StorageBlue Growth Fund LP
             </h1>
             
             <p className="text-lg sm:text-xl md:text-2xl text-primary-foreground/90 max-w-3xl mx-auto">
-              StorageBlue Growth Fund, LP: $350M Growth Fund<br />
-              $1B Buying Power | 35+ Years of Proven Performance
+              A $350M Equity Fund with $1B of Buying Power
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
@@ -36,10 +35,6 @@ const Home = () => {
                 <Link to="/strategy">Fund Overview</Link>
               </Button>
             </div>
-            
-            <p className="text-lg font-semibold text-white pt-6">
-              StorageBlue Growth Fund LP
-            </p>
           </div>
         </div>
         
