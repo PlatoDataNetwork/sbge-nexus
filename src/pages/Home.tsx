@@ -18,11 +18,11 @@ const Home = () => {
         <div className="relative z-10 container mx-auto px-4 text-center text-primary-foreground">
           <div className="max-w-4xl mx-auto space-y-8 animate-fade-in-up">
             <h1 className="text-4xl sm:text-5xl md:text-7xl font-heading font-bold leading-tight">
-              StorageBlue Growth Fund LP ("SBGF")
+              StorageBlue Growth Fund LP
             </h1>
             
             <p className="text-lg sm:text-xl md:text-2xl text-primary-foreground/90 max-w-3xl mx-auto">
-              is a $350M Equity Fund with $1B of Buying Power
+              A $350M Equity Fund with $1B of Buying Power
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
