@@ -8,18 +8,12 @@ const targetMarkets = [
   'New Jersey',
   'New York',
   'Florida',
-  'Virginia',
   'Texas',
-  'Nevada',
   'Arizona',
   'California',
   'Tennessee',
-  'Connecticut',
   'North Carolina',
-  'Maryland',
-  'Rhode Island',
   'Las Vegas',
-  'Colorado',
 ];
 
 const investmentTypes = [
