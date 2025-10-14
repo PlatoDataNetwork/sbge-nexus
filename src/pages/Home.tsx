@@ -38,7 +38,7 @@ const Home = () => {
             </div>
             
             <p className="text-lg font-semibold text-white pt-6">
-              StorageBlue Growth Fund LP
+              StorageBlue Growth Fund LP ("SBGF")
             </p>
           </div>
         </div>
