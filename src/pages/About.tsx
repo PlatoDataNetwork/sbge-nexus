@@ -41,7 +41,7 @@ const About = () => {
               icon={<Building2 className="h-8 w-8" />}
             />
             <StatCard
-              value="6"
+              value="20"
               label="Initial Facilities"
               description="Strategic portfolio"
               icon={<Users className="h-8 w-8" />}
