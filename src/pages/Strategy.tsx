@@ -69,7 +69,7 @@ const Strategy = () => {
               Investment Strategy
             </h1>
             <p className="text-xl md:text-2xl text-primary-foreground/90">
-              A disciplined approach to self-storage and industrial storage investing
+              A disciplined approach to self-storage investing
             </p>
           </div>
         </div>
