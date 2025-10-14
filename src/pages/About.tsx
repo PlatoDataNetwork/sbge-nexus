@@ -1,5 +1,6 @@
 import { Building2, Award, Users, TrendingUp } from 'lucide-react';
 import StatCard from '@/components/StatCard';
+import alanMruvkaImg from '@/assets/alan-mruvka.png';
 
 const About = () => {
   return (
@@ -133,7 +134,7 @@ const About = () => {
               <div className="text-center mb-8">
                 <div className="w-48 h-48 mx-auto mb-6 rounded-full overflow-hidden border-4 border-accent/20">
                   <img 
-                    src="/src/assets/alan-mruvka.png"
+                    src={alanMruvkaImg}
                     alt="Alan Mruvka" 
                     className="w-full h-full object-cover object-[center_35%]"
                   />
