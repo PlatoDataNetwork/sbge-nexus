@@ -238,7 +238,7 @@ const allAdvisors: Advisor[] = [
     {
       name: 'Nawaf Althari',
       title: 'The Althari Group - Founding Partner',
-      board: 'Board of Advisors',
+      board: 'Board of Business Advisors',
       slug: 'nawaf-althari',
       description: 'Founding Partner of The Althari Group, bringing strategic business development and investment expertise.',
       image: nawafAlthariImage,
@@ -247,7 +247,7 @@ const allAdvisors: Advisor[] = [
     {
       name: 'Brian Cury',
       title: 'EarthCam - Founder & CEO',
-      board: 'Board of Advisors',
+      board: 'Board of Business Advisors',
       slug: 'brian-cury',
       description: 'Founder and CEO of EarthCam, pioneer in construction monitoring and jobsite camera technology.',
       image: brianCuryImage,
@@ -255,7 +255,7 @@ const allAdvisors: Advisor[] = [
     {
       name: 'Kery Davis',
       title: 'Howard University - Athletic Director',
-      board: 'Board of Advisors',
+      board: 'Board of Business Advisors',
       slug: 'kery-davis',
       description: 'Athletic Director at Howard University with leadership experience in sports management and operations.',
       image: keryDavisImage,
@@ -264,7 +264,7 @@ const allAdvisors: Advisor[] = [
     {
       name: 'David Feldman',
       title: 'BFBST LLP - Co-Founder',
-      board: 'Board of Advisors',
+      board: 'Board of Business Advisors',
       slug: 'david-feldman',
       description: 'Co-Founder of BFBST LLP, providing strategic financial and business advisory services.',
       image: davidFeldmanImage,
@@ -272,7 +272,7 @@ const allAdvisors: Advisor[] = [
     {
       name: 'Steven Greener',
       title: 'Primary Wave',
-      board: 'Board of Advisors',
+      board: 'Board of Business Advisors',
       slug: 'steven-greener',
       description: 'Executive at Primary Wave bringing entertainment industry expertise and brand development experience.',
       image: stevenGreenerImage,
@@ -281,7 +281,7 @@ const allAdvisors: Advisor[] = [
     {
       name: 'Ramses Ishak',
       title: 'United Talent Agency',
-      board: 'Board of Advisors',
+      board: 'Board of Business Advisors',
       slug: 'ramses-ishak',
       description: 'Partner at United Talent Agency with expertise in talent management and strategic partnerships.',
       image: ramsesIshakImage,
@@ -290,7 +290,7 @@ const allAdvisors: Advisor[] = [
     {
       name: 'Michael Sheresky',
       title: 'Partner',
-      board: 'Board of Advisors',
+      board: 'Board of Business Advisors',
       slug: 'michael-sheresky',
       description: 'Strategic partner providing business advisory and operational expertise.',
       image: michaelShereskyImage,
@@ -463,6 +463,62 @@ const Leadership = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {allAdvisors
                 .filter(advisor => advisor.board === 'Board of Advisors')
+                .map((advisor, index) => (
+                  <div
+                    key={index}
+                    className="bg-card border border-border rounded-lg p-6 hover-lift"
+                  >
+                    {advisor.image ? (
+                      <ResponsiveHeadshot src={advisor.image} alt={advisor.name} position={advisor.imagePosition} />
+                    ) : (
+                      <div className="rounded-lg mb-4 overflow-hidden bg-gradient-primary">
+                        <div className="aspect-[4/3] w-full flex items-center justify-center">
+                          <Linkedin className="h-12 w-12 text-primary-foreground/30" />
+                        </div>
+                      </div>
+                    )}
+                    <div className="mb-2">
+                      <span className="text-xs font-semibold text-accent uppercase tracking-wide">
+                        {advisor.board}
+                      </span>
+                    </div>
+                    <h4 className="text-lg font-heading font-bold text-foreground mb-1">
+                      {advisor.name}
+                    </h4>
+                    <p className="text-accent font-medium text-sm mb-3">{advisor.title}</p>
+                    <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+                      {advisor.description}
+                    </p>
+                    {advisor.slug && (
+                      <Button asChild variant="outline" size="sm" className="w-full">
+                        <Link to={`/profile/${advisor.slug}`}>
+                          View Bio
+                        </Link>
+                      </Button>
+                    )}
+                  </div>
+                ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Board of Business Advisors */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl md:text-5xl font-heading font-bold text-primary mb-6">
+                Board of Business Advisors
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+                Strategic business leaders providing expertise in operations and industry development
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {allAdvisors
+                .filter(advisor => advisor.board === 'Board of Business Advisors')
                 .map((advisor, index) => (
                   <div
                     key={index}
