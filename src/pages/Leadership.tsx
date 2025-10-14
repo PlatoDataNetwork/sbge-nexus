@@ -568,7 +568,7 @@ const Leadership = () => {
             </h2>
             
             <div className="bg-primary-foreground/10 backdrop-blur-sm rounded-lg p-8 border border-primary-foreground/20">
-              <div className="w-80 h-80 mx-auto mb-6">
+              <div className="w-80 h-80 mx-auto mb-3">
                 <img 
                   src={jaRuleImage} 
                   alt="Jeffrey Atkins 'Ja Rule' - Brand Ambassador" 
@@ -577,7 +577,7 @@ const Leadership = () => {
               </div>
               
               <h3 className="text-3xl font-heading font-bold mb-2">Jeffrey Atkins "Ja Rule"</h3>
-              <p className="text-xl text-primary-foreground/90 mb-6">Multi-Platinum Recording Artist & Entrepreneur</p>
+              <p className="text-xl text-primary-foreground/90 mb-4">Multi-Platinum Recording Artist & Entrepreneur</p>
               
               <p className="text-primary-foreground/80 leading-relaxed mb-6">
                 Jeffrey Atkins, better known by his stage name Ja Rule, has been appointed as Brand Ambassador 
