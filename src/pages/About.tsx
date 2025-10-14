@@ -94,7 +94,7 @@ const About = () => {
                       StorageBlue Evolution
                     </h3>
                     <p className="text-muted-foreground leading-relaxed">
-                      Rebranded as StorageBlue to reflect our modern approach and expanded vision. 
+                      Rebranded in 2014 as StorageBlue to reflect our modern approach and expanded vision. 
                       Introduced disruptive services like free pickup across all 5 NYC boroughs and 
                       New Jersey, changing the competitive landscape of the industry.
                     </p>
