@@ -110,7 +110,7 @@ const About = () => {
                   </div>
                   <div className="flex-1">
                     <h3 className="text-2xl font-heading font-bold text-foreground mb-3">
-                      StorageBlue Growth Fund, LP
+                      StorageBlue Growth Fund, LP ("SBGF")
                     </h3>
                     <p className="text-muted-foreground leading-relaxed">
                       Launched SBGF to provide institutional investors access to our proven expertise and 
