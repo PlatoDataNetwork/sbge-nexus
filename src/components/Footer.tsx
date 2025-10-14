@@ -16,7 +16,6 @@ const Footer = () => {
             <div>
               <h4 className="font-semibold mb-2 text-lg">Contact</h4>
               <p className="text-sm text-primary-foreground/80">StorageBlue, LLC</p>
-              <p className="text-sm text-primary-foreground/80">New Jersey</p>
               <a href="mailto:Investors@Storagebluecapital.com" className="text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors">
                 Investors@Storagebluecapital.com
               </a>
