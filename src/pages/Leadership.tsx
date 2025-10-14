@@ -568,7 +568,7 @@ const Leadership = () => {
             </h2>
             
             <div className="bg-primary-foreground/10 backdrop-blur-sm rounded-lg p-8 border border-primary-foreground/20">
-              <div className="w-64 h-64 mx-auto mb-6">
+              <div className="w-80 h-80 mx-auto mb-6">
                 <img 
                   src={jaRuleImage} 
                   alt="Jeffrey Atkins 'Ja Rule' - Brand Ambassador" 
