@@ -5,15 +5,15 @@ import { memo } from 'react';
 
 // Static data moved outside component to prevent recreation on each render
 const targetMarkets = [
-  'New Jersey',
-  'New York',
-  'Florida',
-  'Texas',
   'Arizona',
   'California',
-  'Tennessee',
-  'North Carolina',
+  'Florida',
   'Las Vegas',
+  'New Jersey',
+  'New York',
+  'North Carolina',
+  'Tennessee',
+  'Texas',
 ];
 
 const investmentTypes = [
