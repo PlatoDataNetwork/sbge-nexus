@@ -139,7 +139,7 @@ const Strategy = () => {
                   <div className="p-2 bg-primary/10 rounded-lg">
                     <Building className="h-6 w-6 text-primary" />
                   </div>
-                  <h3 className="text-lg font-semibold text-foreground">Identified Equity</h3>
+                  <h3 className="text-lg font-semibold text-foreground">Identified to be Deployed</h3>
                 </div>
                 <div className="text-3xl font-heading font-bold text-primary mb-2">$70M</div>
                 <p className="text-sm text-muted-foreground">Targeted purchases</p>
