@@ -12,13 +12,13 @@ All colors MUST be HSL.
     --background: 0 0% 100%;
     --foreground: 0 0% 17%;
     
-    --primary: 222 79% 25%;
+    --primary: 221 77% 17%;
     --primary-foreground: 0 0% 100%;
     
-    --secondary: 222 79% 25%;
+    --secondary: 221 77% 17%;
     --secondary-foreground: 0 0% 100%;
     
-    --accent: 222 79% 25%;
+    --accent: 221 77% 17%;
     --accent-foreground: 0 0% 100%;
     
     --muted: 220 15% 96%;
@@ -40,15 +40,15 @@ All colors MUST be HSL.
     --radius: 0.375rem;
     
     /* Navy Blue gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(222 79% 25%) 0%, hsl(222 79% 25%) 100%);
-    --gradient-accent: linear-gradient(135deg, hsl(222 79% 25%) 0%, hsl(222 79% 27%) 100%);
-    --gradient-hero: linear-gradient(180deg, hsl(222 79% 25%) 0%, hsl(222 79% 25%) 100%);
+    --gradient-primary: linear-gradient(135deg, hsl(221 77% 17%) 0%, hsl(221 77% 17%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(221 77% 17%) 0%, hsl(221 77% 19%) 100%);
+    --gradient-hero: linear-gradient(180deg, hsl(221 77% 17%) 0%, hsl(221 77% 17%) 100%);
     
     /* Navy Blue shadows */
-    --shadow-sm: 0 2px 8px hsl(222 79% 25% / 0.06);
-    --shadow-md: 0 4px 16px hsl(222 79% 25% / 0.08);
-    --shadow-lg: 0 8px 32px hsl(222 79% 25% / 0.12);
-    --shadow-premium: 0 20px 60px hsl(222 79% 25% / 0.15);
+    --shadow-sm: 0 2px 8px hsl(221 77% 17% / 0.06);
+    --shadow-md: 0 4px 16px hsl(221 77% 17% / 0.08);
+    --shadow-lg: 0 8px 32px hsl(221 77% 17% / 0.12);
+    --shadow-premium: 0 20px 60px hsl(221 77% 17% / 0.15);
     
     /* Animations */
     --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -56,16 +56,16 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 222 79% 8%;
+    --background: 221 77% 8%;
     --foreground: 0 0% 98%;
     
-    --primary: 222 79% 30%;
+    --primary: 221 77% 22%;
     --primary-foreground: 0 0% 98%;
     
-    --secondary: 222 79% 25%;
+    --secondary: 221 77% 17%;
     --secondary-foreground: 0 0% 98%;
     
-    --accent: 222 79% 30%;
+    --accent: 221 77% 22%;
     --accent-foreground: 0 0% 98%;
     
     --muted: 220 50% 15%;
