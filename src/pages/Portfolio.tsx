@@ -27,7 +27,7 @@ const facilities = [
     image: facilityPatersonImage,
   },
   {
-    name: 'StorageBlue Paterson',
+    name: 'StorageBlue Clifton',
     location: 'Clifton, NJ',
     sqft: '35,000',
     occupancy: '95%',
