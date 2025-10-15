@@ -202,7 +202,7 @@ const Portfolio = () => {
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-4xl md:text-5xl font-heading font-bold text-primary mb-6">
-                Realized Returns
+                StorageBlue Case Studies
               </h2>
               <p className="text-lg text-muted-foreground">
                 Proven performance across multiple investment strategies
@@ -223,7 +223,7 @@ const Portfolio = () => {
                     <div className="text-3xl font-heading font-bold text-green-600">33.79%</div>
                   </div>
                 </div>
-                <div className="grid grid-cols-4 gap-4 pt-4 border-t border-border">
+                <div className="grid grid-cols-5 gap-4 pt-4 border-t border-border">
                   <div>
                     <div className="text-xs sm:text-sm text-muted-foreground mb-1">Investment</div>
                     <div className="text-sm sm:text-base font-semibold text-foreground">$46.5M</div>
@@ -239,6 +239,10 @@ const Portfolio = () => {
                   <div className="text-center">
                     <div className="text-xs sm:text-sm text-muted-foreground mb-1">Number of Facilities</div>
                     <div className="text-sm sm:text-base font-semibold text-foreground">6</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-xs sm:text-sm text-muted-foreground mb-1">Status</div>
+                    <div className="text-sm sm:text-base font-semibold text-foreground">SOLD</div>
                   </div>
                 </div>
               </div>
