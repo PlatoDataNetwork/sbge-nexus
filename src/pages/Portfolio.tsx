@@ -234,9 +234,9 @@ const Portfolio = () => {
                   </div>
                   <div>
                     <div className="text-xs sm:text-sm text-muted-foreground mb-1">MOIC</div>
-                    <div className="text-sm sm:text-base font-semibold text-foreground">34x</div>
+                    <div className="text-sm sm:text-base font-semibold text-foreground">34.0x</div>
                   </div>
-                  <div>
+                  <div className="text-center">
                     <div className="text-xs sm:text-sm text-muted-foreground mb-1">Number of Facilities</div>
                     <div className="text-sm sm:text-base font-semibold text-foreground">6</div>
                   </div>
