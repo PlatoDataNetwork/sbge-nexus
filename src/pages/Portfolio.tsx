@@ -214,23 +214,23 @@ const Portfolio = () => {
                 <div className="flex items-start justify-between mb-4">
                   <div>
                     <h3 className="text-2xl font-heading font-bold text-foreground mb-2">
-                      Portfolio Acquisition 2019
+                      StorageBlue Case Study I
                     </h3>
                     <p className="text-muted-foreground">North Jersey / NYC Metro</p>
                   </div>
                   <div className="text-right">
                     <div className="text-sm text-muted-foreground mb-1">IRR</div>
-                    <div className="text-3xl font-heading font-bold text-green-600">22.4%</div>
+                    <div className="text-3xl font-heading font-bold text-green-600">33.79%</div>
                   </div>
                 </div>
                 <div className="grid grid-cols-3 gap-4 pt-4 border-t border-border">
                   <div>
                     <div className="text-xs sm:text-sm text-muted-foreground mb-1">Investment</div>
-                    <div className="text-sm sm:text-base font-semibold text-foreground">$42M</div>
+                    <div className="text-sm sm:text-base font-semibold text-foreground">$46.5M</div>
                   </div>
                   <div>
                     <div className="text-xs sm:text-sm text-muted-foreground mb-1">MOIC</div>
-                    <div className="text-sm sm:text-base font-semibold text-foreground">2.1x</div>
+                    <div className="text-sm sm:text-base font-semibold text-foreground">34x</div>
                   </div>
                   <div>
                     <div className="text-xs sm:text-sm text-muted-foreground mb-1">Hold Period</div>
