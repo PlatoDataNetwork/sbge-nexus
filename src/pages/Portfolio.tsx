@@ -223,18 +223,22 @@ const Portfolio = () => {
                     <div className="text-3xl font-heading font-bold text-green-600">33.79%</div>
                   </div>
                 </div>
-                <div className="grid grid-cols-3 gap-4 pt-4 border-t border-border">
+                <div className="grid grid-cols-4 gap-4 pt-4 border-t border-border">
                   <div>
                     <div className="text-xs sm:text-sm text-muted-foreground mb-1">Investment</div>
                     <div className="text-sm sm:text-base font-semibold text-foreground">$46.5M</div>
+                  </div>
+                  <div>
+                    <div className="text-xs sm:text-sm text-muted-foreground mb-1">Sale Price</div>
+                    <div className="text-sm sm:text-base font-semibold text-foreground">$100M</div>
                   </div>
                   <div>
                     <div className="text-xs sm:text-sm text-muted-foreground mb-1">MOIC</div>
                     <div className="text-sm sm:text-base font-semibold text-foreground">34x</div>
                   </div>
                   <div>
-                    <div className="text-xs sm:text-sm text-muted-foreground mb-1">Hold Period</div>
-                    <div className="text-sm sm:text-base font-semibold text-foreground">4.5 years</div>
+                    <div className="text-xs sm:text-sm text-muted-foreground mb-1">Number of Facilities</div>
+                    <div className="text-sm sm:text-base font-semibold text-foreground">6</div>
                   </div>
                 </div>
               </div>
