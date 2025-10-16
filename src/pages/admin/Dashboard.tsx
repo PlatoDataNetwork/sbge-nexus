@@ -101,33 +101,6 @@ const AdminDashboard = () => {
     });
   };
 
-  const handleResetAdminPasswords = async () => {
-    try {
-      const { data, error } = await supabase.functions.invoke('reset-admin-passwords');
-      
-      if (error) {
-        toast({
-          variant: 'destructive',
-          title: 'Password Reset Error',
-          description: error.message || 'Failed to reset admin passwords.',
-        });
-        return;
-      }
-
-      toast({
-        title: 'Success',
-        description: 'All admin passwords have been reset to "Storage22"',
-      });
-    } catch (error) {
-      console.error('Password reset error:', error);
-      toast({
-        variant: 'destructive',
-        title: 'Password Reset Error',
-        description: 'An unexpected error occurred.',
-      });
-    }
-  };
-
   const handleSignOut = async () => {
     try {
       const { error } = await supabase.auth.signOut();
@@ -178,15 +151,10 @@ const AdminDashboard = () => {
               Manage users, inquiries, and view analytics
             </p>
           </div>
-          <div className="flex gap-2">
-            <Button onClick={handleResetAdminPasswords} variant="outline">
-              Reset Admin Passwords
-            </Button>
-            <Button onClick={handleSignOut} variant="outline">
-              <LogOut className="mr-2 h-4 w-4" />
-              Sign Out
-            </Button>
-          </div>
+          <Button onClick={handleSignOut} variant="outline">
+            <LogOut className="mr-2 h-4 w-4" />
+            Sign Out
+          </Button>
         </div>
 
         {/* Stats Overview */}
