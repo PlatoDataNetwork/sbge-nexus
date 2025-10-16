@@ -101,24 +101,13 @@ const CaseStudies = () => {
       {/* Summary Stats */}
       <section className="py-12 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="grid md:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-5 gap-6 mb-6">
             <Card>
               <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-medium text-muted-foreground">Total Facilities</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-3xl font-bold">{caseStudyData.totalFacilities}</div>
-                <p className="text-xs text-muted-foreground mt-1">{caseStudyData.totalUnits} Units</p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-medium text-muted-foreground">Development Cost</CardTitle>
+                <CardTitle className="text-sm font-medium text-muted-foreground">Investment</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="text-3xl font-bold">{caseStudyData.developmentCost}</div>
-                <p className="text-xs text-muted-foreground mt-1">Unlevered</p>
               </CardContent>
             </Card>
 
@@ -128,39 +117,74 @@ const CaseStudies = () => {
               </CardHeader>
               <CardContent>
                 <div className="text-3xl font-bold text-primary">{caseStudyData.salePrice}</div>
-                <p className="text-xs text-muted-foreground mt-1">{caseStudyData.totalSqft} Sqft</p>
               </CardContent>
             </Card>
 
+            <Card>
+              <CardHeader className="pb-3">
+                <CardTitle className="text-sm font-medium text-muted-foreground">MOIC</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-3xl font-bold">{caseStudyData.avgLeveredMOIC}</div>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader className="pb-3">
+                <CardTitle className="text-sm font-medium text-muted-foreground">Number of Facilities</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-3xl font-bold">{caseStudyData.totalFacilities}</div>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader className="pb-3">
+                <CardTitle className="text-sm font-medium text-muted-foreground">Status</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-3xl font-bold">SOLD</div>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="grid md:grid-cols-4 gap-6">
             <Card>
               <CardHeader className="pb-3">
                 <CardTitle className="text-sm font-medium text-muted-foreground">Avg. Levered IRR</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="text-3xl font-bold text-primary">{caseStudyData.avgLeveredIRR}</div>
-                <p className="text-xs text-muted-foreground mt-1">{caseStudyData.avgLeveredMOIC} MOIC</p>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader className="pb-3">
+                <CardTitle className="text-sm font-medium text-muted-foreground">Levered MOIC</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-3xl font-bold">{caseStudyData.avgLeveredMOIC}</div>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader className="pb-3">
+                <CardTitle className="text-sm font-medium text-muted-foreground">Unlevered IRR</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-3xl font-bold">17.4%</div>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader className="pb-3">
+                <CardTitle className="text-sm font-medium text-muted-foreground">Unlevered MOIC</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-3xl font-bold">2.94x</div>
               </CardContent>
             </Card>
           </div>
-
-          <Card className="mt-6">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <TrendingUp className="h-5 w-5 text-primary" />
-                Performance Metrics
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="grid md:grid-cols-2 gap-4">
-              <div>
-                <p className="text-sm font-medium text-muted-foreground mb-1">Unlevered IRR</p>
-                <p className="text-2xl font-bold">{caseStudyData.unlEveredIRR}</p>
-              </div>
-              <div>
-                <p className="text-sm font-medium text-muted-foreground mb-1">Unlevered MOIC</p>
-                <p className="text-2xl font-bold">{caseStudyData.unleveredMOIC}</p>
-              </div>
-            </CardContent>
-          </Card>
         </div>
       </section>
 
