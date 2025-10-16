@@ -76,7 +76,7 @@ const Footer = () => {
           <div className="md:col-span-4 md:mt-12">
             <ul className="space-y-2 text-sm">
               <li>
-                <Link to="/investor-questionnaire" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
+                <Link to="/auth" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
                   Request Access
                 </Link>
               </li>

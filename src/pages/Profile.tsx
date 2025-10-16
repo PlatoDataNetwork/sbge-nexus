@@ -630,7 +630,7 @@ const Profile = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
               <Button asChild size="lg" variant="accent">
-                <Link to="/investor-questionnaire">Request Access</Link>
+                <Link to="/auth">Request Access</Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10">
                 <Link to="/leadership">View All Leadership</Link>
