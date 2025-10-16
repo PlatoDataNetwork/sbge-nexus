@@ -290,9 +290,9 @@ const Portfolio = () => {
                 <div className="grid grid-cols-5 gap-4 pt-4 border-t border-border">
                   <div>
                     <div className="text-xs sm:text-sm text-muted-foreground mb-1">Investment</div>
-                    <div className="text-sm sm:text-base font-semibold text-foreground">$28M</div>
+                    <div className="text-sm sm:text-base font-semibold text-foreground">$89M</div>
                   </div>
-                  <div>
+                  <div className="text-center">
                     <div className="text-xs sm:text-sm text-muted-foreground mb-1">Targeted Sale Price</div>
                     <div className="text-sm sm:text-base font-semibold text-foreground">N/A</div>
                   </div>
@@ -327,9 +327,9 @@ const Portfolio = () => {
                 <div className="grid grid-cols-5 gap-4 pt-4 border-t border-border">
                   <div>
                     <div className="text-xs sm:text-sm text-muted-foreground mb-1">Investment</div>
-                    <div className="text-sm sm:text-base font-semibold text-foreground">$32M</div>
+                    <div className="text-sm sm:text-base font-semibold text-foreground">$22M</div>
                   </div>
-                  <div>
+                  <div className="text-center">
                     <div className="text-xs sm:text-sm text-muted-foreground mb-1">Targeted Sale Price</div>
                     <div className="text-sm sm:text-base font-semibold text-foreground">N/A</div>
                   </div>
