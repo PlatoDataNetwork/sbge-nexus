@@ -237,101 +237,107 @@ const Portfolio = () => {
             </div>
 
             <div className="space-y-6">
-              <div className="bg-card border border-border rounded-lg p-8 hover-lift">
-                <div className="mb-4">
-                  <h3 className="text-2xl font-heading font-bold text-foreground mb-2">
+              <div className="bg-card border border-border rounded-lg p-10 hover-lift">
+                <div className="mb-6">
+                  <h3 className="text-3xl font-heading font-bold text-foreground mb-2">
                     StorageBlue Case Study I
                   </h3>
-                  <p className="text-muted-foreground">North Jersey / NYC Metro</p>
+                  <p className="text-lg text-muted-foreground">North Jersey / NYC Metro</p>
                 </div>
-                <div className="grid grid-cols-5 gap-4 pt-4 border-t border-border">
+                <div className="flex items-center justify-between gap-8">
                   <div className="text-center">
-                    <div className="text-xs sm:text-sm text-muted-foreground mb-1">Number of Facilities</div>
-                    <div className="text-sm sm:text-base font-semibold text-foreground">6</div>
+                    <div className="text-sm text-muted-foreground mb-2">Number of Facilities</div>
+                    <div className="text-2xl font-semibold text-foreground">6</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-xs sm:text-sm text-muted-foreground mb-1">Investment</div>
-                    <div className="text-sm sm:text-base font-semibold text-foreground">$46.5M</div>
+                    <div className="text-sm text-muted-foreground mb-2">Investment</div>
+                    <div className="text-2xl font-semibold text-foreground">$46.5M</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-xs sm:text-sm text-muted-foreground mb-1">Sale Price</div>
-                    <div className="text-sm sm:text-base font-semibold text-foreground">$100M</div>
+                    <div className="text-sm text-muted-foreground mb-2">Sale Price</div>
+                    <div className="text-2xl font-semibold text-foreground">$100M</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-xs sm:text-sm text-muted-foreground mb-1">MOIC</div>
-                    <div className="text-sm sm:text-base font-semibold text-foreground">34.0x</div>
+                    <div className="text-sm text-muted-foreground mb-2">MOIC</div>
+                    <div className="text-2xl font-semibold text-foreground">34.0x</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-xs sm:text-sm text-muted-foreground mb-1">IRR</div>
-                    <div className="text-xl font-semibold text-green-600 mb-2">33.79%</div>
-                    <div className="text-xs sm:text-sm text-muted-foreground mb-1">Status</div>
-                    <div className="text-sm sm:text-base font-semibold text-foreground">SOLD</div>
+                    <div className="text-sm text-muted-foreground mb-2">IRR</div>
+                    <div className="text-2xl font-semibold text-green-600">33.79%</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-sm text-muted-foreground mb-2">Status</div>
+                    <div className="text-2xl font-semibold text-foreground">SOLD</div>
                   </div>
                 </div>
               </div>
 
-              <div className="bg-card border border-border rounded-lg p-8 hover-lift">
-                <div className="mb-4">
-                  <h3 className="text-2xl font-heading font-bold text-foreground mb-2">
+              <div className="bg-card border border-border rounded-lg p-10 hover-lift">
+                <div className="mb-6">
+                  <h3 className="text-3xl font-heading font-bold text-foreground mb-2">
                     StorageBlue Case Study II
                   </h3>
-                  <p className="text-muted-foreground">New Jersey</p>
+                  <p className="text-lg text-muted-foreground">New Jersey</p>
                 </div>
-                <div className="grid grid-cols-5 gap-4 pt-4 border-t border-border">
+                <div className="flex items-center justify-between gap-8">
                   <div className="text-center">
-                    <div className="text-xs sm:text-sm text-muted-foreground mb-1">Number of Facilities</div>
-                    <div className="text-sm sm:text-base font-semibold text-foreground">3</div>
+                    <div className="text-sm text-muted-foreground mb-2">Number of Facilities</div>
+                    <div className="text-2xl font-semibold text-foreground">3</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-xs sm:text-sm text-muted-foreground mb-1">Investment</div>
-                    <div className="text-sm sm:text-base font-semibold text-foreground">$89M</div>
+                    <div className="text-sm text-muted-foreground mb-2">Investment</div>
+                    <div className="text-2xl font-semibold text-foreground">$89M</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-xs sm:text-sm text-muted-foreground mb-1">Targeted Sale Price</div>
-                    <div className="text-sm sm:text-base font-semibold text-foreground">$97.2M</div>
+                    <div className="text-sm text-muted-foreground mb-2">Targeted Sale Price</div>
+                    <div className="text-2xl font-semibold text-foreground">$97.2M</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-xs sm:text-sm text-muted-foreground mb-1">MOIC</div>
-                    <div className="text-sm sm:text-base font-semibold text-foreground">2.18x</div>
+                    <div className="text-sm text-muted-foreground mb-2">MOIC</div>
+                    <div className="text-2xl font-semibold text-foreground">2.18x</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-xs sm:text-sm text-muted-foreground mb-1">IRR</div>
-                    <div className="text-xl font-semibold text-green-600 mb-2">33.01%</div>
-                    <div className="text-xs sm:text-sm text-muted-foreground mb-1">Status</div>
-                    <div className="text-sm sm:text-base font-semibold text-foreground">Active</div>
+                    <div className="text-sm text-muted-foreground mb-2">IRR</div>
+                    <div className="text-2xl font-semibold text-green-600">33.01%</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-sm text-muted-foreground mb-2">Status</div>
+                    <div className="text-2xl font-semibold text-foreground">Active</div>
                   </div>
                 </div>
               </div>
 
-              <div className="bg-card border border-border rounded-lg p-8 hover-lift">
-                <div className="mb-4">
-                  <h3 className="text-2xl font-heading font-bold text-foreground mb-2">
+              <div className="bg-card border border-border rounded-lg p-10 hover-lift">
+                <div className="mb-6">
+                  <h3 className="text-3xl font-heading font-bold text-foreground mb-2">
                     StorageBlue Case Study III
                   </h3>
-                  <p className="text-muted-foreground">New Jersey</p>
+                  <p className="text-lg text-muted-foreground">New Jersey</p>
                 </div>
-                <div className="grid grid-cols-5 gap-4 pt-4 border-t border-border">
+                <div className="flex items-center justify-between gap-8">
                   <div className="text-center">
-                    <div className="text-xs sm:text-sm text-muted-foreground mb-1">Number of Facilities</div>
-                    <div className="text-sm sm:text-base font-semibold text-foreground">3</div>
+                    <div className="text-sm text-muted-foreground mb-2">Number of Facilities</div>
+                    <div className="text-2xl font-semibold text-foreground">3</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-xs sm:text-sm text-muted-foreground mb-1">Investment</div>
-                    <div className="text-sm sm:text-base font-semibold text-foreground">$22M</div>
+                    <div className="text-sm text-muted-foreground mb-2">Investment</div>
+                    <div className="text-2xl font-semibold text-foreground">$22M</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-xs sm:text-sm text-muted-foreground mb-1">Targeted Sale Price</div>
-                    <div className="text-sm sm:text-base font-semibold text-foreground">$36.8M</div>
+                    <div className="text-sm text-muted-foreground mb-2">Targeted Sale Price</div>
+                    <div className="text-2xl font-semibold text-foreground">$36.8M</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-xs sm:text-sm text-muted-foreground mb-1">MOIC</div>
-                    <div className="text-sm sm:text-base font-semibold text-foreground">4.16x</div>
+                    <div className="text-sm text-muted-foreground mb-2">MOIC</div>
+                    <div className="text-2xl font-semibold text-foreground">4.16x</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-xs sm:text-sm text-muted-foreground mb-1">IRR</div>
-                    <div className="text-xl font-semibold text-green-600 mb-2">29.36%</div>
-                    <div className="text-xs sm:text-sm text-muted-foreground mb-1">Status</div>
-                    <div className="text-sm sm:text-base font-semibold text-foreground">Active</div>
+                    <div className="text-sm text-muted-foreground mb-2">IRR</div>
+                    <div className="text-2xl font-semibold text-green-600">29.36%</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-sm text-muted-foreground mb-2">Status</div>
+                    <div className="text-2xl font-semibold text-foreground">Active</div>
                   </div>
                 </div>
               </div>
