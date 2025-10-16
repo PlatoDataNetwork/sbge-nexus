@@ -335,15 +335,14 @@ const Auth = () => {
                     <Button type="submit" className="w-full" variant="premium" disabled={loading}>
                       {loading ? 'Signing in...' : 'Sign In'}
                     </Button>
-                    <Button
+                    <button
                       type="button"
-                      variant="ghost"
-                      className="w-full text-sm text-white hover:text-white/80"
+                      className="w-full text-sm text-white hover:text-white/80 underline-offset-4 hover:underline mt-2"
                       onClick={handleForgotPassword}
                       disabled={loading}
                     >
                       Forgot your password?
-                    </Button>
+                    </button>
                   </form>
                 </CardContent>
               </Card>
