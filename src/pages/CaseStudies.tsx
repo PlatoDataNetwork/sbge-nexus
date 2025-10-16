@@ -101,7 +101,7 @@ const CaseStudies = () => {
       {/* Summary Stats */}
       <section className="py-12 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="grid md:grid-cols-5 gap-6 mb-6">
+          <div className="grid md:grid-cols-4 gap-6 mb-6">
             <Card>
               <CardHeader className="pb-3">
                 <CardTitle className="text-sm font-medium text-muted-foreground">Investment</CardTitle>
@@ -117,15 +117,6 @@ const CaseStudies = () => {
               </CardHeader>
               <CardContent>
                 <div className="text-3xl font-bold text-primary">{caseStudyData.salePrice}</div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-medium text-muted-foreground">MOIC</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-3xl font-bold">{caseStudyData.avgLeveredMOIC}</div>
               </CardContent>
             </Card>
 
@@ -160,7 +151,7 @@ const CaseStudies = () => {
 
             <Card>
               <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-medium text-muted-foreground">Levered MOIC</CardTitle>
+                <CardTitle className="text-sm font-medium text-muted-foreground">Avg. Levered MOIC</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="text-3xl font-bold">{caseStudyData.avgLeveredMOIC}</div>
