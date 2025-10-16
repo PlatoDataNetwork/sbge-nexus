@@ -214,7 +214,7 @@ const Portfolio = () => {
                 <div className="flex items-start justify-between mb-4">
                   <div>
                     <h3 className="text-2xl font-heading font-bold text-foreground mb-2">
-                      StorageBlue Case Study I
+                      StorageBlue SBGF I
                     </h3>
                     <p className="text-muted-foreground">North Jersey / NYC Metro</p>
                   </div>
@@ -251,27 +251,72 @@ const Portfolio = () => {
                 <div className="flex items-start justify-between mb-4">
                   <div>
                     <h3 className="text-2xl font-heading font-bold text-foreground mb-2">
-                      Adaptive Re-Use Developments 2020
+                      StorageBlue SBGF II
                     </h3>
                     <p className="text-muted-foreground">New Jersey</p>
                   </div>
                   <div className="text-right">
                     <div className="text-sm text-muted-foreground mb-1">IRR</div>
-                    <div className="text-3xl font-heading font-bold text-green-600">18.7%</div>
+                    <div className="text-3xl font-heading font-bold text-green-600">33.01%</div>
                   </div>
                 </div>
-                <div className="grid grid-cols-3 gap-4 pt-4 border-t border-border">
+                <div className="grid grid-cols-5 gap-4 pt-4 border-t border-border">
                   <div>
                     <div className="text-xs sm:text-sm text-muted-foreground mb-1">Investment</div>
                     <div className="text-sm sm:text-base font-semibold text-foreground">$28M</div>
                   </div>
                   <div>
-                    <div className="text-xs sm:text-sm text-muted-foreground mb-1">MOIC</div>
-                    <div className="text-sm sm:text-base font-semibold text-foreground">1.8x</div>
+                    <div className="text-xs sm:text-sm text-muted-foreground mb-1">Sale Price</div>
+                    <div className="text-sm sm:text-base font-semibold text-foreground">N/A</div>
                   </div>
                   <div>
-                    <div className="text-xs sm:text-sm text-muted-foreground mb-1">Hold Period</div>
-                    <div className="text-sm sm:text-base font-semibold text-foreground">3.2 years</div>
+                    <div className="text-xs sm:text-sm text-muted-foreground mb-1">MOIC</div>
+                    <div className="text-sm sm:text-base font-semibold text-foreground">2.18x</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-xs sm:text-sm text-muted-foreground mb-1">Number of Facilities</div>
+                    <div className="text-sm sm:text-base font-semibold text-foreground">3</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-xs sm:text-sm text-muted-foreground mb-1">Status</div>
+                    <div className="text-sm sm:text-base font-semibold text-foreground">Active</div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-card border border-border rounded-lg p-8 hover-lift">
+                <div className="flex items-start justify-between mb-4">
+                  <div>
+                    <h3 className="text-2xl font-heading font-bold text-foreground mb-2">
+                      StorageBlue SBGF III
+                    </h3>
+                    <p className="text-muted-foreground">New Jersey</p>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-sm text-muted-foreground mb-1">IRR</div>
+                    <div className="text-3xl font-heading font-bold text-green-600">29.36%</div>
+                  </div>
+                </div>
+                <div className="grid grid-cols-5 gap-4 pt-4 border-t border-border">
+                  <div>
+                    <div className="text-xs sm:text-sm text-muted-foreground mb-1">Investment</div>
+                    <div className="text-sm sm:text-base font-semibold text-foreground">$32M</div>
+                  </div>
+                  <div>
+                    <div className="text-xs sm:text-sm text-muted-foreground mb-1">Sale Price</div>
+                    <div className="text-sm sm:text-base font-semibold text-foreground">N/A</div>
+                  </div>
+                  <div>
+                    <div className="text-xs sm:text-sm text-muted-foreground mb-1">MOIC</div>
+                    <div className="text-sm sm:text-base font-semibold text-foreground">4.16x</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-xs sm:text-sm text-muted-foreground mb-1">Number of Facilities</div>
+                    <div className="text-sm sm:text-base font-semibold text-foreground">3</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-xs sm:text-sm text-muted-foreground mb-1">Status</div>
+                    <div className="text-sm sm:text-base font-semibold text-foreground">Active</div>
                   </div>
                 </div>
               </div>
