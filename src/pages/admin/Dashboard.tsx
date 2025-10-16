@@ -102,8 +102,26 @@ const AdminDashboard = () => {
   };
 
   const handleSignOut = async () => {
-    await supabase.auth.signOut();
-    navigate('/');
+    try {
+      const { error } = await supabase.auth.signOut();
+      if (error) {
+        console.error('Sign out error:', error);
+        toast({
+          variant: 'destructive',
+          title: 'Sign Out Error',
+          description: 'Failed to sign out. Please try again.',
+        });
+        return;
+      }
+      navigate('/');
+    } catch (error) {
+      console.error('Sign out error:', error);
+      toast({
+        variant: 'destructive',
+        title: 'Sign Out Error',
+        description: 'An unexpected error occurred.',
+      });
+    }
   };
 
   if (loading) {

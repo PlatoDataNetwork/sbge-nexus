@@ -4,13 +4,14 @@ import { Menu, X, User, LogOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { supabase } from '@/integrations/supabase/client';
 import { useNavigate } from 'react-router-dom';
+import { Session } from '@supabase/supabase-js';
 import logoWhite from '@/assets/storageblue-white.png';
 import logoBlue from '@/assets/storageblue-blue.png';
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [session, setSession] = useState<any>(null);
+  const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
   const location = useLocation();
@@ -34,7 +35,7 @@ const Navigation = () => {
     } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
       setLoading(false);
-      if (session) {
+      if (session?.user) {
         checkAdminStatus(session.user.id);
       } else {
         setIsAdmin(false);
@@ -45,7 +46,7 @@ const Navigation = () => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
       setLoading(false);
-      if (session) {
+      if (session?.user) {
         checkAdminStatus(session.user.id);
       }
     });
@@ -65,8 +66,18 @@ const Navigation = () => {
   };
 
   const handleSignOut = async () => {
-    await supabase.auth.signOut();
-    navigate('/');
+    try {
+      const { error } = await supabase.auth.signOut();
+      if (error) {
+        console.error('Sign out error:', error);
+      }
+      // Clear local state
+      setSession(null);
+      setIsAdmin(false);
+      navigate('/');
+    } catch (error) {
+      console.error('Sign out error:', error);
+    }
   };
 
   const navigation = [
