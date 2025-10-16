@@ -104,25 +104,7 @@ const CaseStudies = () => {
           <div className="grid md:grid-cols-4 gap-6 mb-6">
             <Card>
               <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-medium text-muted-foreground">Investment</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-3xl font-bold">{caseStudyData.developmentCost}</div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-medium text-muted-foreground">Sale Price</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-3xl font-bold text-primary">{caseStudyData.salePrice}</div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-medium text-muted-foreground">Number of Facilities</CardTitle>
+                <CardTitle className="text-sm font-medium text-muted-foreground text-center">Number of Facilities</CardTitle>
               </CardHeader>
               <CardContent className="text-center">
                 <div className="text-3xl font-bold">{caseStudyData.totalFacilities}</div>
@@ -131,9 +113,27 @@ const CaseStudies = () => {
 
             <Card>
               <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-medium text-muted-foreground">Status</CardTitle>
+                <CardTitle className="text-sm font-medium text-muted-foreground text-center">Investment</CardTitle>
               </CardHeader>
-              <CardContent>
+              <CardContent className="text-center">
+                <div className="text-3xl font-bold">{caseStudyData.developmentCost}</div>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader className="pb-3">
+                <CardTitle className="text-sm font-medium text-muted-foreground text-center">Sale Price</CardTitle>
+              </CardHeader>
+              <CardContent className="text-center">
+                <div className="text-3xl font-bold text-primary">{caseStudyData.salePrice}</div>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader className="pb-3">
+                <CardTitle className="text-sm font-medium text-muted-foreground text-center">Status</CardTitle>
+              </CardHeader>
+              <CardContent className="text-center">
                 <div className="text-3xl font-bold">SOLD</div>
               </CardContent>
             </Card>
@@ -142,36 +142,36 @@ const CaseStudies = () => {
           <div className="grid md:grid-cols-4 gap-6">
             <Card>
               <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-medium text-muted-foreground">Avg. Levered IRR</CardTitle>
+                <CardTitle className="text-sm font-medium text-muted-foreground text-center">Avg. Levered IRR</CardTitle>
               </CardHeader>
-              <CardContent>
+              <CardContent className="text-center">
                 <div className="text-3xl font-bold text-primary">{caseStudyData.avgLeveredIRR}</div>
               </CardContent>
             </Card>
 
             <Card>
               <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-medium text-muted-foreground">Avg. Levered MOIC</CardTitle>
+                <CardTitle className="text-sm font-medium text-muted-foreground text-center">Avg. Levered MOIC</CardTitle>
               </CardHeader>
-              <CardContent>
+              <CardContent className="text-center">
                 <div className="text-3xl font-bold">{caseStudyData.avgLeveredMOIC}</div>
               </CardContent>
             </Card>
 
             <Card>
               <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-medium text-muted-foreground">Unlevered IRR</CardTitle>
+                <CardTitle className="text-sm font-medium text-muted-foreground text-center">Unlevered IRR</CardTitle>
               </CardHeader>
-              <CardContent>
+              <CardContent className="text-center">
                 <div className="text-3xl font-bold">17.4%</div>
               </CardContent>
             </Card>
 
             <Card>
               <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-medium text-muted-foreground">Unlevered MOIC</CardTitle>
+                <CardTitle className="text-sm font-medium text-muted-foreground text-center">Unlevered MOIC</CardTitle>
               </CardHeader>
-              <CardContent>
+              <CardContent className="text-center">
                 <div className="text-3xl font-bold">2.94x</div>
               </CardContent>
             </Card>
