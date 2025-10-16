@@ -17,6 +17,53 @@ serve(async (req) => {
   }
 
   try {
+    // Create client to verify caller's authentication
+    const authHeader = req.headers.get('Authorization');
+    if (!authHeader) {
+      return new Response(
+        JSON.stringify({ error: 'Missing authorization header' }),
+        { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    const supabaseClient = createClient(
+      Deno.env.get('SUPABASE_URL') ?? '',
+      Deno.env.get('SUPABASE_ANON_KEY') ?? '',
+      {
+        global: { headers: { Authorization: authHeader } },
+        auth: { persistSession: false }
+      }
+    );
+
+    // Verify caller is authenticated
+    const { data: { user }, error: userError } = await supabaseClient.auth.getUser();
+    if (userError || !user) {
+      console.error('Authentication error:', userError);
+      return new Response(
+        JSON.stringify({ error: 'Unauthorized' }),
+        { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    // Verify caller has admin role
+    const { data: roleData, error: roleError } = await supabaseClient
+      .from('user_roles')
+      .select('role')
+      .eq('user_id', user.id)
+      .eq('role', 'admin')
+      .maybeSingle();
+
+    if (roleError || !roleData) {
+      console.error('Authorization check failed:', roleError);
+      return new Response(
+        JSON.stringify({ error: 'Forbidden: Admin access required' }),
+        { status: 403, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    console.log(`Admin ${user.email} is attempting user deletion`);
+
+    // Now create admin client for the actual deletion
     const supabaseAdmin = createClient(
       Deno.env.get('SUPABASE_URL') ?? '',
       Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? '',
@@ -51,12 +98,14 @@ serve(async (req) => {
       throw deleteError;
     }
 
-    console.log(`Successfully deleted user: ${userId}`);
+    console.log(`Successfully deleted user: ${userId} by admin: ${user.email}`);
 
     return new Response(
       JSON.stringify({ 
         success: true, 
-        message: 'User deleted successfully' 
+        message: 'User deleted successfully',
+        deleted_by: user.email,
+        deleted_at: new Date().toISOString()
       }),
       {
         status: 200,

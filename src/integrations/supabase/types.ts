@@ -194,6 +194,51 @@ export type Database = {
         }
         Relationships: []
       }
+      scheduled_calls: {
+        Row: {
+          company: string | null
+          created_at: string
+          email: string
+          id: string
+          investment_amount: string | null
+          name: string
+          notes: string | null
+          phone: string | null
+          preferred_date: string
+          preferred_time: string
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          company?: string | null
+          created_at?: string
+          email: string
+          id?: string
+          investment_amount?: string | null
+          name: string
+          notes?: string | null
+          phone?: string | null
+          preferred_date: string
+          preferred_time: string
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          company?: string | null
+          created_at?: string
+          email?: string
+          id?: string
+          investment_amount?: string | null
+          name?: string
+          notes?: string | null
+          phone?: string | null
+          preferred_date?: string
+          preferred_time?: string
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       user_activity: {
         Row: {
           activity_data: Json | null

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -9,6 +9,17 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Calendar } from "@/components/ui/calendar";
 import { ArrowLeft, Calendar as CalendarIcon, Clock, CheckCircle2 } from "lucide-react";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
+import { z } from "zod";
+
+const scheduleCallSchema = z.object({
+  name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
+  email: z.string().trim().email("Invalid email address").max(255, "Email must be less than 255 characters"),
+  phone: z.string().trim().min(1, "Phone is required").max(20, "Phone must be less than 20 characters"),
+  company: z.string().trim().max(200, "Company name must be less than 200 characters").optional(),
+  investmentAmount: z.string().trim().max(50, "Investment amount must be less than 50 characters").optional(),
+  message: z.string().trim().max(1000, "Message must be less than 1000 characters").optional(),
+});
 
 const ScheduleCall = () => {
   const navigate = useNavigate();
@@ -23,13 +34,21 @@ const ScheduleCall = () => {
     message: ""
   });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [session, setSession] = useState<any>(null);
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+    });
+  }, []);
 
   const timeSlots = [
     "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM",
     "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM"
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!date || !selectedTime) {
@@ -37,11 +56,52 @@ const ScheduleCall = () => {
       return;
     }
 
-    // TODO: Save scheduled call to database
-    // Currently just shows success message without persisting data
-    
-    setSubmitted(true);
-    toast.success("Call scheduled successfully!");
+    if (!session) {
+      toast.error("Please sign in to schedule a call");
+      navigate("/auth");
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      // Validate form data
+      const validatedData = scheduleCallSchema.parse(formData);
+
+      // Save to database
+      const { error } = await supabase
+        .from('scheduled_calls')
+        .insert({
+          user_id: session.user.id,
+          name: validatedData.name,
+          email: validatedData.email,
+          phone: validatedData.phone,
+          company: validatedData.company || null,
+          investment_amount: validatedData.investmentAmount || null,
+          notes: validatedData.message || null,
+          preferred_date: date.toISOString().split('T')[0],
+          preferred_time: selectedTime,
+        });
+
+      if (error) {
+        console.error('Error saving scheduled call:', error);
+        toast.error("Failed to schedule call. Please try again.");
+        return;
+      }
+
+      setSubmitted(true);
+      toast.success("Call scheduled successfully!");
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        const firstError = error.errors[0];
+        toast.error(firstError.message);
+      } else {
+        console.error('Error scheduling call:', error);
+        toast.error("An unexpected error occurred. Please try again.");
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleInputChange = (field: string, value: string) => {
@@ -259,9 +319,9 @@ const ScheduleCall = () => {
                     />
                   </div>
 
-                  <Button type="submit" className="w-full" size="lg">
+                  <Button type="submit" className="w-full" size="lg" disabled={loading}>
                     <CalendarIcon className="h-5 w-5 mr-2" />
-                    Schedule Call
+                    {loading ? "Scheduling..." : "Schedule Call"}
                   </Button>
                 </form>
               </CardContent>
