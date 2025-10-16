@@ -5,21 +5,15 @@ import { ArrowLeft, DollarSign, TrendingUp, Shield, Building, Target, MapPin } f
 import { memo } from 'react';
 
 const targetMarkets = [
-  'New Jersey',
-  'New York',
-  'Florida',
-  'Virginia',
-  'Texas',
-  'Nevada',
   'Arizona',
   'California',
-  'Tennessee',
-  'Connecticut',
-  'North Carolina',
-  'Maryland',
-  'Rhode Island',
+  'Florida',
   'Las Vegas',
-  'Colorado',
+  'New Jersey',
+  'New York',
+  'North Carolina',
+  'Tennessee',
+  'Texas',
 ];
 
 const investmentTypes = [
