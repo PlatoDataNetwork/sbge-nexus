@@ -67,10 +67,10 @@ const facilities = [
   {
     location: "170 River Drive, Garfield, NJ",
     basis: "$6.8M",
-    year: "2018/19",
+    year: "2017/19",
     sale: "$7.95M",
     saleYear: "2024",
-    irr: "4.92%",
+    irr: "4.92% / 145.21%",
     cashOnCash: "4.68%"
   }
 ];
