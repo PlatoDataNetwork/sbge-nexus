@@ -241,7 +241,7 @@ const Portfolio = () => {
                 <div className="flex items-start justify-between mb-4">
                   <div>
                     <h3 className="text-2xl font-heading font-bold text-foreground mb-2">
-                      StorageBlue SBGF I
+                      StorageBlue Case Study I
                     </h3>
                     <p className="text-muted-foreground">North Jersey / NYC Metro</p>
                   </div>
@@ -278,7 +278,7 @@ const Portfolio = () => {
                 <div className="flex items-start justify-between mb-4">
                   <div>
                     <h3 className="text-2xl font-heading font-bold text-foreground mb-2">
-                      StorageBlue SBGF II
+                      StorageBlue Case Study II
                     </h3>
                     <p className="text-muted-foreground">New Jersey</p>
                   </div>
@@ -315,7 +315,7 @@ const Portfolio = () => {
                 <div className="flex items-start justify-between mb-4">
                   <div>
                     <h3 className="text-2xl font-heading font-bold text-foreground mb-2">
-                      StorageBlue SBGF III
+                      StorageBlue Case Study III
                     </h3>
                     <p className="text-muted-foreground">New Jersey</p>
                   </div>
