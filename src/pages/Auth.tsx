@@ -7,6 +7,7 @@ import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Building2 } from 'lucide-react';
+import { logActivity } from '@/lib/activityTracker';
 
 const Auth = () => {
   const navigate = useNavigate();
@@ -50,7 +51,7 @@ const Auth = () => {
     const recoveryInUrl = new URLSearchParams(window.location.hash.substring(1)).get('type') === 'recovery';
 
     // Listen for auth changes FIRST
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, s) => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, s) => {
       setSession(s);
 
       // If Supabase indicates a password recovery flow or URL shows recovery, enter reset mode and do NOT redirect
@@ -60,15 +61,43 @@ const Auth = () => {
       }
 
       if (s && !isResettingPassword) {
-        navigate('/investor-portal');
+        // Check if user has completed questionnaire
+        const { data: questionnaireResponse } = await supabase
+          .from('investor_questionnaire_responses')
+          .select('id')
+          .eq('user_id', s.user.id)
+          .maybeSingle();
+
+        // Log successful login
+        await logActivity(s.user.id, 'user_login', {
+          timestamp: new Date().toISOString(),
+          event: event,
+        });
+
+        if (!questionnaireResponse) {
+          navigate('/investor-questionnaire');
+        } else {
+          navigate('/investor-portal');
+        }
       }
     });
 
     // THEN check existing session
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    supabase.auth.getSession().then(async ({ data: { session } }) => {
       setSession(session);
       if (session && !(isResettingPassword || recoveryInUrl)) {
-        navigate('/investor-portal');
+        // Check if user has completed questionnaire
+        const { data: questionnaireResponse } = await supabase
+          .from('investor_questionnaire_responses')
+          .select('id')
+          .eq('user_id', session.user.id)
+          .maybeSingle();
+
+        if (!questionnaireResponse) {
+          navigate('/investor-questionnaire');
+        } else {
+          navigate('/investor-portal');
+        }
       }
     });
 
@@ -94,7 +123,7 @@ const Auth = () => {
 
     setLoading(true);
 
-    const { error } = await supabase.auth.signUp({
+    const { data, error } = await supabase.auth.signUp({
       email,
       password,
       options: {
@@ -102,8 +131,8 @@ const Auth = () => {
           full_name: fullName,
           company: company,
         },
-        // After confirming email, send users back to the portal
-        emailRedirectTo: `${window.location.origin}/investor-portal`,
+        // After confirming email, send users back to auth page
+        emailRedirectTo: `${window.location.origin}/auth`,
       },
     });
 
@@ -114,6 +143,14 @@ const Auth = () => {
         description: error.message,
       });
     } else {
+      // Log signup activity
+      if (data.user) {
+        await logActivity(data.user.id, 'user_signup', {
+          timestamp: new Date().toISOString(),
+          full_name: fullName,
+          company: company,
+        });
+      }
       // Best effort: send welcome email (no blocking on error)
       try {
         const { error: functionError } = await supabase.functions.invoke('send-welcome-email', {
@@ -141,13 +178,20 @@ const Auth = () => {
 
     setLoading(true);
 
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
 
     if (error) {
       toast({
         variant: 'destructive',
         title: 'Sign In Error',
         description: error.message,
+      });
+      // Failed login - no user_id to log
+    } else if (data.user) {
+      // Activity logging is handled in onAuthStateChange
+      toast({
+        title: 'Welcome back!',
+        description: 'You have successfully signed in.',
       });
     }
 
@@ -242,13 +286,36 @@ const Auth = () => {
       });
       setLoading(false);
     } else {
+      // Log password reset completion
+      if (currentSession?.user) {
+        await logActivity(currentSession.user.id, 'password_reset_completed', {
+          timestamp: new Date().toISOString(),
+        });
+      }
+      
       toast({
         title: 'Success',
         description: 'Your password has been updated successfully.',
       });
       setLoading(false);
       setIsResettingPassword(false);
-      navigate('/investor-portal');
+      
+      // Check if user has completed questionnaire
+      if (currentSession?.user) {
+        const { data: questionnaireResponse } = await supabase
+          .from('investor_questionnaire_responses')
+          .select('id')
+          .eq('user_id', currentSession.user.id)
+          .maybeSingle();
+
+        if (!questionnaireResponse) {
+          navigate('/investor-questionnaire');
+        } else {
+          navigate('/investor-portal');
+        }
+      } else {
+        navigate('/investor-portal');
+      }
     }
   };
 

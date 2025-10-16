@@ -123,7 +123,7 @@ const InvestorQuestionnaire = () => {
         email: formData.email,
         password: password,
         options: {
-          emailRedirectTo: `${window.location.origin}/investor-portal`,
+          emailRedirectTo: `${window.location.origin}/auth`,
           data: {
             full_name: formData.fullName,
           }
@@ -131,9 +131,11 @@ const InvestorQuestionnaire = () => {
       });
 
       if (signUpError) {
-        // If user already exists, just log them in
+        // If user already exists, save their info to session storage and redirect to auth
         if (signUpError.message?.includes('already registered')) {
-          toast.success("Account already exists. Please check your email to set up your password.");
+          sessionStorage.setItem('investor_email', formData.email);
+          sessionStorage.setItem('investor_name', formData.fullName);
+          toast.success("Account already exists. Please sign in to continue.");
           navigate("/auth");
         } else {
           console.error('Error creating account:', signUpError);
@@ -159,9 +161,13 @@ const InvestorQuestionnaire = () => {
         console.error('Error sending welcome email:', emailError);
       }
 
-      toast.success("Questionnaire submitted! Check your email to set up your password and access the investor portal.");
+      toast.success("Questionnaire submitted! Check your email to complete registration and access the investor portal.");
       
-      // Redirect to auth page with confirmation message
+      // Save user info to session storage for auth page to pre-fill
+      sessionStorage.setItem('investor_email', formData.email);
+      sessionStorage.setItem('investor_name', formData.fullName);
+      
+      // Redirect to auth page (signup tab will be pre-selected)
       navigate("/auth");
     } catch (error) {
       if (error instanceof z.ZodError) {
