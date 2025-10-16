@@ -130,9 +130,7 @@ const InvestorDeck = () => {
               </Button>
             </div>
             
-            <div className="absolute left-1/2 transform -translate-x-1/2">
-              <h1 className="text-xl font-semibold whitespace-nowrap">StorageBlue Growth Fund - Investor Deck</h1>
-            </div>
+            <h1 className="text-xl font-semibold whitespace-nowrap">StorageBlue Growth Fund - Investor Deck</h1>
             
             <div className="flex items-center gap-2">
               <Button
