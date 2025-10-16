@@ -19,11 +19,12 @@ const Auth = () => {
   const [isResettingPassword, setIsResettingPassword] = useState(false);
 
   useEffect(() => {
-    // Check if this is a password reset flow
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('reset') === 'true') {
+    // Check if this is a password reset by looking at URL hash
+    const hashParams = new URLSearchParams(window.location.hash.substring(1));
+    const isPasswordReset = hashParams.get('type') === 'recovery';
+    
+    if (isPasswordReset) {
       setIsResettingPassword(true);
-      return;
     }
 
     // Pre-fill from session storage if coming from questionnaire
@@ -44,15 +45,17 @@ const Auth = () => {
   }, []);
 
   useEffect(() => {
-    // Don't auto-redirect if in password reset flow
-    if (isResettingPassword) {
-      return;
-    }
-
     // Check for existing session
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
-      if (session) {
+      
+      // Check if this is a password reset session
+      const hashParams = new URLSearchParams(window.location.hash.substring(1));
+      const isPasswordReset = hashParams.get('type') === 'recovery';
+      
+      if (isPasswordReset && session) {
+        setIsResettingPassword(true);
+      } else if (session && !isResettingPassword) {
         navigate('/investor-portal');
       }
     });
@@ -60,8 +63,10 @@ const Auth = () => {
     // Listen for auth changes
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
+    } = supabase.auth.onAuthStateChange((event, session) => {
       setSession(session);
+      
+      // Only redirect if not in password reset flow
       if (session && !isResettingPassword) {
         navigate('/investor-portal');
       }
@@ -172,7 +177,7 @@ const Auth = () => {
     setLoading(true);
 
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: `${window.location.origin}/auth?reset=true`,
+      redirectTo: `${window.location.origin}/auth`,
     });
 
     if (error) {
