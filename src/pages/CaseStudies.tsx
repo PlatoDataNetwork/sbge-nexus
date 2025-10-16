@@ -124,7 +124,7 @@ const CaseStudies = () => {
               <CardHeader className="pb-3">
                 <CardTitle className="text-sm font-medium text-muted-foreground">Number of Facilities</CardTitle>
               </CardHeader>
-              <CardContent>
+              <CardContent className="text-center">
                 <div className="text-3xl font-bold">{caseStudyData.totalFacilities}</div>
               </CardContent>
             </Card>
