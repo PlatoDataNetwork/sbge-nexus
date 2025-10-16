@@ -16,8 +16,16 @@ const Auth = () => {
   const [activeTab, setActiveTab] = useState<'signin' | 'signup'>('signup');
   const [signupEmail, setSignupEmail] = useState('');
   const [signupName, setSignupName] = useState('');
+  const [isResettingPassword, setIsResettingPassword] = useState(false);
 
   useEffect(() => {
+    // Check if this is a password reset flow
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('reset') === 'true') {
+      setIsResettingPassword(true);
+      return;
+    }
+
     // Pre-fill from session storage if coming from questionnaire
     const investorEmail = sessionStorage.getItem('investor_email');
     const investorName = sessionStorage.getItem('investor_name');
@@ -36,6 +44,11 @@ const Auth = () => {
   }, []);
 
   useEffect(() => {
+    // Don't auto-redirect if in password reset flow
+    if (isResettingPassword) {
+      return;
+    }
+
     // Check for existing session
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
@@ -49,13 +62,13 @@ const Auth = () => {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
-      if (session) {
+      if (session && !isResettingPassword) {
         navigate('/investor-portal');
       }
     });
 
     return () => subscription.unsubscribe();
-  }, [navigate]);
+  }, [navigate, isResettingPassword]);
 
   const handleSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -178,7 +191,55 @@ const Auth = () => {
     setLoading(false);
   };
 
-  if (session) {
+  const handlePasswordReset = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const password = formData.get('password') as string;
+    const confirmPassword = formData.get('confirmPassword') as string;
+
+    if (password !== confirmPassword) {
+      toast({
+        variant: 'destructive',
+        title: 'Password Mismatch',
+        description: 'Passwords do not match.',
+      });
+      return;
+    }
+
+    if (password.length < 6) {
+      toast({
+        variant: 'destructive',
+        title: 'Password Too Short',
+        description: 'Password must be at least 6 characters.',
+      });
+      return;
+    }
+
+    setLoading(true);
+
+    const { error } = await supabase.auth.updateUser({
+      password: password,
+    });
+
+    if (error) {
+      toast({
+        variant: 'destructive',
+        title: 'Error',
+        description: error.message,
+      });
+      setLoading(false);
+    } else {
+      toast({
+        title: 'Success',
+        description: 'Your password has been updated successfully.',
+      });
+      setLoading(false);
+      setIsResettingPassword(false);
+      navigate('/investor-portal');
+    }
+  };
+
+  if (session && !isResettingPassword) {
     return null;
   }
 
@@ -195,8 +256,52 @@ const Auth = () => {
           </p>
         </div>
 
-        <div className="w-full">
-          <div className="inline-flex h-10 items-center justify-center rounded-md bg-muted p-1 text-muted-foreground w-full mb-4">
+        {isResettingPassword ? (
+          <Card>
+            <CardHeader>
+              <CardTitle>Reset Password</CardTitle>
+              <CardDescription>
+                Enter your new password below
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handlePasswordReset} className="space-y-4">
+                <div>
+                  <Label htmlFor="password">New Password *</Label>
+                  <Input
+                    id="password"
+                    name="password"
+                    type="password"
+                    required
+                    placeholder="••••••••"
+                    minLength={6}
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="confirmPassword">Confirm Password *</Label>
+                  <Input
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    type="password"
+                    required
+                    placeholder="••••••••"
+                    minLength={6}
+                  />
+                </div>
+                <Button
+                  type="submit"
+                  className="w-full"
+                  variant="premium"
+                  disabled={loading}
+                >
+                  {loading ? 'Updating...' : 'Update Password'}
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
+        ) : (
+          <div className="w-full">
+            <div className="inline-flex h-10 items-center justify-center rounded-md bg-muted p-1 text-muted-foreground w-full mb-4">
             <button
               type="button"
               onClick={() => setActiveTab('signin')}
@@ -333,7 +438,8 @@ const Auth = () => {
               </CardContent>
             </Card>
           )}
-        </div>
+          </div>
+        )}
       </div>
     </div>
   );
