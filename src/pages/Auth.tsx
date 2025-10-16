@@ -18,19 +18,19 @@ const Auth = () => {
   const [signupName, setSignupName] = useState('');
   const [isResettingPassword, setIsResettingPassword] = useState(false);
 
+  // Detect recovery flow and prefill values
   useEffect(() => {
-    // Check if this is a password reset by looking at URL hash
+    // Password recovery links include the session in the URL hash
     const hashParams = new URLSearchParams(window.location.hash.substring(1));
-    const isPasswordReset = hashParams.get('type') === 'recovery';
-    
-    if (isPasswordReset) {
+    const isRecovery = hashParams.get('type') === 'recovery';
+    if (isRecovery) {
       setIsResettingPassword(true);
     }
 
     // Pre-fill from session storage if coming from questionnaire
     const investorEmail = sessionStorage.getItem('investor_email');
     const investorName = sessionStorage.getItem('investor_name');
-    
+
     if (investorEmail) {
       setSignupEmail(investorEmail);
       setActiveTab('signup');
@@ -38,35 +38,25 @@ const Auth = () => {
     if (investorName) {
       setSignupName(investorName);
     }
-    
+
     // Clear session storage after reading
     sessionStorage.removeItem('investor_email');
     sessionStorage.removeItem('investor_name');
   }, []);
 
+  // Auth state handling with correct initialization order
   useEffect(() => {
-    // Check for existing session
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-      
-      // Check if this is a password reset session
-      const hashParams = new URLSearchParams(window.location.hash.substring(1));
-      const isPasswordReset = hashParams.get('type') === 'recovery';
-      
-      if (isPasswordReset && session) {
-        setIsResettingPassword(true);
-      } else if (session && !isResettingPassword) {
+    // Listen for auth changes FIRST
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, s) => {
+      setSession(s);
+      if (s && !isResettingPassword) {
         navigate('/investor-portal');
       }
     });
 
-    // Listen for auth changes
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((event, session) => {
+    // THEN check existing session
+    supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
-      
-      // Only redirect if not in password reset flow
       if (session && !isResettingPassword) {
         navigate('/investor-portal');
       }
@@ -94,7 +84,7 @@ const Auth = () => {
 
     setLoading(true);
 
-    const { data, error } = await supabase.auth.signUp({
+    const { error } = await supabase.auth.signUp({
       email,
       password,
       options: {
@@ -102,6 +92,7 @@ const Auth = () => {
           full_name: fullName,
           company: company,
         },
+        // After confirming email, send users back to the portal
         emailRedirectTo: `${window.location.origin}/investor-portal`,
       },
     });
@@ -113,18 +104,12 @@ const Auth = () => {
         description: error.message,
       });
     } else {
-      // Send welcome email
+      // Best effort: send welcome email (no blocking on error)
       try {
         const { error: functionError } = await supabase.functions.invoke('send-welcome-email', {
-          body: {
-            fullName,
-            email,
-          },
+          body: { fullName, email },
         });
-
-        if (functionError) {
-          console.error('Error sending welcome email:', functionError);
-        }
+        if (functionError) console.error('Error sending welcome email:', functionError);
       } catch (emailError) {
         console.error('Error sending welcome email:', emailError);
       }
@@ -146,10 +131,7 @@ const Auth = () => {
 
     setLoading(true);
 
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
 
     if (error) {
       toast({
@@ -164,7 +146,7 @@ const Auth = () => {
 
   const handleForgotPassword = async () => {
     const email = (document.getElementById('signin-email') as HTMLInputElement)?.value;
-    
+
     if (!email) {
       toast({
         variant: 'destructive',
@@ -176,6 +158,7 @@ const Auth = () => {
 
     setLoading(true);
 
+    // Redirect back to /auth – the recovery session arrives via URL hash
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
       redirectTo: `${window.location.origin}/auth`,
     });
@@ -222,9 +205,24 @@ const Auth = () => {
 
     setLoading(true);
 
-    const { error } = await supabase.auth.updateUser({
-      password: password,
-    });
+    // Ensure we have a valid session (provided by the recovery link)
+    let currentSession = session;
+    if (!currentSession) {
+      const { data } = await supabase.auth.getSession();
+      currentSession = data.session;
+    }
+
+    if (!currentSession) {
+      toast({
+        variant: 'destructive',
+        title: 'Auth session missing',
+        description: 'Please reopen the password reset link from your email.',
+      });
+      setLoading(false);
+      return;
+    }
+
+    const { error } = await supabase.auth.updateUser({ password });
 
     if (error) {
       toast({
@@ -244,6 +242,7 @@ const Auth = () => {
     }
   };
 
+  // Hide auth forms if already signed in (except during reset flow)
   if (session && !isResettingPassword) {
     return null;
   }
@@ -256,193 +255,121 @@ const Auth = () => {
             <Building2 className="h-10 w-10 text-primary-foreground" />
           </div>
           <h1 className="text-4xl font-heading font-bold text-primary">StorageBlue</h1>
-          <p className="mt-2 text-sm text-muted-foreground">
-            Access the StorageBlue Growth Fund portal
-          </p>
+          <p className="mt-2 text-sm text-muted-foreground">Access the StorageBlue Growth Fund portal</p>
         </div>
 
         {isResettingPassword ? (
           <Card>
             <CardHeader>
               <CardTitle>Reset Password</CardTitle>
-              <CardDescription>
-                Enter your new password below
-              </CardDescription>
+              <CardDescription>Enter your new password below</CardDescription>
             </CardHeader>
             <CardContent>
               <form onSubmit={handlePasswordReset} className="space-y-4">
                 <div>
                   <Label htmlFor="password">New Password *</Label>
-                  <Input
-                    id="password"
-                    name="password"
-                    type="password"
-                    required
-                    placeholder="••••••••"
-                    minLength={6}
-                  />
+                  <Input id="password" name="password" type="password" required placeholder="••••••••" minLength={6} />
                 </div>
                 <div>
                   <Label htmlFor="confirmPassword">Confirm Password *</Label>
-                  <Input
-                    id="confirmPassword"
-                    name="confirmPassword"
-                    type="password"
-                    required
-                    placeholder="••••••••"
-                    minLength={6}
-                  />
+                  <Input id="confirmPassword" name="confirmPassword" type="password" required placeholder="••••••••" minLength={6} />
                 </div>
-                <Button
-                  type="submit"
-                  className="w-full"
-                  variant="premium"
-                  disabled={loading}
-                >
+                <Button type="submit" className="w-full" variant="premium" disabled={loading || !session}>
                   {loading ? 'Updating...' : 'Update Password'}
                 </Button>
+                {!session && (
+                  <p className="text-xs text-muted-foreground text-center">Securing your reset link...</p>
+                )}
               </form>
             </CardContent>
           </Card>
         ) : (
           <div className="w-full">
             <div className="inline-flex h-10 items-center justify-center rounded-md bg-muted p-1 text-muted-foreground w-full mb-4">
-            <button
-              type="button"
-              onClick={() => setActiveTab('signin')}
-              className={`inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all w-1/2 ${
-                activeTab === 'signin' ? 'bg-background text-foreground shadow-sm' : ''
-              }`}
-            >
-              Sign In
-            </button>
-            <button
-              type="button"
-              onClick={() => setActiveTab('signup')}
-              className={`inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all w-1/2 ${
-                activeTab === 'signup' ? 'bg-background text-foreground shadow-sm' : ''
-              }`}
-            >
-              Sign Up
-            </button>
-          </div>
+              <button
+                type="button"
+                onClick={() => setActiveTab('signin')}
+                className={`inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all w-1/2 ${
+                  activeTab === 'signin' ? 'bg-background text-foreground shadow-sm' : ''
+                }`}
+              >
+                Sign In
+              </button>
+              <button
+                type="button"
+                onClick={() => setActiveTab('signup')}
+                className={`inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all w-1/2 ${
+                  activeTab === 'signup' ? 'bg-background text-foreground shadow-sm' : ''
+                }`}
+              >
+                Sign Up
+              </button>
+            </div>
 
-          {activeTab === 'signin' && (
-            <Card>
-              <CardHeader>
-                <CardTitle>Sign In</CardTitle>
-                <CardDescription>
-                  Access your investor account
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <form onSubmit={handleSignIn} className="space-y-4">
-                  <div>
-                    <Label htmlFor="signin-email">Email</Label>
-                    <Input
-                      id="signin-email"
-                      name="email"
-                      type="email"
-                      required
-                      placeholder="your@email.com"
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="signin-password">Password</Label>
-                    <Input
-                      id="signin-password"
-                      name="password"
-                      type="password"
-                      required
-                      placeholder="••••••••"
-                    />
-                  </div>
-                  <Button
-                    type="submit"
-                    className="w-full"
-                    variant="premium"
-                    disabled={loading}
-                  >
-                    {loading ? 'Signing in...' : 'Sign In'}
-                  </Button>
-                  <Button
-                    type="button"
-                    variant="ghost"
-                    className="w-full text-sm text-muted-foreground hover:text-primary"
-                    onClick={handleForgotPassword}
-                    disabled={loading}
-                  >
-                    Forgot your password?
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
-          )}
+            {activeTab === 'signin' && (
+              <Card>
+                <CardHeader>
+                  <CardTitle>Sign In</CardTitle>
+                  <CardDescription>Access your investor account</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <form onSubmit={handleSignIn} className="space-y-4">
+                    <div>
+                      <Label htmlFor="signin-email">Email</Label>
+                      <Input id="signin-email" name="email" type="email" required placeholder="your@email.com" />
+                    </div>
+                    <div>
+                      <Label htmlFor="signin-password">Password</Label>
+                      <Input id="signin-password" name="password" type="password" required placeholder="••••••••" />
+                    </div>
+                    <Button type="submit" className="w-full" variant="premium" disabled={loading}>
+                      {loading ? 'Signing in...' : 'Sign In'}
+                    </Button>
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      className="w-full text-sm text-muted-foreground hover:text-primary"
+                      onClick={handleForgotPassword}
+                      disabled={loading}
+                    >
+                      Forgot your password?
+                    </Button>
+                  </form>
+                </CardContent>
+              </Card>
+            )}
 
-          {activeTab === 'signup' && (
-            <Card>
-              <CardHeader>
-                <CardTitle>Create Account</CardTitle>
-                <CardDescription>
-                  Register for investor access
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <form onSubmit={handleSignUp} className="space-y-4">
-                  <div>
-                    <Label htmlFor="signup-fullname">Full Name *</Label>
-                    <Input
-                      id="signup-fullname"
-                      name="fullName"
-                      type="text"
-                      required
-                      placeholder="John Doe"
-                      defaultValue={signupName}
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="signup-email">Email *</Label>
-                    <Input
-                      id="signup-email"
-                      name="email"
-                      type="email"
-                      required
-                      placeholder="your@email.com"
-                      defaultValue={signupEmail}
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="signup-company">Company</Label>
-                    <Input
-                      id="signup-company"
-                      name="company"
-                      type="text"
-                      placeholder="Your Company"
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="signup-password">Password *</Label>
-                    <Input
-                      id="signup-password"
-                      name="password"
-                      type="password"
-                      required
-                      placeholder="••••••••"
-                      minLength={6}
-                    />
-                  </div>
-                  <Button
-                    type="submit"
-                    className="w-full"
-                    variant="premium"
-                    disabled={loading}
-                  >
-                    {loading ? 'Creating account...' : 'Create Account'}
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
-          )}
+            {activeTab === 'signup' && (
+              <Card>
+                <CardHeader>
+                  <CardTitle>Create Account</CardTitle>
+                  <CardDescription>Register for investor access</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <form onSubmit={handleSignUp} className="space-y-4">
+                    <div>
+                      <Label htmlFor="signup-fullname">Full Name *</Label>
+                      <Input id="signup-fullname" name="fullName" type="text" required placeholder="John Doe" defaultValue={signupName} />
+                    </div>
+                    <div>
+                      <Label htmlFor="signup-email">Email *</Label>
+                      <Input id="signup-email" name="email" type="email" required placeholder="your@email.com" defaultValue={signupEmail} />
+                    </div>
+                    <div>
+                      <Label htmlFor="signup-company">Company</Label>
+                      <Input id="signup-company" name="company" type="text" placeholder="Your Company" />
+                    </div>
+                    <div>
+                      <Label htmlFor="signup-password">Password *</Label>
+                      <Input id="signup-password" name="password" type="password" required placeholder="••••••••" minLength={6} />
+                    </div>
+                    <Button type="submit" className="w-full" variant="premium" disabled={loading}>
+                      {loading ? 'Creating account...' : 'Create Account'}
+                    </Button>
+                  </form>
+                </CardContent>
+              </Card>
+            )}
           </div>
         )}
       </div>
