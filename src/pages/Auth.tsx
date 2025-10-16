@@ -338,7 +338,7 @@ const Auth = () => {
                     <Button
                       type="button"
                       variant="ghost"
-                      className="w-full text-sm text-muted-foreground hover:text-primary"
+                      className="w-full text-sm text-white hover:text-white/80"
                       onClick={handleForgotPassword}
                       disabled={loading}
                     >
