@@ -112,18 +112,6 @@ const Portfolio = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-              {performanceMetrics.map((metric) => (
-                <div key={metric.title} className="bg-card border border-border rounded-lg p-6 hover-lift">
-                  <div className="text-sm text-muted-foreground mb-2">{metric.title}</div>
-                  <div className="text-4xl font-heading font-bold text-primary mb-2">{metric.value}</div>
-                  <div className={`text-sm font-medium ${metric.positive ? 'text-green-600' : 'text-red-600'}`}>
-                    {metric.change}
-                  </div>
-                </div>
-              ))}
-            </div>
-
             <div className="bg-card border border-border rounded-lg p-8 mb-12">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
                 <div className="text-center md:border-r border-accent/30 pr-6">
