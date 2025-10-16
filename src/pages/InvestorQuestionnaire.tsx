@@ -131,12 +131,15 @@ const InvestorQuestionnaire = () => {
       });
 
       if (signUpError) {
-        // If user already exists, save their info to session storage and redirect to auth
+        // If user already exists, pass their info via router state and redirect to auth
         if (signUpError.message?.includes('already registered')) {
-          sessionStorage.setItem('investor_email', formData.email);
-          sessionStorage.setItem('investor_name', formData.fullName);
           toast.success("Account already exists. Please sign in to continue.");
-          navigate("/auth");
+          navigate("/auth", { 
+            state: { 
+              investorEmail: formData.email, 
+              investorName: formData.fullName 
+            } 
+          });
         } else {
           console.error('Error creating account:', signUpError);
           toast.error("Questionnaire submitted but failed to create account. Please sign up manually.");
@@ -163,12 +166,13 @@ const InvestorQuestionnaire = () => {
 
       toast.success("Questionnaire submitted! Check your email to complete registration and access the investor portal.");
       
-      // Save user info to session storage for auth page to pre-fill
-      sessionStorage.setItem('investor_email', formData.email);
-      sessionStorage.setItem('investor_name', formData.fullName);
-      
-      // Redirect to auth page (signup tab will be pre-selected)
-      navigate("/auth");
+      // Pass user info via secure router state for auth page to pre-fill
+      navigate("/auth", { 
+        state: { 
+          investorEmail: formData.email, 
+          investorName: formData.fullName 
+        } 
+      });
     } catch (error) {
       if (error instanceof z.ZodError) {
         toast.error(error.errors[0].message);

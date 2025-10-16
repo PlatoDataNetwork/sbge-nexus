@@ -32,21 +32,15 @@ const Auth = () => {
       setIsResettingPassword(true);
     }
 
-    // Pre-fill from session storage if coming from questionnaire
-    const investorEmail = sessionStorage.getItem('investor_email');
-    const investorName = sessionStorage.getItem('investor_name');
-
-    if (investorEmail) {
-      setSignupEmail(investorEmail);
+    // Pre-fill from secure router state if coming from questionnaire
+    const state = window.history.state?.usr;
+    if (state?.investorEmail) {
+      setSignupEmail(state.investorEmail);
       setActiveTab('signup');
     }
-    if (investorName) {
-      setSignupName(investorName);
+    if (state?.investorName) {
+      setSignupName(state.investorName);
     }
-
-    // Clear session storage after reading
-    sessionStorage.removeItem('investor_email');
-    sessionStorage.removeItem('investor_name');
   }, []);
 
   // Auth state handling with correct initialization order
