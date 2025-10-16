@@ -61,7 +61,7 @@ const InvestorDeck = () => {
     setNumPages(numPages);
   };
   
-  const pdfFile = "/documents/investor-deck.pdf";
+  const pdfFile = "/documents/investor-deck.pdf?v=11";
 
   const goToPage = (page: number) => {
     setPageNumber(page);
