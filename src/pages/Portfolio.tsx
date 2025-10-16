@@ -238,19 +238,13 @@ const Portfolio = () => {
 
             <div className="space-y-6">
               <div className="bg-card border border-border rounded-lg p-8 hover-lift">
-                <div className="flex items-start justify-between mb-4">
-                  <div>
-                    <h3 className="text-2xl font-heading font-bold text-foreground mb-2">
-                      StorageBlue Case Study I
-                    </h3>
-                    <p className="text-muted-foreground">North Jersey / NYC Metro</p>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-sm text-muted-foreground mb-1">IRR</div>
-                    <div className="text-3xl font-heading font-bold text-green-600">33.79%</div>
-                  </div>
+                <div className="mb-4">
+                  <h3 className="text-2xl font-heading font-bold text-foreground mb-2">
+                    StorageBlue Case Study I
+                  </h3>
+                  <p className="text-muted-foreground">North Jersey / NYC Metro</p>
                 </div>
-                <div className="grid grid-cols-5 gap-4 pt-4 border-t border-border">
+                <div className="grid grid-cols-5 gap-4 pb-4 border-b border-border">
                   <div>
                     <div className="text-xs sm:text-sm text-muted-foreground mb-1">Investment</div>
                     <div className="text-sm sm:text-base font-semibold text-foreground">$46.5M</div>
@@ -270,6 +264,24 @@ const Portfolio = () => {
                   <div className="text-center">
                     <div className="text-xs sm:text-sm text-muted-foreground mb-1">Status</div>
                     <div className="text-sm sm:text-base font-semibold text-foreground">SOLD</div>
+                  </div>
+                </div>
+                <div className="grid grid-cols-4 gap-4 pt-4">
+                  <div className="text-center">
+                    <div className="text-xs sm:text-sm text-muted-foreground mb-1">Avg. Levered IRR</div>
+                    <div className="text-sm sm:text-base font-semibold text-green-600">33.79%</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-xs sm:text-sm text-muted-foreground mb-1">Levered MOIC</div>
+                    <div className="text-sm sm:text-base font-semibold text-foreground">34.00x</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-xs sm:text-sm text-muted-foreground mb-1">Unlevered IRR</div>
+                    <div className="text-sm sm:text-base font-semibold text-foreground">17.4%</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-xs sm:text-sm text-muted-foreground mb-1">Unlevered MOIC</div>
+                    <div className="text-sm sm:text-base font-semibold text-foreground">2.94x</div>
                   </div>
                 </div>
               </div>
