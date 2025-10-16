@@ -284,7 +284,7 @@ const Portfolio = () => {
                     <div className="text-2xl font-semibold text-foreground">2.18x</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-sm text-muted-foreground mb-2">IRR</div>
+                    <div className="text-sm text-muted-foreground mb-2">Targeted IRR</div>
                     <div className="text-2xl font-semibold text-green-600">33.01%</div>
                   </div>
                   <div className="text-center">
@@ -319,7 +319,7 @@ const Portfolio = () => {
                     <div className="text-2xl font-semibold text-foreground">4.16x</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-sm text-muted-foreground mb-2">IRR</div>
+                    <div className="text-sm text-muted-foreground mb-2">Targeted IRR</div>
                     <div className="text-2xl font-semibold text-green-600">29.36%</div>
                   </div>
                   <div className="text-center">
