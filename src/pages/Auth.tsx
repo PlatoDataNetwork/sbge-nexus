@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Building2 } from 'lucide-react';
+import { Building2, Eye, EyeOff } from 'lucide-react';
 import { logActivity } from '@/lib/activityTracker';
 
 const Auth = () => {
@@ -18,6 +18,10 @@ const Auth = () => {
   const [signupEmail, setSignupEmail] = useState('');
   const [signupName, setSignupName] = useState('');
   const [isResettingPassword, setIsResettingPassword] = useState(false);
+  const [showSignInPassword, setShowSignInPassword] = useState(false);
+  const [showSignUpPassword, setShowSignUpPassword] = useState(false);
+  const [showResetPassword, setShowResetPassword] = useState(false);
+  const [showResetConfirmPassword, setShowResetConfirmPassword] = useState(false);
 
   // Detect recovery flow and prefill values
   useEffect(() => {
@@ -345,11 +349,29 @@ const Auth = () => {
               <form onSubmit={handlePasswordReset} className="space-y-4">
                 <div>
                   <Label htmlFor="password">New Password *</Label>
-                  <Input id="password" name="password" type="password" required placeholder="••••••••" minLength={6} />
+                  <div className="relative">
+                    <Input id="password" name="password" type={showResetPassword ? "text" : "password"} required placeholder="••••••••" minLength={6} className="pr-10" />
+                    <button
+                      type="button"
+                      onClick={() => setShowResetPassword(!showResetPassword)}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                      {showResetPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                    </button>
+                  </div>
                 </div>
                 <div>
                   <Label htmlFor="confirmPassword">Confirm Password *</Label>
-                  <Input id="confirmPassword" name="confirmPassword" type="password" required placeholder="••••••••" minLength={6} />
+                  <div className="relative">
+                    <Input id="confirmPassword" name="confirmPassword" type={showResetConfirmPassword ? "text" : "password"} required placeholder="••••••••" minLength={6} className="pr-10" />
+                    <button
+                      type="button"
+                      onClick={() => setShowResetConfirmPassword(!showResetConfirmPassword)}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                      {showResetConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                    </button>
+                  </div>
                 </div>
                 <Button type="submit" className="w-full" variant="premium" disabled={loading || !session}>
                   {loading ? 'Updating...' : 'Update Password'}
@@ -397,7 +419,16 @@ const Auth = () => {
                     </div>
                     <div>
                       <Label htmlFor="signin-password">Password</Label>
-                      <Input id="signin-password" name="password" type="password" required placeholder="••••••••" />
+                      <div className="relative">
+                        <Input id="signin-password" name="password" type={showSignInPassword ? "text" : "password"} required placeholder="••••••••" className="pr-10" />
+                        <button
+                          type="button"
+                          onClick={() => setShowSignInPassword(!showSignInPassword)}
+                          className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                        >
+                          {showSignInPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                        </button>
+                      </div>
                     </div>
                     <Button type="submit" className="w-full" variant="premium" disabled={loading}>
                       {loading ? 'Signing in...' : 'Sign In'}
@@ -438,7 +469,16 @@ const Auth = () => {
                     </div>
                     <div>
                       <Label htmlFor="signup-password">Password *</Label>
-                      <Input id="signup-password" name="password" type="password" required placeholder="••••••••" minLength={6} />
+                      <div className="relative">
+                        <Input id="signup-password" name="password" type={showSignUpPassword ? "text" : "password"} required placeholder="••••••••" minLength={6} className="pr-10" />
+                        <button
+                          type="button"
+                          onClick={() => setShowSignUpPassword(!showSignUpPassword)}
+                          className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                        >
+                          {showSignUpPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                        </button>
+                      </div>
                     </div>
                     <Button type="submit" className="w-full" variant="premium" disabled={loading}>
                       {loading ? 'Creating account...' : 'Create Account'}
