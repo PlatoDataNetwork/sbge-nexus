@@ -11,30 +11,6 @@ import facilityWestLongBranchImage from '@/assets/facility-west-long-branch.png'
 // Static data moved outside component to prevent recreation on each render
 const facilities = [
   {
-    name: 'StorageBlue Newark',
-    location: 'Newark, NJ',
-    sqft: '95,000',
-    occupancy: '92%',
-    status: 'Stabilized',
-    image: facilityFerryImage,
-  },
-  {
-    name: 'StorageBlue Paterson',
-    location: 'Paterson, NJ',
-    sqft: '24,000',
-    occupancy: '88%',
-    status: 'Stabilized',
-    image: facilityPatersonImage,
-  },
-  {
-    name: 'StorageBlue Clifton',
-    location: 'Clifton, NJ',
-    sqft: '35,000',
-    occupancy: '95%',
-    status: 'Stabilized',
-    image: facilityCliftonImage,
-  },
-  {
     name: 'StorageBlue Staten Island',
     location: 'Staten Island, NY',
     sqft: '267,000',
@@ -57,6 +33,30 @@ const facilities = [
     occupancy: '93%',
     status: 'Stabilized',
     image: facilityWestLongBranchImage,
+  },
+  {
+    name: 'StorageBlue Newark',
+    location: 'Newark, NJ',
+    sqft: '95,000',
+    occupancy: '92%',
+    status: 'Stabilized',
+    image: facilityFerryImage,
+  },
+  {
+    name: 'StorageBlue Paterson',
+    location: 'Paterson, NJ',
+    sqft: '24,000',
+    occupancy: '88%',
+    status: 'Stabilized',
+    image: facilityPatersonImage,
+  },
+  {
+    name: 'StorageBlue Clifton',
+    location: 'Clifton, NJ',
+    sqft: '35,000',
+    occupancy: '95%',
+    status: 'Stabilized',
+    image: facilityCliftonImage,
   },
 ];
 
