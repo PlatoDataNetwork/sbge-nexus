@@ -238,17 +238,11 @@ const Portfolio = () => {
 
             <div className="space-y-6">
               <div className="bg-card border border-border rounded-lg p-8 hover-lift">
-                <div className="flex items-start justify-between mb-4">
-                  <div>
-                    <h3 className="text-2xl font-heading font-bold text-foreground mb-2">
-                      StorageBlue Case Study I
-                    </h3>
-                    <p className="text-muted-foreground">North Jersey / NYC Metro</p>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-sm text-muted-foreground mb-1">IRR</div>
-                    <div className="text-3xl font-heading font-bold text-green-600">33.79%</div>
-                  </div>
+                <div className="mb-4">
+                  <h3 className="text-2xl font-heading font-bold text-foreground mb-2">
+                    StorageBlue Case Study I
+                  </h3>
+                  <p className="text-muted-foreground">North Jersey / NYC Metro</p>
                 </div>
                 <div className="grid grid-cols-5 gap-4 pt-4 border-t border-border">
                   <div className="text-center">
@@ -268,6 +262,8 @@ const Portfolio = () => {
                     <div className="text-sm sm:text-base font-semibold text-foreground">34.0x</div>
                   </div>
                   <div className="text-center">
+                    <div className="text-xs sm:text-sm text-muted-foreground mb-1">IRR</div>
+                    <div className="text-xl font-semibold text-green-600 mb-2">33.79%</div>
                     <div className="text-xs sm:text-sm text-muted-foreground mb-1">Status</div>
                     <div className="text-sm sm:text-base font-semibold text-foreground">SOLD</div>
                   </div>
@@ -275,17 +271,11 @@ const Portfolio = () => {
               </div>
 
               <div className="bg-card border border-border rounded-lg p-8 hover-lift">
-                <div className="flex items-start justify-between mb-4">
-                  <div>
-                    <h3 className="text-2xl font-heading font-bold text-foreground mb-2">
-                      StorageBlue Case Study II
-                    </h3>
-                    <p className="text-muted-foreground">New Jersey</p>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-sm text-muted-foreground mb-1">IRR</div>
-                    <div className="text-3xl font-heading font-bold text-green-600">33.01%</div>
-                  </div>
+                <div className="mb-4">
+                  <h3 className="text-2xl font-heading font-bold text-foreground mb-2">
+                    StorageBlue Case Study II
+                  </h3>
+                  <p className="text-muted-foreground">New Jersey</p>
                 </div>
                 <div className="grid grid-cols-5 gap-4 pt-4 border-t border-border">
                   <div className="text-center">
@@ -305,6 +295,8 @@ const Portfolio = () => {
                     <div className="text-sm sm:text-base font-semibold text-foreground">2.18x</div>
                   </div>
                   <div className="text-center">
+                    <div className="text-xs sm:text-sm text-muted-foreground mb-1">IRR</div>
+                    <div className="text-xl font-semibold text-green-600 mb-2">33.01%</div>
                     <div className="text-xs sm:text-sm text-muted-foreground mb-1">Status</div>
                     <div className="text-sm sm:text-base font-semibold text-foreground">Active</div>
                   </div>
@@ -312,17 +304,11 @@ const Portfolio = () => {
               </div>
 
               <div className="bg-card border border-border rounded-lg p-8 hover-lift">
-                <div className="flex items-start justify-between mb-4">
-                  <div>
-                    <h3 className="text-2xl font-heading font-bold text-foreground mb-2">
-                      StorageBlue Case Study III
-                    </h3>
-                    <p className="text-muted-foreground">New Jersey</p>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-sm text-muted-foreground mb-1">IRR</div>
-                    <div className="text-3xl font-heading font-bold text-green-600">29.36%</div>
-                  </div>
+                <div className="mb-4">
+                  <h3 className="text-2xl font-heading font-bold text-foreground mb-2">
+                    StorageBlue Case Study III
+                  </h3>
+                  <p className="text-muted-foreground">New Jersey</p>
                 </div>
                 <div className="grid grid-cols-5 gap-4 pt-4 border-t border-border">
                   <div className="text-center">
@@ -342,6 +328,8 @@ const Portfolio = () => {
                     <div className="text-sm sm:text-base font-semibold text-foreground">4.16x</div>
                   </div>
                   <div className="text-center">
+                    <div className="text-xs sm:text-sm text-muted-foreground mb-1">IRR</div>
+                    <div className="text-xl font-semibold text-green-600 mb-2">29.36%</div>
                     <div className="text-xs sm:text-sm text-muted-foreground mb-1">Status</div>
                     <div className="text-sm sm:text-base font-semibold text-foreground">Active</div>
                   </div>
