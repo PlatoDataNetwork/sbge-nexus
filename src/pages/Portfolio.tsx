@@ -16,6 +16,7 @@ const facilities = [
     sqft: '267,000',
     occupancy: '90%',
     status: 'Value-Add',
+    caseStudy: 'Case Study II',
     image: facilityStatenIslandImage,
   },
   {
@@ -24,6 +25,7 @@ const facilities = [
     sqft: '85,000',
     occupancy: '87%',
     status: 'Development',
+    caseStudy: 'Case Study II',
     image: facilityAberdeenImage,
   },
   {
@@ -32,6 +34,7 @@ const facilities = [
     sqft: '68,000',
     occupancy: '93%',
     status: 'Stabilized',
+    caseStudy: 'Case Study II',
     image: facilityWestLongBranchImage,
   },
   {
@@ -40,6 +43,7 @@ const facilities = [
     sqft: '95,000',
     occupancy: '92%',
     status: 'Stabilized',
+    caseStudy: 'Case Study III',
     image: facilityFerryImage,
   },
   {
@@ -48,6 +52,7 @@ const facilities = [
     sqft: '24,000',
     occupancy: '88%',
     status: 'Stabilized',
+    caseStudy: 'Case Study III',
     image: facilityPatersonImage,
   },
   {
@@ -56,6 +61,7 @@ const facilities = [
     sqft: '35,000',
     occupancy: '95%',
     status: 'Stabilized',
+    caseStudy: 'Case Study III',
     image: facilityCliftonImage,
   },
 ];
@@ -199,6 +205,10 @@ const Portfolio = () => {
                         <span className="px-2 py-1 text-xs font-medium bg-accent/20 text-accent rounded-full">
                           {facility.status}
                         </span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-muted-foreground">Case Study</span>
+                        <span className="font-semibold text-foreground">{facility.caseStudy}</span>
                       </div>
                     </div>
                   </div>
