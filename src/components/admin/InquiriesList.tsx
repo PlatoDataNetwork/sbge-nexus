@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Textarea } from '@/components/ui/textarea';
 import { formatDistanceToNow } from 'date-fns';
 import { useToast } from '@/hooks/use-toast';
 
@@ -35,6 +36,7 @@ interface QuestionnaireResponse {
   investment_timeline: string;
   storage_experience: string;
   investment_goals: string;
+  admin_notes: string | null;
   user_id: string | null;
   created_at: string;
 }
@@ -60,6 +62,8 @@ const InquiriesList = ({ onUpdate }: InquiriesListProps) => {
   const [questionnaires, setQuestionnaires] = useState<QuestionnaireResponse[]>([]);
   const [contacts, setContacts] = useState<ContactSubmission[]>([]);
   const [loading, setLoading] = useState(true);
+  const [editingNoteId, setEditingNoteId] = useState<string | null>(null);
+  const [noteText, setNoteText] = useState<string>('');
   const { toast } = useToast();
 
   useEffect(() => {
@@ -135,6 +139,42 @@ const InquiriesList = ({ onUpdate }: InquiriesListProps) => {
     }
   };
 
+  const updateNotes = async (id: string, notes: string) => {
+    try {
+      const { error } = await supabase
+        .from('investor_questionnaire_responses')
+        .update({ admin_notes: notes })
+        .eq('id', id);
+
+      if (error) throw error;
+
+      toast({
+        title: 'Notes Updated',
+        description: 'Admin notes have been saved successfully.',
+      });
+
+      loadQuestionnaires();
+      setEditingNoteId(null);
+      setNoteText('');
+    } catch (error) {
+      toast({
+        variant: 'destructive',
+        title: 'Error',
+        description: 'Failed to update notes.',
+      });
+    }
+  };
+
+  const handleEditNote = (responseId: string, currentNotes: string | null) => {
+    setEditingNoteId(responseId);
+    setNoteText(currentNotes || '');
+  };
+
+  const handleCancelEdit = () => {
+    setEditingNoteId(null);
+    setNoteText('');
+  };
+
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'new':
@@ -157,7 +197,7 @@ const InquiriesList = ({ onUpdate }: InquiriesListProps) => {
   return (
     <Tabs defaultValue="questionnaires" className="w-full">
       <TabsList className="grid w-full grid-cols-3">
-        <TabsTrigger value="questionnaires">Questionnaires ({questionnaires.length})</TabsTrigger>
+        <TabsTrigger value="questionnaires">Users ({questionnaires.length})</TabsTrigger>
         <TabsTrigger value="contacts">Contact Forms ({contacts.length})</TabsTrigger>
         <TabsTrigger value="inquiries">Legacy Inquiries ({inquiries.length})</TabsTrigger>
       </TabsList>
@@ -165,7 +205,7 @@ const InquiriesList = ({ onUpdate }: InquiriesListProps) => {
       <TabsContent value="questionnaires">
         <Card>
           <CardHeader>
-            <CardTitle>Investor Questionnaire Responses</CardTitle>
+            <CardTitle>Users</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
@@ -177,7 +217,7 @@ const InquiriesList = ({ onUpdate }: InquiriesListProps) => {
                   <div className="flex items-start justify-between border-b pb-3">
                     <div>
                       <h3 className="font-semibold text-lg text-foreground">{response.full_name}</h3>
-                      <p className="text-sm text-muted-foreground">{response.email}</p>
+                      <p className="text-sm font-semibold text-foreground">{response.email}</p>
                       <p className="text-sm font-medium text-foreground mt-1">{response.company_name}</p>
                       {response.user_id && (
                         <Badge variant="outline" className="mt-1">
@@ -232,6 +272,50 @@ const InquiriesList = ({ onUpdate }: InquiriesListProps) => {
                   <div className="pt-2">
                     <p className="text-xs font-medium text-muted-foreground mb-2">Investment Goals</p>
                     <p className="text-sm text-foreground bg-muted p-3 rounded-md">{response.investment_goals}</p>
+                  </div>
+
+                  <div className="pt-2 border-t">
+                    <div className="flex items-center justify-between mb-2">
+                      <p className="text-xs font-medium text-muted-foreground">Admin Notes</p>
+                      {editingNoteId !== response.id && (
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          onClick={() => handleEditNote(response.id, response.admin_notes)}
+                        >
+                          {response.admin_notes ? 'Edit Notes' : 'Add Notes'}
+                        </Button>
+                      )}
+                    </div>
+                    {editingNoteId === response.id ? (
+                      <div className="space-y-2">
+                        <Textarea
+                          value={noteText}
+                          onChange={(e) => setNoteText(e.target.value)}
+                          placeholder="Add notes about this investor..."
+                          className="min-h-[100px]"
+                        />
+                        <div className="flex gap-2">
+                          <Button
+                            size="sm"
+                            onClick={() => updateNotes(response.id, noteText)}
+                          >
+                            Save Notes
+                          </Button>
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={handleCancelEdit}
+                          >
+                            Cancel
+                          </Button>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="text-sm text-foreground bg-muted p-3 rounded-md min-h-[60px]">
+                        {response.admin_notes || <span className="text-muted-foreground italic">No notes added yet</span>}
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}

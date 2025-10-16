@@ -98,6 +98,7 @@ export type Database = {
       investor_questionnaire_responses: {
         Row: {
           address: string
+          admin_notes: string | null
           company_name: string
           created_at: string
           email: string | null
@@ -117,6 +118,7 @@ export type Database = {
         }
         Insert: {
           address: string
+          admin_notes?: string | null
           company_name: string
           created_at?: string
           email?: string | null
@@ -136,6 +138,7 @@ export type Database = {
         }
         Update: {
           address?: string
+          admin_notes?: string | null
           company_name?: string
           created_at?: string
           email?: string | null
