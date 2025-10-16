@@ -133,7 +133,7 @@ const Portfolio = () => {
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-4xl md:text-5xl font-heading font-bold text-primary mb-6">
-                Current Assets
+                StorageBlue
               </h2>
               <p className="text-lg text-muted-foreground">
                 High-quality facilities in strategic locations
