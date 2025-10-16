@@ -107,46 +107,46 @@ const InvestorDeck = () => {
       {/* Header - Sticky Navigation */}
       <div className="sticky top-0 z-50 bg-background border-b shadow-sm">
         <div className="max-w-full mx-auto px-4 py-4">
-          <div className="flex flex-col items-center gap-3">
-            <h1 className="text-xl font-semibold text-center">StorageBlue Growth Fund - Investor Deck</h1>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={previousPage}
+                disabled={pageNumber <= 1}
+              >
+                <ChevronLeft className="h-4 w-4" />
+              </Button>
+              <span className="text-sm text-muted-foreground min-w-[80px] text-center">
+                Page {pageNumber} of {numPages}
+              </span>
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={nextPage}
+                disabled={pageNumber >= numPages}
+              >
+                <ChevronRight className="h-4 w-4" />
+              </Button>
+            </div>
             
-            <div className="flex items-center justify-between w-full">
-              <div className="flex items-center gap-2">
-                <Button
-                  variant="outline"
-                  size="icon"
-                  onClick={previousPage}
-                  disabled={pageNumber <= 1}
-                >
-                  <ChevronLeft className="h-4 w-4" />
-                </Button>
-                <span className="text-sm text-muted-foreground min-w-[80px] text-center">
-                  Page {pageNumber} of {numPages}
-                </span>
-                <Button
-                  variant="outline"
-                  size="icon"
-                  onClick={nextPage}
-                  disabled={pageNumber >= numPages}
-                >
-                  <ChevronRight className="h-4 w-4" />
-                </Button>
-              </div>
-              
-              <div className="flex items-center gap-2">
-                <Button
-                  variant="default"
-                  onClick={() => navigate("/investor-portal")}
-                >
-                  Investment Portal
-                </Button>
-                <Button variant="default" asChild>
-                  <a href="/documents/investor-deck.pdf" download>
-                    <Download className="h-4 w-4 mr-2" />
-                    Download
-                  </a>
-                </Button>
-              </div>
+            <div className="absolute left-1/2 transform -translate-x-1/2">
+              <h1 className="text-xl font-semibold whitespace-nowrap">StorageBlue Growth Fund - Investor Deck</h1>
+            </div>
+            
+            <div className="flex items-center gap-2">
+              <Button
+                variant="default"
+                onClick={() => navigate("/investor-portal")}
+              >
+                Investment Portal
+              </Button>
+              <Button variant="default" asChild>
+                <a href="/documents/investor-deck.pdf" download>
+                  <Download className="h-4 w-4 mr-2" />
+                  Download
+                </a>
+              </Button>
             </div>
           </div>
         </div>
