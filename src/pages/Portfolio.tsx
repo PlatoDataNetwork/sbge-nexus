@@ -246,7 +246,7 @@ const Portfolio = () => {
                 </div>
                 <div className="flex items-center justify-between gap-8">
                   <div className="text-center">
-                    <div className="text-sm text-muted-foreground mb-2">Number of Facilities</div>
+                    <div className="text-sm text-muted-foreground mb-2">No. of Facilities</div>
                     <div className="text-2xl font-semibold text-foreground">6</div>
                   </div>
                   <div className="text-center">
@@ -281,7 +281,7 @@ const Portfolio = () => {
                 </div>
                 <div className="flex items-center justify-between gap-8">
                   <div className="text-center">
-                    <div className="text-sm text-muted-foreground mb-2">Number of Facilities</div>
+                    <div className="text-sm text-muted-foreground mb-2">No. of Facilities</div>
                     <div className="text-2xl font-semibold text-foreground">3</div>
                   </div>
                   <div className="text-center">
@@ -316,7 +316,7 @@ const Portfolio = () => {
                 </div>
                 <div className="flex items-center justify-between gap-8">
                   <div className="text-center">
-                    <div className="text-sm text-muted-foreground mb-2">Number of Facilities</div>
+                    <div className="text-sm text-muted-foreground mb-2">No. of Facilities</div>
                     <div className="text-2xl font-semibold text-foreground">3</div>
                   </div>
                   <div className="text-center">
