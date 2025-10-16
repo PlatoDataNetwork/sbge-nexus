@@ -113,7 +113,7 @@ const Portfolio = () => {
             </div>
 
             <div className="bg-card border border-border rounded-lg p-8 mb-12">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+              <div className="grid grid-cols-2 md:grid-cols-5 gap-6 md:gap-8">
                 <div className="text-center md:border-r border-accent/30 pr-6">
                   <div className="text-4xl md:text-5xl font-heading font-bold text-primary mb-2">6</div>
                   <div className="text-sm md:text-base text-accent font-medium">Facilities</div>
@@ -126,9 +126,13 @@ const Portfolio = () => {
                   <div className="text-4xl md:text-5xl font-heading font-bold text-primary mb-2">574,000</div>
                   <div className="text-sm md:text-base text-accent font-medium">NRSF</div>
                 </div>
-                <div className="text-center">
+                <div className="text-center md:border-r border-accent/30 pr-6">
                   <div className="text-4xl md:text-5xl font-heading font-bold text-primary mb-2">$197.2M</div>
                   <div className="text-sm md:text-base text-accent font-medium">Projected Market Value Estimate</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-4xl md:text-5xl font-heading font-bold text-primary mb-2">90.5%</div>
+                  <div className="text-sm md:text-base text-accent font-medium">Avg Occupancy</div>
                 </div>
               </div>
             </div>
