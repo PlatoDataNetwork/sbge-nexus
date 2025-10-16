@@ -37,8 +37,8 @@ const ScheduleCall = () => {
       return;
     }
 
-    // Here you would typically send this to your backend
-    console.log({ ...formData, date, time: selectedTime });
+    // TODO: Save scheduled call to database
+    // Currently just shows success message without persisting data
     
     setSubmitted(true);
     toast.success("Call scheduled successfully!");

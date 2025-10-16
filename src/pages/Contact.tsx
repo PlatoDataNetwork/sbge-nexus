@@ -7,6 +7,16 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { useToast } from '@/hooks/use-toast';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
+import { z } from 'zod';
+
+const contactFormSchema = z.object({
+  name: z.string().trim().min(1, 'Name is required').max(100, 'Name must be less than 100 characters'),
+  email: z.string().trim().email('Invalid email address').max(255, 'Email must be less than 255 characters'),
+  firm: z.string().trim().min(1, 'Firm is required').max(200, 'Firm name must be less than 200 characters'),
+  aum: z.string().optional(),
+  accreditation: z.string().optional(),
+  message: z.string().max(2000, 'Message must be less than 2000 characters').optional(),
+});
 
 const Contact = () => {
   const { toast } = useToast();
@@ -22,31 +32,23 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Basic validation
-    if (!formData.name || !formData.email || !formData.firm) {
-      toast({
-        title: 'Missing Information',
-        description: 'Please fill in all required fields.',
-        variant: 'destructive',
-      });
-      return;
-    }
-
+    // Validate form data using zod schema
     try {
+      const validatedData = contactFormSchema.parse(formData);
+
       // Save to database for CRM
       const { error: dbError } = await supabase
         .from('contact_form_submissions')
         .insert({
-          name: formData.name,
-          email: formData.email,
-          firm: formData.firm,
-          aum: formData.aum,
-          accreditation: formData.accreditation,
-          message: formData.message,
+          name: validatedData.name,
+          email: validatedData.email,
+          firm: validatedData.firm,
+          aum: validatedData.aum || null,
+          accreditation: validatedData.accreditation || null,
+          message: validatedData.message || null,
         });
 
       if (dbError) {
-        console.error('Error saving contact form:', dbError);
         toast({
           title: 'Error',
           description: 'Failed to submit form. Please try again.',
@@ -71,11 +73,19 @@ const Contact = () => {
         message: '',
       });
     } catch (error) {
-      toast({
-        title: 'Error',
-        description: 'Failed to submit form. Please try again.',
-        variant: 'destructive',
-      });
+      if (error instanceof z.ZodError) {
+        toast({
+          title: 'Validation Error',
+          description: error.errors[0].message,
+          variant: 'destructive',
+        });
+      } else {
+        toast({
+          title: 'Error',
+          description: 'Failed to submit form. Please try again.',
+          variant: 'destructive',
+        });
+      }
     }
   };
 
