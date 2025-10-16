@@ -196,10 +196,37 @@ const Portfolio = () => {
         </div>
       </section>
 
-      {/* Case Studies */}
+      {/* StorageBlue Consolidated */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-8">
+              <h2 className="text-4xl md:text-5xl font-heading font-bold text-primary mb-6">
+                StorageBlue Consolidated
+              </h2>
+            </div>
+
+            <div className="bg-card border border-border rounded-lg p-8 mb-20">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+                <div className="text-center md:border-r border-accent/30 pr-6">
+                  <div className="text-4xl md:text-5xl font-heading font-bold text-primary mb-2">6</div>
+                  <div className="text-sm md:text-base text-accent font-medium">Facilities</div>
+                </div>
+                <div className="text-center md:border-r border-accent/30 md:pr-6">
+                  <div className="text-4xl md:text-5xl font-heading font-bold text-primary mb-2">4,945+</div>
+                  <div className="text-sm md:text-base text-accent font-medium">Units</div>
+                </div>
+                <div className="text-center md:border-r border-accent/30 pr-6">
+                  <div className="text-4xl md:text-5xl font-heading font-bold text-primary mb-2">574,000</div>
+                  <div className="text-sm md:text-base text-accent font-medium">NRSF</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-4xl md:text-5xl font-heading font-bold text-primary mb-2">$197.2M</div>
+                  <div className="text-sm md:text-base text-accent font-medium">Projected Market Value Estimate</div>
+                </div>
+              </div>
+            </div>
+
             <div className="text-center mb-12">
               <h2 className="text-4xl md:text-5xl font-heading font-bold text-primary mb-6">
                 StorageBlue Case Studies
