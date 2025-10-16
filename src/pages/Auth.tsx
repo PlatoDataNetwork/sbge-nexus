@@ -64,7 +64,7 @@ const Auth = () => {
         return;
       }
 
-      if (s && !isResettingPassword) {
+      if (s && !isResettingPassword && !recoveryInUrl) {
         // Check if user has completed questionnaire
         const { data: questionnaireResponse } = await supabase
           .from('investor_questionnaire_responses')
