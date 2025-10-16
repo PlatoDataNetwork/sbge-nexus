@@ -245,7 +245,7 @@ const Portfolio = () => {
                     </h3>
                     <p className="text-muted-foreground">North Jersey / NYC Metro</p>
                   </div>
-                  <div className="text-right">
+                  <div className="text-center">
                     <div className="text-sm text-muted-foreground mb-1">IRR</div>
                     <div className="text-3xl font-heading font-bold text-green-600">33.79%</div>
                   </div>
@@ -282,7 +282,7 @@ const Portfolio = () => {
                     </h3>
                     <p className="text-muted-foreground">New Jersey</p>
                   </div>
-                  <div className="text-right">
+                  <div className="text-center">
                     <div className="text-sm text-muted-foreground mb-1">IRR</div>
                     <div className="text-3xl font-heading font-bold text-green-600">33.01%</div>
                   </div>
@@ -319,7 +319,7 @@ const Portfolio = () => {
                     </h3>
                     <p className="text-muted-foreground">New Jersey</p>
                   </div>
-                  <div className="text-right">
+                  <div className="text-center">
                     <div className="text-sm text-muted-foreground mb-1">IRR</div>
                     <div className="text-3xl font-heading font-bold text-green-600">29.36%</div>
                   </div>
