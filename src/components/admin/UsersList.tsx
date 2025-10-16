@@ -10,7 +10,7 @@ import { Label } from '@/components/ui/label';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { formatDistanceToNow, format } from 'date-fns';
-import { Search, Mail, Phone, Building2, DollarSign, Shield, Calendar, User, Eye, Filter, UserCog } from 'lucide-react';
+import { Search, Mail, Phone, Building2, DollarSign, Shield, Calendar, User, Eye, Filter, UserCog, Trash2 } from 'lucide-react';
 import { toast } from 'sonner';
 import ActivityLog from './ActivityLog';
 
@@ -132,6 +132,28 @@ const UsersList = () => {
     } catch (error) {
       console.error('Error updating user role:', error);
       toast.error('Failed to update user role');
+    }
+  };
+
+  const deleteUser = async (userId: string, userEmail: string) => {
+    if (!confirm(`Are you sure you want to delete user ${userEmail}? This action cannot be undone.`)) {
+      return;
+    }
+
+    try {
+      const { error } = await supabase.functions.invoke('delete-user', {
+        body: { userId }
+      });
+
+      if (error) throw error;
+
+      toast.success('User deleted successfully');
+      
+      // Reload users
+      await loadUsers();
+    } catch (error) {
+      console.error('Error deleting user:', error);
+      toast.error('Failed to delete user');
     }
   };
 
@@ -407,6 +429,15 @@ const UsersList = () => {
                       )}
                     </DialogContent>
                   </Dialog>
+
+                  <Button 
+                    variant="destructive" 
+                    size="sm"
+                    onClick={() => deleteUser(user.id, user.email)}
+                  >
+                    <Trash2 className="h-4 w-4 mr-2" />
+                    Delete
+                  </Button>
                   </div>
                 </div>
               </CardContent>
