@@ -1,1 +1,4 @@
 project_id = "favqozfveubmbqfzzajs"
+
+[functions.set-alan-password]
+verify_jwt = false

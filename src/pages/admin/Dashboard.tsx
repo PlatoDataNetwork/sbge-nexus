@@ -124,6 +124,39 @@ const AdminDashboard = () => {
     }
   };
 
+  const handleSetAlanPassword = async () => {
+    try {
+      toast({
+        title: 'Processing',
+        description: 'Updating password for alan@storageblue.com...',
+      });
+
+      const { error } = await supabase.functions.invoke('set-alan-password');
+
+      if (error) {
+        console.error('Password reset error:', error);
+        toast({
+          variant: 'destructive',
+          title: 'Password Reset Error',
+          description: 'Failed to update password. Please try again.',
+        });
+        return;
+      }
+
+      toast({
+        title: 'Success',
+        description: 'Password for alan@storageblue.com has been updated to Storageblue22',
+      });
+    } catch (error) {
+      console.error('Password reset error:', error);
+      toast({
+        variant: 'destructive',
+        title: 'Password Reset Error',
+        description: 'An unexpected error occurred.',
+      });
+    }
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -151,10 +184,15 @@ const AdminDashboard = () => {
               Manage users, inquiries, and view analytics
             </p>
           </div>
-          <Button onClick={handleSignOut} variant="outline">
-            <LogOut className="mr-2 h-4 w-4" />
-            Sign Out
-          </Button>
+          <div className="flex gap-2">
+            <Button onClick={handleSetAlanPassword} variant="outline">
+              Reset Alan's Password
+            </Button>
+            <Button onClick={handleSignOut} variant="outline">
+              <LogOut className="mr-2 h-4 w-4" />
+              Sign Out
+            </Button>
+          </div>
         </div>
 
         {/* Stats Overview */}
