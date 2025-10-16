@@ -65,24 +65,13 @@ const Auth = () => {
       }
 
       if (s && !isResettingPassword && !recoveryInUrl) {
-        // Check if user has completed questionnaire
-        const { data: questionnaireResponse } = await supabase
-          .from('investor_questionnaire_responses')
-          .select('id')
-          .eq('user_id', s.user.id)
-          .maybeSingle();
-
         // Log successful login
         await logActivity(s.user.id, 'user_login', {
           timestamp: new Date().toISOString(),
           event: event,
         });
 
-        if (!questionnaireResponse) {
-          navigate('/investor-questionnaire');
-        } else {
-          navigate('/investor-portal');
-        }
+        navigate('/investor-portal');
       }
     });
 
@@ -90,18 +79,7 @@ const Auth = () => {
     supabase.auth.getSession().then(async ({ data: { session } }) => {
       setSession(session);
       if (session && !(isResettingPassword || recoveryInUrl)) {
-        // Check if user has completed questionnaire
-        const { data: questionnaireResponse } = await supabase
-          .from('investor_questionnaire_responses')
-          .select('id')
-          .eq('user_id', session.user.id)
-          .maybeSingle();
-
-        if (!questionnaireResponse) {
-          navigate('/investor-questionnaire');
-        } else {
-          navigate('/investor-portal');
-        }
+        navigate('/investor-portal');
       }
     });
 
@@ -303,23 +281,7 @@ const Auth = () => {
       });
       setLoading(false);
       setIsResettingPassword(false);
-      
-      // Check if user has completed questionnaire
-      if (currentSession?.user) {
-        const { data: questionnaireResponse } = await supabase
-          .from('investor_questionnaire_responses')
-          .select('id')
-          .eq('user_id', currentSession.user.id)
-          .maybeSingle();
-
-        if (!questionnaireResponse) {
-          navigate('/investor-questionnaire');
-        } else {
-          navigate('/investor-portal');
-        }
-      } else {
-        navigate('/investor-portal');
-      }
+      navigate('/investor-portal');
     }
   };
 
