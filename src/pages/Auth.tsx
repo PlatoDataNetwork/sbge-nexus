@@ -144,6 +144,40 @@ const Auth = () => {
     setLoading(false);
   };
 
+  const handleForgotPassword = async () => {
+    const email = (document.getElementById('signin-email') as HTMLInputElement)?.value;
+    
+    if (!email) {
+      toast({
+        variant: 'destructive',
+        title: 'Email Required',
+        description: 'Please enter your email address first.',
+      });
+      return;
+    }
+
+    setLoading(true);
+
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: `${window.location.origin}/auth?reset=true`,
+    });
+
+    if (error) {
+      toast({
+        variant: 'destructive',
+        title: 'Error',
+        description: error.message,
+      });
+    } else {
+      toast({
+        title: 'Check Your Email',
+        description: 'We sent you a password reset link.',
+      });
+    }
+
+    setLoading(false);
+  };
+
   if (session) {
     return null;
   }
@@ -220,6 +254,15 @@ const Auth = () => {
                     disabled={loading}
                   >
                     {loading ? 'Signing in...' : 'Sign In'}
+                  </Button>
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    className="w-full text-sm text-muted-foreground hover:text-primary"
+                    onClick={handleForgotPassword}
+                    disabled={loading}
+                  >
+                    Forgot your password?
                   </Button>
                 </form>
               </CardContent>
