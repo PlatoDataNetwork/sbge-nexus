@@ -46,9 +46,19 @@ const Auth = () => {
 
   // Auth state handling with correct initialization order
   useEffect(() => {
+    // Detect recovery presence in URL hash early
+    const recoveryInUrl = new URLSearchParams(window.location.hash.substring(1)).get('type') === 'recovery';
+
     // Listen for auth changes FIRST
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, s) => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, s) => {
       setSession(s);
+
+      // If Supabase indicates a password recovery flow or URL shows recovery, enter reset mode and do NOT redirect
+      if (event === 'PASSWORD_RECOVERY' || recoveryInUrl) {
+        setIsResettingPassword(true);
+        return;
+      }
+
       if (s && !isResettingPassword) {
         navigate('/investor-portal');
       }
@@ -57,7 +67,7 @@ const Auth = () => {
     // THEN check existing session
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
-      if (session && !isResettingPassword) {
+      if (session && !(isResettingPassword || recoveryInUrl)) {
         navigate('/investor-portal');
       }
     });
