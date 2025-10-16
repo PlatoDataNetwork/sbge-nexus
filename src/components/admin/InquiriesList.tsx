@@ -267,55 +267,54 @@ const InquiriesList = ({ onUpdate }: InquiriesListProps) => {
                       <p className="text-xs font-medium text-muted-foreground mb-1">Storage Experience</p>
                       <p className="text-sm font-medium">{response.storage_experience}</p>
                     </div>
+                    <div className="md:col-span-2">
+                      <div className="flex items-center justify-between mb-1">
+                        <p className="text-xs font-medium text-muted-foreground">Admin Notes</p>
+                        {editingNoteId !== response.id && (
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={() => handleEditNote(response.id, response.admin_notes)}
+                          >
+                            {response.admin_notes ? 'Edit Notes' : 'Add Notes'}
+                          </Button>
+                        )}
+                      </div>
+                      {editingNoteId === response.id ? (
+                        <div className="space-y-2">
+                          <Textarea
+                            value={noteText}
+                            onChange={(e) => setNoteText(e.target.value)}
+                            placeholder="Add notes about this investor..."
+                            className="min-h-[80px]"
+                          />
+                          <div className="flex gap-2">
+                            <Button
+                              size="sm"
+                              onClick={() => updateNotes(response.id, noteText)}
+                            >
+                              Save Notes
+                            </Button>
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              onClick={handleCancelEdit}
+                            >
+                              Cancel
+                            </Button>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="text-sm text-foreground bg-muted p-3 rounded-md min-h-[60px]">
+                          {response.admin_notes || <span className="text-muted-foreground italic">No notes added yet</span>}
+                        </div>
+                      )}
+                    </div>
                   </div>
 
                   <div className="pt-2">
                     <p className="text-xs font-medium text-muted-foreground mb-2">Investment Goals</p>
                     <p className="text-sm text-foreground bg-muted p-3 rounded-md">{response.investment_goals}</p>
-                  </div>
-
-                  <div className="pt-2 border-t">
-                    <div className="flex items-center justify-between mb-2">
-                      <p className="text-xs font-medium text-muted-foreground">Admin Notes</p>
-                      {editingNoteId !== response.id && (
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          onClick={() => handleEditNote(response.id, response.admin_notes)}
-                        >
-                          {response.admin_notes ? 'Edit Notes' : 'Add Notes'}
-                        </Button>
-                      )}
-                    </div>
-                    {editingNoteId === response.id ? (
-                      <div className="space-y-2">
-                        <Textarea
-                          value={noteText}
-                          onChange={(e) => setNoteText(e.target.value)}
-                          placeholder="Add notes about this investor..."
-                          className="min-h-[100px]"
-                        />
-                        <div className="flex gap-2">
-                          <Button
-                            size="sm"
-                            onClick={() => updateNotes(response.id, noteText)}
-                          >
-                            Save Notes
-                          </Button>
-                          <Button
-                            size="sm"
-                            variant="outline"
-                            onClick={handleCancelEdit}
-                          >
-                            Cancel
-                          </Button>
-                        </div>
-                      </div>
-                    ) : (
-                      <div className="text-sm text-foreground bg-muted p-3 rounded-md min-h-[60px]">
-                        {response.admin_notes || <span className="text-muted-foreground italic">No notes added yet</span>}
-                      </div>
-                    )}
                   </div>
                 </div>
               ))}
