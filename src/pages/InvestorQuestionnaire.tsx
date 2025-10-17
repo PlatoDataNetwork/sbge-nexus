@@ -116,14 +116,17 @@ const InvestorQuestionnaire = () => {
         });
       }
 
-      // Create account for user automatically
-      const password = Math.random().toString(36).slice(-12) + Math.random().toString(36).slice(-12).toUpperCase() + "!1";
+      // Create user account with a secure random password
+      // User will receive a welcome email with instructions to set their password
+      const array = new Uint8Array(32);
+      crypto.getRandomValues(array);
+      const password = Array.from(array, byte => byte.toString(16).padStart(2, '0')).join('');
       
       const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
         email: formData.email,
         password: password,
         options: {
-          emailRedirectTo: `${window.location.origin}/auth`,
+          emailRedirectTo: `${window.location.origin}/auth?reset=true`,
           data: {
             full_name: formData.fullName,
           }

@@ -112,16 +112,11 @@ const UsersList = () => {
 
   const changeUserRole = async (userId: string, newRole: 'admin' | 'user') => {
     try {
-      // First, delete existing role
-      await supabase
-        .from('user_roles')
-        .delete()
-        .eq('user_id', userId);
-
-      // Then insert new role
-      const { error } = await supabase
-        .from('user_roles')
-        .insert({ user_id: userId, role: newRole });
+      // Use atomic database function to prevent race conditions
+      const { error } = await supabase.rpc('change_user_role', {
+        _user_id: userId,
+        _new_role: newRole,
+      });
 
       if (error) throw error;
 
