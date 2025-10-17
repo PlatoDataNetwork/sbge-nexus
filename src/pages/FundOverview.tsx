@@ -149,7 +149,7 @@ const FundOverview = () => {
                 </div>
               </CardHeader>
               <CardContent>
-                <div className="text-3xl font-bold text-primary">5-7 Yrs</div>
+                <div className="text-3xl font-bold text-primary">5 Yrs</div>
                 <p className="text-xs text-muted-foreground mt-1">Investment timeline</p>
               </CardContent>
             </Card>
