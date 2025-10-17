@@ -163,7 +163,7 @@ const CaseStudies = () => {
                 <CardTitle className="text-sm font-medium text-muted-foreground text-center">Unlevered IRR</CardTitle>
               </CardHeader>
               <CardContent className="text-center">
-                <div className="text-3xl font-bold">17.4%</div>
+                <div className="text-3xl font-bold">{caseStudyData.unlEveredIRR}</div>
               </CardContent>
             </Card>
 
