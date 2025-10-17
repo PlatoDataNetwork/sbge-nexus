@@ -68,6 +68,17 @@ const CallsCalendar = () => {
     setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1));
   };
 
+  const handleDayClick = (day: Date) => {
+    setSelectedDate(day);
+    const dayCalls = getCallsForDate(day);
+    
+    // If there's only one call on this day, auto-open the detail dialog
+    if (dayCalls.length === 1) {
+      setSelectedCall(dayCalls[0]);
+      setIsDialogOpen(true);
+    }
+  };
+
   const monthStart = startOfMonth(currentDate);
   const monthEnd = endOfMonth(currentDate);
   const daysInMonth = eachDayOfInterval({ start: monthStart, end: monthEnd });
@@ -133,13 +144,15 @@ const CallsCalendar = () => {
               return (
                 <button
                   key={day.toISOString()}
-                  onClick={() => setSelectedDate(day)}
+                  onClick={() => handleDayClick(day)}
                   className={`
                     aspect-square p-2 rounded-lg border transition-all
                     ${isSelected ? 'border-primary bg-primary/10' : 'border-border hover:border-accent'}
                     ${!isSameMonth(day, currentDate) ? 'opacity-40' : ''}
-                    ${hasCallsToday ? 'bg-accent/5' : ''}
+                    ${hasCallsToday ? 'bg-accent/5 hover:bg-accent/10' : ''}
+                    ${hasCallsToday ? 'cursor-pointer' : 'cursor-default'}
                   `}
+                  disabled={!hasCallsToday}
                 >
                   <div className="flex flex-col items-center justify-center h-full">
                     <span className={`text-sm ${isSelected ? 'font-bold text-primary' : ''}`}>
@@ -159,13 +172,14 @@ const CallsCalendar = () => {
       </Card>
 
       {/* Selected Date Details */}
-      {selectedDate && (
+      {selectedDate && selectedDateCalls.length > 1 && (
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Phone className="h-5 w-5 text-primary" />
-              Calls on {format(selectedDate, 'MMMM d, yyyy')}
+              {selectedDateCalls.length} Calls on {format(selectedDate, 'MMMM d, yyyy')}
             </CardTitle>
+            <p className="text-sm text-muted-foreground">Click on any call to view full details</p>
           </CardHeader>
           <CardContent>
             {selectedDateCalls.length === 0 ? (
@@ -219,7 +233,7 @@ const CallsCalendar = () => {
                             </div>
                           )}
                           
-                          <p className="text-xs text-muted-foreground italic">Click to view details</p>
+                          <p className="text-xs text-muted-foreground italic">Click for full details →</p>
                         </div>
                       </div>
                     </CardContent>
