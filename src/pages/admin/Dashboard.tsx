@@ -3,11 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Users, TrendingUp, UserCog, LogOut } from 'lucide-react';
+import { Users, TrendingUp, UserCog, LogOut, Calendar } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import UsersList from '@/components/admin/UsersList';
 import InquiriesList from '@/components/admin/InquiriesList';
 import AnalyticsDashboard from '@/components/admin/AnalyticsDashboard';
+import CallsCalendar from '@/components/admin/CallsCalendar';
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
@@ -193,10 +194,14 @@ const AdminDashboard = () => {
 
         {/* Main Content */}
         <Tabs defaultValue="users" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 mb-8">
+          <TabsList className="grid w-full grid-cols-4 mb-8">
             <TabsTrigger value="users">Users</TabsTrigger>
             <TabsTrigger value="inquiries">Inquiries</TabsTrigger>
             <TabsTrigger value="analytics">Analytics</TabsTrigger>
+            <TabsTrigger value="calendar">
+              <Calendar className="h-4 w-4 mr-2" />
+              Calendar
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="users">
@@ -209,6 +214,10 @@ const AdminDashboard = () => {
 
           <TabsContent value="analytics">
             <AnalyticsDashboard />
+          </TabsContent>
+
+          <TabsContent value="calendar">
+            <CallsCalendar />
           </TabsContent>
         </Tabs>
       </div>
