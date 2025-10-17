@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
+import { useVersionCheck } from "./hooks/useVersionCheck";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Strategy from "./pages/Strategy";
@@ -58,13 +59,11 @@ import MichaelSheresky from "./pages/profiles/MichaelSheresky";
 
 const queryClient = new QueryClient();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <ScrollToTop />
+const AppContent = () => {
+  useVersionCheck();
+  return (
+    <>
+      <ScrollToTop />
         <div className="flex flex-col min-h-screen w-full">
           <Navigation />
           <main className="flex-1">
@@ -122,6 +121,17 @@ const App = () => (
           </main>
           <Footer />
         </div>
+      </>
+  );
+};
+
+const App = () => (
+  <QueryClientProvider client={queryClient}>
+    <TooltipProvider>
+      <Toaster />
+      <Sonner />
+      <BrowserRouter>
+        <AppContent />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
