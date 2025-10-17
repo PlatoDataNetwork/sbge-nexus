@@ -14,7 +14,7 @@ import facilityWestLongBranchImage from '@/assets/facility-west-long-branch.png'
 // Static data moved outside component to prevent recreation on each render
 const portfolioStats = {
   facilities: 6,
-  units: "5,400+",
+  units: "4,945",
   nrsf: "574,000",
   projectedValue: "$150M"
 };
