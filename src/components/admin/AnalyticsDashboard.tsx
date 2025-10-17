@@ -83,11 +83,23 @@ const AnalyticsDashboard = () => {
 
   const processTrafficByDay = (data: any[]) => {
     const dayCounts: { [key: string]: number } = {};
+    const dayUniqueVisitors: { [key: string]: Set<string> } = {};
     
     data.forEach(item => {
       const date = new Date(item.created_at);
       const day = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
       dayCounts[day] = (dayCounts[day] || 0) + 1;
+      
+      // Track unique visitors per day
+      if (!dayUniqueVisitors[day]) {
+        dayUniqueVisitors[day] = new Set();
+      }
+      if (item.user_id) {
+        dayUniqueVisitors[day].add(`user_${item.user_id}`);
+      }
+      if (item.ip_address) {
+        dayUniqueVisitors[day].add(`ip_${item.ip_address}`);
+      }
     });
 
     return Object.entries(dayCounts)
@@ -95,6 +107,7 @@ const AnalyticsDashboard = () => {
       .map(([day, count]) => ({
         day,
         views: count,
+        visitors: dayUniqueVisitors[day]?.size || 0,
       }));
   };
 
@@ -193,8 +206,15 @@ const AnalyticsDashboard = () => {
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="day" />
               <YAxis />
-              <Tooltip />
-              <Line type="monotone" dataKey="views" stroke="hsl(var(--primary))" strokeWidth={2} />
+              <Tooltip 
+                formatter={(value: number, name: string) => {
+                  if (name === 'views') return [value, 'Page Views'];
+                  if (name === 'visitors') return [value, 'Unique Visitors'];
+                  return [value, name];
+                }}
+              />
+              <Line type="monotone" dataKey="views" stroke="hsl(var(--primary))" strokeWidth={2} name="Page Views" />
+              <Line type="monotone" dataKey="visitors" stroke="hsl(var(--accent))" strokeWidth={2} name="Unique Visitors" />
             </LineChart>
           </ResponsiveContainer>
         </CardContent>
