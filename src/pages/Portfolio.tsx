@@ -133,7 +133,7 @@ const Portfolio = () => {
                   <div className="text-sm md:text-base text-accent font-medium">NRSF</div>
                 </div>
                 <div className="text-center md:border-r border-accent/30 pr-6">
-                  <div className="text-4xl md:text-5xl font-heading font-bold text-primary mb-2">$197.2M</div>
+                  <div className="text-4xl md:text-5xl font-heading font-bold text-primary mb-2">$134M</div>
                   <div className="text-sm md:text-base text-accent font-medium">Projected Market Value Estimate</div>
                 </div>
                 <div className="text-center">
