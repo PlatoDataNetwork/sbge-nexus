@@ -3,7 +3,8 @@ import { supabase } from '@/integrations/supabase/client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { ChevronLeft, ChevronRight, Phone, Clock, User, Building } from 'lucide-react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
+import { ChevronLeft, ChevronRight, Phone, Clock, User, Building, Mail, DollarSign, FileText, Calendar as CalendarIcon } from 'lucide-react';
 import { format, startOfMonth, endOfMonth, eachDayOfInterval, isSameMonth, isSameDay, parseISO } from 'date-fns';
 
 interface ScheduledCall {
@@ -24,6 +25,8 @@ const CallsCalendar = () => {
   const [calls, setCalls] = useState<ScheduledCall[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [selectedCall, setSelectedCall] = useState<ScheduledCall | null>(null);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   useEffect(() => {
     loadCalls();
@@ -73,6 +76,11 @@ const CallsCalendar = () => {
   const emptyDays = Array(firstDayOfWeek).fill(null);
 
   const selectedDateCalls = selectedDate ? getCallsForDate(selectedDate) : [];
+
+  const handleCallClick = (call: ScheduledCall) => {
+    setSelectedCall(call);
+    setIsDialogOpen(true);
+  };
 
   if (loading) {
     return (
@@ -167,7 +175,11 @@ const CallsCalendar = () => {
             ) : (
               <div className="space-y-4">
                 {selectedDateCalls.map(call => (
-                  <Card key={call.id} className="border-border">
+                  <Card 
+                    key={call.id} 
+                    className="border-border cursor-pointer hover:border-primary transition-colors"
+                    onClick={() => handleCallClick(call)}
+                  >
                     <CardContent className="pt-6">
                       <div className="grid md:grid-cols-2 gap-4">
                         <div className="space-y-3">
@@ -207,12 +219,7 @@ const CallsCalendar = () => {
                             </div>
                           )}
                           
-                          {call.notes && (
-                            <div>
-                              <p className="text-xs text-muted-foreground mb-1">Notes</p>
-                              <p className="text-sm bg-muted p-2 rounded">{call.notes}</p>
-                            </div>
-                          )}
+                          <p className="text-xs text-muted-foreground italic">Click to view details</p>
                         </div>
                       </div>
                     </CardContent>
@@ -223,6 +230,140 @@ const CallsCalendar = () => {
           </CardContent>
         </Card>
       )}
+
+      {/* Detailed Event Dialog */}
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="text-2xl flex items-center gap-2">
+              <Phone className="h-6 w-6 text-primary" />
+              Scheduled Call Details
+            </DialogTitle>
+            <DialogDescription>
+              Complete information about this scheduled consultation
+            </DialogDescription>
+          </DialogHeader>
+
+          {selectedCall && (
+            <div className="space-y-6 pt-4">
+              {/* Contact Information */}
+              <div className="bg-muted/50 rounded-lg p-4 space-y-4">
+                <h3 className="font-semibold text-lg flex items-center gap-2 text-primary">
+                  <User className="h-5 w-5" />
+                  Contact Information
+                </h3>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <div className="flex items-start gap-2">
+                      <User className="h-4 w-4 text-muted-foreground mt-1" />
+                      <div>
+                        <p className="text-xs text-muted-foreground">Full Name</p>
+                        <p className="font-semibold">{selectedCall.name}</p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start gap-2">
+                      <Mail className="h-4 w-4 text-muted-foreground mt-1" />
+                      <div>
+                        <p className="text-xs text-muted-foreground">Email</p>
+                        <p className="font-medium text-sm">{selectedCall.email}</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    {selectedCall.phone && (
+                      <div className="flex items-start gap-2">
+                        <Phone className="h-4 w-4 text-muted-foreground mt-1" />
+                        <div>
+                          <p className="text-xs text-muted-foreground">Phone</p>
+                          <p className="font-medium">{selectedCall.phone}</p>
+                        </div>
+                      </div>
+                    )}
+                    
+                    {selectedCall.company && (
+                      <div className="flex items-start gap-2">
+                        <Building className="h-4 w-4 text-muted-foreground mt-1" />
+                        <div>
+                          <p className="text-xs text-muted-foreground">Company</p>
+                          <p className="font-medium">{selectedCall.company}</p>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              {/* Appointment Details */}
+              <div className="bg-muted/50 rounded-lg p-4 space-y-4">
+                <h3 className="font-semibold text-lg flex items-center gap-2 text-primary">
+                  <CalendarIcon className="h-5 w-5" />
+                  Appointment Details
+                </h3>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="flex items-start gap-2">
+                    <CalendarIcon className="h-4 w-4 text-muted-foreground mt-1" />
+                    <div>
+                      <p className="text-xs text-muted-foreground">Preferred Date</p>
+                      <p className="font-semibold">
+                        {format(parseISO(selectedCall.preferred_date), 'EEEE, MMMM d, yyyy')}
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-2">
+                    <Clock className="h-4 w-4 text-muted-foreground mt-1" />
+                    <div>
+                      <p className="text-xs text-muted-foreground">Preferred Time</p>
+                      <p className="font-semibold">{selectedCall.preferred_time}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Investment Details */}
+              {selectedCall.investment_amount && (
+                <div className="bg-muted/50 rounded-lg p-4 space-y-3">
+                  <h3 className="font-semibold text-lg flex items-center gap-2 text-primary">
+                    <DollarSign className="h-5 w-5" />
+                    Investment Information
+                  </h3>
+                  <div className="flex items-center gap-2">
+                    <p className="text-sm text-muted-foreground">Investment Amount:</p>
+                    <Badge variant="secondary" className="text-base px-3 py-1">
+                      {selectedCall.investment_amount}
+                    </Badge>
+                  </div>
+                </div>
+              )}
+
+              {/* Notes */}
+              {selectedCall.notes && (
+                <div className="bg-muted/50 rounded-lg p-4 space-y-3">
+                  <h3 className="font-semibold text-lg flex items-center gap-2 text-primary">
+                    <FileText className="h-5 w-5" />
+                    Additional Notes
+                  </h3>
+                  <p className="text-sm bg-background p-3 rounded border border-border">
+                    {selectedCall.notes}
+                  </p>
+                </div>
+              )}
+
+              {/* Metadata */}
+              <div className="border-t pt-4">
+                <p className="text-xs text-muted-foreground">
+                  Submitted: {format(parseISO(selectedCall.created_at), 'PPpp')}
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  ID: {selectedCall.id}
+                </p>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
