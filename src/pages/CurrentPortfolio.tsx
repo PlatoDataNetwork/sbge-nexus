@@ -16,7 +16,7 @@ const portfolioStats = {
   facilities: 6,
   units: "4,945",
   nrsf: "574,000",
-  projectedValue: "$150M"
+  projectedValue: "$134M"
 };
 
 const facilities = [
