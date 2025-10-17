@@ -146,7 +146,7 @@ const Strategy = () => {
                   </div>
                   <h3 className="text-lg font-semibold text-foreground">Horizon</h3>
                 </div>
-                <div className="text-3xl font-heading font-bold text-primary mb-2">5-7 Yrs</div>
+                <div className="text-3xl font-heading font-bold text-primary mb-2">5 Years</div>
                 <p className="text-sm text-muted-foreground">Investment timeline</p>
               </div>
             </div>
