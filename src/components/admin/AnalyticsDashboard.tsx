@@ -214,7 +214,6 @@ const AnalyticsDashboard = () => {
                 }}
               />
               <Line type="monotone" dataKey="views" stroke="hsl(var(--primary))" strokeWidth={2} name="Page Views" />
-              <Line type="monotone" dataKey="visitors" stroke="hsl(var(--accent))" strokeWidth={2} name="Unique Visitors" />
             </LineChart>
           </ResponsiveContainer>
         </CardContent>
