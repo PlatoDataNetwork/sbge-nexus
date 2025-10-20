@@ -43,7 +43,7 @@ const About = () => {
             />
             <StatCard
               value="25"
-              label="Facilities Developed"
+              label="NYC/NJ Facilities Developed"
               description="Strategic portfolio"
               icon={<Users className="h-8 w-8" />}
             />
