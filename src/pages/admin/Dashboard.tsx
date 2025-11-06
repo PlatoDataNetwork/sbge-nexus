@@ -3,12 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Users, TrendingUp, UserCog, LogOut, Calendar } from 'lucide-react';
+import { Users, TrendingUp, UserCog, LogOut, Calendar, Clock } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import UsersList from '@/components/admin/UsersList';
 import InquiriesList from '@/components/admin/InquiriesList';
 import AnalyticsDashboard from '@/components/admin/AnalyticsDashboard';
 import CallsCalendar from '@/components/admin/CallsCalendar';
+import AccessRequestsList from '@/components/admin/AccessRequestsList';
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
@@ -19,6 +20,7 @@ const AdminDashboard = () => {
     totalUsers: 0,
     totalInquiries: 0,
     newInquiries: 0,
+    pendingAccessRequests: 0,
   });
 
   useEffect(() => {
@@ -95,10 +97,17 @@ const AdminDashboard = () => {
       .select('*', { count: 'exact', head: true })
       .gte('created_at', sevenDaysAgo.toISOString());
 
+    // Get pending access requests
+    const { count: pendingAccessCount } = await supabase
+      .from('access_requests')
+      .select('*', { count: 'exact', head: true })
+      .eq('status', 'pending');
+
     setStats({
       totalUsers: usersCount || 0,
       totalInquiries: (questionnaireCount || 0) + (contactCount || 0) + (legacyCount || 0),
       newInquiries: (newQuestionnaireCount || 0) + (newContactCount || 0),
+      pendingAccessRequests: pendingAccessCount || 0,
     });
   };
 
@@ -159,7 +168,7 @@ const AdminDashboard = () => {
         </div>
 
         {/* Stats Overview */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <div className="bg-card border border-border rounded-lg p-6">
             <div className="flex items-center justify-between mb-4">
               <Users className="h-8 w-8 text-accent" />
@@ -190,11 +199,22 @@ const AdminDashboard = () => {
               <p className="text-xs text-muted-foreground">Last 7 days</p>
             </div>
           </div>
+          <div className="bg-card border border-border rounded-lg p-6">
+            <div className="flex items-center justify-between mb-4">
+              <Clock className="h-8 w-8 text-accent" />
+            </div>
+            <div className="space-y-2">
+              <p className="text-sm text-muted-foreground">Pending Requests</p>
+              <p className="text-3xl font-bold text-primary">{stats.pendingAccessRequests}</p>
+              <p className="text-xs text-muted-foreground">Awaiting approval</p>
+            </div>
+          </div>
         </div>
 
         {/* Main Content */}
-        <Tabs defaultValue="users" className="w-full">
-          <TabsList className="grid w-full grid-cols-4 mb-8">
+        <Tabs defaultValue="access-requests" className="w-full">
+          <TabsList className="grid w-full grid-cols-5 mb-8">
+            <TabsTrigger value="access-requests">Access Requests</TabsTrigger>
             <TabsTrigger value="users">Users</TabsTrigger>
             <TabsTrigger value="inquiries">Inquiries</TabsTrigger>
             <TabsTrigger value="analytics">Analytics</TabsTrigger>
@@ -203,6 +223,10 @@ const AdminDashboard = () => {
               Calendar
             </TabsTrigger>
           </TabsList>
+
+          <TabsContent value="access-requests">
+            <AccessRequestsList onUpdate={loadStats} />
+          </TabsContent>
 
           <TabsContent value="users">
             <UsersList />

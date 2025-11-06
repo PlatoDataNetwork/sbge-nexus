@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Building2, Eye, EyeOff } from 'lucide-react';
+import { Building2, Eye, EyeOff, CheckCircle } from 'lucide-react';
 import { logActivity } from '@/lib/activityTracker';
 
 const Auth = () => {
@@ -14,10 +14,12 @@ const Auth = () => {
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
   const [session, setSession] = useState<any>(null);
-  const [activeTab, setActiveTab] = useState<'signin' | 'signup'>('signup');
+  const [activeTab, setActiveTab] = useState<'signin' | 'signup' | 'register'>('signin');
   const [signupEmail, setSignupEmail] = useState('');
   const [signupName, setSignupName] = useState('');
   const [isResettingPassword, setIsResettingPassword] = useState(false);
+  const [registerEmail, setRegisterEmail] = useState('');
+  const [registerSubmitted, setRegisterSubmitted] = useState(false);
   const [showSignInPassword, setShowSignInPassword] = useState(false);
   const [showSignUpPassword, setShowSignUpPassword] = useState(false);
   const [showResetPassword, setShowResetPassword] = useState(false);
@@ -279,6 +281,67 @@ const Auth = () => {
     }
   };
 
+  const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const email = formData.get('email') as string;
+
+    if (!email) {
+      toast({
+        variant: 'destructive',
+        title: 'Missing Information',
+        description: 'Please enter your email address.',
+      });
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      // Insert access request
+      const { error: insertError } = await supabase
+        .from('access_requests')
+        .insert([{ email }]);
+
+      if (insertError) {
+        if (insertError.code === '23505') { // Unique violation
+          toast({
+            variant: 'destructive',
+            title: 'Already Requested',
+            description: 'An access request with this email already exists.',
+          });
+        } else {
+          throw insertError;
+        }
+      } else {
+        // Send confirmation email
+        try {
+          const { error: functionError } = await supabase.functions.invoke('send-access-confirmation', {
+            body: { email },
+          });
+          if (functionError) console.error('Error sending confirmation email:', functionError);
+        } catch (emailError) {
+          console.error('Error sending confirmation email:', emailError);
+        }
+
+        setRegisterSubmitted(true);
+        toast({
+          title: 'Request Submitted',
+          description: 'Your access request has been received. Check your email for confirmation.',
+        });
+      }
+    } catch (error) {
+      console.error('Error submitting access request:', error);
+      toast({
+        variant: 'destructive',
+        title: 'Error',
+        description: 'Failed to submit access request. Please try again.',
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   // Hide auth forms if already signed in (except during reset flow)
   if (session && !isResettingPassword) {
     return null;
@@ -343,17 +406,35 @@ const Auth = () => {
             <div className="inline-flex h-10 items-center justify-center rounded-md bg-muted p-1 text-muted-foreground w-full mb-4">
               <button
                 type="button"
-                onClick={() => setActiveTab('signin')}
-                className={`inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all w-1/2 ${
+                onClick={() => {
+                  setActiveTab('signin');
+                  setRegisterSubmitted(false);
+                }}
+                className={`inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all w-1/3 ${
                   activeTab === 'signin' ? 'bg-background text-foreground shadow-sm' : ''
                 }`}
               >
-                Sign In
+                Login
               </button>
               <button
                 type="button"
-                onClick={() => setActiveTab('signup')}
-                className={`inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all w-1/2 ${
+                onClick={() => {
+                  setActiveTab('register');
+                  setRegisterSubmitted(false);
+                }}
+                className={`inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all w-1/3 ${
+                  activeTab === 'register' ? 'bg-background text-foreground shadow-sm' : ''
+                }`}
+              >
+                Register
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setActiveTab('signup');
+                  setRegisterSubmitted(false);
+                }}
+                className={`inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all w-1/3 ${
                   activeTab === 'signup' ? 'bg-background text-foreground shadow-sm' : ''
                 }`}
               >
@@ -402,11 +483,78 @@ const Auth = () => {
               </Card>
             )}
 
+            {activeTab === 'register' && (
+              <Card>
+                <CardHeader>
+                  <CardTitle>Register</CardTitle>
+                  <CardDescription>Enter your email address to register for access</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  {registerSubmitted ? (
+                    <div className="text-center py-8 space-y-4">
+                      <CheckCircle className="h-16 w-16 text-green-600 mx-auto" />
+                      <div className="space-y-2">
+                        <h3 className="text-xl font-semibold text-primary">Request Received</h3>
+                        <p className="text-muted-foreground">
+                          Thank you for your interest in StorageBlue. We've sent a confirmation to your email.
+                        </p>
+                        <p className="text-sm text-muted-foreground">
+                          Our team will review your request and notify you once approved.
+                        </p>
+                      </div>
+                      <Button 
+                        variant="outline"
+                        onClick={() => navigate('/contact')}
+                        className="mt-4"
+                      >
+                        Need immediate assistance? Contact us
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        onClick={() => {
+                          setRegisterSubmitted(false);
+                          setActiveTab('signin');
+                        }}
+                        className="mt-2 w-full"
+                      >
+                        Return to login
+                      </Button>
+                    </div>
+                  ) : (
+                    <form onSubmit={handleRegister} className="space-y-4">
+                      <div>
+                        <Label htmlFor="register-email">Email</Label>
+                        <Input 
+                          id="register-email" 
+                          name="email" 
+                          type="email" 
+                          required 
+                          placeholder="your@email.com"
+                          value={registerEmail}
+                          onChange={(e) => setRegisterEmail(e.target.value)}
+                        />
+                      </div>
+                      <Button type="submit" className="w-full" variant="premium" disabled={loading}>
+                        {loading ? 'Submitting...' : 'Continue'}
+                      </Button>
+                      <button
+                        type="button"
+                        onClick={() => setActiveTab('signin')}
+                        className="text-sm text-primary hover:text-primary/80 underline transition-colors text-center w-full flex items-center justify-center gap-1"
+                      >
+                        <span>←</span> Return to login
+                      </button>
+                    </form>
+                  )}
+                </CardContent>
+              </Card>
+            )}
+
             {activeTab === 'signup' && (
               <Card>
                 <CardHeader>
                   <CardTitle>Create Account</CardTitle>
-                  <CardDescription>Register for investor access</CardDescription>
+                  <CardDescription>Complete your registration (approval required)</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <form onSubmit={handleSignUp} className="space-y-4">
