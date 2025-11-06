@@ -14,7 +14,7 @@ const Auth = () => {
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
   const [session, setSession] = useState<any>(null);
-  const [activeTab, setActiveTab] = useState<'signin' | 'signup' | 'register'>('signin');
+  const [activeTab, setActiveTab] = useState<'signin' | 'register'>('signin');
   const [signupEmail, setSignupEmail] = useState('');
   const [signupName, setSignupName] = useState('');
   const [isResettingPassword, setIsResettingPassword] = useState(false);
@@ -38,7 +38,7 @@ const Auth = () => {
     const state = window.history.state?.usr;
     if (state?.investorEmail) {
       setSignupEmail(state.investorEmail);
-      setActiveTab('signup');
+      setActiveTab('register');
     }
     if (state?.investorName) {
       setSignupName(state.investorName);
@@ -410,7 +410,7 @@ const Auth = () => {
                   setActiveTab('signin');
                   setRegisterSubmitted(false);
                 }}
-                className={`inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all w-1/3 ${
+                className={`inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all w-1/2 ${
                   activeTab === 'signin' ? 'bg-background text-foreground shadow-sm' : ''
                 }`}
               >
@@ -422,23 +422,11 @@ const Auth = () => {
                   setActiveTab('register');
                   setRegisterSubmitted(false);
                 }}
-                className={`inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all w-1/3 ${
+                className={`inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all w-1/2 ${
                   activeTab === 'register' ? 'bg-background text-foreground shadow-sm' : ''
                 }`}
               >
                 Register
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  setActiveTab('signup');
-                  setRegisterSubmitted(false);
-                }}
-                className={`inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all w-1/3 ${
-                  activeTab === 'signup' ? 'bg-background text-foreground shadow-sm' : ''
-                }`}
-              >
-                Sign Up
               </button>
             </div>
 
@@ -483,6 +471,7 @@ const Auth = () => {
               </Card>
             )}
 
+            
             {activeTab === 'register' && (
               <Card>
                 <CardHeader>
@@ -546,47 +535,6 @@ const Auth = () => {
                       </button>
                     </form>
                   )}
-                </CardContent>
-              </Card>
-            )}
-
-            {activeTab === 'signup' && (
-              <Card>
-                <CardHeader>
-                  <CardTitle>Create Account</CardTitle>
-                  <CardDescription>Complete your registration (approval required)</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <form onSubmit={handleSignUp} className="space-y-4">
-                    <div>
-                      <Label htmlFor="signup-fullname">Full Name *</Label>
-                      <Input id="signup-fullname" name="fullName" type="text" required placeholder="John Doe" defaultValue={signupName} />
-                    </div>
-                    <div>
-                      <Label htmlFor="signup-email">Email *</Label>
-                      <Input id="signup-email" name="email" type="email" required placeholder="your@email.com" defaultValue={signupEmail} />
-                    </div>
-                    <div>
-                      <Label htmlFor="signup-company">Company</Label>
-                      <Input id="signup-company" name="company" type="text" placeholder="Your Company" />
-                    </div>
-                    <div>
-                      <Label htmlFor="signup-password">Password *</Label>
-                      <div className="relative">
-                        <Input id="signup-password" name="password" type={showSignUpPassword ? "text" : "password"} required placeholder="••••••••" minLength={6} className="pr-10" />
-                        <button
-                          type="button"
-                          onClick={() => setShowSignUpPassword(!showSignUpPassword)}
-                          className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
-                        >
-                          {showSignUpPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-                        </button>
-                      </div>
-                    </div>
-                    <Button type="submit" className="w-full" variant="premium" disabled={loading}>
-                      {loading ? 'Creating account...' : 'Create Account'}
-                    </Button>
-                  </form>
                 </CardContent>
               </Card>
             )}
