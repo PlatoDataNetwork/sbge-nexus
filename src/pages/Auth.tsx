@@ -402,83 +402,84 @@ const Auth = () => {
             </CardContent>
           </Card>
         ) : (
-          <div className="w-full">
-            <div className="inline-flex h-10 items-center justify-center rounded-md bg-muted p-1 text-muted-foreground w-full mb-4">
-              <button
-                type="button"
-                onClick={() => {
-                  setActiveTab('signin');
-                  setRegisterSubmitted(false);
-                }}
-                className={`inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all w-1/2 ${
-                  activeTab === 'signin' ? 'bg-background text-foreground shadow-sm' : ''
-                }`}
-              >
-                Login
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  setActiveTab('register');
-                  setRegisterSubmitted(false);
-                }}
-                className={`inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all w-1/2 ${
-                  activeTab === 'register' ? 'bg-background text-foreground shadow-sm' : ''
-                }`}
-              >
-                Register
-              </button>
-            </div>
-
-            {activeTab === 'signin' && (
-              <Card>
-                <CardHeader>
-                  <CardTitle>Sign In</CardTitle>
-                  <CardDescription>Access your investor account</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <form onSubmit={handleSignIn} className="space-y-4">
-                    <div>
-                      <Label htmlFor="signin-email">Email</Label>
-                      <Input id="signin-email" name="email" type="email" required placeholder="your@email.com" />
+          <Card>
+            {activeTab === 'signin' ? (
+              <CardContent className="pt-6">
+                <h2 className="text-4xl font-light text-foreground mb-6">Log In</h2>
+                <form onSubmit={handleSignIn} className="space-y-4">
+                  <div>
+                    <Label htmlFor="signin-email" className="sr-only">Username or Email Address</Label>
+                    <Input 
+                      id="signin-email" 
+                      name="email" 
+                      type="email" 
+                      required 
+                      placeholder="Username or Email Address" 
+                      className="h-12"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="signin-password" className="sr-only">Password</Label>
+                    <div className="relative">
+                      <Input 
+                        id="signin-password" 
+                        name="password" 
+                        type={showSignInPassword ? "text" : "password"} 
+                        required 
+                        placeholder="Password" 
+                        className="h-12 pr-10" 
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setShowSignInPassword(!showSignInPassword)}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                      >
+                        {showSignInPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                      </button>
                     </div>
-                    <div>
-                      <Label htmlFor="signin-password">Password</Label>
-                      <div className="relative">
-                        <Input id="signin-password" name="password" type={showSignInPassword ? "text" : "password"} required placeholder="••••••••" className="pr-10" />
-                        <button
-                          type="button"
-                          onClick={() => setShowSignInPassword(!showSignInPassword)}
-                          className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
-                        >
-                          {showSignInPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-                        </button>
-                      </div>
-                    </div>
-                    <Button type="submit" className="w-full" variant="premium" disabled={loading}>
-                      {loading ? 'Signing in...' : 'Sign In'}
-                    </Button>
+                  </div>
+                  
+                  <Button type="submit" className="w-full h-12 bg-emerald-500 hover:bg-emerald-600 text-white" disabled={loading}>
+                    {loading ? 'Signing in...' : 'Log In'}
+                  </Button>
+                  
+                  <div className="space-y-3 pt-4 border-t">
                     <button
                       type="button"
                       onClick={handleForgotPassword}
                       disabled={loading}
-                      className="text-sm text-primary hover:text-primary/80 underline transition-colors text-center w-full"
+                      className="text-base text-primary hover:text-primary/80 transition-colors text-center w-full block"
                     >
-                      Forgot your password?
+                      Reset Password
                     </button>
-                  </form>
-                </CardContent>
-              </Card>
-            )}
-
-            
-            {activeTab === 'register' && (
-              <Card>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setActiveTab('register');
+                        setRegisterSubmitted(false);
+                      }}
+                      className="text-base text-primary hover:text-primary/80 transition-colors text-center w-full block"
+                    >
+                      New User Access
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => navigate('/contact')}
+                      className="text-base text-primary hover:text-primary/80 transition-colors text-center w-full block"
+                    >
+                      Contact Us
+                    </button>
+                  </div>
+                </form>
+              </CardContent>
+            ) : (
+              <>
                 <CardHeader>
                   <CardTitle>Register</CardTitle>
                   <CardDescription>Enter your email address to register for access</CardDescription>
                 </CardHeader>
                 <CardContent>
+
                   {registerSubmitted ? (
                     <div className="text-center py-8 space-y-4">
                       <CheckCircle className="h-16 w-16 text-green-600 mx-auto" />
@@ -536,9 +537,9 @@ const Auth = () => {
                     </form>
                   )}
                 </CardContent>
-              </Card>
+              </>
             )}
-          </div>
+          </Card>
         )}
       </div>
     </div>
