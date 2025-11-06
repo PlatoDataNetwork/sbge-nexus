@@ -178,7 +178,7 @@ const Navigation = () => {
                   size="sm"
                   className="bg-[hsl(220,90%,30%)] text-white hover:bg-[hsl(220,90%,25%)]"
                 >
-                  <Link to="/auth">Request Access</Link>
+                  <Link to="/auth">Investor Login</Link>
                 </Button>
                 <Button 
                   asChild 
@@ -265,7 +265,7 @@ const Navigation = () => {
               ) : (
                 <>
                   <Button asChild variant="default" size="sm" className="w-full bg-[hsl(220,90%,30%)] text-white hover:bg-[hsl(220,90%,25%)]">
-                    <Link to="/auth" onClick={() => setIsMobileMenuOpen(false)}>Request Access</Link>
+                    <Link to="/auth" onClick={() => setIsMobileMenuOpen(false)}>Investor Login</Link>
                   </Button>
                   <Button 
                     asChild 
