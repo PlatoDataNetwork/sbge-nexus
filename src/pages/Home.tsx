@@ -26,17 +26,6 @@ const Home = () => {
               $1B of Buying Power. 35+ Years of Proven Performance.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-              <Button asChild size="lg" className="bg-[hsl(220,90%,30%)] text-white hover:bg-[hsl(220,90%,25%)]">
-                <Link to="/auth">
-                  Investor Login <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
-              <Button asChild size="lg" className="bg-[hsl(43,48%,62%)] text-foreground hover:bg-[hsl(43,48%,55%)]">
-                <Link to="/strategy">Fund Overview</Link>
-              </Button>
-            </div>
-            
             <p className="text-lg text-white pt-6">
               StorageBlue Growth Fund LP ("SBGF").<br />
               For Accredited and Institutional Investors Only.
