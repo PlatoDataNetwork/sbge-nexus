@@ -18,7 +18,7 @@ const WinstonMa = () => {
             <div className="p-8 md:p-12 space-y-8">
               <div>
                 <h1 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-2">
-                  Winston Ma
+                  Winston Ma, CFA, Esq
                 </h1>
                 <p className="text-2xl text-accent font-medium mb-1">Chief Investment Officer</p>
                 <p className="text-lg text-muted-foreground">Partner</p>
