@@ -44,7 +44,7 @@ const executives = [
     imagePosition: 'face-high' as const,
   },
     {
-      name: 'Winston Ma, CFA, Esq',
+      name: 'Winston Ma, CFA, Esq.',
       title: 'Chief Investment Officer',
       subtitle: 'Partner',
       slug: 'winston-ma',
