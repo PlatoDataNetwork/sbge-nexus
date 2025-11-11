@@ -88,6 +88,7 @@ const Navigation = () => {
     { name: 'Market Insight', href: '/market' },
     { name: 'Innovation', href: '/innovation' },
     { name: 'Leadership', href: '/leadership' },
+    { name: 'News', href: '/news' },
     { name: 'Contact', href: '/contact' },
   ];
 
