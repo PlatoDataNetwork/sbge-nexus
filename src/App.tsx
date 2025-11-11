@@ -14,6 +14,7 @@ import Portfolio from "./pages/Portfolio";
 import Market from "./pages/Market";
 import Innovation from "./pages/Innovation";
 import Leadership from "./pages/Leadership";
+import News from "./pages/News";
 import Contact from "./pages/Contact";
 import Profile from "./pages/Profile";
 import Auth from "./pages/Auth";
@@ -75,6 +76,7 @@ const AppContent = () => {
               <Route path="/market" element={<Market />} />
               <Route path="/innovation" element={<Innovation />} />
               <Route path="/leadership" element={<Leadership />} />
+              <Route path="/news" element={<News />} />
               <Route path="/profile/:slug" element={<Profile />} />
               <Route path="/profile/alan-mruvka" element={<AlanMruvka />} />
               <Route path="/profile/barry-gosin" element={<BarryGosin />} />
