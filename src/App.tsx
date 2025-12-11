@@ -35,7 +35,7 @@ import ConradRoncati from "./pages/profiles/ConradRoncati";
 import NicholasHorner from "./pages/profiles/NicholasHorner";
 import WarrenDiamond from "./pages/profiles/WarrenDiamond";
 import LarryNamer from "./pages/profiles/LarryNamer";
-import FrankZisa from "./pages/profiles/FrankZisa";
+
 import JustinHorowitz from "./pages/profiles/JustinHorowitz";
 import AlanMruvka from "./pages/profiles/AlanMruvka";
 import BarryGosin from "./pages/profiles/BarryGosin";
@@ -104,7 +104,7 @@ const AppContent = () => {
               <Route path="/profile/nicholas-horner" element={<NicholasHorner />} />
               <Route path="/profile/warren-diamond" element={<WarrenDiamond />} />
               <Route path="/profile/larry-namer" element={<LarryNamer />} />
-              <Route path="/profile/frank-zisa" element={<FrankZisa />} />
+              
               <Route path="/profile/justin-horowitz" element={<JustinHorowitz />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/auth" element={<Auth />} />
