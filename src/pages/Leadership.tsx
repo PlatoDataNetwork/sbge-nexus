@@ -14,7 +14,7 @@ import rogerMasonJrImage from '@/assets/roger-mason-jr.jpg';
 import stevenGreenerImage from '@/assets/steven-greener.jpg';
 import winstonMaImage from '@/assets/winston-ma.jpg';
 import justinHorowitzImage from '@/assets/justin-horowitz.jpg';
-import frankZisaImage from '@/assets/frank-zisa.jpg';
+
 import conradRoncatiImage from '@/assets/conrad-roncati.jpg';
 import brianCuryImage from '@/assets/brian-cury.jpg';
 import davidFeldmanImage from '@/assets/david-feldman.png';
@@ -98,20 +98,6 @@ const executives = [
         'Represented corporations in transactions over $300M'
       ],
       image: nicholasHornerImage,
-    },
-    {
-      name: 'Frank Zisa',
-      title: 'SVP Investor Relations',
-      subtitle: 'Partner',
-      slug: 'frank-zisa',
-      bio: 'Former Senior Development Manager with expertise in acquisitions and developments across multiple asset classes.',
-      achievements: [
-        'Managed over $1.4B in acquisitions & developments',
-        'Former roles at Prudential Investment Management and Extra Space Self Storage',
-        'Degrees in Real Estate Development from Columbia University'
-      ],
-      image: frankZisaImage,
-      imagePosition: 'top' as const,
     },
     {
       name: 'Justin Horowitz',
