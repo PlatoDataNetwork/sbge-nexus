@@ -1,0 +1,39 @@
+{
+  "provider": {
+    "name": "StorageBlue Capital Management LLC",
+    "url": "https://storagebluecapital.com/"
+  },
+  "service": {
+    "name": "StorageBlue Growth Fund, LP",
+    "type": "Private Equity Real Estate Fund",
+    "asset_class": "Self-storage and industrial storage",
+    "description": "Institutional-grade self-storage investment fund investing in acquisitions, ground-up developments, and value-add redevelopment across supply-constrained U.S. markets."
+  },
+  "capabilities": [
+    "Self-storage acquisitions",
+    "Ground-up self-storage development",
+    "Value-add redevelopment",
+    "Vertically integrated operations (entitlement, construction, property management, marketing)",
+    "Institutional investment structuring"
+  ],
+  "target_investor": [
+    "Accredited investors",
+    "Family offices",
+    "Institutional investors",
+    "Sovereign wealth funds",
+    "Pension funds"
+  ],
+  "geographic_focus": {
+    "primary": ["New York metropolitan area", "New Jersey metropolitan area"],
+    "expansion": "Other high-barrier, underserved U.S. self-storage markets"
+  },
+  "fund_terms": {
+    "target_equity_raise_usd": 350000000,
+    "buying_power_usd": 1000000000,
+    "investment_horizon_years": 5
+  },
+  "contact": {
+    "investor_relations": "https://storagebluecapital.com/contact",
+    "schedule_call": "https://storagebluecapital.com/schedule-call"
+  }
+}
