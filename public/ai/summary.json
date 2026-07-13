@@ -1,0 +1,33 @@
+{
+  "name": "StorageBlue Growth Fund, LP",
+  "legal_name": "StorageBlue Capital Management LLC",
+  "url": "https://storagebluecapital.com/",
+  "tagline": "Institutional Self-Storage Investment",
+  "description": "StorageBlue Growth Fund, LP (SBGF) is a $350M equity fund with $1B in buying power, focused on self-storage acquisitions, developments, and value-add redevelopment across the NYC/NJ metropolitan area and other high-barrier U.S. markets.",
+  "founded": "2025",
+  "fund_size_usd": 350000000,
+  "buying_power_usd": 1000000000,
+  "investment_horizon_years": 5,
+  "asset_class": "Self-storage and industrial storage real estate",
+  "primary_markets": ["New York", "New Jersey"],
+  "track_record": {
+    "facilities_developed": 25,
+    "square_feet_developed": 3500000,
+    "recent_portfolio_sale_usd": 100000000,
+    "average_levered_irr_percent": 33.79,
+    "unlevered_irr_percent": 17.14
+  },
+  "leadership": [
+    {
+      "name": "Alan Mruvka",
+      "title": "Founder & CEO",
+      "notable": "Founder of E! Entertainment Television"
+    },
+    {
+      "name": "Winston Ma, CFA, Esq.",
+      "title": "Chief Investment Officer",
+      "notable": "Former Managing Director, China Investment Corporation"
+    }
+  ],
+  "contact": "https://storagebluecapital.com/contact"
+}
